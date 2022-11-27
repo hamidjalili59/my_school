@@ -1,0 +1,283 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+
+part of 'rollcall_model.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+Rollcall _$RollcallFromJson(Map<String, dynamic> json) {
+  return _Rollcall.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Rollcall {
+// account email
+  @HiveField(0)
+  int? get rolecallId => throw _privateConstructorUsedError; //
+  @HiveField(1)
+  int? get studentId => throw _privateConstructorUsedError; // basic Information
+  @HiveField(2)
+  String? get classId =>
+      throw _privateConstructorUsedError; // basic Information
+  @HiveField(3)
+  int? get classTime => throw _privateConstructorUsedError; // basic Information
+  @HiveField(4)
+  bool? get absent => throw _privateConstructorUsedError; // basic Information
+  @HiveField(5)
+  String? get date => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RollcallCopyWith<Rollcall> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RollcallCopyWith<$Res> {
+  factory $RollcallCopyWith(Rollcall value, $Res Function(Rollcall) then) =
+      _$RollcallCopyWithImpl<$Res, Rollcall>;
+  @useResult
+  $Res call(
+      {@HiveField(0) int? rolecallId,
+      @HiveField(1) int? studentId,
+      @HiveField(2) String? classId,
+      @HiveField(3) int? classTime,
+      @HiveField(4) bool? absent,
+      @HiveField(5) String? date});
+}
+
+/// @nodoc
+class _$RollcallCopyWithImpl<$Res, $Val extends Rollcall>
+    implements $RollcallCopyWith<$Res> {
+  _$RollcallCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rolecallId = freezed,
+    Object? studentId = freezed,
+    Object? classId = freezed,
+    Object? classTime = freezed,
+    Object? absent = freezed,
+    Object? date = freezed,
+  }) {
+    return _then(_value.copyWith(
+      rolecallId: freezed == rolecallId
+          ? _value.rolecallId
+          : rolecallId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: freezed == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      classId: freezed == classId
+          ? _value.classId
+          : classId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      classTime: freezed == classTime
+          ? _value.classTime
+          : classTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      absent: freezed == absent
+          ? _value.absent
+          : absent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_RollcallCopyWith<$Res> implements $RollcallCopyWith<$Res> {
+  factory _$$_RollcallCopyWith(
+          _$_Rollcall value, $Res Function(_$_Rollcall) then) =
+      __$$_RollcallCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@HiveField(0) int? rolecallId,
+      @HiveField(1) int? studentId,
+      @HiveField(2) String? classId,
+      @HiveField(3) int? classTime,
+      @HiveField(4) bool? absent,
+      @HiveField(5) String? date});
+}
+
+/// @nodoc
+class __$$_RollcallCopyWithImpl<$Res>
+    extends _$RollcallCopyWithImpl<$Res, _$_Rollcall>
+    implements _$$_RollcallCopyWith<$Res> {
+  __$$_RollcallCopyWithImpl(
+      _$_Rollcall _value, $Res Function(_$_Rollcall) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rolecallId = freezed,
+    Object? studentId = freezed,
+    Object? classId = freezed,
+    Object? classTime = freezed,
+    Object? absent = freezed,
+    Object? date = freezed,
+  }) {
+    return _then(_$_Rollcall(
+      rolecallId: freezed == rolecallId
+          ? _value.rolecallId
+          : rolecallId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: freezed == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      classId: freezed == classId
+          ? _value.classId
+          : classId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      classTime: freezed == classTime
+          ? _value.classTime
+          : classTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      absent: freezed == absent
+          ? _value.absent
+          : absent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@HiveType(typeId: 10)
+class _$_Rollcall implements _Rollcall {
+  _$_Rollcall(
+      {@HiveField(0) this.rolecallId,
+      @HiveField(1) this.studentId,
+      @HiveField(2) this.classId,
+      @HiveField(3) this.classTime,
+      @HiveField(4) this.absent,
+      @HiveField(5) this.date});
+
+  factory _$_Rollcall.fromJson(Map<String, dynamic> json) =>
+      _$$_RollcallFromJson(json);
+
+// account email
+  @override
+  @HiveField(0)
+  final int? rolecallId;
+//
+  @override
+  @HiveField(1)
+  final int? studentId;
+// basic Information
+  @override
+  @HiveField(2)
+  final String? classId;
+// basic Information
+  @override
+  @HiveField(3)
+  final int? classTime;
+// basic Information
+  @override
+  @HiveField(4)
+  final bool? absent;
+// basic Information
+  @override
+  @HiveField(5)
+  final String? date;
+
+  @override
+  String toString() {
+    return 'Rollcall(rolecallId: $rolecallId, studentId: $studentId, classId: $classId, classTime: $classTime, absent: $absent, date: $date)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Rollcall &&
+            (identical(other.rolecallId, rolecallId) ||
+                other.rolecallId == rolecallId) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.classId, classId) || other.classId == classId) &&
+            (identical(other.classTime, classTime) ||
+                other.classTime == classTime) &&
+            (identical(other.absent, absent) || other.absent == absent) &&
+            (identical(other.date, date) || other.date == date));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, rolecallId, studentId, classId, classTime, absent, date);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RollcallCopyWith<_$_Rollcall> get copyWith =>
+      __$$_RollcallCopyWithImpl<_$_Rollcall>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_RollcallToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Rollcall implements Rollcall {
+  factory _Rollcall(
+      {@HiveField(0) final int? rolecallId,
+      @HiveField(1) final int? studentId,
+      @HiveField(2) final String? classId,
+      @HiveField(3) final int? classTime,
+      @HiveField(4) final bool? absent,
+      @HiveField(5) final String? date}) = _$_Rollcall;
+
+  factory _Rollcall.fromJson(Map<String, dynamic> json) = _$_Rollcall.fromJson;
+
+  @override // account email
+  @HiveField(0)
+  int? get rolecallId;
+  @override //
+  @HiveField(1)
+  int? get studentId;
+  @override // basic Information
+  @HiveField(2)
+  String? get classId;
+  @override // basic Information
+  @HiveField(3)
+  int? get classTime;
+  @override // basic Information
+  @HiveField(4)
+  bool? get absent;
+  @override // basic Information
+  @HiveField(5)
+  String? get date;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RollcallCopyWith<_$_Rollcall> get copyWith =>
+      throw _privateConstructorUsedError;
+}
