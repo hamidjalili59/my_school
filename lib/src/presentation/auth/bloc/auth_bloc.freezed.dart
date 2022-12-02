@@ -867,22 +867,24 @@ abstract class _Failure implements AuthState {
 
 /// @nodoc
 mixin _$AuthEvent {
-  double get phoneNumber => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(double phoneNumber) otpHandshake,
+    required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double phoneNumber)? otpHandshake,
+    TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double phoneNumber)? otpHandshake,
+    TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
     required TResult orElse(),
   }) =>
@@ -890,25 +892,24 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OtpHandshake value) otpHandshake,
+    required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OtpHandshake value)? otpHandshake,
+    TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OtpHandshake value)? otpHandshake,
+    TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AuthEventCopyWith<AuthEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -916,8 +917,6 @@ mixin _$AuthEvent {
 abstract class $AuthEventCopyWith<$Res> {
   factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
       _$AuthEventCopyWithImpl<$Res, AuthEvent>;
-  @useResult
-  $Res call({double phoneNumber});
 }
 
 /// @nodoc
@@ -929,28 +928,13 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? phoneNumber = null,
-  }) {
-    return _then(_value.copyWith(
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_OtpHandshakeCopyWith<$Res>
-    implements $AuthEventCopyWith<$Res> {
+abstract class _$$_OtpHandshakeCopyWith<$Res> {
   factory _$$_OtpHandshakeCopyWith(
           _$_OtpHandshake value, $Res Function(_$_OtpHandshake) then) =
       __$$_OtpHandshakeCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({double phoneNumber});
 }
@@ -1012,6 +996,7 @@ class _$_OtpHandshake implements _OtpHandshake {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(double phoneNumber) otpHandshake,
+    required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
   }) {
     return otpHandshake(phoneNumber);
@@ -1021,6 +1006,7 @@ class _$_OtpHandshake implements _OtpHandshake {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double phoneNumber)? otpHandshake,
+    TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
   }) {
     return otpHandshake?.call(phoneNumber);
@@ -1030,6 +1016,7 @@ class _$_OtpHandshake implements _OtpHandshake {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double phoneNumber)? otpHandshake,
+    TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
     required TResult orElse(),
   }) {
@@ -1043,6 +1030,7 @@ class _$_OtpHandshake implements _OtpHandshake {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OtpHandshake value) otpHandshake,
+    required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
   }) {
     return otpHandshake(this);
@@ -1052,6 +1040,7 @@ class _$_OtpHandshake implements _OtpHandshake {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OtpHandshake value)? otpHandshake,
+    TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
   }) {
     return otpHandshake?.call(this);
@@ -1061,6 +1050,7 @@ class _$_OtpHandshake implements _OtpHandshake {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OtpHandshake value)? otpHandshake,
+    TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
     required TResult orElse(),
   }) {
@@ -1074,20 +1064,125 @@ class _$_OtpHandshake implements _OtpHandshake {
 abstract class _OtpHandshake implements AuthEvent {
   const factory _OtpHandshake(final double phoneNumber) = _$_OtpHandshake;
 
-  @override
   double get phoneNumber;
-  @override
   @JsonKey(ignore: true)
   _$$_OtpHandshakeCopyWith<_$_OtpHandshake> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_OtpVerifyCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+abstract class _$$_ResetIdelCopyWith<$Res> {
+  factory _$$_ResetIdelCopyWith(
+          _$_ResetIdel value, $Res Function(_$_ResetIdel) then) =
+      __$$_ResetIdelCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ResetIdelCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_ResetIdel>
+    implements _$$_ResetIdelCopyWith<$Res> {
+  __$$_ResetIdelCopyWithImpl(
+      _$_ResetIdel _value, $Res Function(_$_ResetIdel) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ResetIdel implements _ResetIdel {
+  const _$_ResetIdel();
+
+  @override
+  String toString() {
+    return 'AuthEvent.resetIdel()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ResetIdel);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double phoneNumber) otpHandshake,
+    required TResult Function() resetIdel,
+    required TResult Function(double phoneNumber, int verifyCode) otpVerify,
+  }) {
+    return resetIdel();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double phoneNumber)? otpHandshake,
+    TResult? Function()? resetIdel,
+    TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
+  }) {
+    return resetIdel?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double phoneNumber)? otpHandshake,
+    TResult Function()? resetIdel,
+    TResult Function(double phoneNumber, int verifyCode)? otpVerify,
+    required TResult orElse(),
+  }) {
+    if (resetIdel != null) {
+      return resetIdel();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OtpHandshake value) otpHandshake,
+    required TResult Function(_ResetIdel value) resetIdel,
+    required TResult Function(_OtpVerify value) otpVerify,
+  }) {
+    return resetIdel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OtpHandshake value)? otpHandshake,
+    TResult? Function(_ResetIdel value)? resetIdel,
+    TResult? Function(_OtpVerify value)? otpVerify,
+  }) {
+    return resetIdel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OtpHandshake value)? otpHandshake,
+    TResult Function(_ResetIdel value)? resetIdel,
+    TResult Function(_OtpVerify value)? otpVerify,
+    required TResult orElse(),
+  }) {
+    if (resetIdel != null) {
+      return resetIdel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetIdel implements AuthEvent {
+  const factory _ResetIdel() = _$_ResetIdel;
+}
+
+/// @nodoc
+abstract class _$$_OtpVerifyCopyWith<$Res> {
   factory _$$_OtpVerifyCopyWith(
           _$_OtpVerify value, $Res Function(_$_OtpVerify) then) =
       __$$_OtpVerifyCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({double phoneNumber, int verifyCode});
 }
@@ -1158,6 +1253,7 @@ class _$_OtpVerify implements _OtpVerify {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(double phoneNumber) otpHandshake,
+    required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
   }) {
     return otpVerify(phoneNumber, verifyCode);
@@ -1167,6 +1263,7 @@ class _$_OtpVerify implements _OtpVerify {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double phoneNumber)? otpHandshake,
+    TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
   }) {
     return otpVerify?.call(phoneNumber, verifyCode);
@@ -1176,6 +1273,7 @@ class _$_OtpVerify implements _OtpVerify {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double phoneNumber)? otpHandshake,
+    TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
     required TResult orElse(),
   }) {
@@ -1189,6 +1287,7 @@ class _$_OtpVerify implements _OtpVerify {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OtpHandshake value) otpHandshake,
+    required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
   }) {
     return otpVerify(this);
@@ -1198,6 +1297,7 @@ class _$_OtpVerify implements _OtpVerify {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OtpHandshake value)? otpHandshake,
+    TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
   }) {
     return otpVerify?.call(this);
@@ -1207,6 +1307,7 @@ class _$_OtpVerify implements _OtpVerify {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OtpHandshake value)? otpHandshake,
+    TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
     required TResult orElse(),
   }) {
@@ -1221,10 +1322,8 @@ abstract class _OtpVerify implements AuthEvent {
   const factory _OtpVerify(final double phoneNumber, final int verifyCode) =
       _$_OtpVerify;
 
-  @override
   double get phoneNumber;
   int get verifyCode;
-  @override
   @JsonKey(ignore: true)
   _$$_OtpVerifyCopyWith<_$_OtpVerify> get copyWith =>
       throw _privateConstructorUsedError;

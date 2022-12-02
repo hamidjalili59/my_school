@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:my_school/src/presentation/auth/bloc/auth_bloc.dart';
 import 'package:my_school/src/presentation/auth/pages/auth_page.dart';
 import 'package:my_school/src/presentation/classroom/pages/class_details_page.dart';
 import 'package:my_school/src/presentation/classroom/pages/class_exams_page.dart';

@@ -23,9 +23,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       apiService.postMethod<int>(
         'http://myschool.asatic.ir/api/v1/login',
         body: {
-          "token": "mohsenandhamidandhadiandasakrobo",
-          "phonenum": phoneNumber,
-          "devices": ""
+          "PhoneNumber": phoneNumber,
         },
       );
 

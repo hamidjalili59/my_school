@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
+import 'package:my_school/src/presentation/auth/bloc/auth_bloc.dart';
 import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
 
 class UserAuthenticationPage extends StatelessWidget {
-  UserAuthenticationPage({super.key});
+  UserAuthenticationPage({
+    Key? key,
+    required this.bloc,
+  }) : super(key: key);
+  final AuthBloc bloc;
   final TextEditingController phoneController = TextEditingController(text: '');
 
   @override
@@ -42,34 +48,36 @@ class UserAuthenticationPage extends StatelessWidget {
                   ),
                   SizedBox(height: 0.08.sh),
                   Material(
-                            color: GeneralConstants.backgroundColor,
-                            borderRadius: BorderRadius.circular(8.r),
-                            child: InkWell(
-                              splashColor:
-                                  const Color.fromARGB(255, 141, 108, 159),
-                              borderRadius: BorderRadius.circular(8.r),
-                              onTap: () {
-                                // loginBloc.add(
-                                //     const AuthEvent.otpHandshake(09361360584));
-                              },
-                              child: Container(
-                                width: 0.45.sw,
-                                height: 0.06.sh,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                ),
-                                child: Text(
-                                  'تایید',
-                                  style: TextStyle(
-                                      color: Colors.black38,
-                                      fontSize: 16.r,
-                                      fontWeight: FontWeight.w900),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
+                    color: GeneralConstants.backgroundColor,
+                    borderRadius: BorderRadius.circular(8.r),
+                    child: InkWell(
+                      splashColor: const Color.fromARGB(255, 141, 108, 159),
+                      borderRadius: BorderRadius.circular(8.r),
+                      onTap: () {
+                        bloc.add(
+                          AuthEvent.otpHandshake(
+                            double.parse(phoneController.text),
                           ),
+                        );
+                      },
+                      child: Container(
+                        width: 0.45.sw,
+                        height: 0.06.sh,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: Text(
+                          'تایید',
+                          style: TextStyle(
+                              color: Colors.black38,
+                              fontSize: 16.r,
+                              fontWeight: FontWeight.w900),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )),

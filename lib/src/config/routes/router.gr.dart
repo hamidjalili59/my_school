@@ -30,9 +30,11 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     AuthRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<AuthRouteArgs>(orElse: () => const AuthRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const AuthPage(),
+        child: AuthPage(key: args.key),
       );
     },
     HomeRoute.name: (routeData) {
@@ -80,11 +82,13 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     Authentication.name: (routeData) {
-      final args = routeData.argsAs<AuthenticationArgs>(
-          orElse: () => const AuthenticationArgs());
+      final args = routeData.argsAs<AuthenticationArgs>();
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: UserAuthenticationPage(key: args.key),
+        child: UserAuthenticationPage(
+          key: args.key,
+          bloc: args.bloc,
+        ),
       );
     },
     Verify_code.name: (routeData) {
@@ -225,15 +229,29 @@ class IntroRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [AuthPage]
-class AuthRoute extends PageRouteInfo<void> {
-  const AuthRoute({List<PageRouteInfo>? children})
-      : super(
+class AuthRoute extends PageRouteInfo<AuthRouteArgs> {
+  AuthRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           AuthRoute.name,
           path: '/auth',
+          args: AuthRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'AuthRoute';
+}
+
+class AuthRouteArgs {
+  const AuthRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AuthRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -362,24 +380,34 @@ class AddScoreForClassRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [UserAuthenticationPage]
 class Authentication extends PageRouteInfo<AuthenticationArgs> {
-  Authentication({Key? key})
-      : super(
+  Authentication({
+    Key? key,
+    required AuthBloc bloc,
+  }) : super(
           Authentication.name,
           path: 'user-authentication-page',
-          args: AuthenticationArgs(key: key),
+          args: AuthenticationArgs(
+            key: key,
+            bloc: bloc,
+          ),
         );
 
   static const String name = 'Authentication';
 }
 
 class AuthenticationArgs {
-  const AuthenticationArgs({this.key});
+  const AuthenticationArgs({
+    this.key,
+    required this.bloc,
+  });
 
   final Key? key;
 
+  final AuthBloc bloc;
+
   @override
   String toString() {
-    return 'AuthenticationArgs{key: $key}';
+    return 'AuthenticationArgs{key: $key, bloc: $bloc}';
   }
 }
 
