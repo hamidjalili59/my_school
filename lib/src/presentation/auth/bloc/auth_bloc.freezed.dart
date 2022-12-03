@@ -872,6 +872,7 @@ mixin _$AuthEvent {
     required TResult Function(double phoneNumber) otpHandshake,
     required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
+    required TResult Function(OtpHandshakeResponse token) cacheAuthData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -879,6 +880,7 @@ mixin _$AuthEvent {
     TResult? Function(double phoneNumber)? otpHandshake,
     TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -886,6 +888,7 @@ mixin _$AuthEvent {
     TResult Function(double phoneNumber)? otpHandshake,
     TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult Function(OtpHandshakeResponse token)? cacheAuthData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -894,6 +897,7 @@ mixin _$AuthEvent {
     required TResult Function(_OtpHandshake value) otpHandshake,
     required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
+    required TResult Function(_CacheAuthData value) cacheAuthData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -901,6 +905,7 @@ mixin _$AuthEvent {
     TResult? Function(_OtpHandshake value)? otpHandshake,
     TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
+    TResult? Function(_CacheAuthData value)? cacheAuthData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -908,6 +913,7 @@ mixin _$AuthEvent {
     TResult Function(_OtpHandshake value)? otpHandshake,
     TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
+    TResult Function(_CacheAuthData value)? cacheAuthData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -998,6 +1004,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     required TResult Function(double phoneNumber) otpHandshake,
     required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
+    required TResult Function(OtpHandshakeResponse token) cacheAuthData,
   }) {
     return otpHandshake(phoneNumber);
   }
@@ -1008,6 +1015,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     TResult? Function(double phoneNumber)? otpHandshake,
     TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
   }) {
     return otpHandshake?.call(phoneNumber);
   }
@@ -1018,6 +1026,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     TResult Function(double phoneNumber)? otpHandshake,
     TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult Function(OtpHandshakeResponse token)? cacheAuthData,
     required TResult orElse(),
   }) {
     if (otpHandshake != null) {
@@ -1032,6 +1041,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     required TResult Function(_OtpHandshake value) otpHandshake,
     required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
+    required TResult Function(_CacheAuthData value) cacheAuthData,
   }) {
     return otpHandshake(this);
   }
@@ -1042,6 +1052,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     TResult? Function(_OtpHandshake value)? otpHandshake,
     TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
+    TResult? Function(_CacheAuthData value)? cacheAuthData,
   }) {
     return otpHandshake?.call(this);
   }
@@ -1052,6 +1063,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     TResult Function(_OtpHandshake value)? otpHandshake,
     TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
+    TResult Function(_CacheAuthData value)? cacheAuthData,
     required TResult orElse(),
   }) {
     if (otpHandshake != null) {
@@ -1111,6 +1123,7 @@ class _$_ResetIdel implements _ResetIdel {
     required TResult Function(double phoneNumber) otpHandshake,
     required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
+    required TResult Function(OtpHandshakeResponse token) cacheAuthData,
   }) {
     return resetIdel();
   }
@@ -1121,6 +1134,7 @@ class _$_ResetIdel implements _ResetIdel {
     TResult? Function(double phoneNumber)? otpHandshake,
     TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
   }) {
     return resetIdel?.call();
   }
@@ -1131,6 +1145,7 @@ class _$_ResetIdel implements _ResetIdel {
     TResult Function(double phoneNumber)? otpHandshake,
     TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult Function(OtpHandshakeResponse token)? cacheAuthData,
     required TResult orElse(),
   }) {
     if (resetIdel != null) {
@@ -1145,6 +1160,7 @@ class _$_ResetIdel implements _ResetIdel {
     required TResult Function(_OtpHandshake value) otpHandshake,
     required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
+    required TResult Function(_CacheAuthData value) cacheAuthData,
   }) {
     return resetIdel(this);
   }
@@ -1155,6 +1171,7 @@ class _$_ResetIdel implements _ResetIdel {
     TResult? Function(_OtpHandshake value)? otpHandshake,
     TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
+    TResult? Function(_CacheAuthData value)? cacheAuthData,
   }) {
     return resetIdel?.call(this);
   }
@@ -1165,6 +1182,7 @@ class _$_ResetIdel implements _ResetIdel {
     TResult Function(_OtpHandshake value)? otpHandshake,
     TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
+    TResult Function(_CacheAuthData value)? cacheAuthData,
     required TResult orElse(),
   }) {
     if (resetIdel != null) {
@@ -1255,6 +1273,7 @@ class _$_OtpVerify implements _OtpVerify {
     required TResult Function(double phoneNumber) otpHandshake,
     required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
+    required TResult Function(OtpHandshakeResponse token) cacheAuthData,
   }) {
     return otpVerify(phoneNumber, verifyCode);
   }
@@ -1265,6 +1284,7 @@ class _$_OtpVerify implements _OtpVerify {
     TResult? Function(double phoneNumber)? otpHandshake,
     TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
   }) {
     return otpVerify?.call(phoneNumber, verifyCode);
   }
@@ -1275,6 +1295,7 @@ class _$_OtpVerify implements _OtpVerify {
     TResult Function(double phoneNumber)? otpHandshake,
     TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult Function(OtpHandshakeResponse token)? cacheAuthData,
     required TResult orElse(),
   }) {
     if (otpVerify != null) {
@@ -1289,6 +1310,7 @@ class _$_OtpVerify implements _OtpVerify {
     required TResult Function(_OtpHandshake value) otpHandshake,
     required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
+    required TResult Function(_CacheAuthData value) cacheAuthData,
   }) {
     return otpVerify(this);
   }
@@ -1299,6 +1321,7 @@ class _$_OtpVerify implements _OtpVerify {
     TResult? Function(_OtpHandshake value)? otpHandshake,
     TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
+    TResult? Function(_CacheAuthData value)? cacheAuthData,
   }) {
     return otpVerify?.call(this);
   }
@@ -1309,6 +1332,7 @@ class _$_OtpVerify implements _OtpVerify {
     TResult Function(_OtpHandshake value)? otpHandshake,
     TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
+    TResult Function(_CacheAuthData value)? cacheAuthData,
     required TResult orElse(),
   }) {
     if (otpVerify != null) {
@@ -1326,5 +1350,151 @@ abstract class _OtpVerify implements AuthEvent {
   int get verifyCode;
   @JsonKey(ignore: true)
   _$$_OtpVerifyCopyWith<_$_OtpVerify> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CacheAuthDataCopyWith<$Res> {
+  factory _$$_CacheAuthDataCopyWith(
+          _$_CacheAuthData value, $Res Function(_$_CacheAuthData) then) =
+      __$$_CacheAuthDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({OtpHandshakeResponse token});
+}
+
+/// @nodoc
+class __$$_CacheAuthDataCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_CacheAuthData>
+    implements _$$_CacheAuthDataCopyWith<$Res> {
+  __$$_CacheAuthDataCopyWithImpl(
+      _$_CacheAuthData _value, $Res Function(_$_CacheAuthData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$_CacheAuthData(
+      null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as OtpHandshakeResponse,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CacheAuthData implements _CacheAuthData {
+  const _$_CacheAuthData(this.token);
+
+  @override
+  final OtpHandshakeResponse token;
+
+  @override
+  String toString() {
+    return 'AuthEvent.cacheAuthData(token: $token)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CacheAuthData &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, token);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CacheAuthDataCopyWith<_$_CacheAuthData> get copyWith =>
+      __$$_CacheAuthDataCopyWithImpl<_$_CacheAuthData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double phoneNumber) otpHandshake,
+    required TResult Function() resetIdel,
+    required TResult Function(double phoneNumber, int verifyCode) otpVerify,
+    required TResult Function(OtpHandshakeResponse token) cacheAuthData,
+  }) {
+    return cacheAuthData(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double phoneNumber)? otpHandshake,
+    TResult? Function()? resetIdel,
+    TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
+  }) {
+    return cacheAuthData?.call(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double phoneNumber)? otpHandshake,
+    TResult Function()? resetIdel,
+    TResult Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult Function(OtpHandshakeResponse token)? cacheAuthData,
+    required TResult orElse(),
+  }) {
+    if (cacheAuthData != null) {
+      return cacheAuthData(token);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OtpHandshake value) otpHandshake,
+    required TResult Function(_ResetIdel value) resetIdel,
+    required TResult Function(_OtpVerify value) otpVerify,
+    required TResult Function(_CacheAuthData value) cacheAuthData,
+  }) {
+    return cacheAuthData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OtpHandshake value)? otpHandshake,
+    TResult? Function(_ResetIdel value)? resetIdel,
+    TResult? Function(_OtpVerify value)? otpVerify,
+    TResult? Function(_CacheAuthData value)? cacheAuthData,
+  }) {
+    return cacheAuthData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OtpHandshake value)? otpHandshake,
+    TResult Function(_ResetIdel value)? resetIdel,
+    TResult Function(_OtpVerify value)? otpVerify,
+    TResult Function(_CacheAuthData value)? cacheAuthData,
+    required TResult orElse(),
+  }) {
+    if (cacheAuthData != null) {
+      return cacheAuthData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CacheAuthData implements AuthEvent {
+  const factory _CacheAuthData(final OtpHandshakeResponse token) =
+      _$_CacheAuthData;
+
+  OtpHandshakeResponse get token;
+  @JsonKey(ignore: true)
+  _$$_CacheAuthDataCopyWith<_$_CacheAuthData> get copyWith =>
       throw _privateConstructorUsedError;
 }

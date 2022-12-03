@@ -50,9 +50,6 @@ class AddScoreForClassPage extends StatelessWidget {
                           columns: <DataColumn>[
                             DataColumn(
                               onSort: (index, isfelan) {
-                                print(
-                                  '$index $isfelan',
-                                );
                               },
                               label: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -68,9 +65,6 @@ class AddScoreForClassPage extends StatelessWidget {
                             ),
                             DataColumn(
                               onSort: (index, isfelan) {
-                                print(
-                                  '$index $isfelan',
-                                );
                               },
                               label: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -159,7 +153,6 @@ class AddScoreForClassPage extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          print('object');
                         },
                         child: SizedBox(
                           width: 60.w,

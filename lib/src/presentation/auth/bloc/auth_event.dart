@@ -12,4 +12,7 @@ class AuthEvent with _$AuthEvent {
     double phoneNumber,
     int verifyCode,
   ) = _OtpVerify;
+  const factory AuthEvent.cacheAuthData(
+    OtpHandshakeResponse token,
+  ) = _CacheAuthData;
 }

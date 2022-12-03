@@ -19,13 +19,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String,dynamic>>>> otpHandshake(
           {
-          required double phoneNumber}) =>
-      apiService.postMethod<Map<String,dynamic>>(
-        'http://myschool.asatic.ir/api/v1/login',
-        body: {
+          required double phoneNumber}) {
+              return apiService.postMethod<Map<String,dynamic>>(
+                
+                  'http://myschool.asatic.ir/api/v1/login',
+                  body: {
           "PhoneNumber": phoneNumber,
-        },
-      );
+                  },
+                );
+            }
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> getDataFromServer(

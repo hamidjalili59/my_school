@@ -19,17 +19,20 @@ class OtpHandshakeResponseAdapter extends TypeAdapter<OtpHandshakeResponse> {
     return OtpHandshakeResponse(
       token: fields[0] as String,
       typeOfUser: fields[1] as int,
+      phoneNumber: fields[2] as double,
     );
   }
 
   @override
   void write(BinaryWriter writer, OtpHandshakeResponse obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.token)
       ..writeByte(1)
-      ..write(obj.typeOfUser);
+      ..write(obj.typeOfUser)
+      ..writeByte(2)
+      ..write(obj.phoneNumber);
   }
 
   @override
@@ -52,6 +55,7 @@ OtpHandshakeResponse _$OtpHandshakeResponseFromJson(
     OtpHandshakeResponse(
       token: json['token'] as String,
       typeOfUser: json['typeOfUser'] as int,
+      phoneNumber: (json['phoneNumber'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$OtpHandshakeResponseToJson(
@@ -59,4 +63,5 @@ Map<String, dynamic> _$OtpHandshakeResponseToJson(
     <String, dynamic>{
       'token': instance.token,
       'typeOfUser': instance.typeOfUser,
+      'phoneNumber': instance.phoneNumber,
     };

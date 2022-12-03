@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/auth/bloc/auth_bloc.dart';
 import 'package:my_school/src/presentation/auth/pages/user_authentication_page.dart';
@@ -20,11 +21,17 @@ class AuthPage extends StatelessWidget {
           child: Scaffold(
             body: BlocBuilder<AuthBloc, AuthState>(
               builder: (context, state) {
-                print(state.toString());
-                print('inja ');
-                print(' ______ ');
                 return state.maybeWhen(
                   otpHandshakeSuccess: (o) {
+                    _loginBloc.add(
+                      AuthEvent.cacheAuthData(
+                        OtpHandshakeResponse(
+                          token: o.token,
+                          typeOfUser: o.typeOfUser,
+                          phoneNumber: o.phoneNumber,
+                        ),
+                      ),
+                    );
                     return SizedBox(
                       width: 1.sw,
                       height: 1.sh,
@@ -71,8 +78,6 @@ class AuthPage extends StatelessWidget {
                     );
                   },
                   failure: (f, s) {
-                    print(f.toString());
-                    print(s.toString());
                     _loginBloc.add(
                       const AuthEvent.resetIdel(),
                     );
