@@ -8,11 +8,10 @@ class GeneralConstants {
   static String firstAppbarItem = '';
   static String appbarTitle = 'مدرسه من';
   static String jwt = '';
-  static const bool isParent = false;
-  static const bool isTeacher = false;
-  static const bool isAdmin = false;
+  static bool isParent = false;
+  static bool isTeacher = false;
+  static bool isAdmin = false;
   static bool didStartSetup = false;
-
 
   static Color backgroundColor = const Color.fromARGB(255, 250, 239, 222);
   static Color mainColor = const Color.fromARGB(255, 120, 97, 177);

@@ -6,7 +6,7 @@ class AuthLocalDataSource extends DatabaseCommonOperations<OtpHandshakeResponse>
 
   AuthLocalDataSource(this.dbService)
       : super(
-          boxName: 'AuthSchoolDataSource',
+          boxName: 'AuthDataSource',
           databaseService: dbService,
         );
 }

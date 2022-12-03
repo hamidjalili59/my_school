@@ -19,6 +19,7 @@ class AuthRepositoryImpl extends AuthRepository {
       return response.fold(
         (l) => left<AuthFailure, OtpHandshakeResponse>(AuthFailure.api(l)),
         (r) {
+          r.data!['phoneNumber'] = phoneNumber;
           return right<AuthFailure, OtpHandshakeResponse>(
             OtpHandshakeResponse.fromJson(r.data ?? {}),
           );
@@ -28,14 +29,15 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<AuthFailure, void>> cacheAuthData({
-    required String token,
-    required int typeOfUser,
-  }) {
+  Future<Either<AuthFailure, void>> cacheAuthData(
+      {required String token,
+      required int typeOfUser,
+      required double phoneNumber}) {
     return _localDS
         .cacheData(
             fieldKey: tokenFieldKey,
-            value: OtpHandshakeResponse(token: token, typeOfUser: typeOfUser))
+            value: OtpHandshakeResponse(
+                token: token, typeOfUser: typeOfUser, phoneNumber: phoneNumber))
         .then(
           (value) => value.fold(
             (l) => left<AuthFailure, void>(AuthFailure.database(l)),

@@ -21,15 +21,16 @@ class SplashPage extends StatelessWidget {
         body: BlocProvider<SplashBloc>(
           create: (__) => _splashBloc,
           child: BlocListener<SplashBloc, SplashState>(
+            bloc: _splashBloc,
             listener: (context, state) {
-              if (getIt.get<AppRouter>().currentPath != '/splash_page') {
+              if (getIt.get<AppRouter>().currentPath != '/splash') {
                 return;
               }
               state.maybeWhen(
                 failure: (f, m) {
-                  _appRoute.pushNamed('/intro_page');
+                  _appRoute.pushNamed('/intro');
                 },
-                jwtIsNotExp: (devicesList) {
+                jwtIsNotExp: (typeOfUser) {
                   _appRoute.pushNamed('/home_page');
                 },
                 jwtExist: (r) {

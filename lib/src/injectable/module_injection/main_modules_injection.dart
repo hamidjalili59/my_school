@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/core/interceptors/auth_header_suplier.dart';
 import 'package:my_school/src/core/interceptors/request_interceptor.dart';
+import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
 class MainModulesInjection {
@@ -29,5 +30,6 @@ class MainModulesInjection {
   Future registerHiveAdapters() async {
     // ignore: unused_local_variable
     final databaseService = getIt.get<DatabaseService>();
+    databaseService.registerAdapter(OtpHandshakeResponseAdapter());
   }
 }

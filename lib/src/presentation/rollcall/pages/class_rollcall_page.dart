@@ -94,7 +94,6 @@ class ClassRollCallPage extends StatelessWidget {
                               ),
                               onTap: () {
                                 hamidbool = true;
-                                print('حاضر');
                               },
                               child: SizedBox(
                                 height: 45.h,
@@ -170,7 +169,6 @@ class ClassRollCallPage extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              print('object');
                             },
                             child: SizedBox(
                               width: 60.w,

@@ -22,13 +22,11 @@ part 'splash_state.dart';
 @injectable
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final GetCachedAuthDataUseCase _getCachedAuthDataUseCase;
-  // final GetDevicesFromServerUseCase _getDevicesFromServerUseCase;
   final AppRouter appRoute = getIt.get<AppRouter>();
   SplashBloc(
     this._getCachedAuthDataUseCase,
-    // this._getDevicesFromServerUseCase,
   ) : super(const _LoadInProgress()) {
-    on<_GetClientData>(_getDevicesData);
+    on<_GetClientData>(_getClientData);
     on<_TokenIsExist>(_jwtIsExist);
   }
   @override
@@ -37,28 +35,21 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     super.onEvent(event);
   }
 
-  FutureOr<void> _getDevicesData(
+  FutureOr<void> _getClientData(
     _GetClientData event,
     Emitter<SplashState> emit,
   ) async {
     GeneralConstants.jwt = event.token.token;
     emit(const _LoadInProgress());
     try {
-      // final getDevicesResult = await _getDevicesFromServerUseCase(
-      //     param: tuple.Tuple1<double>(event.verify.phoneNumber));
-      // await Future.delayed(const Duration(seconds: 2));
-      // getDevicesResult.fold(
-      //   (l) {
-      //     emit(const _Failure());
-      //   },
-      //   (r) {
-      //     if (r == null) {
-      //       return emit(const _Failure(failure: AuthFailure.nullParam()));
-      //     }
-      //     getIt.registerLazySingleton<ListDeviceModel>(() => r);
-      //     emit(_JwtIsNotExp(r));
-      //   },
-      // );
+      if (event.token.typeOfUser == 0) {
+        GeneralConstants.isAdmin = true;
+        appRoute.pushNamed('/home_page');
+      } else if (event.token.typeOfUser == 1) {
+        GeneralConstants.isTeacher = true;
+      } else {
+        GeneralConstants.isParent = true;
+      }
     } catch (e) {
       FunctionHelper().logErrorDetailMessage(
         e,
@@ -78,13 +69,14 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     emit(const _LoadInProgress());
     try {
       final getCacheResult = await _getCachedAuthDataUseCase();
-      await Future.delayed(const Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 2));
       getCacheResult.fold(
         (l) {
           emit(_Failure(failure: l));
         },
         (r) {
           if (r == null) {
+            appRoute.pushNamed('/auth');
             return emit(const _Failure(failure: AuthFailure.nullParam()));
           }
           getIt.registerSingleton<OtpHandshakeResponse>(r);

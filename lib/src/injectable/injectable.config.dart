@@ -293,8 +293,10 @@ _i1.GetIt $initGetIt(
       () => studentFeatureModule.updateStudentUseCase);
   gh.factory<_i79.UpdateTeacherUseCase>(
       () => teacherFeatureModule.updateTeacherUseCase);
-  gh.factory<_i80.AuthBloc>(
-      () => _i80.AuthBloc(get<_i50.OtpHandshakeUseCase>()));
+  gh.factory<_i80.AuthBloc>(() => _i80.AuthBloc(
+        get<_i50.OtpHandshakeUseCase>(),
+        get<_i13.CacheAuthDataUseCase>(),
+      ));
   return get;
 }
 
