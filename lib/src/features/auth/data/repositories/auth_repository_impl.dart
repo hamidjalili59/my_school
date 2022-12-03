@@ -1,10 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/auth/data/data_sources/local/auth_local_data_source.dart';
 import 'package:my_school/src/features/auth/data/data_sources/remote/auth_remote_data_source.dart';
 import 'package:my_school/src/features/auth/domain/failures/auth_failure.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
-import 'package:my_school/src/features/auth/domain/models/otp_verify_response.dart';
 import 'package:my_school/src/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
@@ -21,13 +19,8 @@ class AuthRepositoryImpl extends AuthRepository {
       return response.fold(
         (l) => left<AuthFailure, OtpHandshakeResponse>(AuthFailure.api(l)),
         (r) {
-          r.headers.map.forEach((name, values) {
-            if (name == 'set-cookie') {
-              GeneralConstants.jwt = values.first;
-            }
-          });
           return right<AuthFailure, OtpHandshakeResponse>(
-            OtpHandshakeResponse.fromJson({"verifyCode": r.data ?? ''}),
+            OtpHandshakeResponse.fromJson(r.data ?? {}),
           );
         },
       );
@@ -35,12 +28,14 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<AuthFailure, void>> cacheAuthData(
-      {required String jwt, required double phoneNumber}) {
+  Future<Either<AuthFailure, void>> cacheAuthData({
+    required String token,
+    required int typeOfUser,
+  }) {
     return _localDS
         .cacheData(
             fieldKey: tokenFieldKey,
-            value: OtpVerifyResponse(phoneNumber: phoneNumber, jwt: jwt))
+            value: OtpHandshakeResponse(token: token, typeOfUser: typeOfUser))
         .then(
           (value) => value.fold(
             (l) => left<AuthFailure, void>(AuthFailure.database(l)),
@@ -50,12 +45,12 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<AuthFailure, OtpVerifyResponse?>> getCachedAuthData() =>
+  Future<Either<AuthFailure, OtpHandshakeResponse?>> getCachedAuthData() =>
       _localDS.getCachedData(fieldKey: tokenFieldKey).then(
             (value) => value.fold(
-              (l) => left<AuthFailure, OtpVerifyResponse?>(
+              (l) => left<AuthFailure, OtpHandshakeResponse?>(
                   AuthFailure.database(l)),
-              (r) => right<AuthFailure, OtpVerifyResponse?>(r),
+              (r) => right<AuthFailure, OtpHandshakeResponse?>(r),
             ),
           );
 }

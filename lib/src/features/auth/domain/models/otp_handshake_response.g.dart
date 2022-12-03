@@ -17,16 +17,19 @@ class OtpHandshakeResponseAdapter extends TypeAdapter<OtpHandshakeResponse> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return OtpHandshakeResponse(
-      verifyCode: fields[0] as int,
+      token: fields[0] as String,
+      typeOfUser: fields[1] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, OtpHandshakeResponse obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.verifyCode);
+      ..write(obj.token)
+      ..writeByte(1)
+      ..write(obj.typeOfUser);
   }
 
   @override
@@ -47,11 +50,13 @@ class OtpHandshakeResponseAdapter extends TypeAdapter<OtpHandshakeResponse> {
 OtpHandshakeResponse _$OtpHandshakeResponseFromJson(
         Map<String, dynamic> json) =>
     OtpHandshakeResponse(
-      verifyCode: json['verifyCode'] as int,
+      token: json['token'] as String,
+      typeOfUser: json['typeOfUser'] as int,
     );
 
 Map<String, dynamic> _$OtpHandshakeResponseToJson(
         OtpHandshakeResponse instance) =>
     <String, dynamic>{
-      'verifyCode': instance.verifyCode,
+      'token': instance.token,
+      'typeOfUser': instance.typeOfUser,
     };

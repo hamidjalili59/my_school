@@ -14,10 +14,10 @@ abstract class AuthRepository {
   // });
   //
   Future<Either<AuthFailure, void>> cacheAuthData({
-    required double phoneNumber,
-    required String jwt,
+    required String token,
+    required int typeOfUser,
   });
   //
-  Future<Either<AuthFailure, OtpVerifyResponse?>> getCachedAuthData();
+  Future<Either<AuthFailure, OtpHandshakeResponse?>> getCachedAuthData();
   //
 }

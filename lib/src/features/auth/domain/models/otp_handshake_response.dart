@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'otp_handshake_response.g.dart';
@@ -8,9 +7,14 @@ part 'otp_handshake_response.g.dart';
 @JsonSerializable()
 class OtpHandshakeResponse {
   @HiveField(0)
-  final int verifyCode;
+  final String token;
+  @HiveField(1)
+  final int typeOfUser;
 
-  OtpHandshakeResponse({required this.verifyCode});
+  OtpHandshakeResponse({
+    required this.token,
+    required this.typeOfUser,
+  });
   
   factory OtpHandshakeResponse.fromJson(Map<String,dynamic>json) => _$OtpHandshakeResponseFromJson(json);
 

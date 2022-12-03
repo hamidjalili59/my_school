@@ -36,7 +36,7 @@ import '../features/classroom/domain/use_cases/get_classrooms_use_case.dart'
 import '../features/classroom/domain/use_cases/remove_classroom_use_case.dart'
     as _i54;
 import '../features/classroom/domain/use_cases/update_classroom_use_case.dart'
-    as _i72;
+    as _i73;
 import '../features/course/data/data_sources/local/course_local_data_source.dart'
     as _i26;
 import '../features/course/data/data_sources/remote/course_remote_data_sourse.dart'
@@ -51,7 +51,7 @@ import '../features/course/domain/use_cases/get_courses_use_case.dart' as _i42;
 import '../features/course/domain/use_cases/remove_course_use_case.dart'
     as _i55;
 import '../features/course/domain/use_cases/update_course_use_case.dart'
-    as _i73;
+    as _i74;
 import '../features/exam/data/data_sources/local/exam_local_data_source.dart'
     as _i29;
 import '../features/exam/data/data_sources/remote/exam_remote_data_source.dart'
@@ -64,7 +64,7 @@ import '../features/exam/domain/use_cases/get_cached_exam_data_use_case.dart'
     as _i35;
 import '../features/exam/domain/use_cases/get_exams_use_case.dart' as _i43;
 import '../features/exam/domain/use_cases/remove_exam_use_case.dart' as _i56;
-import '../features/exam/domain/use_cases/update_exam_use_case.dart' as _i74;
+import '../features/exam/domain/use_cases/update_exam_use_case.dart' as _i75;
 import '../features/parent/data/data_sources/local/parent_local_data_source.dart'
     as _i51;
 import '../features/parent/data/data_sources/remote/parent_remote_data_source.dart'
@@ -76,7 +76,7 @@ import '../features/parent/domain/use_cases/get_cached_parent_data_use_case.dart
     as _i36;
 import '../features/parent/domain/use_cases/get_parent_use_case.dart' as _i44;
 import '../features/parent/domain/use_cases/update_parent_use_case.dart'
-    as _i75;
+    as _i76;
 import '../features/role_call/data/data_sources/local/rollcall_local_data_source.dart'
     as _i60;
 import '../features/role_call/data/data_sources/remote/rollcall_remote_data_source.dart'
@@ -102,13 +102,13 @@ import '../features/score/domain/use_cases/cache_score_data_use_case.dart'
 import '../features/score/domain/use_cases/get_cached_score_data_use_case.dart'
     as _i38;
 import '../features/score/domain/use_cases/get_scores_use_case.dart' as _i46;
-import '../features/score/domain/use_cases/update_score_use_case.dart' as _i76;
+import '../features/score/domain/use_cases/update_score_use_case.dart' as _i77;
 import '../features/student/data/data_sources/local/student_local_data_source.dart'
-    as _i66;
-import '../features/student/data/data_sources/remote/student_remote_data_source.dart'
     as _i67;
-import '../features/student/domain/repositories/student_repository.dart'
+import '../features/student/data/data_sources/remote/student_remote_data_source.dart'
     as _i68;
+import '../features/student/domain/repositories/student_repository.dart'
+    as _i69;
 import '../features/student/domain/use_cases/add_student_use_case.dart' as _i8;
 import '../features/student/domain/use_cases/cache_student_data_use_case.dart'
     as _i20;
@@ -119,13 +119,13 @@ import '../features/student/domain/use_cases/get_students_use_case.dart'
 import '../features/student/domain/use_cases/remove_student_use_case.dart'
     as _i57;
 import '../features/student/domain/use_cases/update_student_use_case.dart'
-    as _i77;
+    as _i78;
 import '../features/teacher/data/data_sources/local/teacher_local_data_source.dart'
-    as _i69;
-import '../features/teacher/data/data_sources/remote/teacher_remote_data_source.dart'
     as _i70;
-import '../features/teacher/domain/repositories/teacher_repository.dart'
+import '../features/teacher/data/data_sources/remote/teacher_remote_data_source.dart'
     as _i71;
+import '../features/teacher/domain/repositories/teacher_repository.dart'
+    as _i72;
 import '../features/teacher/domain/use_cases/add_teacher_use_case.dart' as _i9;
 import '../features/teacher/domain/use_cases/cache_teacher_data_use_case.dart'
     as _i21;
@@ -136,20 +136,21 @@ import '../features/teacher/domain/use_cases/get_teachers_use_case.dart'
 import '../features/teacher/domain/use_cases/remove_teacher_use_case.dart'
     as _i58;
 import '../features/teacher/domain/use_cases/update_teacher_use_case.dart'
-    as _i78;
-import '../presentation/auth/bloc/auth_bloc.dart' as _i79;
+    as _i79;
+import '../presentation/auth/bloc/auth_bloc.dart' as _i80;
 import '../presentation/classroom/bloc/classroom_bloc.dart' as _i22;
 import '../presentation/home/bloc/home_bloc.dart' as _i49;
-import 'module_injection/feature/auth_feature_module.dart' as _i87;
-import 'module_injection/feature/classroom_feature_module.dart' as _i80;
-import 'module_injection/feature/course_feature_module.dart' as _i81;
-import 'module_injection/feature/exam_feature_module.dart' as _i82;
-import 'module_injection/feature/parent_feature_module.dart' as _i88;
-import 'module_injection/feature/rollcall_feature_module.dart' as _i83;
-import 'module_injection/feature/score_feature_module.dart' as _i84;
-import 'module_injection/feature/student_feature_module.dart' as _i85;
+import '../presentation/splash/bloc/splash_bloc.dart' as _i66;
+import 'module_injection/feature/auth_feature_module.dart' as _i88;
+import 'module_injection/feature/classroom_feature_module.dart' as _i81;
+import 'module_injection/feature/course_feature_module.dart' as _i82;
+import 'module_injection/feature/exam_feature_module.dart' as _i83;
+import 'module_injection/feature/parent_feature_module.dart' as _i89;
+import 'module_injection/feature/rollcall_feature_module.dart' as _i84;
+import 'module_injection/feature/score_feature_module.dart' as _i85;
+import 'module_injection/feature/student_feature_module.dart' as _i86;
 import 'module_injection/feature/teacher_feature_module.dart'
-    as _i86; // ignore_for_file: unnecessary_lambdas
+    as _i87; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -271,44 +272,46 @@ _i1.GetIt $initGetIt(
   gh.factory<_i63.ScoreLocalDataSource>(() => scoreFeatureModule.localDS);
   gh.factory<_i64.ScoreRemoteDataSource>(() => scoreFeatureModule.remoteDS);
   gh.factory<_i65.ScoreRepository>(() => scoreFeatureModule.repo);
-  gh.factory<_i66.StudentLocalDataSource>(() => studentFeatureModule.localDS);
-  gh.factory<_i67.StudentRemoteDataSource>(() => studentFeatureModule.remoteDS);
-  gh.factory<_i68.StudentRepository>(() => studentFeatureModule.repo);
-  gh.factory<_i69.TeacherLocalDataSource>(() => teacherFeatureModule.localDS);
-  gh.factory<_i70.TeacherRemoteDataSource>(() => teacherFeatureModule.remoteDS);
-  gh.factory<_i71.TeacherRepository>(() => teacherFeatureModule.repo);
-  gh.factory<_i72.UpdateClassroomUseCase>(
+  gh.factory<_i66.SplashBloc>(
+      () => _i66.SplashBloc(get<_i32.GetCachedAuthDataUseCase>()));
+  gh.factory<_i67.StudentLocalDataSource>(() => studentFeatureModule.localDS);
+  gh.factory<_i68.StudentRemoteDataSource>(() => studentFeatureModule.remoteDS);
+  gh.factory<_i69.StudentRepository>(() => studentFeatureModule.repo);
+  gh.factory<_i70.TeacherLocalDataSource>(() => teacherFeatureModule.localDS);
+  gh.factory<_i71.TeacherRemoteDataSource>(() => teacherFeatureModule.remoteDS);
+  gh.factory<_i72.TeacherRepository>(() => teacherFeatureModule.repo);
+  gh.factory<_i73.UpdateClassroomUseCase>(
       () => classroomFeatureModule.updateClassroomUseCase);
-  gh.factory<_i73.UpdateCourseUseCase>(
+  gh.factory<_i74.UpdateCourseUseCase>(
       () => courseFeatureModule.updateCourseUseCase);
-  gh.factory<_i74.UpdateExamUseCase>(() => examFeatureModule.updateExamUseCase);
-  gh.factory<_i75.UpdateParentUseCase>(
+  gh.factory<_i75.UpdateExamUseCase>(() => examFeatureModule.updateExamUseCase);
+  gh.factory<_i76.UpdateParentUseCase>(
       () => parentFeatureModule.updateParentUseCase);
-  gh.factory<_i76.UpdateScoreUseCase>(
+  gh.factory<_i77.UpdateScoreUseCase>(
       () => scoreFeatureModule.updateScoreUseCase);
-  gh.factory<_i77.UpdateStudentUseCase>(
+  gh.factory<_i78.UpdateStudentUseCase>(
       () => studentFeatureModule.updateStudentUseCase);
-  gh.factory<_i78.UpdateTeacherUseCase>(
+  gh.factory<_i79.UpdateTeacherUseCase>(
       () => teacherFeatureModule.updateTeacherUseCase);
-  gh.factory<_i79.AuthBloc>(
-      () => _i79.AuthBloc(get<_i50.OtpHandshakeUseCase>()));
+  gh.factory<_i80.AuthBloc>(
+      () => _i80.AuthBloc(get<_i50.OtpHandshakeUseCase>()));
   return get;
 }
 
-class _$ClassroomFeatureModule extends _i80.ClassroomFeatureModule {}
+class _$ClassroomFeatureModule extends _i81.ClassroomFeatureModule {}
 
-class _$CourseFeatureModule extends _i81.CourseFeatureModule {}
+class _$CourseFeatureModule extends _i82.CourseFeatureModule {}
 
-class _$ExamFeatureModule extends _i82.ExamFeatureModule {}
+class _$ExamFeatureModule extends _i83.ExamFeatureModule {}
 
-class _$RollcallFeatureModule extends _i83.RollcallFeatureModule {}
+class _$RollcallFeatureModule extends _i84.RollcallFeatureModule {}
 
-class _$ScoreFeatureModule extends _i84.ScoreFeatureModule {}
+class _$ScoreFeatureModule extends _i85.ScoreFeatureModule {}
 
-class _$StudentFeatureModule extends _i85.StudentFeatureModule {}
+class _$StudentFeatureModule extends _i86.StudentFeatureModule {}
 
-class _$TeacherFeatureModule extends _i86.TeacherFeatureModule {}
+class _$TeacherFeatureModule extends _i87.TeacherFeatureModule {}
 
-class _$AuthFeatureModule extends _i87.AuthFeatureModule {}
+class _$AuthFeatureModule extends _i88.AuthFeatureModule {}
 
-class _$ParentFeatureModule extends _i88.ParentFeatureModule {}
+class _$ParentFeatureModule extends _i89.ParentFeatureModule {}

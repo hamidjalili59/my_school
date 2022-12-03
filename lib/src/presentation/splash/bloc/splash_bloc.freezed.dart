@@ -15,53 +15,349 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SplashState {
+mixin _$SplashEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() jwtValid,
-    required TResult Function() jwtInValid,
-    required TResult Function() loading,
-    required TResult Function(String message) failure,
+    required TResult Function(OtpHandshakeResponse token) getClientData,
+    required TResult Function() tokenIsExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? jwtValid,
-    TResult? Function()? jwtInValid,
-    TResult? Function()? loading,
-    TResult? Function(String message)? failure,
+    TResult? Function(OtpHandshakeResponse token)? getClientData,
+    TResult? Function()? tokenIsExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? jwtValid,
-    TResult Function()? jwtInValid,
-    TResult Function()? loading,
-    TResult Function(String message)? failure,
+    TResult Function(OtpHandshakeResponse token)? getClientData,
+    TResult Function()? tokenIsExist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_JWTValid value) jwtValid,
-    required TResult Function(_JWTInValid value) jwtInValid,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_GetClientData value) getClientData,
+    required TResult Function(_TokenIsExist value) tokenIsExist,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetClientData value)? getClientData,
+    TResult? Function(_TokenIsExist value)? tokenIsExist,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetClientData value)? getClientData,
+    TResult Function(_TokenIsExist value)? tokenIsExist,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SplashEventCopyWith<$Res> {
+  factory $SplashEventCopyWith(
+          SplashEvent value, $Res Function(SplashEvent) then) =
+      _$SplashEventCopyWithImpl<$Res, SplashEvent>;
+}
+
+/// @nodoc
+class _$SplashEventCopyWithImpl<$Res, $Val extends SplashEvent>
+    implements $SplashEventCopyWith<$Res> {
+  _$SplashEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_GetClientDataCopyWith<$Res> {
+  factory _$$_GetClientDataCopyWith(
+          _$_GetClientData value, $Res Function(_$_GetClientData) then) =
+      __$$_GetClientDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({OtpHandshakeResponse token});
+}
+
+/// @nodoc
+class __$$_GetClientDataCopyWithImpl<$Res>
+    extends _$SplashEventCopyWithImpl<$Res, _$_GetClientData>
+    implements _$$_GetClientDataCopyWith<$Res> {
+  __$$_GetClientDataCopyWithImpl(
+      _$_GetClientData _value, $Res Function(_$_GetClientData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$_GetClientData(
+      null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as OtpHandshakeResponse,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetClientData implements _GetClientData {
+  const _$_GetClientData(this.token);
+
+  @override
+  final OtpHandshakeResponse token;
+
+  @override
+  String toString() {
+    return 'SplashEvent.getClientData(token: $token)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GetClientData &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, token);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_GetClientDataCopyWith<_$_GetClientData> get copyWith =>
+      __$$_GetClientDataCopyWithImpl<_$_GetClientData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(OtpHandshakeResponse token) getClientData,
+    required TResult Function() tokenIsExist,
+  }) {
+    return getClientData(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(OtpHandshakeResponse token)? getClientData,
+    TResult? Function()? tokenIsExist,
+  }) {
+    return getClientData?.call(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(OtpHandshakeResponse token)? getClientData,
+    TResult Function()? tokenIsExist,
+    required TResult orElse(),
+  }) {
+    if (getClientData != null) {
+      return getClientData(token);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetClientData value) getClientData,
+    required TResult Function(_TokenIsExist value) tokenIsExist,
+  }) {
+    return getClientData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetClientData value)? getClientData,
+    TResult? Function(_TokenIsExist value)? tokenIsExist,
+  }) {
+    return getClientData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetClientData value)? getClientData,
+    TResult Function(_TokenIsExist value)? tokenIsExist,
+    required TResult orElse(),
+  }) {
+    if (getClientData != null) {
+      return getClientData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetClientData implements SplashEvent {
+  const factory _GetClientData(final OtpHandshakeResponse token) =
+      _$_GetClientData;
+
+  OtpHandshakeResponse get token;
+  @JsonKey(ignore: true)
+  _$$_GetClientDataCopyWith<_$_GetClientData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_TokenIsExistCopyWith<$Res> {
+  factory _$$_TokenIsExistCopyWith(
+          _$_TokenIsExist value, $Res Function(_$_TokenIsExist) then) =
+      __$$_TokenIsExistCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_TokenIsExistCopyWithImpl<$Res>
+    extends _$SplashEventCopyWithImpl<$Res, _$_TokenIsExist>
+    implements _$$_TokenIsExistCopyWith<$Res> {
+  __$$_TokenIsExistCopyWithImpl(
+      _$_TokenIsExist _value, $Res Function(_$_TokenIsExist) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_TokenIsExist implements _TokenIsExist {
+  const _$_TokenIsExist();
+
+  @override
+  String toString() {
+    return 'SplashEvent.tokenIsExist()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_TokenIsExist);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(OtpHandshakeResponse token) getClientData,
+    required TResult Function() tokenIsExist,
+  }) {
+    return tokenIsExist();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(OtpHandshakeResponse token)? getClientData,
+    TResult? Function()? tokenIsExist,
+  }) {
+    return tokenIsExist?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(OtpHandshakeResponse token)? getClientData,
+    TResult Function()? tokenIsExist,
+    required TResult orElse(),
+  }) {
+    if (tokenIsExist != null) {
+      return tokenIsExist();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetClientData value) getClientData,
+    required TResult Function(_TokenIsExist value) tokenIsExist,
+  }) {
+    return tokenIsExist(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetClientData value)? getClientData,
+    TResult? Function(_TokenIsExist value)? tokenIsExist,
+  }) {
+    return tokenIsExist?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetClientData value)? getClientData,
+    TResult Function(_TokenIsExist value)? tokenIsExist,
+    required TResult orElse(),
+  }) {
+    if (tokenIsExist != null) {
+      return tokenIsExist(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TokenIsExist implements SplashEvent {
+  const factory _TokenIsExist() = _$_TokenIsExist;
+}
+
+/// @nodoc
+mixin _$SplashState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(OtpHandshakeResponse token) jwtExist,
+    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(AuthFailure? failure, String message) failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadInProgress,
+    TResult? Function(OtpHandshakeResponse token)? jwtExist,
+    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(AuthFailure? failure, String message)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(OtpHandshakeResponse token)? jwtExist,
+    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(AuthFailure? failure, String message)? failure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_JwtExist value) jwtExist,
+    required TResult Function(_JwtIsNotExp value) jwtIsNotExp,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_JWTValid value)? jwtValid,
-    TResult? Function(_JWTInValid value)? jwtInValid,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_JwtExist value)? jwtExist,
+    TResult? Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_JWTValid value)? jwtValid,
-    TResult Function(_JWTInValid value)? jwtInValid,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_JwtExist value)? jwtExist,
+    TResult Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -87,35 +383,35 @@ class _$SplashStateCopyWithImpl<$Res, $Val extends SplashState>
 }
 
 /// @nodoc
-abstract class _$$_JWTValidCopyWith<$Res> {
-  factory _$$_JWTValidCopyWith(
-          _$_JWTValid value, $Res Function(_$_JWTValid) then) =
-      __$$_JWTValidCopyWithImpl<$Res>;
+abstract class _$$_LoadInProgressCopyWith<$Res> {
+  factory _$$_LoadInProgressCopyWith(
+          _$_LoadInProgress value, $Res Function(_$_LoadInProgress) then) =
+      __$$_LoadInProgressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_JWTValidCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$_JWTValid>
-    implements _$$_JWTValidCopyWith<$Res> {
-  __$$_JWTValidCopyWithImpl(
-      _$_JWTValid _value, $Res Function(_$_JWTValid) _then)
+class __$$_LoadInProgressCopyWithImpl<$Res>
+    extends _$SplashStateCopyWithImpl<$Res, _$_LoadInProgress>
+    implements _$$_LoadInProgressCopyWith<$Res> {
+  __$$_LoadInProgressCopyWithImpl(
+      _$_LoadInProgress _value, $Res Function(_$_LoadInProgress) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_JWTValid implements _JWTValid {
-  const _$_JWTValid();
+class _$_LoadInProgress implements _LoadInProgress {
+  const _$_LoadInProgress();
 
   @override
   String toString() {
-    return 'SplashState.jwtValid()';
+    return 'SplashState.loadInProgress()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_JWTValid);
+        (other.runtimeType == runtimeType && other is _$_LoadInProgress);
   }
 
   @override
@@ -124,36 +420,36 @@ class _$_JWTValid implements _JWTValid {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() jwtValid,
-    required TResult Function() jwtInValid,
-    required TResult Function() loading,
-    required TResult Function(String message) failure,
+    required TResult Function() loadInProgress,
+    required TResult Function(OtpHandshakeResponse token) jwtExist,
+    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(AuthFailure? failure, String message) failure,
   }) {
-    return jwtValid();
+    return loadInProgress();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? jwtValid,
-    TResult? Function()? jwtInValid,
-    TResult? Function()? loading,
-    TResult? Function(String message)? failure,
+    TResult? Function()? loadInProgress,
+    TResult? Function(OtpHandshakeResponse token)? jwtExist,
+    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(AuthFailure? failure, String message)? failure,
   }) {
-    return jwtValid?.call();
+    return loadInProgress?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? jwtValid,
-    TResult Function()? jwtInValid,
-    TResult Function()? loading,
-    TResult Function(String message)? failure,
+    TResult Function()? loadInProgress,
+    TResult Function(OtpHandshakeResponse token)? jwtExist,
+    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(AuthFailure? failure, String message)? failure,
     required TResult orElse(),
   }) {
-    if (jwtValid != null) {
-      return jwtValid();
+    if (loadInProgress != null) {
+      return loadInProgress();
     }
     return orElse();
   }
@@ -161,113 +457,139 @@ class _$_JWTValid implements _JWTValid {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_JWTValid value) jwtValid,
-    required TResult Function(_JWTInValid value) jwtInValid,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_JwtExist value) jwtExist,
+    required TResult Function(_JwtIsNotExp value) jwtIsNotExp,
     required TResult Function(_Failure value) failure,
   }) {
-    return jwtValid(this);
+    return loadInProgress(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_JWTValid value)? jwtValid,
-    TResult? Function(_JWTInValid value)? jwtInValid,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_JwtExist value)? jwtExist,
+    TResult? Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult? Function(_Failure value)? failure,
   }) {
-    return jwtValid?.call(this);
+    return loadInProgress?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_JWTValid value)? jwtValid,
-    TResult Function(_JWTInValid value)? jwtInValid,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_JwtExist value)? jwtExist,
+    TResult Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (jwtValid != null) {
-      return jwtValid(this);
+    if (loadInProgress != null) {
+      return loadInProgress(this);
     }
     return orElse();
   }
 }
 
-abstract class _JWTValid implements SplashState {
-  const factory _JWTValid() = _$_JWTValid;
+abstract class _LoadInProgress implements SplashState {
+  const factory _LoadInProgress() = _$_LoadInProgress;
 }
 
 /// @nodoc
-abstract class _$$_JWTInValidCopyWith<$Res> {
-  factory _$$_JWTInValidCopyWith(
-          _$_JWTInValid value, $Res Function(_$_JWTInValid) then) =
-      __$$_JWTInValidCopyWithImpl<$Res>;
+abstract class _$$_JwtExistCopyWith<$Res> {
+  factory _$$_JwtExistCopyWith(
+          _$_JwtExist value, $Res Function(_$_JwtExist) then) =
+      __$$_JwtExistCopyWithImpl<$Res>;
+  @useResult
+  $Res call({OtpHandshakeResponse token});
 }
 
 /// @nodoc
-class __$$_JWTInValidCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$_JWTInValid>
-    implements _$$_JWTInValidCopyWith<$Res> {
-  __$$_JWTInValidCopyWithImpl(
-      _$_JWTInValid _value, $Res Function(_$_JWTInValid) _then)
+class __$$_JwtExistCopyWithImpl<$Res>
+    extends _$SplashStateCopyWithImpl<$Res, _$_JwtExist>
+    implements _$$_JwtExistCopyWith<$Res> {
+  __$$_JwtExistCopyWithImpl(
+      _$_JwtExist _value, $Res Function(_$_JwtExist) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$_JwtExist(
+      null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as OtpHandshakeResponse,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_JWTInValid implements _JWTInValid {
-  const _$_JWTInValid();
+class _$_JwtExist implements _JwtExist {
+  const _$_JwtExist(this.token);
+
+  @override
+  final OtpHandshakeResponse token;
 
   @override
   String toString() {
-    return 'SplashState.jwtInValid()';
+    return 'SplashState.jwtExist(token: $token)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_JWTInValid);
+        (other.runtimeType == runtimeType &&
+            other is _$_JwtExist &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, token);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_JwtExistCopyWith<_$_JwtExist> get copyWith =>
+      __$$_JwtExistCopyWithImpl<_$_JwtExist>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() jwtValid,
-    required TResult Function() jwtInValid,
-    required TResult Function() loading,
-    required TResult Function(String message) failure,
+    required TResult Function() loadInProgress,
+    required TResult Function(OtpHandshakeResponse token) jwtExist,
+    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(AuthFailure? failure, String message) failure,
   }) {
-    return jwtInValid();
+    return jwtExist(token);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? jwtValid,
-    TResult? Function()? jwtInValid,
-    TResult? Function()? loading,
-    TResult? Function(String message)? failure,
+    TResult? Function()? loadInProgress,
+    TResult? Function(OtpHandshakeResponse token)? jwtExist,
+    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(AuthFailure? failure, String message)? failure,
   }) {
-    return jwtInValid?.call();
+    return jwtExist?.call(token);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? jwtValid,
-    TResult Function()? jwtInValid,
-    TResult Function()? loading,
-    TResult Function(String message)? failure,
+    TResult Function()? loadInProgress,
+    TResult Function(OtpHandshakeResponse token)? jwtExist,
+    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(AuthFailure? failure, String message)? failure,
     required TResult orElse(),
   }) {
-    if (jwtInValid != null) {
-      return jwtInValid();
+    if (jwtExist != null) {
+      return jwtExist(token);
     }
     return orElse();
   }
@@ -275,112 +597,145 @@ class _$_JWTInValid implements _JWTInValid {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_JWTValid value) jwtValid,
-    required TResult Function(_JWTInValid value) jwtInValid,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_JwtExist value) jwtExist,
+    required TResult Function(_JwtIsNotExp value) jwtIsNotExp,
     required TResult Function(_Failure value) failure,
   }) {
-    return jwtInValid(this);
+    return jwtExist(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_JWTValid value)? jwtValid,
-    TResult? Function(_JWTInValid value)? jwtInValid,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_JwtExist value)? jwtExist,
+    TResult? Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult? Function(_Failure value)? failure,
   }) {
-    return jwtInValid?.call(this);
+    return jwtExist?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_JWTValid value)? jwtValid,
-    TResult Function(_JWTInValid value)? jwtInValid,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_JwtExist value)? jwtExist,
+    TResult Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (jwtInValid != null) {
-      return jwtInValid(this);
+    if (jwtExist != null) {
+      return jwtExist(this);
     }
     return orElse();
   }
 }
 
-abstract class _JWTInValid implements SplashState {
-  const factory _JWTInValid() = _$_JWTInValid;
+abstract class _JwtExist implements SplashState {
+  const factory _JwtExist(final OtpHandshakeResponse token) = _$_JwtExist;
+
+  OtpHandshakeResponse get token;
+  @JsonKey(ignore: true)
+  _$$_JwtExistCopyWith<_$_JwtExist> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
-  factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
+abstract class _$$_JwtIsNotExpCopyWith<$Res> {
+  factory _$$_JwtIsNotExpCopyWith(
+          _$_JwtIsNotExp value, $Res Function(_$_JwtIsNotExp) then) =
+      __$$_JwtIsNotExpCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int typeOfUser});
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$_Loading>
-    implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+class __$$_JwtIsNotExpCopyWithImpl<$Res>
+    extends _$SplashStateCopyWithImpl<$Res, _$_JwtIsNotExp>
+    implements _$$_JwtIsNotExpCopyWith<$Res> {
+  __$$_JwtIsNotExpCopyWithImpl(
+      _$_JwtIsNotExp _value, $Res Function(_$_JwtIsNotExp) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? typeOfUser = null,
+  }) {
+    return _then(_$_JwtIsNotExp(
+      null == typeOfUser
+          ? _value.typeOfUser
+          : typeOfUser // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
-  const _$_Loading();
+class _$_JwtIsNotExp implements _JwtIsNotExp {
+  const _$_JwtIsNotExp(this.typeOfUser);
+
+  @override
+  final int typeOfUser;
 
   @override
   String toString() {
-    return 'SplashState.loading()';
+    return 'SplashState.jwtIsNotExp(typeOfUser: $typeOfUser)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
+        (other.runtimeType == runtimeType &&
+            other is _$_JwtIsNotExp &&
+            (identical(other.typeOfUser, typeOfUser) ||
+                other.typeOfUser == typeOfUser));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, typeOfUser);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_JwtIsNotExpCopyWith<_$_JwtIsNotExp> get copyWith =>
+      __$$_JwtIsNotExpCopyWithImpl<_$_JwtIsNotExp>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() jwtValid,
-    required TResult Function() jwtInValid,
-    required TResult Function() loading,
-    required TResult Function(String message) failure,
+    required TResult Function() loadInProgress,
+    required TResult Function(OtpHandshakeResponse token) jwtExist,
+    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(AuthFailure? failure, String message) failure,
   }) {
-    return loading();
+    return jwtIsNotExp(typeOfUser);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? jwtValid,
-    TResult? Function()? jwtInValid,
-    TResult? Function()? loading,
-    TResult? Function(String message)? failure,
+    TResult? Function()? loadInProgress,
+    TResult? Function(OtpHandshakeResponse token)? jwtExist,
+    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(AuthFailure? failure, String message)? failure,
   }) {
-    return loading?.call();
+    return jwtIsNotExp?.call(typeOfUser);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? jwtValid,
-    TResult Function()? jwtInValid,
-    TResult Function()? loading,
-    TResult Function(String message)? failure,
+    TResult Function()? loadInProgress,
+    TResult Function(OtpHandshakeResponse token)? jwtExist,
+    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(AuthFailure? failure, String message)? failure,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading();
+    if (jwtIsNotExp != null) {
+      return jwtIsNotExp(typeOfUser);
     }
     return orElse();
   }
@@ -388,43 +743,48 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_JWTValid value) jwtValid,
-    required TResult Function(_JWTInValid value) jwtInValid,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_JwtExist value) jwtExist,
+    required TResult Function(_JwtIsNotExp value) jwtIsNotExp,
     required TResult Function(_Failure value) failure,
   }) {
-    return loading(this);
+    return jwtIsNotExp(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_JWTValid value)? jwtValid,
-    TResult? Function(_JWTInValid value)? jwtInValid,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_JwtExist value)? jwtExist,
+    TResult? Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult? Function(_Failure value)? failure,
   }) {
-    return loading?.call(this);
+    return jwtIsNotExp?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_JWTValid value)? jwtValid,
-    TResult Function(_JWTInValid value)? jwtInValid,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_JwtExist value)? jwtExist,
+    TResult Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (jwtIsNotExp != null) {
+      return jwtIsNotExp(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loading implements SplashState {
-  const factory _Loading() = _$_Loading;
+abstract class _JwtIsNotExp implements SplashState {
+  const factory _JwtIsNotExp(final int typeOfUser) = _$_JwtIsNotExp;
+
+  int get typeOfUser;
+  @JsonKey(ignore: true)
+  _$$_JwtIsNotExpCopyWith<_$_JwtIsNotExp> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -433,7 +793,9 @@ abstract class _$$_FailureCopyWith<$Res> {
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({AuthFailure? failure, String message});
+
+  $AuthFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -446,29 +808,48 @@ class __$$_FailureCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? failure = freezed,
     Object? message = null,
   }) {
     return _then(_$_Failure(
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as AuthFailure?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthFailureCopyWith<$Res>? get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+
+    return $AuthFailureCopyWith<$Res>(_value.failure!, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Failure implements _Failure {
-  const _$_Failure({this.message = ''});
+  const _$_Failure({this.failure, this.message = ''});
 
+  @override
+  final AuthFailure? failure;
   @override
   @JsonKey()
   final String message;
 
   @override
   String toString() {
-    return 'SplashState.failure(message: $message)';
+    return 'SplashState.failure(failure: $failure, message: $message)';
   }
 
   @override
@@ -476,11 +857,12 @@ class _$_Failure implements _Failure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Failure &&
+            (identical(other.failure, failure) || other.failure == failure) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, failure, message);
 
   @JsonKey(ignore: true)
   @override
@@ -491,36 +873,36 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() jwtValid,
-    required TResult Function() jwtInValid,
-    required TResult Function() loading,
-    required TResult Function(String message) failure,
+    required TResult Function() loadInProgress,
+    required TResult Function(OtpHandshakeResponse token) jwtExist,
+    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(AuthFailure? failure, String message) failure,
   }) {
-    return failure(message);
+    return failure(this.failure, message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? jwtValid,
-    TResult? Function()? jwtInValid,
-    TResult? Function()? loading,
-    TResult? Function(String message)? failure,
+    TResult? Function()? loadInProgress,
+    TResult? Function(OtpHandshakeResponse token)? jwtExist,
+    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(AuthFailure? failure, String message)? failure,
   }) {
-    return failure?.call(message);
+    return failure?.call(this.failure, message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? jwtValid,
-    TResult Function()? jwtInValid,
-    TResult Function()? loading,
-    TResult Function(String message)? failure,
+    TResult Function()? loadInProgress,
+    TResult Function(OtpHandshakeResponse token)? jwtExist,
+    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(AuthFailure? failure, String message)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(message);
+      return failure(this.failure, message);
     }
     return orElse();
   }
@@ -528,9 +910,9 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_JWTValid value) jwtValid,
-    required TResult Function(_JWTInValid value) jwtInValid,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_JwtExist value) jwtExist,
+    required TResult Function(_JwtIsNotExp value) jwtIsNotExp,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -539,9 +921,9 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_JWTValid value)? jwtValid,
-    TResult? Function(_JWTInValid value)? jwtInValid,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_JwtExist value)? jwtExist,
+    TResult? Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -550,9 +932,9 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_JWTValid value)? jwtValid,
-    TResult Function(_JWTInValid value)? jwtInValid,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_JwtExist value)? jwtExist,
+    TResult Function(_JwtIsNotExp value)? jwtIsNotExp,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -564,215 +946,12 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements SplashState {
-  const factory _Failure({final String message}) = _$_Failure;
+  const factory _Failure({final AuthFailure? failure, final String message}) =
+      _$_Failure;
 
+  AuthFailure? get failure;
   String get message;
   @JsonKey(ignore: true)
   _$$_FailureCopyWith<_$_Failure> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$SplashEvent {
-  String get jwt => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String jwt) checkingJWT,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String jwt)? checkingJWT,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String jwt)? checkingJWT,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CheckingJWT value) checkingJWT,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CheckingJWT value)? checkingJWT,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CheckingJWT value)? checkingJWT,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SplashEventCopyWith<SplashEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SplashEventCopyWith<$Res> {
-  factory $SplashEventCopyWith(
-          SplashEvent value, $Res Function(SplashEvent) then) =
-      _$SplashEventCopyWithImpl<$Res, SplashEvent>;
-  @useResult
-  $Res call({String jwt});
-}
-
-/// @nodoc
-class _$SplashEventCopyWithImpl<$Res, $Val extends SplashEvent>
-    implements $SplashEventCopyWith<$Res> {
-  _$SplashEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? jwt = null,
-  }) {
-    return _then(_value.copyWith(
-      jwt: null == jwt
-          ? _value.jwt
-          : jwt // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_CheckingJWTCopyWith<$Res>
-    implements $SplashEventCopyWith<$Res> {
-  factory _$$_CheckingJWTCopyWith(
-          _$_CheckingJWT value, $Res Function(_$_CheckingJWT) then) =
-      __$$_CheckingJWTCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String jwt});
-}
-
-/// @nodoc
-class __$$_CheckingJWTCopyWithImpl<$Res>
-    extends _$SplashEventCopyWithImpl<$Res, _$_CheckingJWT>
-    implements _$$_CheckingJWTCopyWith<$Res> {
-  __$$_CheckingJWTCopyWithImpl(
-      _$_CheckingJWT _value, $Res Function(_$_CheckingJWT) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? jwt = null,
-  }) {
-    return _then(_$_CheckingJWT(
-      null == jwt
-          ? _value.jwt
-          : jwt // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_CheckingJWT implements _CheckingJWT {
-  const _$_CheckingJWT(this.jwt);
-
-  @override
-  final String jwt;
-
-  @override
-  String toString() {
-    return 'SplashEvent.checkingJWT(jwt: $jwt)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CheckingJWT &&
-            (identical(other.jwt, jwt) || other.jwt == jwt));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, jwt);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_CheckingJWTCopyWith<_$_CheckingJWT> get copyWith =>
-      __$$_CheckingJWTCopyWithImpl<_$_CheckingJWT>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String jwt) checkingJWT,
-  }) {
-    return checkingJWT(jwt);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String jwt)? checkingJWT,
-  }) {
-    return checkingJWT?.call(jwt);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String jwt)? checkingJWT,
-    required TResult orElse(),
-  }) {
-    if (checkingJWT != null) {
-      return checkingJWT(jwt);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CheckingJWT value) checkingJWT,
-  }) {
-    return checkingJWT(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CheckingJWT value)? checkingJWT,
-  }) {
-    return checkingJWT?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CheckingJWT value)? checkingJWT,
-    required TResult orElse(),
-  }) {
-    if (checkingJWT != null) {
-      return checkingJWT(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CheckingJWT implements SplashEvent {
-  const factory _CheckingJWT(final String jwt) = _$_CheckingJWT;
-
-  @override
-  String get jwt;
-  @override
-  @JsonKey(ignore: true)
-  _$$_CheckingJWTCopyWith<_$_CheckingJWT> get copyWith =>
       throw _privateConstructorUsedError;
 }

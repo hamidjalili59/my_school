@@ -18,9 +18,11 @@ class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
+      final args = routeData.argsAs<SplashRouteArgs>(
+          orElse: () => const SplashRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const SplashPage(),
+        child: SplashPage(key: args.key),
       );
     },
     IntroRoute.name: (routeData) {
@@ -205,14 +207,26 @@ class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [SplashPage]
-class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute()
+class SplashRoute extends PageRouteInfo<SplashRouteArgs> {
+  SplashRoute({Key? key})
       : super(
           SplashRoute.name,
           path: '/splash',
+          args: SplashRouteArgs(key: key),
         );
 
   static const String name = 'SplashRoute';
+}
+
+class SplashRouteArgs {
+  const SplashRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SplashRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
