@@ -11,7 +11,7 @@ import 'package:my_school/src/config/utils/function_helper.dart';
 import 'package:my_school/src/features/auth/domain/failures/auth_failure.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/injectable/injectable.dart';
-import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
+// import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_school/src/features/auth/domain/use_cases/get_cached_auth_data_use_case.dart';
 import 'package:injectable/injectable.dart';
 
@@ -44,7 +44,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     try {
       if (event.token.typeOfUser == 0) {
         GeneralConstants.isAdmin = true;
-        appRoute.pushNamed('/home_page');
+        appRoute.replaceNamed('/home_page');
       } else if (event.token.typeOfUser == 1) {
         GeneralConstants.isTeacher = true;
       } else {
@@ -69,12 +69,13 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     emit(const _LoadInProgress());
     try {
       final getCacheResult = await _getCachedAuthDataUseCase();
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       getCacheResult.fold(
         (l) {
           emit(_Failure(failure: l));
         },
         (r) {
+          print(r == null);
           if (r == null) {
             appRoute.pushNamed('/auth');
             return emit(const _Failure(failure: AuthFailure.nullParam()));

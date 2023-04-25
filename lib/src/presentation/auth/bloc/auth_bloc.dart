@@ -56,8 +56,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         },
       );
 
-      ///TODO: checking this line
-      appRoute.pushNamed('/splash');
+      await Future.delayed(const Duration(seconds: 1));
+      appRoute.replaceNamed('/splash');
     } catch (e) {
       FunctionHelper().logErrorDetailMessage(
         e,

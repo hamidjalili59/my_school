@@ -46,7 +46,7 @@ class RequestInterceptor extends Interceptor {
     if (err.response?.statusCode == 401 && err.requestOptions.path != '') {
       // refresh token
       return;
-    } else if (err.message.contains('XMLHttpRequest')) {
+    } else if (err.message!.contains('XMLHttpRequest')) {
       // reject the request
       return;
     }

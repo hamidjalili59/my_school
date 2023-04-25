@@ -28,10 +28,10 @@ class SplashPage extends StatelessWidget {
               }
               state.maybeWhen(
                 failure: (f, m) {
-                  _appRoute.pushNamed('/intro');
+                  _appRoute.replaceNamed('/intro');
                 },
                 jwtIsNotExp: (typeOfUser) {
-                  _appRoute.pushNamed('/home_page');
+                  _appRoute.replaceNamed('/home_page');
                 },
                 jwtExist: (r) {
                   _splashBloc.add(SplashEvent.getClientData(r));

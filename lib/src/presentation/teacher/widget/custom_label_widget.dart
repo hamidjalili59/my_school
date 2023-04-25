@@ -25,22 +25,10 @@ class CustomLabelField extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
           border: Border(
-            bottom: BorderSide(
-                color: Colors.black12,
-                width: 1.5.w,
-                strokeAlign: StrokeAlign.inside),
-            right: BorderSide(
-                color: Colors.black12,
-                width: 1.5.w,
-                strokeAlign: StrokeAlign.inside),
-            left: BorderSide(
-                color: Colors.black12,
-                width: 1.5.w,
-                strokeAlign: StrokeAlign.inside),
-            top: BorderSide(
-                color: Colors.black12,
-                width: 1.5.w,
-                strokeAlign: StrokeAlign.inside),
+            bottom: BorderSide(color: Colors.black12, width: 1.5.w),
+            right: BorderSide(color: Colors.black12, width: 1.5.w),
+            left: BorderSide(color: Colors.black12, width: 1.5.w),
+            top: BorderSide(color: Colors.black12, width: 1.5.w),
           ),
         ),
         child: SingleChildScrollView(

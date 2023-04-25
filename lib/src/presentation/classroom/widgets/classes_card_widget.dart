@@ -37,28 +37,28 @@ class ClassesCardWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.circular(8.r),
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Colors.black12,
-                      width: 1.5.w,
-                      strokeAlign: StrokeAlign.inside,
-                    ),
-                    right: BorderSide(
-                      color: Colors.black12,
-                      width: 1.5.w,
-                      strokeAlign: StrokeAlign.inside,
-                    ),
-                    left: BorderSide(
-                      color: Colors.black12,
-                      width: 1.5.w,
-                      strokeAlign: StrokeAlign.inside,
-                    ),
-                    top: BorderSide(
-                      color: Colors.black12,
-                      width: 1.5.w,
-                      strokeAlign: StrokeAlign.inside,
-                    ),
-                  ),
+                  // border: Border(
+                  //   bottom: BorderSide(
+                  //     color: Colors.black12,
+                  //     width: 1.5.w,
+                  //     strokeAlign: StrokeAlign.inside,
+                  //   ),
+                  //   right: BorderSide(
+                  //     color: Colors.black12,
+                  //     width: 1.5.w,
+                  //     strokeAlign: StrokeAlign.inside,
+                  //   ),
+                  //   left: BorderSide(
+                  //     color: Colors.black12,
+                  //     width: 1.5.w,
+                  //     strokeAlign: StrokeAlign.inside,
+                  //   ),
+                  //   top: BorderSide(
+                  //     color: Colors.black12,
+                  //     width: 1.5.w,
+                  //     strokeAlign: StrokeAlign.inside,
+                  //   ),
+                  // ),
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(left: 8.0.w, bottom: 4.w),

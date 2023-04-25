@@ -37,24 +37,24 @@ class CustomCardExamWidget extends StatelessWidget {
                         blurStyle: BlurStyle.outer,
                         offset: Offset(0.1, 0.1))
                   ],
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Colors.black12,
-                        width: 1.w,
-                        strokeAlign: StrokeAlign.inside),
-                    right: BorderSide(
-                        color: Colors.black12,
-                        width: 1.w,
-                        strokeAlign: StrokeAlign.inside),
-                    left: BorderSide(
-                        color: Colors.black12,
-                        width: 1.w,
-                        strokeAlign: StrokeAlign.inside),
-                    top: BorderSide(
-                        color: Colors.black12,
-                        width: 1.w,
-                        strokeAlign: StrokeAlign.inside),
-                  ),
+                  // border: Border(
+                  //   bottom: BorderSide(
+                  //       color: Colors.black12,
+                  //       width: 1.w,
+                  //       strokeAlign: StrokeAlign.inside),
+                  //   right: BorderSide(
+                  //       color: Colors.black12,
+                  //       width: 1.w,
+                  //       strokeAlign: StrokeAlign.inside),
+                  //   left: BorderSide(
+                  //       color: Colors.black12,
+                  //       width: 1.w,
+                  //       strokeAlign: StrokeAlign.inside),
+                  //   top: BorderSide(
+                  //       color: Colors.black12,
+                  //       width: 1.w,
+                  //       strokeAlign: StrokeAlign.inside),
+                  // ),
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(

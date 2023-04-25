@@ -31,24 +31,24 @@ class HomeCustomAppBar extends StatelessWidget {
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(12.r),
               bottomRight: Radius.circular(12.r)),
-          border: Border(
-            bottom: BorderSide(
-                color: Colors.black12,
-                width: 3.w,
-                strokeAlign: StrokeAlign.inside),
-            right: BorderSide(
-                color: Colors.black12,
-                width: 3.w,
-                strokeAlign: StrokeAlign.inside),
-            left: BorderSide(
-                color: Colors.black12,
-                width: 3.w,
-                strokeAlign: StrokeAlign.inside),
-            top: BorderSide(
-                color: Colors.black12,
-                width: 3.w,
-                strokeAlign: StrokeAlign.inside),
-          ),
+          // border: Border(
+          //   bottom: BorderSide(
+          //       color: Colors.black12,
+          //       width: 3.w,
+          //       strokeAlign: StrokeAlign.inside),
+          //   right: BorderSide(
+          //       color: Colors.black12,
+          //       width: 3.w,
+          //       strokeAlign: StrokeAlign.inside),
+          //   left: BorderSide(
+          //       color: Colors.black12,
+          //       width: 3.w,
+          //       strokeAlign: StrokeAlign.inside),
+          //   top: BorderSide(
+          //       color: Colors.black12,
+          //       width: 3.w,
+          //       strokeAlign: StrokeAlign.inside),
+          // ),
         ),
         height: 0.18.sh,
         child: Column(
@@ -151,7 +151,8 @@ class HomeCustomAppBar extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              ListView.builder(itemExtent: 100.w,
+                              ListView.builder(
+                                itemExtent: 100.w,
                                 shrinkWrap: true,
                                 itemCount: buttonsList.length,
                                 scrollDirection: Axis.horizontal,
