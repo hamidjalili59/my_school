@@ -4,6 +4,7 @@ import 'package:my_school/src/config/constants/png_assets.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
+// ignore: must_be_immutable
 class ClassRollCallPage extends StatelessWidget {
   ClassRollCallPage({super.key});
   bool hamidbool = false;
@@ -17,7 +18,6 @@ class ClassRollCallPage extends StatelessWidget {
             Positioned.fill(
               child: PageView.builder(
                   onPageChanged: (value) {
-                    print(value);
                     currentindex = value;
                   },
                   itemCount: 5,

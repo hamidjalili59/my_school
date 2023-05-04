@@ -8,8 +8,10 @@ part 'basic_info_model.g.dart';
 @JsonSerializable()
 class BasicInfoModel {
   @HiveField(0)
+  @JsonKey(name: 'name')
   final String name;
   @HiveField(1)
+  @JsonKey(name: 'phoneNumber')
   final double phoneNumber;
 
   BasicInfoModel({

@@ -5,6 +5,7 @@ import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
 
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/home/bloc/home_bloc.dart';
 import 'package:my_school/src/presentation/home/widgets/custom_appbar_row_widget.dart';
@@ -19,7 +20,7 @@ class HomeCustomAppBar extends StatelessWidget {
 
   final HomeBloc bloc;
   final String title;
-  final List<String> buttonsList;
+  final List<AppbarPageType> buttonsList;
   final AppRouter appRouter = getIt.get<AppRouter>();
 
   @override
@@ -31,24 +32,6 @@ class HomeCustomAppBar extends StatelessWidget {
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(12.r),
               bottomRight: Radius.circular(12.r)),
-          // border: Border(
-          //   bottom: BorderSide(
-          //       color: Colors.black12,
-          //       width: 3.w,
-          //       strokeAlign: StrokeAlign.inside),
-          //   right: BorderSide(
-          //       color: Colors.black12,
-          //       width: 3.w,
-          //       strokeAlign: StrokeAlign.inside),
-          //   left: BorderSide(
-          //       color: Colors.black12,
-          //       width: 3.w,
-          //       strokeAlign: StrokeAlign.inside),
-          //   top: BorderSide(
-          //       color: Colors.black12,
-          //       width: 3.w,
-          //       strokeAlign: StrokeAlign.inside),
-          // ),
         ),
         height: 0.18.sh,
         child: Column(
@@ -158,9 +141,21 @@ class HomeCustomAppBar extends StatelessWidget {
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   return CustomRowButtonWidget(
-                                      title: buttonsList[index],
-                                      indexName: buttonsList[index],
-                                      currentIndexName: currentPageName,
+                                      title: buttonsList[index].name ==
+                                              'teacher'
+                                          ? 'دبیران'
+                                          : buttonsList[index].name ==
+                                                  'classroom'
+                                              ? 'کلاس‌ها'
+                                              : buttonsList[index].name ==
+                                                      'course'
+                                                  ? 'درس‌ها'
+                                                  : buttonsList[index].name ==
+                                                          'student'
+                                                      ? 'دانش‌آموزان'
+                                                      : 'امتحانات',
+                                      indexType: buttonsList[index],
+                                      currentIndexType: currentPageName,
                                       bloc: bloc);
                                 },
                               ),

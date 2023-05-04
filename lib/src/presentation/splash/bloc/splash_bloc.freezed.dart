@@ -316,7 +316,7 @@ mixin _$SplashState {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(OtpHandshakeResponse token) jwtExist,
-    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(String typeOfUser) jwtIsNotExp,
     required TResult Function(AuthFailure? failure, String message) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -324,7 +324,7 @@ mixin _$SplashState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(OtpHandshakeResponse token)? jwtExist,
-    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(String typeOfUser)? jwtIsNotExp,
     TResult? Function(AuthFailure? failure, String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -332,7 +332,7 @@ mixin _$SplashState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(OtpHandshakeResponse token)? jwtExist,
-    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(String typeOfUser)? jwtIsNotExp,
     TResult Function(AuthFailure? failure, String message)? failure,
     required TResult orElse(),
   }) =>
@@ -422,7 +422,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(OtpHandshakeResponse token) jwtExist,
-    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(String typeOfUser) jwtIsNotExp,
     required TResult Function(AuthFailure? failure, String message) failure,
   }) {
     return loadInProgress();
@@ -433,7 +433,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(OtpHandshakeResponse token)? jwtExist,
-    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(String typeOfUser)? jwtIsNotExp,
     TResult? Function(AuthFailure? failure, String message)? failure,
   }) {
     return loadInProgress?.call();
@@ -444,7 +444,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(OtpHandshakeResponse token)? jwtExist,
-    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(String typeOfUser)? jwtIsNotExp,
     TResult Function(AuthFailure? failure, String message)? failure,
     required TResult orElse(),
   }) {
@@ -562,7 +562,7 @@ class _$_JwtExist implements _JwtExist {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(OtpHandshakeResponse token) jwtExist,
-    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(String typeOfUser) jwtIsNotExp,
     required TResult Function(AuthFailure? failure, String message) failure,
   }) {
     return jwtExist(token);
@@ -573,7 +573,7 @@ class _$_JwtExist implements _JwtExist {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(OtpHandshakeResponse token)? jwtExist,
-    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(String typeOfUser)? jwtIsNotExp,
     TResult? Function(AuthFailure? failure, String message)? failure,
   }) {
     return jwtExist?.call(token);
@@ -584,7 +584,7 @@ class _$_JwtExist implements _JwtExist {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(OtpHandshakeResponse token)? jwtExist,
-    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(String typeOfUser)? jwtIsNotExp,
     TResult Function(AuthFailure? failure, String message)? failure,
     required TResult orElse(),
   }) {
@@ -647,7 +647,7 @@ abstract class _$$_JwtIsNotExpCopyWith<$Res> {
           _$_JwtIsNotExp value, $Res Function(_$_JwtIsNotExp) then) =
       __$$_JwtIsNotExpCopyWithImpl<$Res>;
   @useResult
-  $Res call({int typeOfUser});
+  $Res call({String typeOfUser});
 }
 
 /// @nodoc
@@ -667,7 +667,7 @@ class __$$_JwtIsNotExpCopyWithImpl<$Res>
       null == typeOfUser
           ? _value.typeOfUser
           : typeOfUser // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -678,7 +678,7 @@ class _$_JwtIsNotExp implements _JwtIsNotExp {
   const _$_JwtIsNotExp(this.typeOfUser);
 
   @override
-  final int typeOfUser;
+  final String typeOfUser;
 
   @override
   String toString() {
@@ -708,7 +708,7 @@ class _$_JwtIsNotExp implements _JwtIsNotExp {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(OtpHandshakeResponse token) jwtExist,
-    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(String typeOfUser) jwtIsNotExp,
     required TResult Function(AuthFailure? failure, String message) failure,
   }) {
     return jwtIsNotExp(typeOfUser);
@@ -719,7 +719,7 @@ class _$_JwtIsNotExp implements _JwtIsNotExp {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(OtpHandshakeResponse token)? jwtExist,
-    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(String typeOfUser)? jwtIsNotExp,
     TResult? Function(AuthFailure? failure, String message)? failure,
   }) {
     return jwtIsNotExp?.call(typeOfUser);
@@ -730,7 +730,7 @@ class _$_JwtIsNotExp implements _JwtIsNotExp {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(OtpHandshakeResponse token)? jwtExist,
-    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(String typeOfUser)? jwtIsNotExp,
     TResult Function(AuthFailure? failure, String message)? failure,
     required TResult orElse(),
   }) {
@@ -779,9 +779,9 @@ class _$_JwtIsNotExp implements _JwtIsNotExp {
 }
 
 abstract class _JwtIsNotExp implements SplashState {
-  const factory _JwtIsNotExp(final int typeOfUser) = _$_JwtIsNotExp;
+  const factory _JwtIsNotExp(final String typeOfUser) = _$_JwtIsNotExp;
 
-  int get typeOfUser;
+  String get typeOfUser;
   @JsonKey(ignore: true)
   _$$_JwtIsNotExpCopyWith<_$_JwtIsNotExp> get copyWith =>
       throw _privateConstructorUsedError;
@@ -875,7 +875,7 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(OtpHandshakeResponse token) jwtExist,
-    required TResult Function(int typeOfUser) jwtIsNotExp,
+    required TResult Function(String typeOfUser) jwtIsNotExp,
     required TResult Function(AuthFailure? failure, String message) failure,
   }) {
     return failure(this.failure, message);
@@ -886,7 +886,7 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(OtpHandshakeResponse token)? jwtExist,
-    TResult? Function(int typeOfUser)? jwtIsNotExp,
+    TResult? Function(String typeOfUser)? jwtIsNotExp,
     TResult? Function(AuthFailure? failure, String message)? failure,
   }) {
     return failure?.call(this.failure, message);
@@ -897,7 +897,7 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(OtpHandshakeResponse token)? jwtExist,
-    TResult Function(int typeOfUser)? jwtIsNotExp,
+    TResult Function(String typeOfUser)? jwtIsNotExp,
     TResult Function(AuthFailure? failure, String message)? failure,
     required TResult orElse(),
   }) {

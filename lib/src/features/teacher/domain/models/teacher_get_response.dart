@@ -9,11 +9,13 @@ part 'teacher_get_response.g.dart';
 @JsonSerializable()
 class TeacherGetResponse {
   @HiveField(0)
+  @JsonKey(name: 'Teachers')
   final List<Teacher> teachers;
 
   TeacherGetResponse({required this.teachers});
-  
-  factory TeacherGetResponse.fromJson(Map<String,dynamic>json) => _$TeacherGetResponseFromJson(json);
 
-  Map<String, dynamic> toJson()=> _$TeacherGetResponseToJson(this);
+  factory TeacherGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$TeacherGetResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TeacherGetResponseToJson(this);
 }

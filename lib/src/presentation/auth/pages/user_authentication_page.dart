@@ -42,6 +42,13 @@ class UserAuthenticationPage extends StatelessWidget {
                   ),
                   CustomTextField(
                     keyboardType: TextInputType.text,
+                    onSubmitted: (value) {
+                      bloc.add(
+                        AuthEvent.otpHandshake(
+                          double.parse(value),
+                        ),
+                      );
+                    },
                     maxLength: 15,
                     icon: Icons.phone_android,
                     controller: phoneController,

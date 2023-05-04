@@ -21,10 +21,11 @@ class TeacherRepositoryImpl extends TeacherRepository {
       {required Teacher teacher}) {
     return _remoteDS.addTeacher(teacher: teacher).then(
           (value) => value.fold(
-            (l) => left<TeacherFailure, TeacherSuccessResponse>(TeacherFailure.api(l)),
+            (l) => left<TeacherFailure, TeacherSuccessResponse>(
+                TeacherFailure.api(l)),
             (r) async {
               final teacherAddSuccessResponse = TeacherSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<TeacherFailure, TeacherSuccessResponse>(
                 teacherAddSuccessResponse,
@@ -49,7 +50,8 @@ class TeacherRepositoryImpl extends TeacherRepository {
   Future<Either<TeacherFailure, TeacherGetResponse>> getCachedTeacherData() {
     return _localDS.getCachedData(fieldKey: 'teachers').then(
           (value) => value.fold(
-            (l) => left<TeacherFailure, TeacherGetResponse>(TeacherFailure.database(l)),
+            (l) => left<TeacherFailure, TeacherGetResponse>(
+                TeacherFailure.database(l)),
             (r) => right<TeacherFailure, TeacherGetResponse>(
                 TeacherGetResponse(teachers: r ?? [])),
           ),
@@ -66,7 +68,7 @@ class TeacherRepositoryImpl extends TeacherRepository {
             ),
             (r) async {
               final teachersDataFromServer = TeacherGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<TeacherFailure, TeacherGetResponse>(
                 teachersDataFromServer,

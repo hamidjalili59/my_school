@@ -2,33 +2,25 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
-part 'classroom_model.freezed.dart';
 part 'classroom_model.g.dart';
 
-@Freezed(
-  makeCollectionsUnmodifiable: true,
-  copyWith: true,
-  toJson: true,
-  fromJson: true,
-  equal: true,
-)
+@HiveType(typeId: 8)
+@JsonSerializable()
+class Classroom {
+  @HiveField(0)
+  @JsonKey(name: 'class_ID')
+  final int? classID;
+  @HiveField(1)
+  @JsonKey(name: 'school_ID')
+  final int? schoolId;
+  @HiveField(2)
+  @JsonKey(name: 'class_Name')
+  final String? className;
 
-/// asd
-class Classroom with _$Classroom {
-  ///adsasd
-  @HiveType(typeId: 8)
-  factory Classroom({
-    // account email
-    @HiveField(0) int? classID,
+  Classroom(this.classID, this.schoolId, this.className);
 
-    // account password
-    @HiveField(1) int? schoolId,
-
-    // nike name
-    @HiveField(2) String? className,
-  }) = _Classroom;
-
-  ///das
-  factory Classroom.fromJson(Map<String, Object?> json) =>
+  factory Classroom.fromJson(Map<String, dynamic> json) =>
       _$ClassroomFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ClassroomToJson(this);
 }

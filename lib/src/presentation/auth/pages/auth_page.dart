@@ -16,137 +16,137 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => _loginBloc,
-        child: SafeArea(
-          child: Scaffold(
-            body: BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  otpHandshakeSuccess: (o) {
-                    _loginBloc.add(
-                      AuthEvent.cacheAuthData(
-                        OtpHandshakeResponse(
-                          token: o.token,
-                          typeOfUser: o.typeOfUser,
-                          phoneNumber: o.phoneNumber,
+      create: (_) => _loginBloc,
+      child: SafeArea(
+        child: Scaffold(
+          body: BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                otpHandshakeSuccess: (o) {
+                  _loginBloc.add(
+                    AuthEvent.cacheAuthData(
+                      OtpHandshakeResponse(
+                        token: o.token,
+                        typeOfUser: o.typeOfUser,
+                        phoneNumber: o.phoneNumber,
+                      ),
+                    ),
+                  );
+                  return SizedBox(
+                    width: 1.sw,
+                    height: 1.sh,
+                    child: SingleChildScrollView(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 1.sw,
+                          height: 0.7.sh,
+                          child: VerificationCodePage(),
+                        ),
+                        SizedBox(height: 0.05.sh),
+                      ],
+                    )),
+                  );
+                },
+                idle: (l) {
+                  return Stack(
+                    children: [
+                      Positioned.fill(
+                        child: SizedBox(
+                          width: 1.sw,
+                          height: 1.sh,
+                          child: SingleChildScrollView(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 1.sw,
+                                height: 0.9.sh,
+                                child: UserAuthenticationPage(bloc: _loginBloc),
+                              ),
+                            ],
+                          )),
                         ),
                       ),
-                    );
-                    return SizedBox(
-                      width: 1.sw,
-                      height: 1.sh,
-                      child: SingleChildScrollView(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 1.sw,
-                            height: 0.7.sh,
-                            child: VerificationCodePage(),
-                          ),
-                          SizedBox(height: 0.05.sh),
-                        ],
-                      )),
-                    );
-                  },
-                  idle: (l) {
-                    return Stack(
-                      children: [
-                        Positioned.fill(
-                          child: SizedBox(
-                            width: 1.sw,
-                            height: 1.sh,
-                            child: SingleChildScrollView(
-                                child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 1.sw,
-                                  height: 0.9.sh,
-                                  child:
-                                      UserAuthenticationPage(bloc: _loginBloc),
-                                ),
-                              ],
-                            )),
-                          ),
+                      Positioned.fill(
+                          child: l ? const LoadingWidget() : const SizedBox())
+                    ],
+                  );
+                },
+                failure: (f, s) {
+                  _loginBloc.add(
+                    const AuthEvent.resetIdel(),
+                  );
+                  return Stack(
+                    children: [
+                      Positioned.fill(
+                        child: SizedBox(
+                          width: 1.sw,
+                          height: 1.sh,
+                          child: UserAuthenticationPage(bloc: _loginBloc),
                         ),
-                        Positioned.fill(
-                            child: l ? const LoadingWidget() : const SizedBox())
-                      ],
-                    );
-                  },
-                  failure: (f, s) {
-                    _loginBloc.add(
-                      const AuthEvent.resetIdel(),
-                    );
-                    return Stack(
+                      ),
+                    ],
+                  );
+                },
+                orElse: () {
+                  _loginBloc.add(
+                    const AuthEvent.resetIdel(),
+                  );
+                  return SizedBox(
+                    width: 1.sw,
+                    height: 1.sh,
+                    child: SingleChildScrollView(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Positioned.fill(
-                          child: SizedBox(
-                            width: 1.sw,
-                            height: 1.sh,
-                            child: UserAuthenticationPage(bloc: _loginBloc),
-                          ),
+                        SizedBox(
+                          width: 1.sw,
+                          height: 0.7.sh,
+                          child: UserAuthenticationPage(bloc: _loginBloc),
                         ),
-                      ],
-                    );
-                  },
-                  orElse: () {
-                    _loginBloc.add(
-                      const AuthEvent.resetIdel(),
-                    );
-                    return SizedBox(
-                      width: 1.sw,
-                      height: 1.sh,
-                      child: SingleChildScrollView(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 1.sw,
-                            height: 0.7.sh,
-                            child: UserAuthenticationPage(bloc: _loginBloc),
-                          ),
-                          SizedBox(height: 0.05.sh),
-                          Material(
-                            color: GeneralConstants.backgroundColor,
+                        SizedBox(height: 0.05.sh),
+                        Material(
+                          color: GeneralConstants.backgroundColor,
+                          borderRadius: BorderRadius.circular(8.r),
+                          child: InkWell(
+                            splashColor:
+                                const Color.fromARGB(255, 141, 108, 159),
                             borderRadius: BorderRadius.circular(8.r),
-                            child: InkWell(
-                              splashColor:
-                                  const Color.fromARGB(255, 141, 108, 159),
-                              borderRadius: BorderRadius.circular(8.r),
-                              onTap: () {},
-                              child: Container(
-                                color: Colors.red,
-                                width: 0.45.sw,
-                                height: 0.06.sh,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                ),
-                                child: Text(
-                                  'تایید',
-                                  style: TextStyle(
-                                      color: Colors.black38,
-                                      fontSize: 16.r,
-                                      fontWeight: FontWeight.w900),
-                                  textAlign: TextAlign.center,
-                                ),
+                            onTap: () {},
+                            child: Container(
+                              color: Colors.red,
+                              width: 0.45.sw,
+                              height: 0.06.sh,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.r),
+                              ),
+                              child: Text(
+                                'تایید',
+                                style: TextStyle(
+                                    color: Colors.black38,
+                                    fontSize: 16.r,
+                                    fontWeight: FontWeight.w900),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
-                          SizedBox(height: 0.05.sh),
-                        ],
-                      )),
-                    );
-                  },
-                );
-              },
-            ),
+                        ),
+                        SizedBox(height: 0.05.sh),
+                      ],
+                    )),
+                  );
+                },
+              );
+            },
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 
 class GeneralConstants {
   static Size defaultDesignSize = const Size(360, 690);
@@ -10,7 +11,7 @@ class GeneralConstants {
   static String jwt = '';
   static bool isParent = false;
   static bool isTeacher = false;
-  static bool isAdmin = false;
+  static UserType userType = UserType.admin;
   static bool didStartSetup = false;
 
   static Color backgroundColor = const Color.fromARGB(255, 250, 239, 222);

@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 
@@ -9,6 +8,7 @@ part 'classroom_success_response.g.dart';
 @JsonSerializable()
 class ClassroomSuccessResponse {
   @HiveField(0)
+  @JsonKey(name: "Class")
   final Classroom classroom;
 
   ClassroomSuccessResponse({required this.classroom});

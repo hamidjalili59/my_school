@@ -13,9 +13,6 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (getIt.get<AppRouter>().currentPath == '/splash') {
-      _splashBloc.add(const SplashEvent.tokenIsExist());
-    }
     return SafeArea(
       child: Scaffold(
         body: BlocProvider<SplashBloc>(
@@ -23,12 +20,9 @@ class SplashPage extends StatelessWidget {
           child: BlocListener<SplashBloc, SplashState>(
             bloc: _splashBloc,
             listener: (context, state) {
-              if (getIt.get<AppRouter>().currentPath != '/splash') {
-                return;
-              }
               state.maybeWhen(
                 failure: (f, m) {
-                  _appRoute.replaceNamed('/intro');
+                  _appRoute.replaceNamed('/auth');
                 },
                 jwtIsNotExp: (typeOfUser) {
                   _appRoute.replaceNamed('/home_page');

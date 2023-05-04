@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/classroom/pages/classes_page.dart';
 import 'package:my_school/src/presentation/course/pages/course_page.dart';
@@ -18,16 +19,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _homeBloc.add(const HomeEvent.changePages('کلاس‌ها'));
     return SafeArea(
       child: Scaffold(
         backgroundColor: GeneralConstants.backgroundColor,
-        body: MultiBlocProvider(
-          providers: [
-            BlocProvider<HomeBloc>(
-              create: (BuildContext context) => _homeBloc,
-            ),
-          ],
+        body: BlocProvider<HomeBloc>(
+          create: (_) => _homeBloc,
           child: SizedBox(
             width: 1.sw,
             height: 1.sh,
@@ -40,9 +36,9 @@ class HomePage extends StatelessWidget {
                       bloc: _homeBloc,
                       title: 'مدرسه من',
                       buttonsList: const [
-                        'کلاس‌ها',
-                        'دبیران',
-                        'درس‌ها',
+                        AppbarPageType.classroom,
+                        AppbarPageType.teacher,
+                        AppbarPageType.course,
                       ],
                     ),
                   ),
@@ -54,16 +50,18 @@ class HomePage extends StatelessWidget {
                       builder: (context, state) {
                         return state.maybeWhen(
                           currentPageIndex: (pageState) {
-                            if (pageState == 'کلاس‌ها') {
+                            if (pageState == AppbarPageType.classroom) {
                               return SizedBox(
                                   child: ClassesPage(appRouter: _appRouter));
-                            } else if (pageState == 'دبیران') {
+                            } else if (pageState == AppbarPageType.teacher) {
                               return SizedBox(child: TeacherPage());
                             } else {
                               return SizedBox(child: CoursePage());
                             }
                           },
-                          orElse: () => const SizedBox(),
+                          orElse: () => Container(
+                            color: Colors.red,
+                          ),
                         );
                       }),
                 ),

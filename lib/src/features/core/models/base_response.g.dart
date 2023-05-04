@@ -51,14 +51,14 @@ class BaseResponseAdapter extends TypeAdapter<BaseResponse> {
 // **************************************************************************
 
 BaseResponse _$BaseResponseFromJson(Map<String, dynamic> json) => BaseResponse(
-      payload: json['payload'] as Map<String, dynamic>,
+      payload: json['payLoad'] as Map<String, dynamic>,
       message: json['message'] as String,
-      statusCode: json['statusCode'] as int,
+      statusCode: json['code'] as int,
     );
 
 Map<String, dynamic> _$BaseResponseToJson(BaseResponse instance) =>
     <String, dynamic>{
-      'payload': instance.payload,
+      'payLoad': instance.payload,
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.statusCode,
     };

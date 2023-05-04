@@ -18,7 +18,7 @@ class OtpHandshakeResponseAdapter extends TypeAdapter<OtpHandshakeResponse> {
     };
     return OtpHandshakeResponse(
       token: fields[0] as String,
-      typeOfUser: fields[1] as int,
+      typeOfUser: fields[1] as String,
       phoneNumber: fields[2] as double,
     );
   }
@@ -54,7 +54,7 @@ OtpHandshakeResponse _$OtpHandshakeResponseFromJson(
         Map<String, dynamic> json) =>
     OtpHandshakeResponse(
       token: json['token'] as String,
-      typeOfUser: json['typeOfUser'] as int,
+      typeOfUser: json['typeOfUser'] as String,
       phoneNumber: (json['phoneNumber'] as num).toDouble(),
     );
 

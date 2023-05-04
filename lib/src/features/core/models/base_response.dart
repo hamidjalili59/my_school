@@ -8,10 +8,12 @@ part 'base_response.g.dart';
 @JsonSerializable()
 class BaseResponse {
   @HiveField(0)
+  @JsonKey(name: 'payLoad')
   final Map<String, dynamic> payload;
   @HiveField(1)
   final String message;
   @HiveField(2)
+  @JsonKey(name: 'code')
   final int statusCode;
 
   BaseResponse({
@@ -25,5 +27,3 @@ class BaseResponse {
 
   Map<String, dynamic> toJson() => _$BaseResponseToJson(this);
 }
-
-

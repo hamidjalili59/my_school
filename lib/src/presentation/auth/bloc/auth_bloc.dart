@@ -46,13 +46,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       final handshakeResult =
           await _otpHandshakeUseCase(param: tuple.Tuple1(event.phoneNumber));
-      await Future.delayed(const Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 2));
       handshakeResult.fold(
         (l) {
           emit(_Failure(failure: l));
         },
         (r) {
           emit(_OtpHandshakeSuccess(r));
+          if (!getIt.isRegistered<OtpHandshakeResponse>()) {
+            getIt.registerSingleton<OtpHandshakeResponse>(r);
+          }
         },
       );
 
@@ -87,7 +90,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(const AuthState.idle(isLoading: true));
     try {
       final cacheResult = await _cacheAuthDataUseCase(
-        param: tuple.Tuple3<String, int, double>(
+        param: tuple.Tuple3<String, String, double>(
           event.token.token,
           event.token.typeOfUser,
           event.token.phoneNumber,

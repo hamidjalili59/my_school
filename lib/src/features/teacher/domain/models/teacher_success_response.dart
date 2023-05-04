@@ -9,6 +9,7 @@ part 'teacher_success_response.g.dart';
 @JsonSerializable()
 class TeacherSuccessResponse {
   @HiveField(0)
+  @JsonKey(name: 'Teachers')
   final Teacher teacher;
 
   TeacherSuccessResponse({required this.teacher});

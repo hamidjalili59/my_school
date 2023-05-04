@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
+import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:my_school/src/presentation/teacher/widget/custom_card_teacher_widget.dart';
 import 'package:ndialog/ndialog.dart';
 
@@ -15,64 +18,63 @@ class TeacherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          icon: Icon(
-            Icons.add_circle,
-            size: 26.r,
-          ),
-          onPressed: _addTeacherDialogMethod,
-          label: Text(
-            'افزودن‌دبیر',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.r,
-                fontWeight: FontWeight.w700),
-          ),
-          backgroundColor: GeneralConstants.mainColor),
-      backgroundColor: GeneralConstants.backgroundColor,
-      body: SizedBox(
-        width: 1.sw,
-        height: 1.sh,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomCardTeacherWidget(
-                name: "حمیدجلیلی‌نسب",
-                phone: "09361360584",
-                method: _addTeacherDialogMethod,
-                nameController: _controllerName,
-                phoneController: _controllerPhone,
-              ),
-              CustomCardTeacherWidget(
-                name: "هادی‌شریف‌زاده",
-                phone: "09155813918",
-                method: _addTeacherDialogMethod,
-                nameController: _controllerName,
-                phoneController: _controllerPhone,
-              ),
-              CustomCardTeacherWidget(
-                name: "محسن‌پیرفخرآبادی",
-                phone: "09373463357",
-                method: _addTeacherDialogMethod,
-                nameController: _controllerName,
-                phoneController: _controllerPhone,
-              ),
-              CustomCardTeacherWidget(
-                name: "حامدشریف‌زاده",
-                phone: "09000111000",
-                method: _addTeacherDialogMethod,
-                nameController: _controllerName,
-                phoneController: _controllerPhone,
-              ),
-            ],
-          ),
+    return BlocProvider(
+      create: (_) => getIt.get<TeacherBloc>(),
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+            icon: Icon(
+              Icons.add_circle,
+              size: 26.r,
+            ),
+            onPressed: () {
+              _addTeacherDialogMethod(false);
+            },
+            label: Text(
+              'افزودن‌دبیر',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.r,
+                  fontWeight: FontWeight.w700),
+            ),
+            backgroundColor: GeneralConstants.mainColor),
+        backgroundColor: GeneralConstants.backgroundColor,
+        body: BlocBuilder<TeacherBloc, TeacherState>(
+          bloc: getIt.get<TeacherBloc>(),
+          builder: (context, state) {
+            return state.maybeWhen(
+              idle: (isLoading, teachers) {
+                return SizedBox(
+                  width: 1.sw,
+                  height: 1.sh,
+                  child: ListView.builder(
+                    itemCount: teachers.length,
+                    itemBuilder: (context, index) {
+                      return CustomCardTeacherWidget(
+                        name: teachers[index].basicInfo.name,
+                        phone:
+                            '0${teachers[index].basicInfo.phoneNumber.toInt()}',
+                        method: () {
+                          _addTeacherDialogMethod(
+                            true,
+                            teacher: teachers[index],
+                          );
+                        },
+                        nameController: _controllerName,
+                        phoneController: _controllerPhone,
+                      );
+                    },
+                  ),
+                );
+              },
+              orElse: () => const SizedBox(),
+            );
+          },
         ),
       ),
     );
   }
 
-  _addTeacherDialogMethod() {
+  _addTeacherDialogMethod(bool isEditing, {Teacher? teacher}) {
     //TODO implement show Add Teacher here
     var appRputer = getIt.get<AppRouter>();
     NDialog(

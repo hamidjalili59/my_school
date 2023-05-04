@@ -24,13 +24,16 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
             (l) => left<ClassroomFailure, ClassroomSuccessResponse>(
                 ClassroomFailure.api(l)),
             (r) async {
-              final classroomAddSuccessResponse =
-                  ClassroomSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ClassroomFailure, ClassroomSuccessResponse>(
-                classroomAddSuccessResponse,
-              );
+              if (r.statusCode == 201) {
+                final classroomAddSuccessResponse =
+                    ClassroomSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<ClassroomFailure, ClassroomSuccessResponse>(
+                  classroomAddSuccessResponse,
+                );
+              }
+              return left(const ClassroomFailure.nullParam());
             },
           ),
         );
@@ -70,7 +73,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
             ),
             (r) async {
               final classroomsDataFromServer = ClassroomGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<ClassroomFailure, ClassroomGetResponse>(
                 classroomsDataFromServer,

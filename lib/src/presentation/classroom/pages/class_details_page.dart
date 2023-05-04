@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/exam/pages/exam_page.dart';
 import 'package:my_school/src/presentation/home/bloc/home_bloc.dart';
@@ -16,7 +17,7 @@ class ClassDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bloc.add(const HomeEvent.changePages('دانش‌آموزان'));
+    bloc.add(const HomeEvent.changePages(AppbarPageType.student));
     return SafeArea(
       child: Scaffold(
         backgroundColor: GeneralConstants.backgroundColor,
@@ -33,9 +34,9 @@ class ClassDetailsPage extends StatelessWidget {
                         title: GeneralConstants.appbarTitle,
                         // 'کلاس دهم - 103',
                         buttonsList: const [
-                          'دانش‌آموزان',
-                          'دبیران',
-                          'امتحانات',
+                          AppbarPageType.student,
+                          AppbarPageType.teacher,
+                          AppbarPageType.exams,
                         ],
                       )),
                   Expanded(
@@ -46,9 +47,9 @@ class ClassDetailsPage extends StatelessWidget {
                         return state.maybeWhen(
                           orElse: () => const SizedBox(),
                           currentPageIndex: (pageState) {
-                            if (pageState == 'دانش‌آموزان') {
+                            if (pageState == AppbarPageType.student) {
                               return ClassStudentPage();
-                            } else if (pageState == 'دبیران') {
+                            } else if (pageState == AppbarPageType.teacher) {
                               return SizedBox(child: TeacherPage());
                             } else {
                               return SizedBox(child: ExamPage());
