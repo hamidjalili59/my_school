@@ -9,7 +9,7 @@ class IntroPage extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         color: Colors.redAccent,
-        child: Text('Intro Page'),
+        child: const Text('Intro Page'),
       ),
     );
   }

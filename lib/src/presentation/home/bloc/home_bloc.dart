@@ -30,7 +30,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _ChangePages event,
     Emitter<HomeState> emit,
   ) async {
-    print(event.index.name);
     emit(_CurrentPageIndex(pageState: event.index));
   }
 }
