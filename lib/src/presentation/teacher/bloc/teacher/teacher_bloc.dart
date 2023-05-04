@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/config/utils/function_helper.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
@@ -47,13 +48,63 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
         .call(param: tuple.Tuple1(event.schoolId))
         .then((value) => value.fold(
               (l) => null,
-              (r) => emit(
-                  TeacherState.idle(isLoading: false, teachers: r.teachers)),
+              (r) {
+                if (!getIt.isRegistered<List<Teacher>>()) {
+                  getIt.registerSingleton<List<Teacher>>(r.teachers);
+                } else {
+                  getIt.unregister<List<Teacher>>();
+                  getIt.registerSingleton<List<Teacher>>(r.teachers);
+                }
+                emit(TeacherState.idle(isLoading: false, teachers: r.teachers));
+              },
             ));
   }
 
-  FutureOr<void> _onAddTeacher(_AddTeacher event, Emitter<TeacherState> emit) {}
+  FutureOr<void> _onAddTeacher(
+      _AddTeacher event, Emitter<TeacherState> emit) async {
+    await _addTeacherUseCase
+        .call(param: tuple.Tuple1<Teacher>(event.teacher))
+        .then(
+          (value) => value.fold(
+            (l) {
+              getIt.get<AppRouter>().pop();
+              return null;
+            },
+            (r) {
+              List<Teacher> tempTeachers = getIt.get<List<Teacher>>();
+              tempTeachers.add(r.teacher);
+              emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
+              getIt.get<AppRouter>().pop();
+            },
+          ),
+        );
+  }
 
   FutureOr<void> _onUpdateTeacher(
-      _UpdateTeacher event, Emitter<TeacherState> emit) {}
+      _UpdateTeacher event, Emitter<TeacherState> emit) async {
+    await _updateTeacherUseCase
+        .call(
+          param: tuple.Tuple3<String, int, double>(
+            event.teacher.basicInfo.name,
+            event.teacher.teacherId,
+            event.teacher.basicInfo.phoneNumber,
+          ),
+        )
+        .then(
+          (value) => value.fold(
+            (l) {
+              getIt.get<AppRouter>().pop();
+              return null;
+            },
+            (r) {
+              List<Teacher> tempTeachers = getIt.get<List<Teacher>>();
+              add(TeacherEvent.getTeachers(
+                int.parse(getIt.get<OtpHandshakeResponse>().token),
+              ));
+              emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
+              getIt.get<AppRouter>().pop();
+            },
+          ),
+        );
+  }
 }
