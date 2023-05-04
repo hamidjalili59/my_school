@@ -3,9 +3,11 @@ import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 
 class GeneralConstants {
   static Size defaultDesignSize = const Size(360, 690);
+
   static double defaultBorderRadius = 10;
   static int currentIndexPage = 0;
   static String defaultFontName = '';
+  static String host = 'http://myschool.asatic.ir/';
   static String firstAppbarItem = '';
   static String appbarTitle = 'مدرسه من';
   static String jwt = '';

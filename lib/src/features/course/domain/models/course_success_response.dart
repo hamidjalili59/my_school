@@ -9,11 +9,13 @@ part 'course_success_response.g.dart';
 @JsonSerializable()
 class CourseSuccessResponse {
   @HiveField(0)
+  @JsonKey(name: 'Course')
   final Course course;
 
   CourseSuccessResponse({required this.course});
-  
-  factory CourseSuccessResponse.fromJson(Map<String,dynamic>json) => _$CourseSuccessResponseFromJson(json);
 
-  Map<String, dynamic> toJson()=> _$CourseSuccessResponseToJson(this);
+  factory CourseSuccessResponse.fromJson(Map<String, dynamic> json) =>
+      _$CourseSuccessResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CourseSuccessResponseToJson(this);
 }

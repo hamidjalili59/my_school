@@ -7,7 +7,7 @@ import 'package:my_school/src/features/course/domain/models/course_success_respo
 abstract class CourseRepository {
   //
   Future<Either<CourseFailure, CourseSuccessResponse>> addCourse(
-      {required Course course});
+      {required String courseName});
   //
   Future<Either<CourseFailure, CourseSuccessResponse>> updateCourse({
     required String courseName,

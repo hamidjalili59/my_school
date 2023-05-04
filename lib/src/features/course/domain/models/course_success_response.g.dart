@@ -47,11 +47,11 @@ class CourseSuccessResponseAdapter extends TypeAdapter<CourseSuccessResponse> {
 CourseSuccessResponse _$CourseSuccessResponseFromJson(
         Map<String, dynamic> json) =>
     CourseSuccessResponse(
-      course: Course.fromJson(json['course'] as Map<String, dynamic>),
+      course: Course.fromJson(json['Course'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CourseSuccessResponseToJson(
         CourseSuccessResponse instance) =>
     <String, dynamic>{
-      'course': instance.course,
+      'Course': instance.course,
     };

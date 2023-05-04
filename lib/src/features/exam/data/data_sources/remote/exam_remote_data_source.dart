@@ -1,6 +1,7 @@
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/exam/domain/models/exam_model.dart';
 
 abstract class ExamRemoteDataSource {
@@ -32,8 +33,7 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> addExam(
           {required Exam exam}) =>
-      apiService
-          .postMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
+      apiService.postMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
         'exam': exam,
       });
 
@@ -41,7 +41,7 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> getExams(
       {required int classId}) {
     return apiService.getMethod(
-      'https://www.asatic.ir/',
+      GeneralConstants.host,
     );
   }
 
@@ -49,14 +49,14 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> getSingleExam(
       {required int examId}) {
     return apiService.getMethod(
-      'https://www.asatic.ir/',
+      GeneralConstants.host,
     );
   }
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeExam(
       {required int examId}) {
-    return apiService.deleteMethod('https://www.asatic.ir/', body: {
+    return apiService.deleteMethod(GeneralConstants.host, body: {
       'exam_id': examId,
     });
   }
@@ -66,8 +66,7 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
           {required int examId,
           required bool isDone,
           required String examDescription}) =>
-      apiService
-          .putMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
+      apiService.putMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
         'exam_id': examId,
         'isDone': isDone,
         'exam_description': examDescription,

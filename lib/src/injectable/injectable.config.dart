@@ -139,20 +139,21 @@ import '../features/teacher/domain/use_cases/update_teacher_use_case.dart'
     as _i79;
 import '../presentation/auth/bloc/auth_bloc.dart' as _i80;
 import '../presentation/classroom/bloc/classroom_bloc.dart' as _i81;
+import '../presentation/course/bloc/course/course_bloc.dart' as _i82;
 import '../presentation/home/bloc/home_bloc.dart' as _i48;
 import '../presentation/rollcall/bloc/rollcall_bloc.dart' as _i59;
 import '../presentation/splash/bloc/splash_bloc.dart' as _i66;
-import '../presentation/teacher/bloc/teacher/teacher_bloc.dart' as _i82;
-import 'module_injection/feature/auth_feature_module.dart' as _i90;
-import 'module_injection/feature/classroom_feature_module.dart' as _i83;
-import 'module_injection/feature/course_feature_module.dart' as _i84;
-import 'module_injection/feature/exam_feature_module.dart' as _i85;
-import 'module_injection/feature/parent_feature_module.dart' as _i91;
-import 'module_injection/feature/rollcall_feature_module.dart' as _i86;
-import 'module_injection/feature/score_feature_module.dart' as _i87;
-import 'module_injection/feature/student_feature_module.dart' as _i88;
+import '../presentation/teacher/bloc/teacher/teacher_bloc.dart' as _i83;
+import 'module_injection/feature/auth_feature_module.dart' as _i91;
+import 'module_injection/feature/classroom_feature_module.dart' as _i84;
+import 'module_injection/feature/course_feature_module.dart' as _i85;
+import 'module_injection/feature/exam_feature_module.dart' as _i86;
+import 'module_injection/feature/parent_feature_module.dart' as _i92;
+import 'module_injection/feature/rollcall_feature_module.dart' as _i87;
+import 'module_injection/feature/score_feature_module.dart' as _i88;
+import 'module_injection/feature/student_feature_module.dart' as _i89;
 import 'module_injection/feature/teacher_feature_module.dart'
-    as _i89; // ignore_for_file: unnecessary_lambdas
+    as _i90; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -303,7 +304,11 @@ _i1.GetIt $initGetIt(
         get<_i40.GetClassroomsUseCase>(),
         get<_i3.AddClassroomUseCase>(),
       ));
-  gh.lazySingleton<_i82.TeacherBloc>(() => _i82.TeacherBloc(
+  gh.lazySingleton<_i82.CourseBloc>(() => _i82.CourseBloc(
+        get<_i41.GetCoursesUseCase>(),
+        get<_i4.AddCourseUseCase>(),
+      ));
+  gh.lazySingleton<_i83.TeacherBloc>(() => _i83.TeacherBloc(
         get<_i47.GetTeacherUseCase>(),
         get<_i9.AddTeacherUseCase>(),
         get<_i79.UpdateTeacherUseCase>(),
@@ -311,20 +316,20 @@ _i1.GetIt $initGetIt(
   return get;
 }
 
-class _$ClassroomFeatureModule extends _i83.ClassroomFeatureModule {}
+class _$ClassroomFeatureModule extends _i84.ClassroomFeatureModule {}
 
-class _$CourseFeatureModule extends _i84.CourseFeatureModule {}
+class _$CourseFeatureModule extends _i85.CourseFeatureModule {}
 
-class _$ExamFeatureModule extends _i85.ExamFeatureModule {}
+class _$ExamFeatureModule extends _i86.ExamFeatureModule {}
 
-class _$RollcallFeatureModule extends _i86.RollcallFeatureModule {}
+class _$RollcallFeatureModule extends _i87.RollcallFeatureModule {}
 
-class _$ScoreFeatureModule extends _i87.ScoreFeatureModule {}
+class _$ScoreFeatureModule extends _i88.ScoreFeatureModule {}
 
-class _$StudentFeatureModule extends _i88.StudentFeatureModule {}
+class _$StudentFeatureModule extends _i89.StudentFeatureModule {}
 
-class _$TeacherFeatureModule extends _i89.TeacherFeatureModule {}
+class _$TeacherFeatureModule extends _i90.TeacherFeatureModule {}
 
-class _$AuthFeatureModule extends _i90.AuthFeatureModule {}
+class _$AuthFeatureModule extends _i91.AuthFeatureModule {}
 
-class _$ParentFeatureModule extends _i91.ParentFeatureModule {}
+class _$ParentFeatureModule extends _i92.ParentFeatureModule {}

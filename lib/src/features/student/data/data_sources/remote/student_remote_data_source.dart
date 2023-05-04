@@ -1,6 +1,7 @@
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/student/domain/models/student_model/student.dart';
 
 abstract class StudentRemoteDataSource {
@@ -30,8 +31,7 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> addStudent(
           {required Student student}) =>
-      apiService
-          .postMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
+      apiService.postMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
         'student': student,
       });
 
@@ -39,14 +39,14 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> getStudents(
       {required int classId}) {
     return apiService.getMethod(
-      'https://www.asatic.ir/',
+      GeneralConstants.host,
     );
   }
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeStudent(
       {required int studentId}) {
-    return apiService.deleteMethod('https://www.asatic.ir/', body: {
+    return apiService.deleteMethod(GeneralConstants.host, body: {
       'student_id': studentId,
     });
   }
@@ -58,8 +58,7 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
     required String name,
     required double phoneNumber,
   }) =>
-      apiService
-          .putMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
+      apiService.putMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
         'student_id': studentId,
         'class_id': classId,
         'name': name,

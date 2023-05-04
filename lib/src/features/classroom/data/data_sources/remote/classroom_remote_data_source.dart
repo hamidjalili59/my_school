@@ -1,3 +1,4 @@
+import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
@@ -29,7 +30,7 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> addClass(
           {required Classroom classroom}) =>
       apiService.postMethod<Map<String, dynamic>>(
-          'http://myschool.asatic.ir/api/v1/Classes',
+          '${GeneralConstants.host}api/v1/Classes',
           body: {
             "school_ID": classroom.schoolId,
             "class_Name": classroom.className,
@@ -39,14 +40,14 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> getClasses(
       {required int schoolId}) {
     return apiService.getMethod(
-      'http://myschool.asatic.ir/api/v1/Classes/$schoolId',
+      '${GeneralConstants.host}api/v1/Classes/$schoolId',
     );
   }
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeClass(
       {required int classId}) {
-    return apiService.deleteMethod('https://www.asatic.ir/', body: {
+    return apiService.deleteMethod(GeneralConstants.host, body: {
       'course_id': classId,
     });
   }
@@ -54,8 +55,7 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> updateClass(
           {required int classroomId, required String classroomName}) =>
-      apiService
-          .putMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
+      apiService.putMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
         'course_id': classroomId,
         'course_name': classroomName,
       });

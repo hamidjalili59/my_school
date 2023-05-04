@@ -46,12 +46,12 @@ class CourseGetResponseAdapter extends TypeAdapter<CourseGetResponse> {
 
 CourseGetResponse _$CourseGetResponseFromJson(Map<String, dynamic> json) =>
     CourseGetResponse(
-      courses: (json['courses'] as List<dynamic>)
+      courses: (json['Courses'] as List<dynamic>)
           .map((e) => Course.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$CourseGetResponseToJson(CourseGetResponse instance) =>
     <String, dynamic>{
-      'courses': instance.courses,
+      'Courses': instance.courses,
     };
