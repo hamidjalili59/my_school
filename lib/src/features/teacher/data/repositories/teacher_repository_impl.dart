@@ -112,7 +112,7 @@ class TeacherRepositoryImpl extends TeacherRepository {
             ),
             (r) async {
               final updateTeacherOnServer = TeacherSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<TeacherFailure, TeacherSuccessResponse>(
                 updateTeacherOnServer,
