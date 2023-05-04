@@ -1,6 +1,7 @@
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/role_call/domain/models/rollcall_model.dart';
 
 abstract class RollcallRemoteDataSource {
@@ -20,8 +21,7 @@ class RollcallRemoteDataSourceImpl implements RollcallRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> addRollcall(
           {required List<Rollcall> rollcall}) =>
-      apiService
-          .postMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
+      apiService.postMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
         'rollcall': rollcall,
       });
 
@@ -29,7 +29,7 @@ class RollcallRemoteDataSourceImpl implements RollcallRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> getRollcalls(
       {required int studentId}) {
     return apiService.getMethod(
-      'https://www.asatic.ir/',
+      GeneralConstants.host,
     );
   }
 }

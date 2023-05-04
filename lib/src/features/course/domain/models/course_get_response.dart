@@ -9,11 +9,13 @@ part 'course_get_response.g.dart';
 @JsonSerializable()
 class CourseGetResponse {
   @HiveField(0)
+  @JsonKey(name: 'Courses')
   final List<Course> courses;
 
   CourseGetResponse({required this.courses});
-  
-  factory CourseGetResponse.fromJson(Map<String,dynamic>json) => _$CourseGetResponseFromJson(json);
 
-  Map<String, dynamic> toJson()=> _$CourseGetResponseToJson(this);
+  factory CourseGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$CourseGetResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CourseGetResponseToJson(this);
 }

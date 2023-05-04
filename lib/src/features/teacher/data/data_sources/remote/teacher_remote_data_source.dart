@@ -1,6 +1,7 @@
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_school/src/injectable/injectable.dart';
@@ -32,7 +33,7 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> addTeacher(
           {required Teacher teacher}) =>
       apiService.postMethod<Map<String, dynamic>>(
-          'http://myschool.asatic.ir/api/v1/Teacher',
+          '${GeneralConstants.host}api/v1/Teacher',
           body: {
             'name': teacher.basicInfo.name,
             'phoneNumber': teacher.basicInfo.phoneNumber,
@@ -43,7 +44,7 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> getTeachers(
       {required int schoolId}) {
     return apiService.getMethod(
-      'http://myschool.asatic.ir/api/v1/Teacher/$schoolId',
+      '${GeneralConstants.host}api/v1/Teacher/$schoolId',
     );
   }
 
@@ -51,7 +52,7 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeTeacher(
       {required int teacherId}) {
     return apiService
-        .deleteMethod('http://myschool.asatic.ir/api/v1/Teacher/', body: {
+        .deleteMethod('${GeneralConstants.host}api/v1/Teacher/', body: {
       'teacher_id': teacherId,
     });
   }
@@ -63,7 +64,7 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
     required double phoneNumber,
   }) =>
       apiService.putMethod<Map<String, dynamic>>(
-          'http://myschool.asatic.ir/api/v1/Teacher/$teacherId',
+          '${GeneralConstants.host}api/v1/Teacher/$teacherId',
           body: {
             'name': name,
             'phoneNumber': phoneNumber,

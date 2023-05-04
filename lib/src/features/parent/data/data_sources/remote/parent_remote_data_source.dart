@@ -1,9 +1,9 @@
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:my_school/src/config/constants/general_constants.dart';
 
 abstract class ParentRemoteDataSource {
-
   Future<Either<DioError, Response<Map<String, dynamic>>>> getParent(
       {required int parentId});
 
@@ -25,7 +25,7 @@ class ParentRemoteDataSourceImpl implements ParentRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> getParent(
       {required int parentId}) {
     return apiService.getMethod(
-      'https://www.asatic.ir/',
+      GeneralConstants.host,
     );
   }
 
@@ -36,8 +36,7 @@ class ParentRemoteDataSourceImpl implements ParentRemoteDataSource {
     required String name,
     required double phoneNumber,
   }) =>
-      apiService
-          .putMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
+      apiService.putMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
         'parent_id': parentId,
         'school_id': schoolId,
         'name': name,

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/features/core/models/base_response.dart';
 import 'package:my_school/src/features/course/data/data_sources/local/course_local_data_source.dart';
 import 'package:my_school/src/features/course/data/data_sources/remote/course_remote_data_sourse.dart';
@@ -7,7 +8,7 @@ import 'package:my_school/src/features/course/domain/models/course_success_respo
 import 'package:my_school/src/features/course/domain/models/course_model/course.dart';
 import 'package:my_school/src/features/course/domain/models/course_get_response.dart';
 import 'package:my_school/src/features/course/domain/repositories/course_repository.dart';
-
+import 'package:my_school/src/injectable/injectable.dart';
 
 //TODO: یک ابجکت برای درس ها داخل دیپندنسی ریجیستر کنم و داخل توسط فانکشن های خود  پرش کنم
 class CourseRepositoryImpl extends CourseRepository {
@@ -19,14 +20,21 @@ class CourseRepositoryImpl extends CourseRepository {
 
   @override
   Future<Either<CourseFailure, CourseSuccessResponse>> addCourse(
-      {required Course course}) {
-    return _remoteDS.addCourse(course: course).then(
+      {required String courseName}) {
+    return _remoteDS
+        .addCourse(
+          courseName: courseName,
+          schoolId: int.parse(
+            getIt.get<OtpHandshakeResponse>().token,
+          ),
+        )
+        .then(
           (value) => value.fold(
             (l) => left<CourseFailure, CourseSuccessResponse>(
                 CourseFailure.api(l)),
             (r) async {
               final courseAddSuccessResponse = CourseSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<CourseFailure, CourseSuccessResponse>(
                 courseAddSuccessResponse,
@@ -69,7 +77,7 @@ class CourseRepositoryImpl extends CourseRepository {
             ),
             (r) async {
               final coursesDataFromServer = CourseGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<CourseFailure, CourseGetResponse>(
                 coursesDataFromServer,

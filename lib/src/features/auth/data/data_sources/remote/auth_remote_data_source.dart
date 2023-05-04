@@ -1,12 +1,10 @@
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:my_school/src/config/constants/general_constants.dart';
 
 abstract class AuthRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> otpHandshake(
-      {required double phoneNumber});
-
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getDataFromServer(
       {required double phoneNumber});
 }
 
@@ -18,18 +16,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> otpHandshake(
       {required double phoneNumber}) {
     return apiService.postMethod<Map<String, dynamic>>(
-      'http://myschool.asatic.ir/api/v1/login',
+      '${GeneralConstants.host}api/v1/login',
       body: {
         "PhoneNumber": phoneNumber,
       },
-    );
-  }
-
-  @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getDataFromServer(
-      {required double phoneNumber}) {
-    return apiService.getMethod(
-      'http://asatic.ir/api/Devices/$phoneNumber',
     );
   }
 }

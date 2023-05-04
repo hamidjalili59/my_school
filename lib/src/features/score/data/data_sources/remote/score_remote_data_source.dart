@@ -1,6 +1,7 @@
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/score/domain/models/score_model.dart';
 
 abstract class ScoreRemoteDataSource {
@@ -31,8 +32,7 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
     required List<Score> scores,
     required int classId,
   }) =>
-      apiService
-          .postMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
+      apiService.postMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
         'scores': scores,
       });
 
@@ -40,7 +40,7 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> getScores(
       {required int classId, required double phoneNumber}) {
     return apiService.getMethod(
-      'https://www.asatic.ir/',
+      GeneralConstants.host,
     );
   }
 
@@ -51,8 +51,7 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
     required String scoreDescription,
     required double grade,
   }) =>
-      apiService
-          .putMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
+      apiService.putMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
         'score_id': scoreId,
         'class_id': classId,
         'score_description': scoreDescription,
