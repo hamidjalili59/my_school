@@ -24,12 +24,12 @@ abstract class ClassroomFeatureModule {
 
   ClassroomRepository get repo => ClassroomRepositoryImpl(remoteDS, localDS);
 
-  AddClassroomUseCase get getClassroomUseCase => AddClassroomUseCase(repo);
+  AddClassroomUseCase get addClassroomUseCase => AddClassroomUseCase(repo);
+  GetClassroomsUseCase get getClassroomsUseCase => GetClassroomsUseCase(repo);
   CacheClassroomsDataUseCase get cacheClassroomDataUseCase =>
       CacheClassroomsDataUseCase(repo);
   GetCachedClassroomsDataUseCase get getCachedClassroomDataUseCase =>
       GetCachedClassroomsDataUseCase(repo);
-  GetClassroomsUseCase get getClassroomsUseCase => GetClassroomsUseCase(repo);
   RemoveClassroomUseCase get removeClassroomUseCase =>
       RemoveClassroomUseCase(repo);
   UpdateClassroomUseCase get updateClassroomUseCase =>

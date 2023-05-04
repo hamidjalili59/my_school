@@ -48,11 +48,11 @@ class ClassroomSuccessResponseAdapter
 ClassroomSuccessResponse _$ClassroomSuccessResponseFromJson(
         Map<String, dynamic> json) =>
     ClassroomSuccessResponse(
-      classroom: Classroom.fromJson(json['classroom'] as Map<String, dynamic>),
+      classroom: Classroom.fromJson(json['Class'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ClassroomSuccessResponseToJson(
         ClassroomSuccessResponse instance) =>
     <String, dynamic>{
-      'classroom': instance.classroom,
+      'Class': instance.classroom,
     };

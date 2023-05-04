@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/presentation/home/bloc/home_bloc.dart';
 
 class CustomRowButtonWidget extends StatelessWidget {
   const CustomRowButtonWidget({
     Key? key,
     required this.title,
-    required this.indexName,
-    required this.currentIndexName,
+    required this.indexType,
+    required this.currentIndexType,
     required this.bloc,
   }) : super(key: key);
   final String title;
-  final String indexName;
-  final String currentIndexName;
+  final AppbarPageType indexType;
+  final AppbarPageType currentIndexType;
   final HomeBloc bloc;
 
   @override
@@ -22,12 +23,12 @@ class CustomRowButtonWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 5.0.r, vertical: 8.h),
       child: InkWell(
         onTap: () {
-          bloc.add(HomeEvent.changePages(indexName));
+          bloc.add(HomeEvent.changePages(indexType));
         },
         child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: currentIndexName == indexName
+            color: currentIndexType == indexType
                 ? const Color.fromARGB(255, 46, 64, 64)
                 : GeneralConstants.backgroundColor,
             borderRadius: BorderRadius.circular(8.r),
@@ -38,7 +39,7 @@ class CustomRowButtonWidget extends StatelessWidget {
             title,
             style: TextStyle(
               color:
-                  currentIndexName == indexName ? Colors.white : Colors.black87,
+                  currentIndexType == indexType ? Colors.white : Colors.black87,
               fontSize: 18.r,
               fontWeight: FontWeight.w900,
             ),

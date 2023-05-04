@@ -20,22 +20,10 @@ class InsideCardCustomButtonWidget extends StatelessWidget {
             color: GeneralConstants.mainColor,
             borderRadius: BorderRadius.circular(5.r),
             border: Border(
-              bottom: BorderSide(
-                  color: Colors.black26,
-                  width: 2.w,
-                  strokeAlign: StrokeAlign.inside),
-              right: BorderSide(
-                  color: Colors.black26,
-                  width: 2.w,
-                  strokeAlign: StrokeAlign.inside),
-              left: BorderSide(
-                  color: Colors.black26,
-                  width: 2.w,
-                  strokeAlign: StrokeAlign.inside),
-              top: BorderSide(
-                  color: Colors.black26,
-                  width: 2.w,
-                  strokeAlign: StrokeAlign.inside),
+              bottom: BorderSide(color: Colors.black26, width: 2.w),
+              right: BorderSide(color: Colors.black26, width: 2.w),
+              left: BorderSide(color: Colors.black26, width: 2.w),
+              top: BorderSide(color: Colors.black26, width: 2.w),
             ),
             boxShadow: const [
               BoxShadow(

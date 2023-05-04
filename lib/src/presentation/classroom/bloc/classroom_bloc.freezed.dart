@@ -16,42 +16,49 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClassroomState {
-  String get pageState => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoading, AppbarPageType pageState,
+            List<Classroom> classes, Classroom? currentClass)
+        idle,
     required TResult Function(String pageState) currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isLoading, AppbarPageType pageState,
+            List<Classroom> classes, Classroom? currentClass)?
+        idle,
     TResult? Function(String pageState)? currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoading, AppbarPageType pageState,
+            List<Classroom> classes, Classroom? currentClass)?
+        idle,
     TResult Function(String pageState)? currentPageIndex,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
     required TResult Function(_CurrentPageIndex value) currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Idle value)? idle,
     TResult? Function(_CurrentPageIndex value)? currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
     TResult Function(_CurrentPageIndex value)? currentPageIndex,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ClassroomStateCopyWith<ClassroomState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +67,6 @@ abstract class $ClassroomStateCopyWith<$Res> {
   factory $ClassroomStateCopyWith(
           ClassroomState value, $Res Function(ClassroomState) then) =
       _$ClassroomStateCopyWithImpl<$Res, ClassroomState>;
-  @useResult
-  $Res call({String pageState});
 }
 
 /// @nodoc
@@ -73,28 +78,201 @@ class _$ClassroomStateCopyWithImpl<$Res, $Val extends ClassroomState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_IdleCopyWith<$Res> {
+  factory _$$_IdleCopyWith(_$_Idle value, $Res Function(_$_Idle) then) =
+      __$$_IdleCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      AppbarPageType pageState,
+      List<Classroom> classes,
+      Classroom? currentClass});
+}
+
+/// @nodoc
+class __$$_IdleCopyWithImpl<$Res>
+    extends _$ClassroomStateCopyWithImpl<$Res, _$_Idle>
+    implements _$$_IdleCopyWith<$Res> {
+  __$$_IdleCopyWithImpl(_$_Idle _value, $Res Function(_$_Idle) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? pageState = null,
+    Object? classes = null,
+    Object? currentClass = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_$_Idle(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+              as AppbarPageType,
+      classes: null == classes
+          ? _value._classes
+          : classes // ignore: cast_nullable_to_non_nullable
+              as List<Classroom>,
+      currentClass: freezed == currentClass
+          ? _value.currentClass
+          : currentClass // ignore: cast_nullable_to_non_nullable
+              as Classroom?,
+    ));
   }
 }
 
 /// @nodoc
-abstract class _$$_CurrentPageIndexCopyWith<$Res>
-    implements $ClassroomStateCopyWith<$Res> {
+
+class _$_Idle implements _Idle {
+  const _$_Idle(
+      {this.isLoading = false,
+      this.pageState = AppbarPageType.student,
+      final List<Classroom> classes = const [],
+      this.currentClass})
+      : _classes = classes;
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  @JsonKey()
+  final AppbarPageType pageState;
+  final List<Classroom> _classes;
+  @override
+  @JsonKey()
+  List<Classroom> get classes {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_classes);
+  }
+
+  @override
+  final Classroom? currentClass;
+
+  @override
+  String toString() {
+    return 'ClassroomState.idle(isLoading: $isLoading, pageState: $pageState, classes: $classes, currentClass: $currentClass)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Idle &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.pageState, pageState) ||
+                other.pageState == pageState) &&
+            const DeepCollectionEquality().equals(other._classes, _classes) &&
+            (identical(other.currentClass, currentClass) ||
+                other.currentClass == currentClass));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isLoading, pageState,
+      const DeepCollectionEquality().hash(_classes), currentClass);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_IdleCopyWith<_$_Idle> get copyWith =>
+      __$$_IdleCopyWithImpl<_$_Idle>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoading, AppbarPageType pageState,
+            List<Classroom> classes, Classroom? currentClass)
+        idle,
+    required TResult Function(String pageState) currentPageIndex,
+  }) {
+    return idle(isLoading, pageState, classes, currentClass);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isLoading, AppbarPageType pageState,
+            List<Classroom> classes, Classroom? currentClass)?
+        idle,
+    TResult? Function(String pageState)? currentPageIndex,
+  }) {
+    return idle?.call(isLoading, pageState, classes, currentClass);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoading, AppbarPageType pageState,
+            List<Classroom> classes, Classroom? currentClass)?
+        idle,
+    TResult Function(String pageState)? currentPageIndex,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(isLoading, pageState, classes, currentClass);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
+    required TResult Function(_CurrentPageIndex value) currentPageIndex,
+  }) {
+    return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Idle value)? idle,
+    TResult? Function(_CurrentPageIndex value)? currentPageIndex,
+  }) {
+    return idle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
+    TResult Function(_CurrentPageIndex value)? currentPageIndex,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Idle implements ClassroomState {
+  const factory _Idle(
+      {final bool isLoading,
+      final AppbarPageType pageState,
+      final List<Classroom> classes,
+      final Classroom? currentClass}) = _$_Idle;
+
+  bool get isLoading;
+  AppbarPageType get pageState;
+  List<Classroom> get classes;
+  Classroom? get currentClass;
+  @JsonKey(ignore: true)
+  _$$_IdleCopyWith<_$_Idle> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CurrentPageIndexCopyWith<$Res> {
   factory _$$_CurrentPageIndexCopyWith(
           _$_CurrentPageIndex value, $Res Function(_$_CurrentPageIndex) then) =
       __$$_CurrentPageIndexCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String pageState});
 }
@@ -156,6 +334,9 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoading, AppbarPageType pageState,
+            List<Classroom> classes, Classroom? currentClass)
+        idle,
     required TResult Function(String pageState) currentPageIndex,
   }) {
     return currentPageIndex(pageState);
@@ -164,6 +345,9 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isLoading, AppbarPageType pageState,
+            List<Classroom> classes, Classroom? currentClass)?
+        idle,
     TResult? Function(String pageState)? currentPageIndex,
   }) {
     return currentPageIndex?.call(pageState);
@@ -172,6 +356,9 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoading, AppbarPageType pageState,
+            List<Classroom> classes, Classroom? currentClass)?
+        idle,
     TResult Function(String pageState)? currentPageIndex,
     required TResult orElse(),
   }) {
@@ -184,6 +371,7 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
     required TResult Function(_CurrentPageIndex value) currentPageIndex,
   }) {
     return currentPageIndex(this);
@@ -192,6 +380,7 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Idle value)? idle,
     TResult? Function(_CurrentPageIndex value)? currentPageIndex,
   }) {
     return currentPageIndex?.call(this);
@@ -200,6 +389,7 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
     TResult Function(_CurrentPageIndex value)? currentPageIndex,
     required TResult orElse(),
   }) {
@@ -214,9 +404,7 @@ abstract class _CurrentPageIndex implements ClassroomState {
   const factory _CurrentPageIndex({final String pageState}) =
       _$_CurrentPageIndex;
 
-  @override
   String get pageState;
-  @override
   @JsonKey(ignore: true)
   _$$_CurrentPageIndexCopyWith<_$_CurrentPageIndex> get copyWith =>
       throw _privateConstructorUsedError;
@@ -224,42 +412,49 @@ abstract class _CurrentPageIndex implements ClassroomState {
 
 /// @nodoc
 mixin _$ClassroomEvent {
-  String get indexName => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
+    required TResult Function() getClasses,
+    required TResult Function(String className) createClasses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
+    TResult? Function()? getClasses,
+    TResult? Function(String className)? createClasses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
+    TResult Function()? getClasses,
+    TResult Function(String className)? createClasses,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_CreateClasses value) createClasses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_CreateClasses value)? createClasses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_CreateClasses value)? createClasses,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ClassroomEventCopyWith<ClassroomEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -268,8 +463,6 @@ abstract class $ClassroomEventCopyWith<$Res> {
   factory $ClassroomEventCopyWith(
           ClassroomEvent value, $Res Function(ClassroomEvent) then) =
       _$ClassroomEventCopyWithImpl<$Res, ClassroomEvent>;
-  @useResult
-  $Res call({String indexName});
 }
 
 /// @nodoc
@@ -281,28 +474,13 @@ class _$ClassroomEventCopyWithImpl<$Res, $Val extends ClassroomEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? indexName = null,
-  }) {
-    return _then(_value.copyWith(
-      indexName: null == indexName
-          ? _value.indexName
-          : indexName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_ChangePagesCopyWith<$Res>
-    implements $ClassroomEventCopyWith<$Res> {
+abstract class _$$_ChangePagesCopyWith<$Res> {
   factory _$$_ChangePagesCopyWith(
           _$_ChangePages value, $Res Function(_$_ChangePages) then) =
       __$$_ChangePagesCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String indexName});
 }
@@ -364,6 +542,8 @@ class _$_ChangePages implements _ChangePages {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
+    required TResult Function() getClasses,
+    required TResult Function(String className) createClasses,
   }) {
     return changePages(indexName);
   }
@@ -372,6 +552,8 @@ class _$_ChangePages implements _ChangePages {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
+    TResult? Function()? getClasses,
+    TResult? Function(String className)? createClasses,
   }) {
     return changePages?.call(indexName);
   }
@@ -380,6 +562,8 @@ class _$_ChangePages implements _ChangePages {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
+    TResult Function()? getClasses,
+    TResult Function(String className)? createClasses,
     required TResult orElse(),
   }) {
     if (changePages != null) {
@@ -392,6 +576,8 @@ class _$_ChangePages implements _ChangePages {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_CreateClasses value) createClasses,
   }) {
     return changePages(this);
   }
@@ -400,6 +586,8 @@ class _$_ChangePages implements _ChangePages {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_CreateClasses value)? createClasses,
   }) {
     return changePages?.call(this);
   }
@@ -408,6 +596,8 @@ class _$_ChangePages implements _ChangePages {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_CreateClasses value)? createClasses,
     required TResult orElse(),
   }) {
     if (changePages != null) {
@@ -420,10 +610,256 @@ class _$_ChangePages implements _ChangePages {
 abstract class _ChangePages implements ClassroomEvent {
   const factory _ChangePages(final String indexName) = _$_ChangePages;
 
-  @override
   String get indexName;
-  @override
   @JsonKey(ignore: true)
   _$$_ChangePagesCopyWith<_$_ChangePages> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_GetClassesCopyWith<$Res> {
+  factory _$$_GetClassesCopyWith(
+          _$_GetClasses value, $Res Function(_$_GetClasses) then) =
+      __$$_GetClassesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_GetClassesCopyWithImpl<$Res>
+    extends _$ClassroomEventCopyWithImpl<$Res, _$_GetClasses>
+    implements _$$_GetClassesCopyWith<$Res> {
+  __$$_GetClassesCopyWithImpl(
+      _$_GetClasses _value, $Res Function(_$_GetClasses) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_GetClasses implements _GetClasses {
+  const _$_GetClasses();
+
+  @override
+  String toString() {
+    return 'ClassroomEvent.getClasses()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GetClasses);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String indexName) changePages,
+    required TResult Function() getClasses,
+    required TResult Function(String className) createClasses,
+  }) {
+    return getClasses();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String indexName)? changePages,
+    TResult? Function()? getClasses,
+    TResult? Function(String className)? createClasses,
+  }) {
+    return getClasses?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String indexName)? changePages,
+    TResult Function()? getClasses,
+    TResult Function(String className)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (getClasses != null) {
+      return getClasses();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePages value) changePages,
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_CreateClasses value) createClasses,
+  }) {
+    return getClasses(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangePages value)? changePages,
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_CreateClasses value)? createClasses,
+  }) {
+    return getClasses?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePages value)? changePages,
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_CreateClasses value)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (getClasses != null) {
+      return getClasses(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetClasses implements ClassroomEvent {
+  const factory _GetClasses() = _$_GetClasses;
+}
+
+/// @nodoc
+abstract class _$$_CreateClassesCopyWith<$Res> {
+  factory _$$_CreateClassesCopyWith(
+          _$_CreateClasses value, $Res Function(_$_CreateClasses) then) =
+      __$$_CreateClassesCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String className});
+}
+
+/// @nodoc
+class __$$_CreateClassesCopyWithImpl<$Res>
+    extends _$ClassroomEventCopyWithImpl<$Res, _$_CreateClasses>
+    implements _$$_CreateClassesCopyWith<$Res> {
+  __$$_CreateClassesCopyWithImpl(
+      _$_CreateClasses _value, $Res Function(_$_CreateClasses) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? className = null,
+  }) {
+    return _then(_$_CreateClasses(
+      null == className
+          ? _value.className
+          : className // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CreateClasses implements _CreateClasses {
+  const _$_CreateClasses(this.className);
+
+  @override
+  final String className;
+
+  @override
+  String toString() {
+    return 'ClassroomEvent.createClasses(className: $className)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CreateClasses &&
+            (identical(other.className, className) ||
+                other.className == className));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, className);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CreateClassesCopyWith<_$_CreateClasses> get copyWith =>
+      __$$_CreateClassesCopyWithImpl<_$_CreateClasses>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String indexName) changePages,
+    required TResult Function() getClasses,
+    required TResult Function(String className) createClasses,
+  }) {
+    return createClasses(className);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String indexName)? changePages,
+    TResult? Function()? getClasses,
+    TResult? Function(String className)? createClasses,
+  }) {
+    return createClasses?.call(className);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String indexName)? changePages,
+    TResult Function()? getClasses,
+    TResult Function(String className)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (createClasses != null) {
+      return createClasses(className);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePages value) changePages,
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_CreateClasses value) createClasses,
+  }) {
+    return createClasses(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangePages value)? changePages,
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_CreateClasses value)? createClasses,
+  }) {
+    return createClasses?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePages value)? changePages,
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_CreateClasses value)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (createClasses != null) {
+      return createClasses(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateClasses implements ClassroomEvent {
+  const factory _CreateClasses(final String className) = _$_CreateClasses;
+
+  String get className;
+  @JsonKey(ignore: true)
+  _$$_CreateClassesCopyWith<_$_CreateClasses> get copyWith =>
       throw _privateConstructorUsedError;
 }

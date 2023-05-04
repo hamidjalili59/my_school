@@ -9,7 +9,7 @@ class OtpHandshakeResponse {
   @HiveField(0)
   final String token;
   @HiveField(1)
-  final int typeOfUser;
+  final String typeOfUser;
   @HiveField(2)
   final double phoneNumber;
 
@@ -18,8 +18,9 @@ class OtpHandshakeResponse {
     required this.typeOfUser,
     required this.phoneNumber,
   });
-  
-  factory OtpHandshakeResponse.fromJson(Map<String,dynamic>json) => _$OtpHandshakeResponseFromJson(json);
 
-  Map<String, dynamic> toJson()=> _$OtpHandshakeResponseToJson(this);
+  factory OtpHandshakeResponse.fromJson(Map<String, dynamic> json) =>
+      _$OtpHandshakeResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OtpHandshakeResponseToJson(this);
 }

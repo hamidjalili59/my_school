@@ -24,22 +24,18 @@ class CustomClassDetailButtonWidget extends StatelessWidget {
           bottom: BorderSide(
             color: Colors.black12,
             width: 1.5.w,
-            strokeAlign: StrokeAlign.inside,
           ),
           right: BorderSide(
             color: Colors.black12,
             width: 1.5.w,
-            strokeAlign: StrokeAlign.inside,
           ),
           left: BorderSide(
             color: Colors.black12,
             width: 1.5.w,
-            strokeAlign: StrokeAlign.inside,
           ),
           top: BorderSide(
             color: Colors.black12,
             width: 1.5.w,
-            strokeAlign: StrokeAlign.inside,
           ),
         ),
         borderRadius: BorderRadius.circular(12.r),

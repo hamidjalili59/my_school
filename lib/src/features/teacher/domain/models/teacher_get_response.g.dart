@@ -46,12 +46,12 @@ class TeacherGetResponseAdapter extends TypeAdapter<TeacherGetResponse> {
 
 TeacherGetResponse _$TeacherGetResponseFromJson(Map<String, dynamic> json) =>
     TeacherGetResponse(
-      teachers: (json['teachers'] as List<dynamic>)
+      teachers: (json['Teachers'] as List<dynamic>)
           .map((e) => Teacher.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$TeacherGetResponseToJson(TeacherGetResponse instance) =>
     <String, dynamic>{
-      'teachers': instance.teachers,
+      'Teachers': instance.teachers,
     };

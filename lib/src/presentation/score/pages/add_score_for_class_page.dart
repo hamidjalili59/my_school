@@ -33,9 +33,9 @@ class AddScoreForClassPage extends StatelessWidget {
             children: [
               Positioned.fill(
                 child: Padding(
-                  padding: EdgeInsets.only(top:70.0.h),
+                  padding: EdgeInsets.only(top: 70.0.h),
                   child: SizedBox(
-                    width: 0.98.sw,
+                    width: 1.sw,
                     height: 0.9.sh,
                     child: Directionality(
                       textDirection: TextDirection.rtl,
@@ -49,23 +49,27 @@ class AddScoreForClassPage extends StatelessWidget {
                               width: 1.w),
                           columns: <DataColumn>[
                             DataColumn(
-                              onSort: (index, isfelan) {
-                              },
+                              onSort: (index, isfelan) {},
                               label: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text('نام و نام‌خانوادگی',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 22.r)),
-                                  Icon(Icons.arrow_drop_down_rounded, size: 25.r),
+                                  Text(
+                                    'نام و نام‌خانوادگی',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 18.r,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_drop_down_rounded,
+                                    size: 18.r,
+                                  ),
                                 ],
                               ),
                             ),
                             DataColumn(
-                              onSort: (index, isfelan) {
-                              },
+                              onSort: (index, isfelan) {},
                               label: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -74,7 +78,8 @@ class AddScoreForClassPage extends StatelessWidget {
                                       style: TextStyle(
                                           fontWeight: FontWeight.w900,
                                           fontSize: 22.r)),
-                                  Icon(Icons.arrow_drop_down_rounded, size: 25.r),
+                                  Icon(Icons.arrow_drop_down_rounded,
+                                      size: 25.r),
                                 ],
                               ),
                             ),
@@ -140,7 +145,7 @@ class AddScoreForClassPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12.w),
+                        padding: EdgeInsets.symmetric(vertical: 8.w),
                         child: Text(
                           'جمعه 20/9/1401 ساعت 9:28\nمدرسه شهید نظری',
                           style: TextStyle(
@@ -152,8 +157,7 @@ class AddScoreForClassPage extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                        onTap: () {
-                        },
+                        onTap: () {},
                         child: SizedBox(
                           width: 60.w,
                           height: 40.w,

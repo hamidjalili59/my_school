@@ -31,7 +31,7 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<Either<AuthFailure, void>> cacheAuthData(
       {required String token,
-      required int typeOfUser,
+      required String typeOfUser,
       required double phoneNumber}) {
     return _localDS
         .cacheData(

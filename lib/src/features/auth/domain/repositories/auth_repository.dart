@@ -11,7 +11,7 @@ abstract class AuthRepository {
   //
   Future<Either<AuthFailure, void>> cacheAuthData({
     required String token,
-    required int typeOfUser,
+    required String typeOfUser,
     required double phoneNumber,
   });
   //

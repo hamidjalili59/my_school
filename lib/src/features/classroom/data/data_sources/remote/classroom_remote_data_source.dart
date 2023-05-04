@@ -28,16 +28,18 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> addClass(
           {required Classroom classroom}) =>
-      apiService
-          .postMethod<Map<String, dynamic>>('https://www.asatic.ir/', body: {
-        'classroom': classroom,
-      });
+      apiService.postMethod<Map<String, dynamic>>(
+          'http://myschool.asatic.ir/api/v1/Classes',
+          body: {
+            "school_ID": classroom.schoolId,
+            "class_Name": classroom.className,
+          });
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> getClasses(
       {required int schoolId}) {
     return apiService.getMethod(
-      'https://www.asatic.ir/',
+      'http://myschool.asatic.ir/api/v1/Classes/$schoolId',
     );
   }
 

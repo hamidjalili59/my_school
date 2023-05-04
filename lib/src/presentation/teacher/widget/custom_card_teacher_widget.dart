@@ -43,22 +43,10 @@ class CustomCardTeacherWidget extends StatelessWidget {
                 offset: Offset(0.1, 0.1))
           ],
           border: Border(
-            bottom: BorderSide(
-                color: Colors.black12,
-                width: 1.w,
-                strokeAlign: StrokeAlign.inside),
-            right: BorderSide(
-                color: Colors.black12,
-                width: 1.w,
-                strokeAlign: StrokeAlign.inside),
-            left: BorderSide(
-                color: Colors.black12,
-                width: 1.w,
-                strokeAlign: StrokeAlign.inside),
-            top: BorderSide(
-                color: Colors.black12,
-                width: 1.w,
-                strokeAlign: StrokeAlign.inside),
+            bottom: BorderSide(color: Colors.black12, width: 1.w),
+            right: BorderSide(color: Colors.black12, width: 1.w),
+            left: BorderSide(color: Colors.black12, width: 1.w),
+            top: BorderSide(color: Colors.black12, width: 1.w),
           ),
         ),
         child: Column(

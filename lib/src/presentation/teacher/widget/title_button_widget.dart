@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,22 +19,10 @@ class TileButtonWidget extends StatelessWidget {
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 141, 108, 159),
               border: Border(
-                bottom: BorderSide(
-                    color: Colors.black12,
-                    width: 3.w,
-                    strokeAlign: StrokeAlign.inside),
-                right: BorderSide(
-                    color: Colors.black12,
-                    width: 3.w,
-                    strokeAlign: StrokeAlign.inside),
-                left: BorderSide(
-                    color: Colors.black12,
-                    width: 3.w,
-                    strokeAlign: StrokeAlign.inside),
-                top: BorderSide(
-                    color: Colors.black12,
-                    width: 3.w,
-                    strokeAlign: StrokeAlign.inside),
+                bottom: BorderSide(color: Colors.black12, width: 3.w),
+                right: BorderSide(color: Colors.black12, width: 3.w),
+                left: BorderSide(color: Colors.black12, width: 3.w),
+                top: BorderSide(color: Colors.black12, width: 3.w),
               ),
               borderRadius: BorderRadius.all(
                 Radius.circular(22.r),
@@ -54,9 +41,10 @@ class TileButtonWidget extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22.r,
-                    fontWeight: FontWeight.w600),
+                  color: Colors.white,
+                  fontSize: 22.r,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           )),

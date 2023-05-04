@@ -4,6 +4,7 @@ import 'package:my_school/src/config/constants/png_assets.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
+// ignore: must_be_immutable
 class ClassRollCallPage extends StatelessWidget {
   ClassRollCallPage({super.key});
   bool hamidbool = false;
@@ -17,7 +18,6 @@ class ClassRollCallPage extends StatelessWidget {
             Positioned.fill(
               child: PageView.builder(
                   onPageChanged: (value) {
-                    print(value);
                     currentindex = value;
                   },
                   itemCount: 5,
@@ -121,7 +121,7 @@ class ClassRollCallPage extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 child: Container(
                   width: 0.95.sw,
-                  height: 110.h,
+                  height: 125.h,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(221, 17, 11, 46),
@@ -156,7 +156,7 @@ class ClassRollCallPage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12.w),
+                            padding: EdgeInsets.symmetric(vertical: 8.w),
                             child: Text(
                               'جمعه 20/9/1401 ساعت 9:28\nمدرسه شهید نظری',
                               style: TextStyle(
@@ -168,8 +168,7 @@ class ClassRollCallPage extends StatelessWidget {
                             ),
                           ),
                           InkWell(
-                            onTap: () {
-                            },
+                            onTap: () {},
                             child: SizedBox(
                               width: 60.w,
                               height: 40.w,

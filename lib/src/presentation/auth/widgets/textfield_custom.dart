@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final int maxLength;
   final int maxLines;
   final int minLines;
+  final void Function(String)? onSubmitted;
   final TextInputType keyboardType;
   final TextEditingController controller;
   const CustomTextField({
@@ -20,6 +21,7 @@ class CustomTextField extends StatelessWidget {
     this.minLines = 1,
     required this.keyboardType,
     required this.controller,
+    this.onSubmitted,
   }) : super(key: key);
 
   @override
@@ -37,6 +39,7 @@ class CustomTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.r),
       ),
       child: TextField(
+        onSubmitted: onSubmitted,
         maxLines: maxLines,
         minLines: minLines,
         controller: controller,

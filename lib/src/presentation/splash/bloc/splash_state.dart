@@ -4,7 +4,7 @@ part of 'splash_bloc.dart';
 class SplashState with _$SplashState {
   const factory SplashState.loadInProgress() = _LoadInProgress;
   const factory SplashState.jwtExist(OtpHandshakeResponse token) = _JwtExist;
-  const factory SplashState.jwtIsNotExp(int typeOfUser) = _JwtIsNotExp;
+  const factory SplashState.jwtIsNotExp(String typeOfUser) = _JwtIsNotExp;
   const factory SplashState.failure({
     AuthFailure? failure,
     @Default('') String message,

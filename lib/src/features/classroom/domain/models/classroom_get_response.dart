@@ -9,11 +9,13 @@ part 'classroom_get_response.g.dart';
 @JsonSerializable()
 class ClassroomGetResponse {
   @HiveField(0)
+  @JsonKey(name: 'Classes')
   final List<Classroom> classrooms;
 
   ClassroomGetResponse({required this.classrooms});
-  
-  factory ClassroomGetResponse.fromJson(Map<String,dynamic>json) => _$ClassroomGetResponseFromJson(json);
 
-  Map<String, dynamic> toJson()=> _$ClassroomGetResponseToJson(this);
+  factory ClassroomGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$ClassroomGetResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ClassroomGetResponseToJson(this);
 }
