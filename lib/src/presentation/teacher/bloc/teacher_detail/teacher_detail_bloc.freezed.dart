@@ -17,26 +17,27 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TeacherDetailState {
   bool get isLoading => throw _privateConstructorUsedError;
+  List<Mediator> get mediators => throw _privateConstructorUsedError;
   Teacher? get selectedTeacher => throw _privateConstructorUsedError;
   Course? get selectedCourse => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, Teacher? selectedTeacher, Course? selectedCourse)
+    required TResult Function(bool isLoading, List<Mediator> mediators,
+            Teacher? selectedTeacher, Course? selectedCourse)
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool isLoading, Teacher? selectedTeacher, Course? selectedCourse)?
+    TResult? Function(bool isLoading, List<Mediator> mediators,
+            Teacher? selectedTeacher, Course? selectedCourse)?
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool isLoading, Teacher? selectedTeacher, Course? selectedCourse)?
+    TResult Function(bool isLoading, List<Mediator> mediators,
+            Teacher? selectedTeacher, Course? selectedCourse)?
         idle,
     required TResult orElse(),
   }) =>
@@ -69,7 +70,11 @@ abstract class $TeacherDetailStateCopyWith<$Res> {
           TeacherDetailState value, $Res Function(TeacherDetailState) then) =
       _$TeacherDetailStateCopyWithImpl<$Res, TeacherDetailState>;
   @useResult
-  $Res call({bool isLoading, Teacher? selectedTeacher, Course? selectedCourse});
+  $Res call(
+      {bool isLoading,
+      List<Mediator> mediators,
+      Teacher? selectedTeacher,
+      Course? selectedCourse});
 
   $TeacherCopyWith<$Res>? get selectedTeacher;
   $CourseCopyWith<$Res>? get selectedCourse;
@@ -89,6 +94,7 @@ class _$TeacherDetailStateCopyWithImpl<$Res, $Val extends TeacherDetailState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? mediators = null,
     Object? selectedTeacher = freezed,
     Object? selectedCourse = freezed,
   }) {
@@ -97,6 +103,10 @@ class _$TeacherDetailStateCopyWithImpl<$Res, $Val extends TeacherDetailState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      mediators: null == mediators
+          ? _value.mediators
+          : mediators // ignore: cast_nullable_to_non_nullable
+              as List<Mediator>,
       selectedTeacher: freezed == selectedTeacher
           ? _value.selectedTeacher
           : selectedTeacher // ignore: cast_nullable_to_non_nullable
@@ -140,7 +150,11 @@ abstract class _$$_IdleCopyWith<$Res>
       __$$_IdleCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, Teacher? selectedTeacher, Course? selectedCourse});
+  $Res call(
+      {bool isLoading,
+      List<Mediator> mediators,
+      Teacher? selectedTeacher,
+      Course? selectedCourse});
 
   @override
   $TeacherCopyWith<$Res>? get selectedTeacher;
@@ -159,6 +173,7 @@ class __$$_IdleCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? mediators = null,
     Object? selectedTeacher = freezed,
     Object? selectedCourse = freezed,
   }) {
@@ -167,6 +182,10 @@ class __$$_IdleCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      mediators: null == mediators
+          ? _value._mediators
+          : mediators // ignore: cast_nullable_to_non_nullable
+              as List<Mediator>,
       selectedTeacher: freezed == selectedTeacher
           ? _value.selectedTeacher
           : selectedTeacher // ignore: cast_nullable_to_non_nullable
@@ -183,11 +202,23 @@ class __$$_IdleCopyWithImpl<$Res>
 
 class _$_Idle implements _Idle {
   const _$_Idle(
-      {this.isLoading = false, this.selectedTeacher, this.selectedCourse});
+      {this.isLoading = false,
+      final List<Mediator> mediators = const [],
+      this.selectedTeacher,
+      this.selectedCourse})
+      : _mediators = mediators;
 
   @override
   @JsonKey()
   final bool isLoading;
+  final List<Mediator> _mediators;
+  @override
+  @JsonKey()
+  List<Mediator> get mediators {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_mediators);
+  }
+
   @override
   final Teacher? selectedTeacher;
   @override
@@ -195,7 +226,7 @@ class _$_Idle implements _Idle {
 
   @override
   String toString() {
-    return 'TeacherDetailState.idle(isLoading: $isLoading, selectedTeacher: $selectedTeacher, selectedCourse: $selectedCourse)';
+    return 'TeacherDetailState.idle(isLoading: $isLoading, mediators: $mediators, selectedTeacher: $selectedTeacher, selectedCourse: $selectedCourse)';
   }
 
   @override
@@ -205,6 +236,8 @@ class _$_Idle implements _Idle {
             other is _$_Idle &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other._mediators, _mediators) &&
             (identical(other.selectedTeacher, selectedTeacher) ||
                 other.selectedTeacher == selectedTeacher) &&
             (identical(other.selectedCourse, selectedCourse) ||
@@ -212,8 +245,12 @@ class _$_Idle implements _Idle {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, selectedTeacher, selectedCourse);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      const DeepCollectionEquality().hash(_mediators),
+      selectedTeacher,
+      selectedCourse);
 
   @JsonKey(ignore: true)
   @override
@@ -224,33 +261,33 @@ class _$_Idle implements _Idle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, Teacher? selectedTeacher, Course? selectedCourse)
+    required TResult Function(bool isLoading, List<Mediator> mediators,
+            Teacher? selectedTeacher, Course? selectedCourse)
         idle,
   }) {
-    return idle(isLoading, selectedTeacher, selectedCourse);
+    return idle(isLoading, mediators, selectedTeacher, selectedCourse);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool isLoading, Teacher? selectedTeacher, Course? selectedCourse)?
+    TResult? Function(bool isLoading, List<Mediator> mediators,
+            Teacher? selectedTeacher, Course? selectedCourse)?
         idle,
   }) {
-    return idle?.call(isLoading, selectedTeacher, selectedCourse);
+    return idle?.call(isLoading, mediators, selectedTeacher, selectedCourse);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool isLoading, Teacher? selectedTeacher, Course? selectedCourse)?
+    TResult Function(bool isLoading, List<Mediator> mediators,
+            Teacher? selectedTeacher, Course? selectedCourse)?
         idle,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle(isLoading, selectedTeacher, selectedCourse);
+      return idle(isLoading, mediators, selectedTeacher, selectedCourse);
     }
     return orElse();
   }
@@ -287,11 +324,14 @@ class _$_Idle implements _Idle {
 abstract class _Idle implements TeacherDetailState {
   const factory _Idle(
       {final bool isLoading,
+      final List<Mediator> mediators,
       final Teacher? selectedTeacher,
       final Course? selectedCourse}) = _$_Idle;
 
   @override
   bool get isLoading;
+  @override
+  List<Mediator> get mediators;
   @override
   Teacher? get selectedTeacher;
   @override
@@ -308,6 +348,7 @@ mixin _$TeacherDetailEvent {
     required TResult Function(Course? course) selectCourseItem,
     required TResult Function(Teacher? teacher) selectTeacherItem,
     required TResult Function() acceptTeacher,
+    required TResult Function() getMediators,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -315,6 +356,7 @@ mixin _$TeacherDetailEvent {
     TResult? Function(Course? course)? selectCourseItem,
     TResult? Function(Teacher? teacher)? selectTeacherItem,
     TResult? Function()? acceptTeacher,
+    TResult? Function()? getMediators,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -322,6 +364,7 @@ mixin _$TeacherDetailEvent {
     TResult Function(Course? course)? selectCourseItem,
     TResult Function(Teacher? teacher)? selectTeacherItem,
     TResult Function()? acceptTeacher,
+    TResult Function()? getMediators,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -330,6 +373,7 @@ mixin _$TeacherDetailEvent {
     required TResult Function(_SelectCourseItem value) selectCourseItem,
     required TResult Function(_SelectTeacherItem value) selectTeacherItem,
     required TResult Function(_AcceptTeacher value) acceptTeacher,
+    required TResult Function(_GetMediators value) getMediators,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -337,6 +381,7 @@ mixin _$TeacherDetailEvent {
     TResult? Function(_SelectCourseItem value)? selectCourseItem,
     TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
     TResult? Function(_AcceptTeacher value)? acceptTeacher,
+    TResult? Function(_GetMediators value)? getMediators,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -344,6 +389,7 @@ mixin _$TeacherDetailEvent {
     TResult Function(_SelectCourseItem value)? selectCourseItem,
     TResult Function(_SelectTeacherItem value)? selectTeacherItem,
     TResult Function(_AcceptTeacher value)? acceptTeacher,
+    TResult Function(_GetMediators value)? getMediators,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -448,6 +494,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
     required TResult Function(Course? course) selectCourseItem,
     required TResult Function(Teacher? teacher) selectTeacherItem,
     required TResult Function() acceptTeacher,
+    required TResult Function() getMediators,
   }) {
     return selectCourseItem(course);
   }
@@ -458,6 +505,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
     TResult? Function(Course? course)? selectCourseItem,
     TResult? Function(Teacher? teacher)? selectTeacherItem,
     TResult? Function()? acceptTeacher,
+    TResult? Function()? getMediators,
   }) {
     return selectCourseItem?.call(course);
   }
@@ -468,6 +516,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
     TResult Function(Course? course)? selectCourseItem,
     TResult Function(Teacher? teacher)? selectTeacherItem,
     TResult Function()? acceptTeacher,
+    TResult Function()? getMediators,
     required TResult orElse(),
   }) {
     if (selectCourseItem != null) {
@@ -482,6 +531,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
     required TResult Function(_SelectCourseItem value) selectCourseItem,
     required TResult Function(_SelectTeacherItem value) selectTeacherItem,
     required TResult Function(_AcceptTeacher value) acceptTeacher,
+    required TResult Function(_GetMediators value) getMediators,
   }) {
     return selectCourseItem(this);
   }
@@ -492,6 +542,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
     TResult? Function(_SelectCourseItem value)? selectCourseItem,
     TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
     TResult? Function(_AcceptTeacher value)? acceptTeacher,
+    TResult? Function(_GetMediators value)? getMediators,
   }) {
     return selectCourseItem?.call(this);
   }
@@ -502,6 +553,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
     TResult Function(_SelectCourseItem value)? selectCourseItem,
     TResult Function(_SelectTeacherItem value)? selectTeacherItem,
     TResult Function(_AcceptTeacher value)? acceptTeacher,
+    TResult Function(_GetMediators value)? getMediators,
     required TResult orElse(),
   }) {
     if (selectCourseItem != null) {
@@ -602,6 +654,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
     required TResult Function(Course? course) selectCourseItem,
     required TResult Function(Teacher? teacher) selectTeacherItem,
     required TResult Function() acceptTeacher,
+    required TResult Function() getMediators,
   }) {
     return selectTeacherItem(teacher);
   }
@@ -612,6 +665,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
     TResult? Function(Course? course)? selectCourseItem,
     TResult? Function(Teacher? teacher)? selectTeacherItem,
     TResult? Function()? acceptTeacher,
+    TResult? Function()? getMediators,
   }) {
     return selectTeacherItem?.call(teacher);
   }
@@ -622,6 +676,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
     TResult Function(Course? course)? selectCourseItem,
     TResult Function(Teacher? teacher)? selectTeacherItem,
     TResult Function()? acceptTeacher,
+    TResult Function()? getMediators,
     required TResult orElse(),
   }) {
     if (selectTeacherItem != null) {
@@ -636,6 +691,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
     required TResult Function(_SelectCourseItem value) selectCourseItem,
     required TResult Function(_SelectTeacherItem value) selectTeacherItem,
     required TResult Function(_AcceptTeacher value) acceptTeacher,
+    required TResult Function(_GetMediators value) getMediators,
   }) {
     return selectTeacherItem(this);
   }
@@ -646,6 +702,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
     TResult? Function(_SelectCourseItem value)? selectCourseItem,
     TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
     TResult? Function(_AcceptTeacher value)? acceptTeacher,
+    TResult? Function(_GetMediators value)? getMediators,
   }) {
     return selectTeacherItem?.call(this);
   }
@@ -656,6 +713,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
     TResult Function(_SelectCourseItem value)? selectCourseItem,
     TResult Function(_SelectTeacherItem value)? selectTeacherItem,
     TResult Function(_AcceptTeacher value)? acceptTeacher,
+    TResult Function(_GetMediators value)? getMediators,
     required TResult orElse(),
   }) {
     if (selectTeacherItem != null) {
@@ -716,6 +774,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
     required TResult Function(Course? course) selectCourseItem,
     required TResult Function(Teacher? teacher) selectTeacherItem,
     required TResult Function() acceptTeacher,
+    required TResult Function() getMediators,
   }) {
     return acceptTeacher();
   }
@@ -726,6 +785,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
     TResult? Function(Course? course)? selectCourseItem,
     TResult? Function(Teacher? teacher)? selectTeacherItem,
     TResult? Function()? acceptTeacher,
+    TResult? Function()? getMediators,
   }) {
     return acceptTeacher?.call();
   }
@@ -736,6 +796,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
     TResult Function(Course? course)? selectCourseItem,
     TResult Function(Teacher? teacher)? selectTeacherItem,
     TResult Function()? acceptTeacher,
+    TResult Function()? getMediators,
     required TResult orElse(),
   }) {
     if (acceptTeacher != null) {
@@ -750,6 +811,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
     required TResult Function(_SelectCourseItem value) selectCourseItem,
     required TResult Function(_SelectTeacherItem value) selectTeacherItem,
     required TResult Function(_AcceptTeacher value) acceptTeacher,
+    required TResult Function(_GetMediators value) getMediators,
   }) {
     return acceptTeacher(this);
   }
@@ -760,6 +822,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
     TResult? Function(_SelectCourseItem value)? selectCourseItem,
     TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
     TResult? Function(_AcceptTeacher value)? acceptTeacher,
+    TResult? Function(_GetMediators value)? getMediators,
   }) {
     return acceptTeacher?.call(this);
   }
@@ -770,6 +833,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
     TResult Function(_SelectCourseItem value)? selectCourseItem,
     TResult Function(_SelectTeacherItem value)? selectTeacherItem,
     TResult Function(_AcceptTeacher value)? acceptTeacher,
+    TResult Function(_GetMediators value)? getMediators,
     required TResult orElse(),
   }) {
     if (acceptTeacher != null) {
@@ -781,4 +845,118 @@ class _$_AcceptTeacher implements _AcceptTeacher {
 
 abstract class _AcceptTeacher implements TeacherDetailEvent {
   const factory _AcceptTeacher() = _$_AcceptTeacher;
+}
+
+/// @nodoc
+abstract class _$$_GetMediatorsCopyWith<$Res> {
+  factory _$$_GetMediatorsCopyWith(
+          _$_GetMediators value, $Res Function(_$_GetMediators) then) =
+      __$$_GetMediatorsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_GetMediatorsCopyWithImpl<$Res>
+    extends _$TeacherDetailEventCopyWithImpl<$Res, _$_GetMediators>
+    implements _$$_GetMediatorsCopyWith<$Res> {
+  __$$_GetMediatorsCopyWithImpl(
+      _$_GetMediators _value, $Res Function(_$_GetMediators) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_GetMediators implements _GetMediators {
+  const _$_GetMediators();
+
+  @override
+  String toString() {
+    return 'TeacherDetailEvent.getMediators()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GetMediators);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Course? course) selectCourseItem,
+    required TResult Function(Teacher? teacher) selectTeacherItem,
+    required TResult Function() acceptTeacher,
+    required TResult Function() getMediators,
+  }) {
+    return getMediators();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Course? course)? selectCourseItem,
+    TResult? Function(Teacher? teacher)? selectTeacherItem,
+    TResult? Function()? acceptTeacher,
+    TResult? Function()? getMediators,
+  }) {
+    return getMediators?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Course? course)? selectCourseItem,
+    TResult Function(Teacher? teacher)? selectTeacherItem,
+    TResult Function()? acceptTeacher,
+    TResult Function()? getMediators,
+    required TResult orElse(),
+  }) {
+    if (getMediators != null) {
+      return getMediators();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SelectCourseItem value) selectCourseItem,
+    required TResult Function(_SelectTeacherItem value) selectTeacherItem,
+    required TResult Function(_AcceptTeacher value) acceptTeacher,
+    required TResult Function(_GetMediators value) getMediators,
+  }) {
+    return getMediators(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SelectCourseItem value)? selectCourseItem,
+    TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult? Function(_AcceptTeacher value)? acceptTeacher,
+    TResult? Function(_GetMediators value)? getMediators,
+  }) {
+    return getMediators?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SelectCourseItem value)? selectCourseItem,
+    TResult Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult Function(_AcceptTeacher value)? acceptTeacher,
+    TResult Function(_GetMediators value)? getMediators,
+    required TResult orElse(),
+  }) {
+    if (getMediators != null) {
+      return getMediators(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetMediators implements TeacherDetailEvent {
+  const factory _GetMediators() = _$_GetMediators;
 }

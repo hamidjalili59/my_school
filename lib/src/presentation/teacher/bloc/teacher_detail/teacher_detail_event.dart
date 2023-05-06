@@ -7,4 +7,5 @@ class TeacherDetailEvent with _$TeacherDetailEvent {
   const factory TeacherDetailEvent.selectTeacherItem(Teacher? teacher) =
       _SelectTeacherItem;
   const factory TeacherDetailEvent.acceptTeacher() = _AcceptTeacher;
+  const factory TeacherDetailEvent.getMediators() = _GetMediators;
 }

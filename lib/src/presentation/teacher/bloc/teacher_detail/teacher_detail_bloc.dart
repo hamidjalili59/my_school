@@ -3,9 +3,16 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/config/utils/function_helper.dart';
+import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_school/src/features/course/domain/models/course_model/course.dart';
+import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
+import 'package:my_school/src/features/mediator_tc/domain/models/mediator.dart';
+import 'package:my_school/src/features/mediator_tc/domain/use_cases/add_mediator_use_case.dart';
+import 'package:my_school/src/features/mediator_tc/domain/use_cases/get_mediators_use_case.dart';
 import 'package:my_school/src/features/teacher/domain/models/teacher.dart';
+import 'package:my_school/src/injectable/injectable.dart';
 
 part 'teacher_detail_state.dart';
 part 'teacher_detail_event.dart';
@@ -13,10 +20,14 @@ part 'teacher_detail_bloc.freezed.dart';
 
 @lazySingleton
 class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
-  TeacherDetailBloc() : super(const TeacherDetailState.idle()) {
+  final GetMediatorUseCase _getMediatorUseCase;
+  final AddMediatorUseCase _addMediatorUseCase;
+  TeacherDetailBloc(this._getMediatorUseCase, this._addMediatorUseCase)
+      : super(const TeacherDetailState.idle()) {
     on<_SelectCourseItem>(_onSelectCourseItem);
     on<_SelectTeacherItem>(_onSelectTeacherItem);
     on<_AcceptTeacher>(_onAcceptTeacher);
+    on<_GetMediators>(_onGetMediators);
   }
 
   @override
@@ -39,8 +50,39 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
   }
 
   FutureOr<void> _onAcceptTeacher(
-      _AcceptTeacher event, Emitter<TeacherDetailState> emit) {
-    print(
-        '___${state.selectedCourse!.courseName}______${state.selectedTeacher!.basicInfo!.name}______');
+      _AcceptTeacher event, Emitter<TeacherDetailState> emit) async {
+    await _addMediatorUseCase
+        .call(
+            param: tuple.Tuple2<Mediator, int>(
+                Mediator(
+                  teacherID: state.selectedTeacher!.teacherId,
+                  classID: getIt.get<Classroom>().classID!,
+                  courseName: getIt.get<Classroom>().className!,
+                ),
+                state.selectedCourse!.courseId))
+        .then(
+          (value) => value.fold(
+            (l) => null,
+            (r) {
+              add(const _GetMediators());
+              getIt.get<AppRouter>().pop();
+            },
+          ),
+        );
+  }
+
+  FutureOr<void> _onGetMediators(
+      _GetMediators event, Emitter<TeacherDetailState> emit) async {
+    await _getMediatorUseCase
+        .call(param: tuple.Tuple1<int>(getIt.get<Classroom>().classID!))
+        .then(
+          (value) => value.fold(
+            (l) => null,
+            (r) => emit(TeacherDetailState.idle(
+              isLoading: false,
+              mediators: r.mediators,
+            )),
+          ),
+        );
   }
 }

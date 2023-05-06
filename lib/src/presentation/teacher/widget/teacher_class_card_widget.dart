@@ -15,6 +15,7 @@ class TeacherClassWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getIt.get<TeacherDetailBloc>().add(const TeacherDetailEvent.getMediators());
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
           icon: Icon(
@@ -31,152 +32,7 @@ class TeacherClassWidget extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              content: BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
-                bloc: getIt.get<TeacherDetailBloc>(),
-                builder: (context, teacherDetailState) {
-                  return teacherDetailState.maybeWhen(
-                    idle: (isLoading, selectedTeacher, selectedCourse) {
-                      return SizedBox(
-                        width: 0.9.sw,
-                        height: 0.4.sh,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Flexible(
-                                flex: 8,
-                                child: SizedBox(
-                                  width: 1.sw,
-                                  height: 1.sh,
-                                  child: BlocBuilder<TeacherBloc, TeacherState>(
-                                    bloc: getIt.get<TeacherBloc>(),
-                                    builder: (context, teacherState) {
-                                      return ListView.builder(
-                                        itemCount: teacherState.teachers.length,
-                                        itemBuilder: (context, index) {
-                                          return SizedBox(
-                                            height: 35.h,
-                                            width: 150.w,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                RadioMenuButton(
-                                                  value: selectedTeacher,
-                                                  groupValue: teacherState
-                                                      .teachers[index],
-                                                  onChanged: (value) {
-                                                    getIt
-                                                        .get<
-                                                            TeacherDetailBloc>()
-                                                        .add(
-                                                          TeacherDetailEvent
-                                                              .selectTeacherItem(
-                                                                  teacherState
-                                                                          .teachers[
-                                                                      index]),
-                                                        );
-                                                  },
-                                                  child: SizedBox(
-                                                    width: 80.w,
-                                                    child: Text(
-                                                      teacherState
-                                                          .teachers[index]
-                                                          .basicInfo!
-                                                          .name,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        color: Colors.black87,
-                                                        fontSize: 14.r,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                  ),
-                                )),
-                            Container(
-                              width: 2.w,
-                              color: Colors.grey,
-                            ),
-                            Flexible(
-                                flex: 8,
-                                child: SizedBox(
-                                  width: 1.sw,
-                                  height: 1.sh,
-                                  child: BlocBuilder<CourseBloc, CourseState>(
-                                    bloc: getIt.get<CourseBloc>(),
-                                    builder: (context, courseState) {
-                                      return ListView.builder(
-                                        itemCount: courseState.courses.length,
-                                        itemBuilder: (context, index) {
-                                          return InkWell(
-                                            onTap: () {},
-                                            child: SizedBox(
-                                              height: 35.h,
-                                              width: 100.w,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  RadioMenuButton(
-                                                    value: selectedCourse,
-                                                    groupValue: courseState
-                                                        .courses[index],
-                                                    onChanged: (value) {
-                                                      getIt
-                                                          .get<
-                                                              TeacherDetailBloc>()
-                                                          .add(
-                                                            TeacherDetailEvent
-                                                                .selectCourseItem(
-                                                                    courseState
-                                                                            .courses[
-                                                                        index]),
-                                                          );
-                                                    },
-                                                    child: SizedBox(
-                                                      width: 80.w,
-                                                      child: Text(
-                                                        courseState
-                                                            .courses[index]
-                                                            .courseName,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          color: Colors.black87,
-                                                          fontSize: 14.r,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                  ),
-                                )),
-                          ],
-                        ),
-                      );
-                    },
-                    orElse: () => const SizedBox(),
-                  );
-                },
-              ),
+              content: const addMediatorDialogWidget(),
               actions: [
                 MaterialButton(
                     onPressed: () {
@@ -216,26 +72,171 @@ class TeacherClassWidget extends StatelessWidget {
                 fontWeight: FontWeight.w700),
           ),
           backgroundColor: GeneralConstants.mainColor),
-      body: SizedBox(
-        width: 1.sw,
-        height: 1.sh,
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16.r,
-            mainAxisSpacing: 16.r,
-            mainAxisExtent: 0.3.sh,
-          ),
-          itemCount: 5,
-          padding: EdgeInsets.only(top: 16.h, right: 12.w, left: 12.w),
-          itemBuilder: (context, index) {
-            return const TeacherClassTileCardWidget(
-              courseName: 'ریاضی 3',
-              teacherName: 'حمید جلیلی نسب',
+      body: BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
+        bloc: getIt.get<TeacherDetailBloc>(),
+        builder: (context, mediatorState) {
+          return SizedBox(
+            width: 1.sw,
+            height: 1.sh,
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16.r,
+                mainAxisSpacing: 16.r,
+                mainAxisExtent: 0.3.sh,
+              ),
+              itemCount: mediatorState.mediators.length,
+              padding: EdgeInsets.only(top: 16.h, right: 12.w, left: 12.w),
+              itemBuilder: (context, index) {
+                return TeacherClassTileCardWidget(
+                  courseName: mediatorState.mediators[index].courseName,
+                  teacherName: mediatorState.mediators[index].basicInfo!.name,
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class addMediatorDialogWidget extends StatelessWidget {
+  const addMediatorDialogWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
+      bloc: getIt.get<TeacherDetailBloc>(),
+      builder: (context, teacherDetailState) {
+        return teacherDetailState.maybeWhen(
+          idle: (isLoading, mediators, selectedTeacher, selectedCourse) {
+            return SizedBox(
+              width: 0.9.sw,
+              height: 0.4.sh,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Flexible(
+                      flex: 8,
+                      child: SizedBox(
+                        width: 1.sw,
+                        height: 1.sh,
+                        child: BlocBuilder<TeacherBloc, TeacherState>(
+                          bloc: getIt.get<TeacherBloc>(),
+                          builder: (context, teacherState) {
+                            return ListView.builder(
+                              itemCount: teacherState.teachers.length,
+                              itemBuilder: (context, index) {
+                                return SizedBox(
+                                  height: 35.h,
+                                  width: 150.w,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      RadioMenuButton(
+                                        value: selectedTeacher,
+                                        groupValue:
+                                            teacherState.teachers[index],
+                                        onChanged: (value) {
+                                          getIt.get<TeacherDetailBloc>().add(
+                                                TeacherDetailEvent
+                                                    .selectTeacherItem(
+                                                        teacherState
+                                                            .teachers[index]),
+                                              );
+                                        },
+                                        child: SizedBox(
+                                          width: 80.w,
+                                          child: Text(
+                                            teacherState.teachers[index]
+                                                .basicInfo!.name,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 14.r,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      )),
+                  Container(
+                    width: 2.w,
+                    color: Colors.grey,
+                  ),
+                  Flexible(
+                      flex: 8,
+                      child: SizedBox(
+                        width: 1.sw,
+                        height: 1.sh,
+                        child: BlocBuilder<CourseBloc, CourseState>(
+                          bloc: getIt.get<CourseBloc>(),
+                          builder: (context, courseState) {
+                            return ListView.builder(
+                              itemCount: courseState.courses.length,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {},
+                                  child: SizedBox(
+                                    height: 35.h,
+                                    width: 100.w,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        RadioMenuButton(
+                                          value: selectedCourse,
+                                          groupValue:
+                                              courseState.courses[index],
+                                          onChanged: (value) {
+                                            getIt.get<TeacherDetailBloc>().add(
+                                                  TeacherDetailEvent
+                                                      .selectCourseItem(
+                                                          courseState
+                                                              .courses[index]),
+                                                );
+                                          },
+                                          child: SizedBox(
+                                            width: 80.w,
+                                            child: Text(
+                                              courseState
+                                                  .courses[index].courseName,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 14.r,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      )),
+                ],
+              ),
             );
           },
-        ),
-      ),
+          orElse: () => const SizedBox(),
+        );
+      },
     );
   }
 }
