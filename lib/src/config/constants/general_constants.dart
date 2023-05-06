@@ -9,7 +9,7 @@ class GeneralConstants {
   static String defaultFontName = '';
   static String host = 'http://myschool.asatic.ir/';
   static String firstAppbarItem = '';
-  static String appbarTitle = 'مدرسه من';
+  // static String appbarTitle = 'مدرسه من';
   static String jwt = '';
   static bool isParent = false;
   static bool isTeacher = false;

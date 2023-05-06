@@ -8,7 +8,6 @@ import 'package:my_school/src/features/teacher/domain/repositories/teacher_repos
 import 'package:my_school/src/features/core/models/base_response.dart';
 import 'package:my_school/src/features/teacher/domain/models/teacher_get_response.dart';
 
-//TODO: یک ابجکت برای درس ها داخل دیپندنسی ریجیستر کنم و داخل توسط فانکشن های خود  پرش کنم
 class TeacherRepositoryImpl extends TeacherRepository {
   final TeacherRemoteDataSource _remoteDS;
   final TeacherLocalDataSource _localDS;

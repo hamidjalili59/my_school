@@ -2,6 +2,7 @@ import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/student/data/data_sources/remote/student_end_points.dart';
 import 'package:my_school/src/features/student/domain/models/student_model/student.dart';
 
 abstract class StudentRemoteDataSource {
@@ -31,15 +32,17 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> addStudent(
           {required Student student}) =>
-      apiService.postMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
-        'student': student,
-      });
+      apiService.postMethod<Map<String, dynamic>>(
+          GeneralConstants.host + StudentEndpoints.addLink,
+          body: {
+            'student': student,
+          });
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> getStudents(
       {required int classId}) {
     return apiService.getMethod(
-      GeneralConstants.host,
+      GeneralConstants.host + StudentEndpoints.getLink + classId.toString(),
     );
   }
 

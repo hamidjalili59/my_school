@@ -9,7 +9,6 @@ import 'package:my_school/src/features/classroom/domain/use_cases/get_classrooms
 import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_school/src/config/utils/function_helper.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
-import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
 part 'classroom_state.dart';
@@ -21,7 +20,7 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
   final GetClassroomsUseCase _getClassroomsUseCase;
   final AddClassroomUseCase _addClassroomUseCase;
   ClassroomBloc(this._getClassroomsUseCase, this._addClassroomUseCase)
-      : super(const ClassroomState.idle(pageState: AppbarPageType.student)) {
+      : super(const ClassroomState.idle()) {
     on<_ChangePages>(_onChangePage);
     on<_GetClasses>(_onGetClasses);
     on<_CreateClasses>(_onCreateClasses);
@@ -49,7 +48,6 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
           ? getIt.get<ClassroomGetResponse>().classrooms
           : [],
       isLoading: true,
-      pageState: AppbarPageType.student,
     ));
     await _getClassroomsUseCase
         .call(
@@ -64,7 +62,6 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
                   ? getIt.get<ClassroomGetResponse>().classrooms
                   : [],
               isLoading: false,
-              pageState: AppbarPageType.student,
             )),
             (r) {
               if (!getIt.isRegistered<ClassroomGetResponse>()) {
@@ -76,7 +73,7 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
               emit(ClassroomState.idle(
                 classes: r.classrooms,
                 isLoading: false,
-                pageState: AppbarPageType.student,
+                // pageState: AppbarPageType.student,
               ));
             },
           ),

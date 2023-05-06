@@ -5,7 +5,7 @@ import 'package:my_school/src/features/classroom/domain/models/classroom_model.d
 
 part 'classroom_get_response.g.dart';
 
-@HiveType(typeId: 12)
+@HiveType(typeId: 3)
 @JsonSerializable()
 class ClassroomGetResponse {
   @HiveField(0)

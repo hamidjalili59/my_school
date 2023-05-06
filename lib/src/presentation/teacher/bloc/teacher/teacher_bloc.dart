@@ -49,12 +49,6 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
         .then((value) => value.fold(
               (l) => null,
               (r) {
-                if (!getIt.isRegistered<List<Teacher>>()) {
-                  getIt.registerSingleton<List<Teacher>>(r.teachers);
-                } else {
-                  getIt.unregister<List<Teacher>>();
-                  getIt.registerSingleton<List<Teacher>>(r.teachers);
-                }
                 emit(TeacherState.idle(isLoading: false, teachers: r.teachers));
               },
             ));
@@ -71,7 +65,7 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
               return null;
             },
             (r) {
-              List<Teacher> tempTeachers = getIt.get<List<Teacher>>();
+              List<Teacher> tempTeachers = state.teachers;
               tempTeachers.add(r.teacher);
               emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
               getIt.get<AppRouter>().pop();
@@ -85,9 +79,9 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
     await _updateTeacherUseCase
         .call(
           param: tuple.Tuple3<String, int, double>(
-            event.teacher.basicInfo.name,
+            event.teacher.basicInfo!.name,
             event.teacher.teacherId,
-            event.teacher.basicInfo.phoneNumber,
+            event.teacher.basicInfo!.phoneNumber,
           ),
         )
         .then(
@@ -97,7 +91,7 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
               return null;
             },
             (r) {
-              List<Teacher> tempTeachers = getIt.get<List<Teacher>>();
+              List<Teacher> tempTeachers = state.teachers;
               add(TeacherEvent.getTeachers(
                 int.parse(getIt.get<OtpHandshakeResponse>().token),
               ));

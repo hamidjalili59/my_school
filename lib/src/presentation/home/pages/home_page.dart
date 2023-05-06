@@ -5,10 +5,15 @@ import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/injectable/injectable.dart';
+import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
 import 'package:my_school/src/presentation/classroom/pages/classes_page.dart';
+import 'package:my_school/src/presentation/course/bloc/course/course_bloc.dart';
 import 'package:my_school/src/presentation/course/pages/course_page.dart';
 import 'package:my_school/src/presentation/home/bloc/home_bloc.dart';
 import 'package:my_school/src/presentation/home/widgets/home_appbar_widget.dart';
+import 'package:my_school/src/presentation/student/bloc/student/student_bloc.dart';
+import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
+import 'package:my_school/src/presentation/teacher/bloc/teacher_detail/teacher_detail_bloc.dart';
 import 'package:my_school/src/presentation/teacher/pages/teacher_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,8 +27,27 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: GeneralConstants.backgroundColor,
-        body: BlocProvider<HomeBloc>(
-          create: (_) => _homeBloc,
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider<HomeBloc>(
+              create: (_) => _homeBloc,
+            ),
+            BlocProvider<TeacherDetailBloc>(
+              create: (_) => getIt.get<TeacherDetailBloc>(),
+            ),
+            BlocProvider<CourseBloc>(
+              create: (_) => getIt.get<CourseBloc>(),
+            ),
+            BlocProvider<TeacherBloc>(
+              create: (_) => getIt.get<TeacherBloc>(),
+            ),
+            BlocProvider<ClassroomBloc>(
+              create: (_) => getIt.get<ClassroomBloc>(),
+            ),
+            BlocProvider<StudentBloc>(
+              create: (_) => getIt.get<StudentBloc>(),
+            ),
+          ],
           child: SizedBox(
             width: 1.sw,
             height: 1.sh,

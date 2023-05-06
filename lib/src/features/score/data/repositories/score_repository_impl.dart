@@ -8,7 +8,6 @@ import 'package:my_school/src/features/score/domain/repositories/score_repositor
 import 'package:my_school/src/features/core/models/base_response.dart';
 import 'package:my_school/src/features/score/domain/models/score_get_response.dart';
 
-//TODO: یک ابجکت برای درس ها داخل دیپندنسی ریجیستر کنم و داخل توسط فانکشن های خود  پرش کنم
 class ScoreRepositoryImpl extends ScoreRepository {
   final ScoreRemoteDataSource _remoteDS;
   final ScoreLocalDataSource _localDS;

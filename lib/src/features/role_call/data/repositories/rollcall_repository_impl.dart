@@ -8,7 +8,6 @@ import 'package:my_school/src/features/role_call/domain/models/rollcall_model.da
 import 'package:my_school/src/features/role_call/domain/models/rollcall_success_response.dart';
 import 'package:my_school/src/features/role_call/domain/repositories/rollcall_repository.dart';
 
-//TODO: یک ابجکت برای درس ها داخل دیپندنسی ریجیستر کنم و داخل توسط فانکشن های خود  پرش کنم
 class RollcallRepositoryImpl extends RollcallRepository {
   final RollcallRemoteDataSource _remoteDS;
   final RollcallLocalDataSource _localDS;
@@ -21,9 +20,11 @@ class RollcallRepositoryImpl extends RollcallRepository {
       {required List<Rollcall> rollcall}) {
     return _remoteDS.addRollcall(rollcall: rollcall).then(
           (value) => value.fold(
-            (l) => left<RollcallFailure, RollcallSuccessResponse>(RollcallFailure.api(l)),
+            (l) => left<RollcallFailure, RollcallSuccessResponse>(
+                RollcallFailure.api(l)),
             (r) async {
-              final rollcallAddSuccessResponse = RollcallSuccessResponse.fromJson(
+              final rollcallAddSuccessResponse =
+                  RollcallSuccessResponse.fromJson(
                 BaseResponse.fromJson(r.data ?? {}).toJson(),
               );
               return right<RollcallFailure, RollcallSuccessResponse>(
@@ -49,7 +50,8 @@ class RollcallRepositoryImpl extends RollcallRepository {
   Future<Either<RollcallFailure, RollcallGetResponse>> getCachedRollcallData() {
     return _localDS.getCachedData(fieldKey: 'rollcalls').then(
           (value) => value.fold(
-            (l) => left<RollcallFailure, RollcallGetResponse>(RollcallFailure.database(l)),
+            (l) => left<RollcallFailure, RollcallGetResponse>(
+                RollcallFailure.database(l)),
             (r) => right<RollcallFailure, RollcallGetResponse>(
                 RollcallGetResponse(rollcalls: r ?? [])),
           ),
@@ -75,5 +77,4 @@ class RollcallRepositoryImpl extends RollcallRepository {
           ),
         );
   }
-
 }

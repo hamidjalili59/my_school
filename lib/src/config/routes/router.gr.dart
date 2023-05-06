@@ -56,11 +56,9 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     ClassStudentRoute.name: (routeData) {
-      final args = routeData.argsAs<ClassStudentRouteArgs>(
-          orElse: () => const ClassStudentRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: ClassStudentPage(key: args.key),
+        child: const ClassStudentPage(),
       );
     },
     ClassExamsRoute.name: (routeData) {
@@ -321,26 +319,14 @@ class ClassDetailsRouteArgs {
 
 /// generated route for
 /// [ClassStudentPage]
-class ClassStudentRoute extends PageRouteInfo<ClassStudentRouteArgs> {
-  ClassStudentRoute({Key? key})
+class ClassStudentRoute extends PageRouteInfo<void> {
+  const ClassStudentRoute()
       : super(
           ClassStudentRoute.name,
           path: '/class_student_page',
-          args: ClassStudentRouteArgs(key: key),
         );
 
   static const String name = 'ClassStudentRoute';
-}
-
-class ClassStudentRouteArgs {
-  const ClassStudentRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'ClassStudentRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for

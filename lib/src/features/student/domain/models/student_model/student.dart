@@ -17,18 +17,25 @@ part 'student.g.dart';
 /// asd
 class Student with _$Student {
   ///adsasd
-  @HiveType(typeId: 12)
+  @HiveType(typeId: 31)
   factory Student({
     // account email
-    @HiveField(0) int? studentId,
+    @HiveField(0, defaultValue: 0)
+    @JsonKey(name: 'student_ID')
+    @Default(0)
+        int studentId,
 
     // account password
-    @HiveField(1) int? classId,
+    @HiveField(1, defaultValue: 0)
+    @JsonKey(name: 'class_ID')
+    @Default(0)
+        int classId,
 
     // basic Information
-    @HiveField(2) BasicInfoModel? basicInfo,
-
+    @HiveField(2) @JsonKey(name: 'basic_Info') BasicInfoModel? basicInfo,
   }) = _Student;
+
   ///das
-  factory Student.fromJson(Map<String, Object?> json) => _$StudentFromJson(json);
+  factory Student.fromJson(Map<String, Object?> json) =>
+      _$StudentFromJson(json);
 }

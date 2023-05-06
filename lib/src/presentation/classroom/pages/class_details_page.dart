@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/exam/pages/exam_page.dart';
@@ -31,8 +32,7 @@ class ClassDetailsPage extends StatelessWidget {
                       flex: 3,
                       child: HomeCustomAppBar(
                         bloc: bloc,
-                        title: GeneralConstants.appbarTitle,
-                        // 'کلاس دهم - 103',
+                        title: getIt.get<Classroom>().className ?? 'مدرسه من',
                         buttonsList: const [
                           AppbarPageType.student,
                           AppbarPageType.teacher,
@@ -48,7 +48,7 @@ class ClassDetailsPage extends StatelessWidget {
                           orElse: () => const SizedBox(),
                           currentPageIndex: (pageState) {
                             if (pageState == AppbarPageType.student) {
-                              return ClassStudentPage();
+                              return const ClassStudentPage();
                             } else if (pageState == AppbarPageType.teacher) {
                               return SizedBox(child: TeacherPage());
                             } else {

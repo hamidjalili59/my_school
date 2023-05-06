@@ -16,7 +16,7 @@ part 'rollcall_model.g.dart';
 /// asd
 class Rollcall with _$Rollcall {
   ///adsasd
-  @HiveType(typeId: 10)
+  @HiveType(typeId: 22)
   factory Rollcall({
     // account email
     @HiveField(0) int? rolecallId,
@@ -30,7 +30,6 @@ class Rollcall with _$Rollcall {
     @HiveField(4) bool? absent,
     // basic Information
     @HiveField(5) String? date,
-
   }) = _Rollcall;
 
   ///das

@@ -1,18 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
+import 'package:my_school/src/presentation/student/bloc/student/student_bloc.dart';
 import 'package:my_school/src/presentation/student/widgets/custom_student_details.dart';
 import 'package:ndialog/ndialog.dart';
 
-class ClassStudentPage extends StatelessWidget {
-  ClassStudentPage({
+class ClassStudentPage extends StatefulWidget {
+  const ClassStudentPage({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<ClassStudentPage> createState() => _ClassStudentPageState();
+}
+
+class _ClassStudentPageState extends State<ClassStudentPage> {
   final TextEditingController _controllerExamDescription =
       TextEditingController(text: '');
+  @override
+  void initState() {
+    super.initState();
+    getIt.get<StudentBloc>().add(
+          StudentEvent.getStudents(
+            getIt.get<Classroom>().classID!,
+          ),
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,55 +39,99 @@ class ClassStudentPage extends StatelessWidget {
       backgroundColor: GeneralConstants.backgroundColor,
       floatingActionButton: Padding(
         padding: EdgeInsets.only(bottom: 16.w, right: 8.w),
-        child: Material(
-          elevation: 5,
-          color: GeneralConstants.mainColor,
-          borderRadius: BorderRadius.circular(16.r),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(16.r),
-            splashColor: GeneralConstants.backgroundColor,
-            onTap: _graidBookDialogMethod,
-            child: Container(
-              alignment: Alignment.center,
-              width: 140.w,
-              height: 60,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(16.r),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Icon(Icons.menu_book_rounded, color: Colors.white),
-                  SizedBox(width: 10.w),
-                  Text(
-                    'دفتر نمره',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22.r,
-                      fontWeight: FontWeight.w900,
+        child: SizedBox(
+          width: 0.5.sw,
+          child: Row(
+            children: [
+              Flexible(
+                flex: 2,
+                child: Material(
+                  elevation: 5,
+                  color: GeneralConstants.mainColor,
+                  borderRadius: BorderRadius.circular(16.r),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16.r),
+                    splashColor: GeneralConstants.backgroundColor,
+                    onTap: _addStudentDialog,
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 60.w,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Icon(
+                        Icons.add_rounded,
+                        color: Colors.white,
+                        size: 26.r,
+                      ),
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
+              SizedBox(width: 5.w),
+              Flexible(
+                flex: 5,
+                child: Material(
+                  elevation: 5,
+                  color: GeneralConstants.mainColor,
+                  borderRadius: BorderRadius.circular(16.r),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16.r),
+                    splashColor: GeneralConstants.backgroundColor,
+                    onTap: _graidBookDialogMethod,
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 140.w,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.menu_book_rounded,
+                              color: Colors.white),
+                          SizedBox(width: 10.w),
+                          Text(
+                            'دفتر نمره',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.r,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20.w,
-            crossAxisSpacing: 20.w,
-            childAspectRatio: 9 / 16,
-            mainAxisExtent: 0.27.sh),
-        padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 20.h),
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return const CustomClassDetailButtonWidget(
-            titleIcon: Icons.person,
-            title: 'خانم مصری',
+      body: BlocBuilder<StudentBloc, StudentState>(
+        bloc: getIt.get<StudentBloc>(),
+        builder: (context, studentState) {
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20.w,
+                crossAxisSpacing: 20.w,
+                childAspectRatio: 9 / 16,
+                mainAxisExtent: 0.27.sh),
+            padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 20.h),
+            itemCount: studentState.students.length,
+            itemBuilder: (context, index) {
+              return CustomClassDetailButtonWidget(
+                titleIcon: Icons.person,
+                title: studentState.students[index].basicInfo!.name,
+              );
+            },
           );
         },
       ),
@@ -76,7 +139,6 @@ class ClassStudentPage extends StatelessWidget {
   }
 
   void _graidBookDialogMethod() {
-    //TODO implement show Add Teacher here
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(
@@ -261,7 +323,6 @@ class ClassStudentPage extends StatelessWidget {
 
   // ignore: unused_element
   _addExamDialogMethod() {
-    //TODO implement show Add Teacher here
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(
@@ -334,5 +395,11 @@ class ClassStudentPage extends StatelessWidget {
         ),
       ),
     ).show(appRputer.navigatorKey.currentContext!);
+  }
+
+  void _addStudentDialog() {
+    NDialog(
+      content: SizedBox(width: 0.5.sw, height: 0.5.sh),
+    ).show(context);
   }
 }

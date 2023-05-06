@@ -16,7 +16,7 @@ part 'exam_model.g.dart';
 /// asd
 class Exam with _$Exam {
   ///adsasd
-  @HiveType(typeId: 10)
+  @HiveType(typeId: 14)
   factory Exam({
     // account email
     @HiveField(0) int? examId,
@@ -28,10 +28,8 @@ class Exam with _$Exam {
     @HiveField(3) String? examDescription,
     // basic Information
     @HiveField(4) String? teacherName,
-
   }) = _Exam;
 
   ///das
-  factory Exam.fromJson(Map<String, Object?> json) =>
-      _$ExamFromJson(json);
+  factory Exam.fromJson(Map<String, Object?> json) => _$ExamFromJson(json);
 }

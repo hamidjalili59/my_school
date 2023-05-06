@@ -8,7 +8,7 @@ part of 'rollcall_get_response.dart';
 
 class RollcallGetResponseAdapter extends TypeAdapter<RollcallGetResponse> {
   @override
-  final int typeId = 12;
+  final int typeId = 21;
 
   @override
   RollcallGetResponse read(BinaryReader reader) {

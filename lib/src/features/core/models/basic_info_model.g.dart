@@ -8,7 +8,7 @@ part of 'basic_info_model.dart';
 
 class BasicInfoModelAdapter extends TypeAdapter<BasicInfoModel> {
   @override
-  final int typeId = 5;
+  final int typeId = 7;
 
   @override
   BasicInfoModel read(BinaryReader reader) {

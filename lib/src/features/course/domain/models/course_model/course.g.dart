@@ -8,7 +8,7 @@ part of 'course.dart';
 
 class CourseAdapter extends TypeAdapter<Course> {
   @override
-  final int typeId = 8;
+  final int typeId = 12;
 
   @override
   Course read(BinaryReader reader) {
@@ -16,23 +16,12 @@ class CourseAdapter extends TypeAdapter<Course> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Course(
-      fields[0] as String?,
-      fields[1] as int?,
-      fields[2] as int?,
-    );
+    return Course();
   }
 
   @override
   void write(BinaryWriter writer, Course obj) {
-    writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.name)
-      ..writeByte(1)
-      ..write(obj.courseId)
-      ..writeByte(2)
-      ..write(obj.schoolId);
+    writer.writeByte(0);
   }
 
   @override
@@ -50,14 +39,14 @@ class CourseAdapter extends TypeAdapter<Course> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-Course _$CourseFromJson(Map<String, dynamic> json) => Course(
-      json['course_Name'] as String?,
-      json['course_ID'] as int?,
-      json['school_ID'] as int?,
+_$_Course _$$_CourseFromJson(Map<String, dynamic> json) => _$_Course(
+      courseId: json['course_ID'] as int? ?? 0,
+      courseName: json['course_Name'] as String? ?? '',
+      schoolID: json['school_ID'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$CourseToJson(Course instance) => <String, dynamic>{
-      'course_Name': instance.name,
+Map<String, dynamic> _$$_CourseToJson(_$_Course instance) => <String, dynamic>{
       'course_ID': instance.courseId,
-      'school_ID': instance.schoolId,
+      'course_Name': instance.courseName,
+      'school_ID': instance.schoolID,
     };

@@ -1,14 +1,14 @@
 import 'package:hive/hive.dart';
-// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_school/src/features/score/domain/models/score_model.dart';
 
 part 'score_success_response.g.dart';
 
-@HiveType(typeId: 13)
+@HiveType(typeId: 28)
 @JsonSerializable()
 class ScoreSuccessResponse {
   @HiveField(0)
+  @JsonKey(name: 'score')
   final Score score;
 
   ScoreSuccessResponse({required this.score});

@@ -9,6 +9,7 @@ import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
 import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:my_school/src/presentation/teacher/widget/custom_card_teacher_widget.dart';
+import 'package:my_school/src/presentation/teacher/widget/teacher_class_card_widget.dart';
 import 'package:ndialog/ndialog.dart';
 
 class TeacherPage extends StatelessWidget {
@@ -19,9 +20,8 @@ class TeacherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt.get<TeacherBloc>(),
-      child: Scaffold(
+    if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+      return Scaffold(
         floatingActionButton: FloatingActionButton.extended(
             icon: Icon(
               Icons.add_circle,
@@ -51,9 +51,9 @@ class TeacherPage extends StatelessWidget {
                     itemCount: teachers.length,
                     itemBuilder: (context, index) {
                       return CustomCardTeacherWidget(
-                        name: teachers[index].basicInfo.name,
+                        name: teachers[index].basicInfo!.name,
                         phone:
-                            '0${teachers[index].basicInfo.phoneNumber.toInt()}',
+                            '0${teachers[index].basicInfo!.phoneNumber.toInt()}',
                         method: () {
                           _addTeacherDialogMethod(
                             true,
@@ -71,12 +71,13 @@ class TeacherPage extends StatelessWidget {
             );
           },
         ),
-      ),
-    );
+      );
+    } else {
+      return const TeacherClassWidget();
+    }
   }
 
   _addTeacherDialogMethod(bool isEditing, {Teacher? teacher}) {
-    //TODO implement show Add Teacher here
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(
@@ -139,14 +140,22 @@ class TeacherPage extends StatelessWidget {
                 onTap: () {
                   if (isEditing) {
                     getIt.get<TeacherBloc>().add(
-                          TeacherEvent.updateTeacher(teacher!),
+                          TeacherEvent.updateTeacher(
+                            teacher!.copyWith(
+                              basicInfo: BasicInfoModel(
+                                name: _controllerName.text,
+                                phoneNumber:
+                                    double.tryParse(_controllerPhone.text) ?? 0,
+                              ),
+                            ),
+                          ),
                         );
                   } else {
                     getIt.get<TeacherBloc>().add(
                           TeacherEvent.addTeacher(
                             Teacher(
-                              0,
-                              BasicInfoModel(
+                              teacherId: 0,
+                              basicInfo: BasicInfoModel(
                                 name: _controllerName.text,
                                 phoneNumber:
                                     double.tryParse(_controllerPhone.text) ?? 0,

@@ -169,7 +169,7 @@ class __$$_RollcallCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 10)
+@HiveType(typeId: 22)
 class _$_Rollcall implements _Rollcall {
   _$_Rollcall(
       {@HiveField(0) this.rolecallId,

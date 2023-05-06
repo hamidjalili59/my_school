@@ -151,7 +151,7 @@ class __$$_ExamCopyWithImpl<$Res> extends _$ExamCopyWithImpl<$Res, _$_Exam>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 10)
+@HiveType(typeId: 14)
 class _$_Exam implements _Exam {
   _$_Exam(
       {@HiveField(0) this.examId,

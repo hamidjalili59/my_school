@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response.g.dart';
 
-@HiveType(typeId: 4)
+@HiveType(typeId: 6)
 @JsonSerializable()
 class BaseResponse {
   @HiveField(0)

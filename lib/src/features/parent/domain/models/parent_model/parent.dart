@@ -17,7 +17,7 @@ part 'parent.g.dart';
 /// asd
 class Parent with _$Parent {
   ///adsasd
-  @HiveType(typeId: 12)
+  @HiveType(typeId: 19)
   factory Parent({
     // account email
     @HiveField(0) int? parentId,
@@ -27,8 +27,8 @@ class Parent with _$Parent {
 
     // basic Information
     @HiveField(2) BasicInfoModel? basicInfo,
-
   }) = _Parent;
+
   ///das
   factory Parent.fromJson(Map<String, Object?> json) => _$ParentFromJson(json);
 }

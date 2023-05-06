@@ -44,7 +44,7 @@ class CustomClassDetailButtonWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            flex: 6,
+            flex: 8,
             child: Padding(
               padding: EdgeInsets.only(top: 14.0.h),
               child: ClipRRect(
@@ -55,14 +55,14 @@ class CustomClassDetailButtonWidget extends StatelessWidget {
           ),
           Expanded(
             flex: 4,
-            child: Padding(
-              padding: EdgeInsets.only(top: 16.0.h),
+            child: Align(
+              alignment: Alignment.center,
               child: Text(
                 title,
                 style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 26.r,
-                  fontWeight: FontWeight.w900,
+                  color: Colors.black87,
+                  fontSize: 16.r,
+                  fontWeight: FontWeight.w800,
                 ),
                 textAlign: TextAlign.center,
               ),

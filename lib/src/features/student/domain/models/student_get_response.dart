@@ -6,15 +6,17 @@ import 'student_model/student.dart';
 
 part 'student_get_response.g.dart';
 
-@HiveType(typeId: 12)
+@HiveType(typeId: 29)
 @JsonSerializable()
 class StudentGetResponse {
   @HiveField(0)
+  @JsonKey(name: 'Students')
   final List<Student> students;
 
   StudentGetResponse({required this.students});
-  
-  factory StudentGetResponse.fromJson(Map<String,dynamic>json) => _$StudentGetResponseFromJson(json);
 
-  Map<String, dynamic> toJson()=> _$StudentGetResponseToJson(this);
+  factory StudentGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$StudentGetResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StudentGetResponseToJson(this);
 }
