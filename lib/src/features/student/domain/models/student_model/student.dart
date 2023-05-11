@@ -7,7 +7,7 @@ part 'student.freezed.dart';
 part 'student.g.dart';
 
 @Freezed(
-  makeCollectionsUnmodifiable: true,
+  makeCollectionsUnmodifiable: false,
   copyWith: true,
   toJson: true,
   fromJson: true,

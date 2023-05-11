@@ -62,83 +62,85 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: GeneralConstants.backgroundColor,
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: 16.w, right: 8.w),
-        child: SizedBox(
-          width: 0.5.sw,
-          // child: Row(
-          // children: [
-          // Flexible(
-          //   flex: 2,
-          child: Material(
-            elevation: 5,
-            color: GeneralConstants.mainColor,
-            borderRadius: BorderRadius.circular(16.r),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(16.r),
-              splashColor: GeneralConstants.backgroundColor,
-              onTap: _addStudentDialog,
-              child: Container(
-                alignment: Alignment.center,
-                width: 60.w,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
+      floatingActionButton: GeneralConstants.userType == UserType.admin
+          ? Padding(
+              padding: EdgeInsets.only(bottom: 16.w, right: 8.w),
+              child: SizedBox(
+                width: 0.5.sw,
+                // child: Row(
+                // children: [
+                // Flexible(
+                //   flex: 2,
+                child: Material(
+                  elevation: 5,
+                  color: GeneralConstants.mainColor,
                   borderRadius: BorderRadius.circular(16.r),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16.r),
+                    splashColor: GeneralConstants.backgroundColor,
+                    onTap: _addStudentDialog,
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 60.w,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Icon(
+                        Icons.add_rounded,
+                        color: Colors.white,
+                        size: 26.r,
+                      ),
+                    ),
+                  ),
                 ),
-                child: Icon(
-                  Icons.add_rounded,
-                  color: Colors.white,
-                  size: 26.r,
-                ),
+                // ),
+                // SizedBox(width: 5.w),
+                // Flexible(
+                //   flex: 5,
+                //   child: Material(
+                //     elevation: 5,
+                //     color: GeneralConstants.mainColor,
+                //     borderRadius: BorderRadius.circular(16.r),
+                //     child: InkWell(
+                //       borderRadius: BorderRadius.circular(16.r),
+                //       splashColor: GeneralConstants.backgroundColor,
+                //       onTap: _enterScoreDialogMethod,
+                //       child: Container(
+                //         alignment: Alignment.center,
+                //         width: 140.w,
+                //         height: 60,
+                //         decoration: BoxDecoration(
+                //           color: Colors.transparent,
+                //           borderRadius: BorderRadius.circular(16.r),
+                //         ),
+                //         child: Row(
+                //           mainAxisAlignment: MainAxisAlignment.center,
+                //           crossAxisAlignment: CrossAxisAlignment.center,
+                //           children: [
+                //             const Icon(Icons.menu_book_rounded,
+                //                 color: Colors.white),
+                //             SizedBox(width: 10.w),
+                //             Text(
+                //               'ثبت نمره',
+                //               style: TextStyle(
+                //                 color: Colors.white,
+                //                 fontSize: 16.r,
+                //                 fontWeight: FontWeight.w900,
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // ],
+                // ),
               ),
-            ),
-          ),
-          // ),
-          // SizedBox(width: 5.w),
-          // Flexible(
-          //   flex: 5,
-          //   child: Material(
-          //     elevation: 5,
-          //     color: GeneralConstants.mainColor,
-          //     borderRadius: BorderRadius.circular(16.r),
-          //     child: InkWell(
-          //       borderRadius: BorderRadius.circular(16.r),
-          //       splashColor: GeneralConstants.backgroundColor,
-          //       onTap: _enterScoreDialogMethod,
-          //       child: Container(
-          //         alignment: Alignment.center,
-          //         width: 140.w,
-          //         height: 60,
-          //         decoration: BoxDecoration(
-          //           color: Colors.transparent,
-          //           borderRadius: BorderRadius.circular(16.r),
-          //         ),
-          //         child: Row(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           crossAxisAlignment: CrossAxisAlignment.center,
-          //           children: [
-          //             const Icon(Icons.menu_book_rounded,
-          //                 color: Colors.white),
-          //             SizedBox(width: 10.w),
-          //             Text(
-          //               'ثبت نمره',
-          //               style: TextStyle(
-          //                 color: Colors.white,
-          //                 fontSize: 16.r,
-          //                 fontWeight: FontWeight.w900,
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // ],
-          // ),
-        ),
-      ),
+            )
+          : null,
       body: BlocBuilder<StudentBloc, StudentState>(
         bloc: getIt.get<StudentBloc>(),
         builder: (context, studentState) {
@@ -490,9 +492,8 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(34.0.r),
-                  child: const FittedBox(
-                      fit: BoxFit.contain,
-                      child: Icon(Icons.person_rounded, color: Colors.black87)),
+                  child:
+                      const Icon(Icons.person_rounded, color: Colors.black87),
                 ),
               ),
               SizedBox(
@@ -528,35 +529,48 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                     hint: 'شماره تماس'),
               ),
               SizedBox(height: 10.h),
-              MaterialButton(
-                onPressed: () {
-                  getIt.get<StudentBloc>().add(
-                        StudentEvent.addStudent(
-                          Student(
-                              basicInfo: BasicInfoModel(
-                                name: _studentNameController.text,
-                                phoneNumber: double.tryParse(
-                                        _phonenumberController.text) ??
-                                    0,
+              BlocBuilder<StudentBloc, StudentState>(
+                  bloc: getIt.get<StudentBloc>(),
+                  builder: (context, studentStateBotton) {
+                    return IgnorePointer(
+                      ignoring: studentStateBotton.isLoading,
+                      child: MaterialButton(
+                        onPressed: () {
+                          if (!studentStateBotton.isLoading) {
+                            getIt.get<StudentBloc>().add(
+                                  StudentEvent.addStudent(
+                                    Student(
+                                        basicInfo: BasicInfoModel(
+                                          name: _studentNameController.text,
+                                          phoneNumber: double.tryParse(
+                                                  _phonenumberController
+                                                      .text) ??
+                                              0,
+                                        ),
+                                        classId:
+                                            getIt.get<Classroom>().classID!),
+                                    _studentParentController.text,
+                                  ),
+                                );
+                          }
+                        },
+                        color: GeneralConstants.mainColor,
+                        elevation: 5,
+                        height: 55.h,
+                        minWidth: 0.65.sw,
+                        child: studentStateBotton.isLoading
+                            ? const CircularProgressIndicator()
+                            : Text(
+                                'ثبت دانش‌آموز',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.r,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                              classId: getIt.get<Classroom>().classID!),
-                          _studentParentController.text,
-                        ),
-                      );
-                },
-                color: GeneralConstants.mainColor,
-                elevation: 5,
-                height: 55.h,
-                minWidth: 0.65.sw,
-                child: Text(
-                  'ثبت دانش‌آموز',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.r,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+                      ),
+                    );
+                  }),
             ],
           ),
         ),

@@ -56,7 +56,8 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
           (value) => value.fold(
             (l) => null,
             (r) {
-              List<Course> tempList = state.courses;
+              emit(CourseState.idle(isLoading: true, courses: state.courses));
+              List<Course> tempList = state.courses.toList();
               tempList.add(r.course);
               emit(CourseState.idle(isLoading: false, courses: tempList));
               getIt.get<AppRouter>().pop();

@@ -6,7 +6,7 @@ part 'rollcall_model.freezed.dart';
 part 'rollcall_model.g.dart';
 
 @Freezed(
-  makeCollectionsUnmodifiable: true,
+  makeCollectionsUnmodifiable: false,
   copyWith: true,
   fromJson: true,
   toJson: true,
