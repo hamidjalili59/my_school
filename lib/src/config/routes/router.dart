@@ -47,7 +47,6 @@ part 'router.gr.dart';
       AutoRoute(
         path: "classes_page",
         page: ClassesPage,
-        // initial: true,
       ),
     ],
   ),
