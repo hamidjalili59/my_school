@@ -48,11 +48,11 @@ class StudentSuccessResponseAdapter
 StudentSuccessResponse _$StudentSuccessResponseFromJson(
         Map<String, dynamic> json) =>
     StudentSuccessResponse(
-      student: Student.fromJson(json['student'] as Map<String, dynamic>),
+      student: Student.fromJson(json['Student'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$StudentSuccessResponseToJson(
         StudentSuccessResponse instance) =>
     <String, dynamic>{
-      'student': instance.student,
+      'Student': instance.student,
     };

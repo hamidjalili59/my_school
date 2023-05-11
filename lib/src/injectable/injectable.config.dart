@@ -8,7 +8,7 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../core/interceptors/request_interceptor.dart' as _i66;
+import '../core/interceptors/request_interceptor.dart' as _i67;
 import '../features/auth/data/data_sources/local/auth_local_data_source.dart'
     as _i11;
 import '../features/auth/data/data_sources/remote/auth_remote_data_source.dart'
@@ -18,7 +18,7 @@ import '../features/auth/domain/use_cases/cache_auth_data_use_case.dart'
     as _i14;
 import '../features/auth/domain/use_cases/get_cached_auth_data_use_case.dart'
     as _i33;
-import '../features/auth/domain/use_cases/otp_handshake_use_case.dart' as _i56;
+import '../features/auth/domain/use_cases/otp_handshake_use_case.dart' as _i57;
 import '../features/classroom/data/data_sources/local/classroom_local_data_source.dart'
     as _i24;
 import '../features/classroom/data/data_sources/remote/classroom_remote_data_source.dart'
@@ -34,9 +34,9 @@ import '../features/classroom/domain/use_cases/get_cache_classrooms_data_use_cas
 import '../features/classroom/domain/use_cases/get_classrooms_use_case.dart'
     as _i43;
 import '../features/classroom/domain/use_cases/remove_classroom_use_case.dart'
-    as _i60;
+    as _i61;
 import '../features/classroom/domain/use_cases/update_classroom_use_case.dart'
-    as _i82;
+    as _i86;
 import '../features/course/data/data_sources/local/course_local_data_source.dart'
     as _i27;
 import '../features/course/data/data_sources/remote/course_remote_data_sourse.dart'
@@ -49,9 +49,9 @@ import '../features/course/domain/use_cases/get_cached_course_data_use_case.dart
     as _i35;
 import '../features/course/domain/use_cases/get_courses_use_case.dart' as _i44;
 import '../features/course/domain/use_cases/remove_course_use_case.dart'
-    as _i61;
+    as _i62;
 import '../features/course/domain/use_cases/update_course_use_case.dart'
-    as _i83;
+    as _i87;
 import '../features/exam/data/data_sources/local/exam_local_data_source.dart'
     as _i30;
 import '../features/exam/data/data_sources/remote/exam_remote_data_source.dart'
@@ -63,14 +63,14 @@ import '../features/exam/domain/use_cases/cache_exam_data_use_case.dart'
 import '../features/exam/domain/use_cases/get_cached_exam_data_use_case.dart'
     as _i36;
 import '../features/exam/domain/use_cases/get_exams_use_case.dart' as _i45;
-import '../features/exam/domain/use_cases/remove_exam_use_case.dart' as _i62;
-import '../features/exam/domain/use_cases/update_exam_use_case.dart' as _i84;
+import '../features/exam/domain/use_cases/remove_exam_use_case.dart' as _i63;
+import '../features/exam/domain/use_cases/update_exam_use_case.dart' as _i88;
 import '../features/mediator_tc/data/data_sources/local/mediator_local_data_source.dart'
-    as _i53;
-import '../features/mediator_tc/data/data_sources/remote/mediator_remote_data_source.dart'
     as _i54;
-import '../features/mediator_tc/domain/repositories/mediator_repository.dart'
+import '../features/mediator_tc/data/data_sources/remote/mediator_remote_data_source.dart'
     as _i55;
+import '../features/mediator_tc/domain/repositories/mediator_repository.dart'
+    as _i56;
 import '../features/mediator_tc/domain/use_cases/add_mediator_use_case.dart'
     as _i6;
 import '../features/mediator_tc/domain/use_cases/cache_mediator_data_use_case.dart'
@@ -80,25 +80,25 @@ import '../features/mediator_tc/domain/use_cases/get_cached_mediator_data_use_ca
 import '../features/mediator_tc/domain/use_cases/get_mediators_use_case.dart'
     as _i46;
 import '../features/mediator_tc/domain/use_cases/remove_mediator_use_case.dart'
-    as _i63;
+    as _i64;
 import '../features/parent/data/data_sources/local/parent_local_data_source.dart'
-    as _i57;
-import '../features/parent/data/data_sources/remote/parent_remote_data_source.dart'
     as _i58;
-import '../features/parent/domain/repositories/parent_repository.dart' as _i59;
+import '../features/parent/data/data_sources/remote/parent_remote_data_source.dart'
+    as _i59;
+import '../features/parent/domain/repositories/parent_repository.dart' as _i60;
 import '../features/parent/domain/use_cases/cache_parent_data_use_case.dart'
     as _i19;
 import '../features/parent/domain/use_cases/get_cached_parent_data_use_case.dart'
     as _i38;
 import '../features/parent/domain/use_cases/get_parent_use_case.dart' as _i47;
 import '../features/parent/domain/use_cases/update_parent_use_case.dart'
-    as _i85;
+    as _i89;
 import '../features/role_call/data/data_sources/local/rollcall_local_data_source.dart'
-    as _i68;
-import '../features/role_call/data/data_sources/remote/rollcall_remote_data_source.dart'
     as _i69;
-import '../features/role_call/domain/repositories/rollcall_repository.dart'
+import '../features/role_call/data/data_sources/remote/rollcall_remote_data_source.dart'
     as _i70;
+import '../features/role_call/domain/repositories/rollcall_repository.dart'
+    as _i71;
 import '../features/role_call/domain/use_cases/add_rollcall_use_case.dart'
     as _i7;
 import '../features/role_call/domain/use_cases/cache_rollcall_data_use_case.dart'
@@ -108,72 +108,77 @@ import '../features/role_call/domain/use_cases/get_cached_rollcall_data_use_case
 import '../features/role_call/domain/use_cases/get_rollcalls_use_case.dart'
     as _i48;
 import '../features/score/data/data_sources/local/score_local_data_source.dart'
-    as _i71;
+    as _i74;
 import '../features/score/data/data_sources/remote/score_remote_data_source.dart'
-    as _i72;
-import '../features/score/domain/repositories/score_repository.dart' as _i73;
+    as _i75;
+import '../features/score/domain/repositories/score_repository.dart' as _i76;
 import '../features/score/domain/use_cases/add_score_use_case.dart' as _i8;
 import '../features/score/domain/use_cases/cache_score_data_use_case.dart'
     as _i21;
 import '../features/score/domain/use_cases/get_cached_score_data_use_case.dart'
     as _i40;
 import '../features/score/domain/use_cases/get_scores_use_case.dart' as _i49;
-import '../features/score/domain/use_cases/update_score_use_case.dart' as _i86;
+import '../features/score/domain/use_cases/update_score_use_case.dart' as _i90;
 import '../features/student/data/data_sources/local/student_local_data_source.dart'
-    as _i75;
+    as _i79;
 import '../features/student/data/data_sources/remote/student_remote_data_source.dart'
-    as _i76;
+    as _i80;
 import '../features/student/domain/repositories/student_repository.dart'
-    as _i77;
+    as _i81;
 import '../features/student/domain/use_cases/add_student_use_case.dart' as _i9;
 import '../features/student/domain/use_cases/cache_student_data_use_case.dart'
     as _i22;
 import '../features/student/domain/use_cases/get_cached_student_data_use_case.dart'
     as _i41;
-import '../features/student/domain/use_cases/get_students_use_case.dart'
+import '../features/student/domain/use_cases/get_students_parent_use_case.dart'
     as _i50;
+import '../features/student/domain/use_cases/get_students_use_case.dart'
+    as _i51;
 import '../features/student/domain/use_cases/remove_student_use_case.dart'
-    as _i64;
+    as _i65;
 import '../features/student/domain/use_cases/update_student_use_case.dart'
-    as _i87;
+    as _i91;
 import '../features/teacher/data/data_sources/local/teacher_local_data_source.dart'
-    as _i79;
+    as _i83;
 import '../features/teacher/data/data_sources/remote/teacher_remote_data_source.dart'
-    as _i80;
+    as _i84;
 import '../features/teacher/domain/repositories/teacher_repository.dart'
-    as _i81;
+    as _i85;
 import '../features/teacher/domain/use_cases/add_teacher_use_case.dart' as _i10;
 import '../features/teacher/domain/use_cases/cache_teacher_data_use_case.dart'
     as _i23;
 import '../features/teacher/domain/use_cases/get_cached_teacher_data_use_case.dart'
     as _i42;
 import '../features/teacher/domain/use_cases/get_teachers_use_case.dart'
-    as _i51;
+    as _i52;
 import '../features/teacher/domain/use_cases/remove_teacher_use_case.dart'
-    as _i65;
+    as _i66;
 import '../features/teacher/domain/use_cases/update_teacher_use_case.dart'
-    as _i88;
-import '../presentation/auth/bloc/auth_bloc.dart' as _i89;
-import '../presentation/classroom/bloc/classroom_bloc.dart' as _i90;
-import '../presentation/course/bloc/course/course_bloc.dart' as _i91;
-import '../presentation/home/bloc/home_bloc.dart' as _i52;
-import '../presentation/rollcall/bloc/rollcall_bloc.dart' as _i67;
-import '../presentation/splash/bloc/splash_bloc.dart' as _i74;
-import '../presentation/student/bloc/student/student_bloc.dart' as _i92;
-import '../presentation/teacher/bloc/teacher/teacher_bloc.dart' as _i93;
+    as _i92;
+import '../presentation/auth/bloc/auth_bloc.dart' as _i93;
+import '../presentation/classroom/bloc/classroom_bloc.dart' as _i94;
+import '../presentation/course/bloc/course/course_bloc.dart' as _i95;
+import '../presentation/exam/bloc/exam/exam_bloc.dart' as _i96;
+import '../presentation/home/bloc/home_bloc.dart' as _i53;
+import '../presentation/rollcall/bloc/rollcall_bloc.dart' as _i68;
+import '../presentation/score/bloc/score/score_bloc.dart' as _i72;
+import '../presentation/score/bloc/score_board/score_board_bloc.dart' as _i73;
+import '../presentation/splash/bloc/splash_bloc.dart' as _i77;
+import '../presentation/student/bloc/student/student_bloc.dart' as _i78;
+import '../presentation/teacher/bloc/teacher/teacher_bloc.dart' as _i97;
 import '../presentation/teacher/bloc/teacher_detail/teacher_detail_bloc.dart'
-    as _i78;
-import 'module_injection/feature/auth_feature_module.dart' as _i102;
-import 'module_injection/feature/classroom_feature_module.dart' as _i94;
-import 'module_injection/feature/course_feature_module.dart' as _i95;
-import 'module_injection/feature/exam_feature_module.dart' as _i96;
-import 'module_injection/feature/mediator_feature_module.dart' as _i97;
-import 'module_injection/feature/parent_feature_module.dart' as _i103;
-import 'module_injection/feature/rollcall_feature_module.dart' as _i98;
-import 'module_injection/feature/score_feature_module.dart' as _i99;
-import 'module_injection/feature/student_feature_module.dart' as _i100;
+    as _i82;
+import 'module_injection/feature/auth_feature_module.dart' as _i106;
+import 'module_injection/feature/classroom_feature_module.dart' as _i98;
+import 'module_injection/feature/course_feature_module.dart' as _i99;
+import 'module_injection/feature/exam_feature_module.dart' as _i100;
+import 'module_injection/feature/mediator_feature_module.dart' as _i101;
+import 'module_injection/feature/parent_feature_module.dart' as _i107;
+import 'module_injection/feature/rollcall_feature_module.dart' as _i102;
+import 'module_injection/feature/score_feature_module.dart' as _i103;
+import 'module_injection/feature/student_feature_module.dart' as _i104;
 import 'module_injection/feature/teacher_feature_module.dart'
-    as _i101; // ignore_for_file: unnecessary_lambdas
+    as _i105; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -276,107 +281,118 @@ _i1.GetIt $initGetIt(
   gh.factory<_i48.GetRollCallsUseCase>(
       () => rollcallFeatureModule.getRollcallsUseCase);
   gh.factory<_i49.GetScoreUseCase>(() => scoreFeatureModule.getScoresUseCase);
-  gh.factory<_i50.GetStudentUseCase>(
+  gh.factory<_i50.GetStudentParentUseCase>(
+      () => studentFeatureModule.getStudentParentUseCase);
+  gh.factory<_i51.GetStudentUseCase>(
       () => studentFeatureModule.getStudentsUseCase);
-  gh.factory<_i51.GetTeacherUseCase>(
+  gh.factory<_i52.GetTeacherUseCase>(
       () => teacherFeatureModule.getTeachersUseCase);
-  gh.factory<_i52.HomeBloc>(() => _i52.HomeBloc());
-  gh.factory<_i53.MediatorLocalDataSource>(() => mediatorFeatureModule.localDS);
-  gh.factory<_i54.MediatorRemoteDataSource>(
+  gh.factory<_i53.HomeBloc>(() => _i53.HomeBloc());
+  gh.factory<_i54.MediatorLocalDataSource>(() => mediatorFeatureModule.localDS);
+  gh.factory<_i55.MediatorRemoteDataSource>(
       () => mediatorFeatureModule.remoteDS);
-  gh.factory<_i55.MediatorRepository>(() => mediatorFeatureModule.repo);
-  gh.factory<_i56.OtpHandshakeUseCase>(
+  gh.factory<_i56.MediatorRepository>(() => mediatorFeatureModule.repo);
+  gh.factory<_i57.OtpHandshakeUseCase>(
       () => authFeatureModule.otpAuthorizaUseCase);
-  gh.factory<_i57.ParentLocalDataSource>(() => parentFeatureModule.localDS);
-  gh.factory<_i58.ParentRemoteDataSource>(() => parentFeatureModule.remoteDS);
-  gh.factory<_i59.ParentRepository>(() => parentFeatureModule.repo);
-  gh.factory<_i60.RemoveClassroomUseCase>(
+  gh.factory<_i58.ParentLocalDataSource>(() => parentFeatureModule.localDS);
+  gh.factory<_i59.ParentRemoteDataSource>(() => parentFeatureModule.remoteDS);
+  gh.factory<_i60.ParentRepository>(() => parentFeatureModule.repo);
+  gh.factory<_i61.RemoveClassroomUseCase>(
       () => classroomFeatureModule.removeClassroomUseCase);
-  gh.factory<_i61.RemoveCourseUseCase>(
+  gh.factory<_i62.RemoveCourseUseCase>(
       () => courseFeatureModule.removeCourseUseCase);
-  gh.factory<_i62.RemoveExamUseCase>(() => examFeatureModule.removeExamUseCase);
-  gh.factory<_i63.RemoveMediatorUseCase>(
+  gh.factory<_i63.RemoveExamUseCase>(() => examFeatureModule.removeExamUseCase);
+  gh.factory<_i64.RemoveMediatorUseCase>(
       () => mediatorFeatureModule.removeMediatorUseCase);
-  gh.factory<_i64.RemoveStudentUseCase>(
+  gh.factory<_i65.RemoveStudentUseCase>(
       () => studentFeatureModule.removeStudentUseCase);
-  gh.factory<_i65.RemoveTeacherUseCase>(
+  gh.factory<_i66.RemoveTeacherUseCase>(
       () => teacherFeatureModule.removeTeacherUseCase);
-  gh.factory<_i66.RequestInterceptor>(() => _i66.RequestInterceptor());
-  gh.factory<_i67.RollcallBloc>(() => _i67.RollcallBloc());
-  gh.factory<_i68.RollcallLocalDataSource>(() => rollcallFeatureModule.localDS);
-  gh.factory<_i69.RollcallRemoteDataSource>(
+  gh.factory<_i67.RequestInterceptor>(() => _i67.RequestInterceptor());
+  gh.lazySingleton<_i68.RollcallBloc>(
+      () => _i68.RollcallBloc(get<_i48.GetRollCallsUseCase>()));
+  gh.factory<_i69.RollcallLocalDataSource>(() => rollcallFeatureModule.localDS);
+  gh.factory<_i70.RollcallRemoteDataSource>(
       () => rollcallFeatureModule.remoteDS);
-  gh.factory<_i70.RollcallRepository>(() => rollcallFeatureModule.repo);
-  gh.factory<_i71.ScoreLocalDataSource>(() => scoreFeatureModule.localDS);
-  gh.factory<_i72.ScoreRemoteDataSource>(() => scoreFeatureModule.remoteDS);
-  gh.factory<_i73.ScoreRepository>(() => scoreFeatureModule.repo);
-  gh.factory<_i74.SplashBloc>(
-      () => _i74.SplashBloc(get<_i33.GetCachedAuthDataUseCase>()));
-  gh.factory<_i75.StudentLocalDataSource>(() => studentFeatureModule.localDS);
-  gh.factory<_i76.StudentRemoteDataSource>(() => studentFeatureModule.remoteDS);
-  gh.factory<_i77.StudentRepository>(() => studentFeatureModule.repo);
-  gh.lazySingleton<_i78.TeacherDetailBloc>(() => _i78.TeacherDetailBloc(
+  gh.factory<_i71.RollcallRepository>(() => rollcallFeatureModule.repo);
+  gh.lazySingleton<_i72.ScoreBloc>(
+      () => _i72.ScoreBloc(get<_i49.GetScoreUseCase>()));
+  gh.lazySingleton<_i73.ScoreBoardBloc>(
+      () => _i73.ScoreBoardBloc(get<_i51.GetStudentUseCase>()));
+  gh.factory<_i74.ScoreLocalDataSource>(() => scoreFeatureModule.localDS);
+  gh.factory<_i75.ScoreRemoteDataSource>(() => scoreFeatureModule.remoteDS);
+  gh.factory<_i76.ScoreRepository>(() => scoreFeatureModule.repo);
+  gh.factory<_i77.SplashBloc>(
+      () => _i77.SplashBloc(get<_i33.GetCachedAuthDataUseCase>()));
+  gh.lazySingleton<_i78.StudentBloc>(() => _i78.StudentBloc(
+        get<_i51.GetStudentUseCase>(),
+        get<_i9.AddStudentUseCase>(),
+        get<_i50.GetStudentParentUseCase>(),
+      ));
+  gh.factory<_i79.StudentLocalDataSource>(() => studentFeatureModule.localDS);
+  gh.factory<_i80.StudentRemoteDataSource>(() => studentFeatureModule.remoteDS);
+  gh.factory<_i81.StudentRepository>(() => studentFeatureModule.repo);
+  gh.lazySingleton<_i82.TeacherDetailBloc>(() => _i82.TeacherDetailBloc(
         get<_i46.GetMediatorUseCase>(),
         get<_i6.AddMediatorUseCase>(),
       ));
-  gh.factory<_i79.TeacherLocalDataSource>(() => teacherFeatureModule.localDS);
-  gh.factory<_i80.TeacherRemoteDataSource>(() => teacherFeatureModule.remoteDS);
-  gh.factory<_i81.TeacherRepository>(() => teacherFeatureModule.repo);
-  gh.factory<_i82.UpdateClassroomUseCase>(
+  gh.factory<_i83.TeacherLocalDataSource>(() => teacherFeatureModule.localDS);
+  gh.factory<_i84.TeacherRemoteDataSource>(() => teacherFeatureModule.remoteDS);
+  gh.factory<_i85.TeacherRepository>(() => teacherFeatureModule.repo);
+  gh.factory<_i86.UpdateClassroomUseCase>(
       () => classroomFeatureModule.updateClassroomUseCase);
-  gh.factory<_i83.UpdateCourseUseCase>(
+  gh.factory<_i87.UpdateCourseUseCase>(
       () => courseFeatureModule.updateCourseUseCase);
-  gh.factory<_i84.UpdateExamUseCase>(() => examFeatureModule.updateExamUseCase);
-  gh.factory<_i85.UpdateParentUseCase>(
+  gh.factory<_i88.UpdateExamUseCase>(() => examFeatureModule.updateExamUseCase);
+  gh.factory<_i89.UpdateParentUseCase>(
       () => parentFeatureModule.updateParentUseCase);
-  gh.factory<_i86.UpdateScoreUseCase>(
+  gh.factory<_i90.UpdateScoreUseCase>(
       () => scoreFeatureModule.updateScoreUseCase);
-  gh.factory<_i87.UpdateStudentUseCase>(
+  gh.factory<_i91.UpdateStudentUseCase>(
       () => studentFeatureModule.updateStudentUseCase);
-  gh.factory<_i88.UpdateTeacherUseCase>(
+  gh.factory<_i92.UpdateTeacherUseCase>(
       () => teacherFeatureModule.updateTeacherUseCase);
-  gh.factory<_i89.AuthBloc>(() => _i89.AuthBloc(
-        get<_i56.OtpHandshakeUseCase>(),
+  gh.factory<_i93.AuthBloc>(() => _i93.AuthBloc(
+        get<_i57.OtpHandshakeUseCase>(),
         get<_i14.CacheAuthDataUseCase>(),
       ));
-  gh.lazySingleton<_i90.ClassroomBloc>(() => _i90.ClassroomBloc(
+  gh.lazySingleton<_i94.ClassroomBloc>(() => _i94.ClassroomBloc(
         get<_i43.GetClassroomsUseCase>(),
         get<_i3.AddClassroomUseCase>(),
       ));
-  gh.lazySingleton<_i91.CourseBloc>(() => _i91.CourseBloc(
+  gh.lazySingleton<_i95.CourseBloc>(() => _i95.CourseBloc(
         get<_i44.GetCoursesUseCase>(),
         get<_i4.AddCourseUseCase>(),
-        get<_i83.UpdateCourseUseCase>(),
+        get<_i87.UpdateCourseUseCase>(),
       ));
-  gh.lazySingleton<_i92.StudentBloc>(() => _i92.StudentBloc(
-        get<_i50.GetStudentUseCase>(),
-        get<_i9.AddStudentUseCase>(),
-        get<_i87.UpdateStudentUseCase>(),
+  gh.lazySingleton<_i96.ExamBloc>(() => _i96.ExamBloc(
+        get<_i45.GetExamsUseCase>(),
+        get<_i5.AddExamUseCase>(),
       ));
-  gh.lazySingleton<_i93.TeacherBloc>(() => _i93.TeacherBloc(
-        get<_i51.GetTeacherUseCase>(),
+  gh.lazySingleton<_i97.TeacherBloc>(() => _i97.TeacherBloc(
+        get<_i52.GetTeacherUseCase>(),
         get<_i10.AddTeacherUseCase>(),
-        get<_i88.UpdateTeacherUseCase>(),
+        get<_i92.UpdateTeacherUseCase>(),
       ));
   return get;
 }
 
-class _$ClassroomFeatureModule extends _i94.ClassroomFeatureModule {}
+class _$ClassroomFeatureModule extends _i98.ClassroomFeatureModule {}
 
-class _$CourseFeatureModule extends _i95.CourseFeatureModule {}
+class _$CourseFeatureModule extends _i99.CourseFeatureModule {}
 
-class _$ExamFeatureModule extends _i96.ExamFeatureModule {}
+class _$ExamFeatureModule extends _i100.ExamFeatureModule {}
 
-class _$MediatorFeatureModule extends _i97.MediatorFeatureModule {}
+class _$MediatorFeatureModule extends _i101.MediatorFeatureModule {}
 
-class _$RollcallFeatureModule extends _i98.RollcallFeatureModule {}
+class _$RollcallFeatureModule extends _i102.RollcallFeatureModule {}
 
-class _$ScoreFeatureModule extends _i99.ScoreFeatureModule {}
+class _$ScoreFeatureModule extends _i103.ScoreFeatureModule {}
 
-class _$StudentFeatureModule extends _i100.StudentFeatureModule {}
+class _$StudentFeatureModule extends _i104.StudentFeatureModule {}
 
-class _$TeacherFeatureModule extends _i101.TeacherFeatureModule {}
+class _$TeacherFeatureModule extends _i105.TeacherFeatureModule {}
 
-class _$AuthFeatureModule extends _i102.AuthFeatureModule {}
+class _$AuthFeatureModule extends _i106.AuthFeatureModule {}
 
-class _$ParentFeatureModule extends _i103.ParentFeatureModule {}
+class _$ParentFeatureModule extends _i107.ParentFeatureModule {}

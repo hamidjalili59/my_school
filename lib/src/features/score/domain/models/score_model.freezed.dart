@@ -38,9 +38,12 @@ mixin _$Score {
   @HiveField(4, defaultValue: 0.0)
   @JsonKey(name: 'grade')
   double get grade => throw _privateConstructorUsedError; // basic Information
-  @HiveField(5)
+  @HiveField(5, defaultValue: 0)
   @JsonKey(name: 'student_ID')
-  DateTime? get studentId => throw _privateConstructorUsedError;
+  int get studentId => throw _privateConstructorUsedError;
+  @HiveField(6)
+  @JsonKey(name: 'created_Date')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,9 +71,12 @@ abstract class $ScoreCopyWith<$Res> {
       @HiveField(4, defaultValue: 0.0)
       @JsonKey(name: 'grade')
           double grade,
-      @HiveField(5)
+      @HiveField(5, defaultValue: 0)
       @JsonKey(name: 'student_ID')
-          DateTime? studentId});
+          int studentId,
+      @HiveField(6)
+      @JsonKey(name: 'created_Date')
+          DateTime? createdDate});
 }
 
 /// @nodoc
@@ -91,7 +97,8 @@ class _$ScoreCopyWithImpl<$Res, $Val extends Score>
     Object? teacherName = null,
     Object? courseName = null,
     Object? grade = null,
-    Object? studentId = freezed,
+    Object? studentId = null,
+    Object? createdDate = freezed,
   }) {
     return _then(_value.copyWith(
       gradeId: null == gradeId
@@ -114,9 +121,13 @@ class _$ScoreCopyWithImpl<$Res, $Val extends Score>
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
               as double,
-      studentId: freezed == studentId
+      studentId: null == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
   }
@@ -144,9 +155,12 @@ abstract class _$$_ScoreCopyWith<$Res> implements $ScoreCopyWith<$Res> {
       @HiveField(4, defaultValue: 0.0)
       @JsonKey(name: 'grade')
           double grade,
-      @HiveField(5)
+      @HiveField(5, defaultValue: 0)
       @JsonKey(name: 'student_ID')
-          DateTime? studentId});
+          int studentId,
+      @HiveField(6)
+      @JsonKey(name: 'created_Date')
+          DateTime? createdDate});
 }
 
 /// @nodoc
@@ -163,7 +177,8 @@ class __$$_ScoreCopyWithImpl<$Res> extends _$ScoreCopyWithImpl<$Res, _$_Score>
     Object? teacherName = null,
     Object? courseName = null,
     Object? grade = null,
-    Object? studentId = freezed,
+    Object? studentId = null,
+    Object? createdDate = freezed,
   }) {
     return _then(_$_Score(
       gradeId: null == gradeId
@@ -186,9 +201,13 @@ class __$$_ScoreCopyWithImpl<$Res> extends _$ScoreCopyWithImpl<$Res, _$_Score>
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
               as double,
-      studentId: freezed == studentId
+      studentId: null == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
@@ -214,9 +233,12 @@ class _$_Score implements _Score {
       @HiveField(4, defaultValue: 0.0)
       @JsonKey(name: 'grade')
           this.grade = 0.0,
-      @HiveField(5)
+      @HiveField(5, defaultValue: 0)
       @JsonKey(name: 'student_ID')
-          this.studentId});
+          this.studentId = 0,
+      @HiveField(6)
+      @JsonKey(name: 'created_Date')
+          this.createdDate});
 
   factory _$_Score.fromJson(Map<String, dynamic> json) =>
       _$$_ScoreFromJson(json);
@@ -248,13 +270,17 @@ class _$_Score implements _Score {
   final double grade;
 // basic Information
   @override
-  @HiveField(5)
+  @HiveField(5, defaultValue: 0)
   @JsonKey(name: 'student_ID')
-  final DateTime? studentId;
+  final int studentId;
+  @override
+  @HiveField(6)
+  @JsonKey(name: 'created_Date')
+  final DateTime? createdDate;
 
   @override
   String toString() {
-    return 'Score(gradeId: $gradeId, classId: $classId, teacherName: $teacherName, courseName: $courseName, grade: $grade, studentId: $studentId)';
+    return 'Score(gradeId: $gradeId, classId: $classId, teacherName: $teacherName, courseName: $courseName, grade: $grade, studentId: $studentId, createdDate: $createdDate)';
   }
 
   @override
@@ -270,13 +296,15 @@ class _$_Score implements _Score {
                 other.courseName == courseName) &&
             (identical(other.grade, grade) || other.grade == grade) &&
             (identical(other.studentId, studentId) ||
-                other.studentId == studentId));
+                other.studentId == studentId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, gradeId, classId, teacherName, courseName, grade, studentId);
+  int get hashCode => Object.hash(runtimeType, gradeId, classId, teacherName,
+      courseName, grade, studentId, createdDate);
 
   @JsonKey(ignore: true)
   @override
@@ -309,9 +337,12 @@ abstract class _Score implements Score {
       @HiveField(4, defaultValue: 0.0)
       @JsonKey(name: 'grade')
           final double grade,
-      @HiveField(5)
+      @HiveField(5, defaultValue: 0)
       @JsonKey(name: 'student_ID')
-          final DateTime? studentId}) = _$_Score;
+          final int studentId,
+      @HiveField(6)
+      @JsonKey(name: 'created_Date')
+          final DateTime? createdDate}) = _$_Score;
 
   factory _Score.fromJson(Map<String, dynamic> json) = _$_Score.fromJson;
 
@@ -336,9 +367,13 @@ abstract class _Score implements Score {
   @JsonKey(name: 'grade')
   double get grade;
   @override // basic Information
-  @HiveField(5)
+  @HiveField(5, defaultValue: 0)
   @JsonKey(name: 'student_ID')
-  DateTime? get studentId;
+  int get studentId;
+  @override
+  @HiveField(6)
+  @JsonKey(name: 'created_Date')
+  DateTime? get createdDate;
   @override
   @JsonKey(ignore: true)
   _$$_ScoreCopyWith<_$_Score> get copyWith =>

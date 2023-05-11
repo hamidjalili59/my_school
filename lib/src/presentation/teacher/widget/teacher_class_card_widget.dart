@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
 import 'package:my_school/src/config/routes/router.dart';
@@ -20,6 +21,7 @@ class TeacherClassWidget extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
           icon: Icon(
             Icons.add_circle,
+            color: Colors.white,
             size: 26.r,
           ),
           onPressed: () {
@@ -32,7 +34,7 @@ class TeacherClassWidget extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              content: const addMediatorDialogWidget(),
+              content: const AddMediatorDialogWidget(),
               actions: [
                 MaterialButton(
                     onPressed: () {
@@ -75,34 +77,74 @@ class TeacherClassWidget extends StatelessWidget {
       body: BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
         bloc: getIt.get<TeacherDetailBloc>(),
         builder: (context, mediatorState) {
-          return SizedBox(
-            width: 1.sw,
-            height: 1.sh,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16.r,
-                mainAxisSpacing: 16.r,
-                mainAxisExtent: 0.3.sh,
-              ),
-              itemCount: mediatorState.mediators.length,
-              padding: EdgeInsets.only(top: 16.h, right: 12.w, left: 12.w),
-              itemBuilder: (context, index) {
-                return TeacherClassTileCardWidget(
-                  courseName: mediatorState.mediators[index].courseName,
-                  teacherName: mediatorState.mediators[index].basicInfo!.name,
-                );
-              },
-            ),
-          );
+          if (mediatorState.isLoading) {
+            return Center(
+              child: SizedBox(
+                  width: 55.w,
+                  height: 55.w,
+                  child: const CircularProgressIndicator()),
+            );
+          } else {
+            if (mediatorState.mediators.isNotEmpty) {
+              return SizedBox(
+                width: 1.sw,
+                height: 1.sh,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 16.r,
+                    mainAxisSpacing: 16.r,
+                    mainAxisExtent: 0.3.sh,
+                  ),
+                  itemCount: mediatorState.mediators.length,
+                  padding: EdgeInsets.only(top: 16.h, right: 12.w, left: 12.w),
+                  itemBuilder: (context, index) {
+                    return TeacherClassTileCardWidget(
+                      courseName: mediatorState.mediators[index].courseName,
+                      teacherName:
+                          mediatorState.mediators[index].basicInfo!.name,
+                    );
+                  },
+                ),
+              );
+            } else {
+              return SizedBox(
+                width: 1.sw,
+                height: 0.8.sh,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 0.95.sw,
+                        height: 0.5.sh,
+                        child: Padding(
+                          padding: EdgeInsets.all(54.0.r),
+                          child: SvgPicture.asset(
+                            'assets/empty.svg',
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'دبیری برای این کلاس وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800, fontSize: 18.r),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            }
+          }
         },
       ),
     );
   }
 }
 
-class addMediatorDialogWidget extends StatelessWidget {
-  const addMediatorDialogWidget({
+class AddMediatorDialogWidget extends StatelessWidget {
+  const AddMediatorDialogWidget({
     super.key,
   });
 

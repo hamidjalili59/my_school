@@ -12,9 +12,10 @@ _$_Score _$$_ScoreFromJson(Map<String, dynamic> json) => _$_Score(
       teacherName: json['teacher_Name'] as String? ?? '',
       courseName: json['course_Name'] as String? ?? '',
       grade: (json['grade'] as num?)?.toDouble() ?? 0.0,
-      studentId: json['student_ID'] == null
+      studentId: json['student_ID'] as int? ?? 0,
+      createdDate: json['created_Date'] == null
           ? null
-          : DateTime.parse(json['student_ID'] as String),
+          : DateTime.parse(json['created_Date'] as String),
     );
 
 Map<String, dynamic> _$$_ScoreToJson(_$_Score instance) => <String, dynamic>{
@@ -23,5 +24,6 @@ Map<String, dynamic> _$$_ScoreToJson(_$_Score instance) => <String, dynamic>{
       'teacher_Name': instance.teacherName,
       'course_Name': instance.courseName,
       'grade': instance.grade,
-      'student_ID': instance.studentId?.toIso8601String(),
+      'student_ID': instance.studentId,
+      'created_Date': instance.createdDate?.toIso8601String(),
     };

@@ -24,7 +24,7 @@ class ScoreRepositoryImpl extends ScoreRepository {
                 left<ScoreFailure, ScoreSuccessResponse>(ScoreFailure.api(l)),
             (r) async {
               final scoreAddSuccessResponse = ScoreSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<ScoreFailure, ScoreSuccessResponse>(
                 scoreAddSuccessResponse,
@@ -59,15 +59,15 @@ class ScoreRepositoryImpl extends ScoreRepository {
 
   @override
   Future<Either<ScoreFailure, ScoreGetResponse>> getScores(
-      {required int classId, required double phoneNumber}) {
-    return _remoteDS.getScores(classId: classId, phoneNumber: phoneNumber).then(
+      {required int studentId}) {
+    return _remoteDS.getScores(studentId: studentId).then(
           (value) => value.fold(
             (l) => left<ScoreFailure, ScoreGetResponse>(
               ScoreFailure.api(l),
             ),
             (r) async {
               final scoresDataFromServer = ScoreGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<ScoreFailure, ScoreGetResponse>(
                 scoresDataFromServer,
@@ -98,7 +98,7 @@ class ScoreRepositoryImpl extends ScoreRepository {
             ),
             (r) async {
               final updateScoreOnServer = ScoreSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<ScoreFailure, ScoreSuccessResponse>(
                 updateScoreOnServer,

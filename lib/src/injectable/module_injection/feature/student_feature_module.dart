@@ -8,6 +8,7 @@ import 'package:my_school/src/features/student/domain/repositories/student_repos
 import 'package:my_school/src/features/student/domain/use_cases/add_student_use_case.dart';
 import 'package:my_school/src/features/student/domain/use_cases/cache_student_data_use_case.dart';
 import 'package:my_school/src/features/student/domain/use_cases/get_cached_student_data_use_case.dart';
+import 'package:my_school/src/features/student/domain/use_cases/get_students_parent_use_case.dart';
 import 'package:my_school/src/features/student/domain/use_cases/get_students_use_case.dart';
 import 'package:my_school/src/features/student/domain/use_cases/remove_student_use_case.dart';
 import 'package:my_school/src/features/student/domain/use_cases/update_student_use_case.dart';
@@ -29,6 +30,8 @@ abstract class StudentFeatureModule {
       CacheStudentDataUseCase(repo);
   GetCachedStudentDataUseCase get getCachedStudentDataUseCase =>
       GetCachedStudentDataUseCase(repo);
+  GetStudentParentUseCase get getStudentParentUseCase =>
+      GetStudentParentUseCase(repo);
   GetStudentUseCase get getStudentsUseCase => GetStudentUseCase(repo);
   RemoveStudentUseCase get removeStudentUseCase => RemoveStudentUseCase(repo);
   UpdateStudentUseCase get updateStudentUseCase => UpdateStudentUseCase(repo);

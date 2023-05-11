@@ -26,7 +26,7 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
     this._getTeacherUseCase,
     this._addTeacherUseCase,
     this._updateTeacherUseCase,
-  ) : super(const TeacherState.idle()) {
+  ) : super(const TeacherState.idle(isLoading: true)) {
     on<_GetTeachers>(_onGetTeachers);
     on<_AddTeacher>(_onAddTeacher);
     on<_UpdateTeacher>(_onUpdateTeacher);
@@ -44,6 +44,7 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
 
   FutureOr<void> _onGetTeachers(
       _GetTeachers event, Emitter<TeacherState> emit) async {
+    emit(const TeacherState.idle(isLoading: true));
     await _getTeacherUseCase
         .call(param: tuple.Tuple1(event.schoolId))
         .then((value) => value.fold(

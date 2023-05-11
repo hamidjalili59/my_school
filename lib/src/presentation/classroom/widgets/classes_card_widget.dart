@@ -21,7 +21,6 @@ class ClassesCardWidget extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 8.0.h),
       child: InkWell(
         onTap: () {
-          // GeneralConstants.appbarTitle = title;
           if (getIt.isRegistered<Classroom>()) {
             getIt.unregister<Classroom>();
             getIt.registerSingleton<Classroom>(classroom);

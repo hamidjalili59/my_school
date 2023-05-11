@@ -16,17 +16,13 @@ class ExamRepositoryImpl extends ExamRepository {
   ExamRepositoryImpl(this._remoteDS, this._localDS);
 
   @override
-  Future<Either<ExamFailure, ExamSuccessResponse>> addExam(
-      {required Exam exam}) {
+  Future<Either<ExamFailure, void>> addExam({required Exam exam}) {
     return _remoteDS.addExam(exam: exam).then(
           (value) => value.fold(
-            (l) => left<ExamFailure, ExamSuccessResponse>(ExamFailure.api(l)),
+            (l) => left<ExamFailure, void>(ExamFailure.api(l)),
             (r) async {
-              final examAddSuccessResponse = ExamSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ExamFailure, ExamSuccessResponse>(
-                examAddSuccessResponse,
+              return right<ExamFailure, void>(
+                null,
               );
             },
           ),
@@ -65,7 +61,7 @@ class ExamRepositoryImpl extends ExamRepository {
             ),
             (r) async {
               final examsDataFromServer = ExamGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<ExamFailure, ExamGetResponse>(
                 examsDataFromServer,

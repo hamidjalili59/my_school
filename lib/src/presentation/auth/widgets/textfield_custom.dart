@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onSubmitted;
   final TextInputType keyboardType;
   final TextEditingController controller;
+  final String hint;
   const CustomTextField({
     Key? key,
     required this.icon,
@@ -22,6 +23,7 @@ class CustomTextField extends StatelessWidget {
     required this.keyboardType,
     required this.controller,
     this.onSubmitted,
+    this.hint = '',
   }) : super(key: key);
 
   @override
@@ -44,7 +46,15 @@ class CustomTextField extends StatelessWidget {
         minLines: minLines,
         controller: controller,
         decoration: InputDecoration(
-          icon: Icon(icon),
+          icon: Padding(
+            padding: EdgeInsets.only(left: 8.0.w),
+            child: Icon(
+              icon,
+              size: 26.r,
+            ),
+          ),
+          hintText: hint,
+          hintStyle: TextStyle(color: Colors.black45, fontSize: 16.r),
           iconColor: const Color.fromARGB(255, 141, 108, 159),
           border: InputBorder.none,
           counterText: '',

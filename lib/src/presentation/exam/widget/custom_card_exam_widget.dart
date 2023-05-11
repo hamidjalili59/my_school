@@ -6,12 +6,10 @@ class CustomCardExamWidget extends StatelessWidget {
   const CustomCardExamWidget({
     Key? key,
     required this.teacherName,
-    required this.date,
     required this.isDone,
     required this.examDescription,
   }) : super(key: key);
   final String teacherName;
-  final DateTime date;
   final bool isDone;
   final String examDescription;
   @override
@@ -24,8 +22,8 @@ class CustomCardExamWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(top: 12.0.h, left: 16.w, right: 12.w),
               child: Container(
-                constraints:
-                    BoxConstraints(maxHeight: 0.5.sh, minHeight: 0.05.sh),
+                constraints: BoxConstraints(
+                    maxHeight: 0.5.sh, minHeight: 0.05.sh, minWidth: 0.85.sw),
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 243, 243, 234),
                   borderRadius: BorderRadius.circular(12.r),
@@ -37,24 +35,6 @@ class CustomCardExamWidget extends StatelessWidget {
                         blurStyle: BlurStyle.outer,
                         offset: Offset(0.1, 0.1))
                   ],
-                  // border: Border(
-                  //   bottom: BorderSide(
-                  //       color: Colors.black12,
-                  //       width: 1.w,
-                  //       strokeAlign: StrokeAlign.inside),
-                  //   right: BorderSide(
-                  //       color: Colors.black12,
-                  //       width: 1.w,
-                  //       strokeAlign: StrokeAlign.inside),
-                  //   left: BorderSide(
-                  //       color: Colors.black12,
-                  //       width: 1.w,
-                  //       strokeAlign: StrokeAlign.inside),
-                  //   top: BorderSide(
-                  //       color: Colors.black12,
-                  //       width: 1.w,
-                  //       strokeAlign: StrokeAlign.inside),
-                  // ),
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
@@ -66,7 +46,7 @@ class CustomCardExamWidget extends StatelessWidget {
                       fontSize: 14.r,
                       color: Colors.black87,
                     ),
-                    textAlign: TextAlign.right,
+                    textAlign: TextAlign.center,
                     textDirection: TextDirection.rtl,
                   ),
                 ),
@@ -109,9 +89,11 @@ class CustomCardExamWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Icon(
-                      Icons.check_box,
+                      isDone
+                          ? Icons.check_box_rounded
+                          : Icons.check_box_outline_blank_rounded,
                       size: 26.r,
-                      color: Colors.green,
+                      color: isDone ? Colors.green : Colors.black,
                     ),
                     Container(
                       alignment: Alignment.center,

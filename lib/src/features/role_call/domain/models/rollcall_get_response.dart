@@ -9,6 +9,7 @@ part 'rollcall_get_response.g.dart';
 @JsonSerializable()
 class RollcallGetResponse {
   @HiveField(0)
+  @JsonKey(name: 'RollCalls')
   final List<Rollcall> rollcalls;
 
   RollcallGetResponse({required this.rollcalls});

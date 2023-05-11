@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/injectable/injectable.dart';
@@ -32,12 +33,19 @@ class ClassDetailsPage extends StatelessWidget {
                       flex: 3,
                       child: HomeCustomAppBar(
                         bloc: bloc,
-                        title: getIt.get<Classroom>().className ?? 'مدرسه من',
-                        buttonsList: const [
-                          AppbarPageType.student,
-                          AppbarPageType.teacher,
-                          AppbarPageType.exams,
-                        ],
+                        title: GeneralConstants.userType == UserType.admin
+                            ? getIt.get<Classroom>().className ?? 'مدرسه من'
+                            : 'مدرسه من',
+                        buttonsList:
+                            GeneralConstants.userType == UserType.parent
+                                ? const [
+                                    AppbarPageType.student,
+                                  ]
+                                : const [
+                                    AppbarPageType.student,
+                                    AppbarPageType.teacher,
+                                    AppbarPageType.exams,
+                                  ],
                       )),
                   Expanded(
                     flex: 12,
@@ -52,7 +60,7 @@ class ClassDetailsPage extends StatelessWidget {
                             } else if (pageState == AppbarPageType.teacher) {
                               return SizedBox(child: TeacherPage());
                             } else {
-                              return SizedBox(child: ExamPage());
+                              return const SizedBox(child: ExamPage());
                             }
                           },
                         );

@@ -8,15 +8,16 @@ import 'package:my_school/src/features/student/domain/repositories/student_repos
 
 class AddStudentUseCase
     implements
-        UseCase<StudentFailure, StudentSuccessResponse, tuple.Tuple1<Student>> {
+        UseCase<StudentFailure, StudentSuccessResponse,
+            tuple.Tuple2<Student, String>> {
   const AddStudentUseCase(this.repo);
 
   final StudentRepository repo;
 
   @override
   Future<Either<StudentFailure, StudentSuccessResponse>> call(
-          {tuple.Tuple1<Student>? param}) =>
+          {tuple.Tuple2<Student, String>? param}) =>
       (param == null)
           ? Future.value(left(const StudentFailure.nullParam()))
-          : repo.addStudent(student: param.value1);
+          : repo.addStudent(student: param.value1, parentName: param.value2);
 }

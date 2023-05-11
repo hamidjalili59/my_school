@@ -21,19 +21,24 @@ Rollcall _$RollcallFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Rollcall {
 // account email
-  @HiveField(0)
-  int? get rolecallId => throw _privateConstructorUsedError; //
-  @HiveField(1)
-  int? get studentId => throw _privateConstructorUsedError; // basic Information
-  @HiveField(2)
-  String? get classId =>
-      throw _privateConstructorUsedError; // basic Information
-  @HiveField(3)
-  int? get classTime => throw _privateConstructorUsedError; // basic Information
-  @HiveField(4)
-  bool? get absent => throw _privateConstructorUsedError; // basic Information
-  @HiveField(5)
-  String? get date => throw _privateConstructorUsedError;
+  @HiveField(0, defaultValue: 0)
+  @JsonKey(name: 'rollCall_ID')
+  int get rolecallId => throw _privateConstructorUsedError; //
+  @HiveField(1, defaultValue: 0)
+  @JsonKey(name: 'student_ID')
+  int get studentId => throw _privateConstructorUsedError; // basic Information
+  @HiveField(2, defaultValue: 0)
+  @JsonKey(name: 'class_ID')
+  int get classId => throw _privateConstructorUsedError; // basic Information
+  @HiveField(3, defaultValue: 0)
+  @JsonKey(name: 'class_Time')
+  int get classTime => throw _privateConstructorUsedError; // basic Information
+  @HiveField(4, defaultValue: false)
+  @JsonKey(name: 'absent')
+  bool get absent => throw _privateConstructorUsedError; // basic Information
+  @HiveField(5, defaultValue: '')
+  @JsonKey(name: 'date')
+  String get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,12 +52,24 @@ abstract class $RollcallCopyWith<$Res> {
       _$RollcallCopyWithImpl<$Res, Rollcall>;
   @useResult
   $Res call(
-      {@HiveField(0) int? rolecallId,
-      @HiveField(1) int? studentId,
-      @HiveField(2) String? classId,
-      @HiveField(3) int? classTime,
-      @HiveField(4) bool? absent,
-      @HiveField(5) String? date});
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'rollCall_ID')
+          int rolecallId,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'student_ID')
+          int studentId,
+      @HiveField(2, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          int classId,
+      @HiveField(3, defaultValue: 0)
+      @JsonKey(name: 'class_Time')
+          int classTime,
+      @HiveField(4, defaultValue: false)
+      @JsonKey(name: 'absent')
+          bool absent,
+      @HiveField(5, defaultValue: '')
+      @JsonKey(name: 'date')
+          String date});
 }
 
 /// @nodoc
@@ -68,38 +85,38 @@ class _$RollcallCopyWithImpl<$Res, $Val extends Rollcall>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? rolecallId = freezed,
-    Object? studentId = freezed,
-    Object? classId = freezed,
-    Object? classTime = freezed,
-    Object? absent = freezed,
-    Object? date = freezed,
+    Object? rolecallId = null,
+    Object? studentId = null,
+    Object? classId = null,
+    Object? classTime = null,
+    Object? absent = null,
+    Object? date = null,
   }) {
     return _then(_value.copyWith(
-      rolecallId: freezed == rolecallId
+      rolecallId: null == rolecallId
           ? _value.rolecallId
           : rolecallId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      studentId: freezed == studentId
+              as int,
+      studentId: null == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      classId: freezed == classId
+              as int,
+      classId: null == classId
           ? _value.classId
           : classId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      classTime: freezed == classTime
+              as int,
+      classTime: null == classTime
           ? _value.classTime
           : classTime // ignore: cast_nullable_to_non_nullable
-              as int?,
-      absent: freezed == absent
+              as int,
+      absent: null == absent
           ? _value.absent
           : absent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      date: freezed == date
+              as bool,
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -112,12 +129,24 @@ abstract class _$$_RollcallCopyWith<$Res> implements $RollcallCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int? rolecallId,
-      @HiveField(1) int? studentId,
-      @HiveField(2) String? classId,
-      @HiveField(3) int? classTime,
-      @HiveField(4) bool? absent,
-      @HiveField(5) String? date});
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'rollCall_ID')
+          int rolecallId,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'student_ID')
+          int studentId,
+      @HiveField(2, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          int classId,
+      @HiveField(3, defaultValue: 0)
+      @JsonKey(name: 'class_Time')
+          int classTime,
+      @HiveField(4, defaultValue: false)
+      @JsonKey(name: 'absent')
+          bool absent,
+      @HiveField(5, defaultValue: '')
+      @JsonKey(name: 'date')
+          String date});
 }
 
 /// @nodoc
@@ -131,38 +160,38 @@ class __$$_RollcallCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? rolecallId = freezed,
-    Object? studentId = freezed,
-    Object? classId = freezed,
-    Object? classTime = freezed,
-    Object? absent = freezed,
-    Object? date = freezed,
+    Object? rolecallId = null,
+    Object? studentId = null,
+    Object? classId = null,
+    Object? classTime = null,
+    Object? absent = null,
+    Object? date = null,
   }) {
     return _then(_$_Rollcall(
-      rolecallId: freezed == rolecallId
+      rolecallId: null == rolecallId
           ? _value.rolecallId
           : rolecallId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      studentId: freezed == studentId
+              as int,
+      studentId: null == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      classId: freezed == classId
+              as int,
+      classId: null == classId
           ? _value.classId
           : classId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      classTime: freezed == classTime
+              as int,
+      classTime: null == classTime
           ? _value.classTime
           : classTime // ignore: cast_nullable_to_non_nullable
-              as int?,
-      absent: freezed == absent
+              as int,
+      absent: null == absent
           ? _value.absent
           : absent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      date: freezed == date
+              as bool,
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -172,40 +201,58 @@ class __$$_RollcallCopyWithImpl<$Res>
 @HiveType(typeId: 22)
 class _$_Rollcall implements _Rollcall {
   _$_Rollcall(
-      {@HiveField(0) this.rolecallId,
-      @HiveField(1) this.studentId,
-      @HiveField(2) this.classId,
-      @HiveField(3) this.classTime,
-      @HiveField(4) this.absent,
-      @HiveField(5) this.date});
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'rollCall_ID')
+          this.rolecallId = 0,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'student_ID')
+          this.studentId = 0,
+      @HiveField(2, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          this.classId = 0,
+      @HiveField(3, defaultValue: 0)
+      @JsonKey(name: 'class_Time')
+          this.classTime = 0,
+      @HiveField(4, defaultValue: false)
+      @JsonKey(name: 'absent')
+          this.absent = false,
+      @HiveField(5, defaultValue: '')
+      @JsonKey(name: 'date')
+          this.date = ''});
 
   factory _$_Rollcall.fromJson(Map<String, dynamic> json) =>
       _$$_RollcallFromJson(json);
 
 // account email
   @override
-  @HiveField(0)
-  final int? rolecallId;
+  @HiveField(0, defaultValue: 0)
+  @JsonKey(name: 'rollCall_ID')
+  final int rolecallId;
 //
   @override
-  @HiveField(1)
-  final int? studentId;
+  @HiveField(1, defaultValue: 0)
+  @JsonKey(name: 'student_ID')
+  final int studentId;
 // basic Information
   @override
-  @HiveField(2)
-  final String? classId;
+  @HiveField(2, defaultValue: 0)
+  @JsonKey(name: 'class_ID')
+  final int classId;
 // basic Information
   @override
-  @HiveField(3)
-  final int? classTime;
+  @HiveField(3, defaultValue: 0)
+  @JsonKey(name: 'class_Time')
+  final int classTime;
 // basic Information
   @override
-  @HiveField(4)
-  final bool? absent;
+  @HiveField(4, defaultValue: false)
+  @JsonKey(name: 'absent')
+  final bool absent;
 // basic Information
   @override
-  @HiveField(5)
-  final String? date;
+  @HiveField(5, defaultValue: '')
+  @JsonKey(name: 'date')
+  final String date;
 
   @override
   String toString() {
@@ -249,33 +296,51 @@ class _$_Rollcall implements _Rollcall {
 
 abstract class _Rollcall implements Rollcall {
   factory _Rollcall(
-      {@HiveField(0) final int? rolecallId,
-      @HiveField(1) final int? studentId,
-      @HiveField(2) final String? classId,
-      @HiveField(3) final int? classTime,
-      @HiveField(4) final bool? absent,
-      @HiveField(5) final String? date}) = _$_Rollcall;
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'rollCall_ID')
+          final int rolecallId,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'student_ID')
+          final int studentId,
+      @HiveField(2, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          final int classId,
+      @HiveField(3, defaultValue: 0)
+      @JsonKey(name: 'class_Time')
+          final int classTime,
+      @HiveField(4, defaultValue: false)
+      @JsonKey(name: 'absent')
+          final bool absent,
+      @HiveField(5, defaultValue: '')
+      @JsonKey(name: 'date')
+          final String date}) = _$_Rollcall;
 
   factory _Rollcall.fromJson(Map<String, dynamic> json) = _$_Rollcall.fromJson;
 
   @override // account email
-  @HiveField(0)
-  int? get rolecallId;
+  @HiveField(0, defaultValue: 0)
+  @JsonKey(name: 'rollCall_ID')
+  int get rolecallId;
   @override //
-  @HiveField(1)
-  int? get studentId;
+  @HiveField(1, defaultValue: 0)
+  @JsonKey(name: 'student_ID')
+  int get studentId;
   @override // basic Information
-  @HiveField(2)
-  String? get classId;
+  @HiveField(2, defaultValue: 0)
+  @JsonKey(name: 'class_ID')
+  int get classId;
   @override // basic Information
-  @HiveField(3)
-  int? get classTime;
+  @HiveField(3, defaultValue: 0)
+  @JsonKey(name: 'class_Time')
+  int get classTime;
   @override // basic Information
-  @HiveField(4)
-  bool? get absent;
+  @HiveField(4, defaultValue: false)
+  @JsonKey(name: 'absent')
+  bool get absent;
   @override // basic Information
-  @HiveField(5)
-  String? get date;
+  @HiveField(5, defaultValue: '')
+  @JsonKey(name: 'date')
+  String get date;
   @override
   @JsonKey(ignore: true)
   _$$_RollcallCopyWith<_$_Rollcall> get copyWith =>

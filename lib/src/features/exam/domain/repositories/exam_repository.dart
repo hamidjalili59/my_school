@@ -6,8 +6,7 @@ import 'package:my_school/src/features/exam/domain/models/exam_success_response.
 
 abstract class ExamRepository {
   //
-  Future<Either<ExamFailure, ExamSuccessResponse>> addExam(
-      {required Exam exam});
+  Future<Either<ExamFailure, void>> addExam({required Exam exam});
   //
   Future<Either<ExamFailure, ExamSuccessResponse>> updateExam({
     required int examId,
@@ -31,7 +30,6 @@ abstract class ExamRepository {
     required List<Exam> exams,
   });
   //
-  Future<Either<ExamFailure, ExamGetResponse>>
-      getCachedExamData();
+  Future<Either<ExamFailure, ExamGetResponse>> getCachedExamData();
   //
 }

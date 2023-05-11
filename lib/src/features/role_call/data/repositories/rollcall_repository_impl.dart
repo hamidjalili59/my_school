@@ -25,7 +25,7 @@ class RollcallRepositoryImpl extends RollcallRepository {
             (r) async {
               final rollcallAddSuccessResponse =
                   RollcallSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<RollcallFailure, RollcallSuccessResponse>(
                 rollcallAddSuccessResponse,
@@ -68,7 +68,7 @@ class RollcallRepositoryImpl extends RollcallRepository {
             ),
             (r) async {
               final rollcallsDataFromServer = RollcallGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<RollcallFailure, RollcallGetResponse>(
                 rollcallsDataFromServer,

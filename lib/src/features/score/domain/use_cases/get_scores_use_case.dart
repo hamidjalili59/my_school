@@ -6,14 +6,15 @@ import 'package:my_school/src/features/score/domain/models/score_get_response.da
 import 'package:my_school/src/features/score/domain/repositories/score_repository.dart';
 
 class GetScoreUseCase
-    implements UseCase<ScoreFailure, ScoreGetResponse, tuple.Tuple2<int,double>> {
+    implements UseCase<ScoreFailure, ScoreGetResponse, tuple.Tuple1<int>> {
   const GetScoreUseCase(this.repo);
 
   final ScoreRepository repo;
 
   @override
-  Future<Either<ScoreFailure, ScoreGetResponse>> call({tuple.Tuple2<int,double>? param}) =>
+  Future<Either<ScoreFailure, ScoreGetResponse>> call(
+          {tuple.Tuple1<int>? param}) =>
       (param == null)
           ? Future.value(left(const ScoreFailure.nullParam()))
-          : repo.getScores(classId: param.value1, phoneNumber: param.value2);
+          : repo.getScores(studentId: param.value1);
 }

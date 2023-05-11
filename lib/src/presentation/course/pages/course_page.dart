@@ -20,6 +20,7 @@ class CoursePage extends StatelessWidget {
         floatingActionButton: FloatingActionButton.extended(
             icon: Icon(
               Icons.add_circle,
+              color: Colors.white,
               size: 26.r,
             ),
             onPressed: () {

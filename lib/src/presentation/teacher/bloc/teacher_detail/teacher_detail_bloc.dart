@@ -23,7 +23,7 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
   final GetMediatorUseCase _getMediatorUseCase;
   final AddMediatorUseCase _addMediatorUseCase;
   TeacherDetailBloc(this._getMediatorUseCase, this._addMediatorUseCase)
-      : super(const TeacherDetailState.idle()) {
+      : super(const TeacherDetailState.idle(isLoading: true)) {
     on<_SelectCourseItem>(_onSelectCourseItem);
     on<_SelectTeacherItem>(_onSelectTeacherItem);
     on<_AcceptTeacher>(_onAcceptTeacher);
@@ -73,6 +73,7 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
 
   FutureOr<void> _onGetMediators(
       _GetMediators event, Emitter<TeacherDetailState> emit) async {
+    emit(const TeacherDetailState.idle(isLoading: true));
     await _getMediatorUseCase
         .call(param: tuple.Tuple1<int>(getIt.get<Classroom>().classID!))
         .then(

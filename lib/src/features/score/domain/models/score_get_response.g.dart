@@ -46,12 +46,12 @@ class ScoreGetResponseAdapter extends TypeAdapter<ScoreGetResponse> {
 
 ScoreGetResponse _$ScoreGetResponseFromJson(Map<String, dynamic> json) =>
     ScoreGetResponse(
-      scores: (json['Scores'] as List<dynamic>)
+      scores: (json['Grades'] as List<dynamic>)
           .map((e) => Score.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$ScoreGetResponseToJson(ScoreGetResponse instance) =>
     <String, dynamic>{
-      'Scores': instance.scores,
+      'Grades': instance.scores,
     };

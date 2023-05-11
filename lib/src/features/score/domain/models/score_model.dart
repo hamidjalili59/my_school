@@ -43,7 +43,11 @@ class Score with _$Score {
     @Default(0.0)
         double grade,
     // basic Information
-    @HiveField(5) @JsonKey(name: 'student_ID') DateTime? studentId,
+    @HiveField(5, defaultValue: 0)
+    @JsonKey(name: 'student_ID')
+    @Default(0)
+        int studentId,
+    @HiveField(6) @JsonKey(name: 'created_Date') DateTime? createdDate,
   }) = _Score;
 
   ///das

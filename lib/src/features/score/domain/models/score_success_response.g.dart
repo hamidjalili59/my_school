@@ -47,11 +47,11 @@ class ScoreSuccessResponseAdapter extends TypeAdapter<ScoreSuccessResponse> {
 ScoreSuccessResponse _$ScoreSuccessResponseFromJson(
         Map<String, dynamic> json) =>
     ScoreSuccessResponse(
-      score: Score.fromJson(json['score'] as Map<String, dynamic>),
+      score: Score.fromJson(json['Grades'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ScoreSuccessResponseToJson(
         ScoreSuccessResponse instance) =>
     <String, dynamic>{
-      'score': instance.score,
+      'Grades': instance.score,
     };

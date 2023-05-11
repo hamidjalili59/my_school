@@ -43,10 +43,7 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
 
   FutureOr<void> _onGetClasses(
       _GetClasses event, Emitter<ClassroomState> emit) async {
-    emit(ClassroomState.idle(
-      classes: getIt.isRegistered<ClassroomGetResponse>()
-          ? getIt.get<ClassroomGetResponse>().classrooms
-          : [],
+    emit(const ClassroomState.idle(
       isLoading: true,
     ));
     await _getClassroomsUseCase
@@ -73,7 +70,6 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
               emit(ClassroomState.idle(
                 classes: r.classrooms,
                 isLoading: false,
-                // pageState: AppbarPageType.student,
               ));
             },
           ),

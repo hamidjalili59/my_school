@@ -1,31 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/injectable/injectable.dart';
+import 'package:my_school/src/presentation/score/bloc/score_board/score_board_bloc.dart';
 
 class AddScoreForClassPage extends StatelessWidget {
   const AddScoreForClassPage({super.key});
   @override
   Widget build(BuildContext context) {
-    Map temp = {
-      'هادی شریف زاده': 20,
-      'محسن پیرفخرآبادی': 19.75,
-      'احسان اکبری': 20,
-      'مهدی شیبانی': 15,
-      'حمیدجلیلی': 9.5,
-      'بابک پاکزاد': 0,
-      'مجید لطیفی': 20,
-      'مهدی محمودی': 18,
-      'سجاد فشائی': 10,
-      'مصطفی فهیمی': 19,
-      'مصطفی فهیمی1': 19,
-      'مصطفی فهیمی2': 19,
-      'مصطفی فهیمی23': 19,
-      'مصطفی فهیمی4': 19,
-      'مصطفی فهیمی45': 19,
-      'مصطفی فهیمی6': 19,
-    };
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -39,71 +23,95 @@ class AddScoreForClassPage extends StatelessWidget {
                     height: 0.9.sh,
                     child: Directionality(
                       textDirection: TextDirection.rtl,
-                      child: SingleChildScrollView(
-                        child: DataTable(
-                          headingRowHeight: 60.h,
-                          dataRowHeight: 50.h,
-                          border: TableBorder.all(
-                              color: Colors.black54,
-                              borderRadius: BorderRadius.circular(8.r),
-                              width: 1.w),
-                          columns: <DataColumn>[
-                            DataColumn(
-                              onSort: (index, isfelan) {},
-                              label: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'نام و نام‌خانوادگی',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 18.r,
+                      child: BlocBuilder<ScoreBoardBloc, ScoreBoardState>(
+                        bloc: getIt.get<ScoreBoardBloc>(),
+                        builder: (context, scoreBoardState) {
+                          return SingleChildScrollView(
+                            child: DataTable(
+                              headingRowHeight: 70.h,
+                              headingTextStyle: TextStyle(
+                                  fontSize: 10.r, color: Colors.black),
+                              dataRowHeight: 50.h,
+                              border: TableBorder.all(
+                                  color: Colors.black54,
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  width: 1.w),
+                              horizontalMargin: 0,
+                              checkboxHorizontalMargin: 0,
+                              columns: <DataColumn>[
+                                DataColumn(
+                                  onSort: (index, isfelan) {},
+                                  label: Flexible(
+                                    flex: 4,
+                                    child: Center(
+                                      child: Text(
+                                        'نام و نام‌خانوادگی',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 16.r,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.arrow_drop_down_rounded,
-                                    size: 18.r,
+                                ),
+                                DataColumn(
+                                  onSort: (index, isfelan) {},
+                                  label: Flexible(
+                                    flex: 1,
+                                    child: Center(
+                                      child: Text('نمره',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 16.r)),
+                                    ),
                                   ),
-                                ],
+                                ),
+                              ],
+                              rows: List.generate(
+                                scoreBoardState.students.length,
+                                (index) => DataRow(cells: [
+                                  DataCell(
+                                    SizedBox(
+                                      width: 0.64.sw,
+                                      child: Center(
+                                        child: Text(
+                                            scoreBoardState.students[index]
+                                                .basicInfo!.name,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 16.r)),
+                                      ),
+                                    ),
+                                  ),
+                                  DataCell(
+                                    SizedBox(
+                                      width: 0.35.sw,
+                                      child: TextFormField(
+                                        controller: TextEditingController(),
+                                        expands: true,
+                                        maxLength: 4,
+                                        keyboardType: TextInputType.number,
+                                        decoration: const InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            contentPadding: EdgeInsets.zero,
+                                            counterText: '',
+                                            counterStyle:
+                                                TextStyle(fontSize: 0)),
+                                        textAlign: TextAlign.center,
+                                        maxLines: null,
+                                        minLines: null,
+                                      ),
+                                    ),
+                                  )
+                                ]),
                               ),
+                              columnSpacing: 0,
                             ),
-                            DataColumn(
-                              onSort: (index, isfelan) {},
-                              label: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('نمره',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 22.r)),
-                                  Icon(Icons.arrow_drop_down_rounded,
-                                      size: 25.r),
-                                ],
-                              ),
-                            ),
-                          ],
-                          rows: List.generate(
-                            temp.length,
-                            (index) => DataRow(cells: [
-                              DataCell(
-                                Text(temp.keys.toList()[index],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16.r)),
-                              ),
-                              DataCell(
-                                Text(temp.values.toList()[index].toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16.r)),
-                              )
-                            ]),
-                          ),
-                        ),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -147,17 +155,20 @@ class AddScoreForClassPage extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.w),
                         child: Text(
-                          'جمعه 20/9/1401 ساعت 9:28\nمدرسه شهید نظری',
+                          // 'جمعه 20/9/1401 ساعت 9:28\nمدرسه شهید نظری',
+                          'ثبت نمرات',
                           style: TextStyle(
-                              fontSize: 16.r,
+                              fontSize: 22.r,
                               color: Colors.white,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w900),
                           textAlign: TextAlign.center,
                           textDirection: TextDirection.rtl,
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          // getIt.get<ScoreBoardBloc>().add(ScoreBoardEvent.acceptScores(scores));
+                        },
                         child: SizedBox(
                           width: 60.w,
                           height: 40.w,

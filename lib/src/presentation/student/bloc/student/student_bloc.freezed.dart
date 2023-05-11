@@ -244,42 +244,49 @@ abstract class _Idle implements StudentState {
 
 /// @nodoc
 mixin _$StudentEvent {
-  int get classId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int classId) getStudents,
+    required TResult Function(double phoneNumber) getStudentsParent,
+    required TResult Function(Student student, String parentName) addStudent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int classId)? getStudents,
+    TResult? Function(double phoneNumber)? getStudentsParent,
+    TResult? Function(Student student, String parentName)? addStudent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int classId)? getStudents,
+    TResult Function(double phoneNumber)? getStudentsParent,
+    TResult Function(Student student, String parentName)? addStudent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetStudents value) getStudents,
+    required TResult Function(_GetStudentsParent value) getStudentsParent,
+    required TResult Function(_AddStudent value) addStudent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetStudents value)? getStudents,
+    TResult? Function(_GetStudentsParent value)? getStudentsParent,
+    TResult? Function(_AddStudent value)? addStudent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetStudents value)? getStudents,
+    TResult Function(_GetStudentsParent value)? getStudentsParent,
+    TResult Function(_AddStudent value)? addStudent,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $StudentEventCopyWith<StudentEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -288,8 +295,6 @@ abstract class $StudentEventCopyWith<$Res> {
   factory $StudentEventCopyWith(
           StudentEvent value, $Res Function(StudentEvent) then) =
       _$StudentEventCopyWithImpl<$Res, StudentEvent>;
-  @useResult
-  $Res call({int classId});
 }
 
 /// @nodoc
@@ -301,28 +306,13 @@ class _$StudentEventCopyWithImpl<$Res, $Val extends StudentEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? classId = null,
-  }) {
-    return _then(_value.copyWith(
-      classId: null == classId
-          ? _value.classId
-          : classId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_GetStudentsCopyWith<$Res>
-    implements $StudentEventCopyWith<$Res> {
+abstract class _$$_GetStudentsCopyWith<$Res> {
   factory _$$_GetStudentsCopyWith(
           _$_GetStudents value, $Res Function(_$_GetStudents) then) =
       __$$_GetStudentsCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int classId});
 }
@@ -383,6 +373,8 @@ class _$_GetStudents implements _GetStudents {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int classId) getStudents,
+    required TResult Function(double phoneNumber) getStudentsParent,
+    required TResult Function(Student student, String parentName) addStudent,
   }) {
     return getStudents(classId);
   }
@@ -391,6 +383,8 @@ class _$_GetStudents implements _GetStudents {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int classId)? getStudents,
+    TResult? Function(double phoneNumber)? getStudentsParent,
+    TResult? Function(Student student, String parentName)? addStudent,
   }) {
     return getStudents?.call(classId);
   }
@@ -399,6 +393,8 @@ class _$_GetStudents implements _GetStudents {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int classId)? getStudents,
+    TResult Function(double phoneNumber)? getStudentsParent,
+    TResult Function(Student student, String parentName)? addStudent,
     required TResult orElse(),
   }) {
     if (getStudents != null) {
@@ -411,6 +407,8 @@ class _$_GetStudents implements _GetStudents {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetStudents value) getStudents,
+    required TResult Function(_GetStudentsParent value) getStudentsParent,
+    required TResult Function(_AddStudent value) addStudent,
   }) {
     return getStudents(this);
   }
@@ -419,6 +417,8 @@ class _$_GetStudents implements _GetStudents {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetStudents value)? getStudents,
+    TResult? Function(_GetStudentsParent value)? getStudentsParent,
+    TResult? Function(_AddStudent value)? addStudent,
   }) {
     return getStudents?.call(this);
   }
@@ -427,6 +427,8 @@ class _$_GetStudents implements _GetStudents {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetStudents value)? getStudents,
+    TResult Function(_GetStudentsParent value)? getStudentsParent,
+    TResult Function(_AddStudent value)? addStudent,
     required TResult orElse(),
   }) {
     if (getStudents != null) {
@@ -439,10 +441,310 @@ class _$_GetStudents implements _GetStudents {
 abstract class _GetStudents implements StudentEvent {
   const factory _GetStudents(final int classId) = _$_GetStudents;
 
-  @override
   int get classId;
-  @override
   @JsonKey(ignore: true)
   _$$_GetStudentsCopyWith<_$_GetStudents> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_GetStudentsParentCopyWith<$Res> {
+  factory _$$_GetStudentsParentCopyWith(_$_GetStudentsParent value,
+          $Res Function(_$_GetStudentsParent) then) =
+      __$$_GetStudentsParentCopyWithImpl<$Res>;
+  @useResult
+  $Res call({double phoneNumber});
+}
+
+/// @nodoc
+class __$$_GetStudentsParentCopyWithImpl<$Res>
+    extends _$StudentEventCopyWithImpl<$Res, _$_GetStudentsParent>
+    implements _$$_GetStudentsParentCopyWith<$Res> {
+  __$$_GetStudentsParentCopyWithImpl(
+      _$_GetStudentsParent _value, $Res Function(_$_GetStudentsParent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? phoneNumber = null,
+  }) {
+    return _then(_$_GetStudentsParent(
+      null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetStudentsParent implements _GetStudentsParent {
+  const _$_GetStudentsParent(this.phoneNumber);
+
+  @override
+  final double phoneNumber;
+
+  @override
+  String toString() {
+    return 'StudentEvent.getStudentsParent(phoneNumber: $phoneNumber)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GetStudentsParent &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, phoneNumber);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_GetStudentsParentCopyWith<_$_GetStudentsParent> get copyWith =>
+      __$$_GetStudentsParentCopyWithImpl<_$_GetStudentsParent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int classId) getStudents,
+    required TResult Function(double phoneNumber) getStudentsParent,
+    required TResult Function(Student student, String parentName) addStudent,
+  }) {
+    return getStudentsParent(phoneNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int classId)? getStudents,
+    TResult? Function(double phoneNumber)? getStudentsParent,
+    TResult? Function(Student student, String parentName)? addStudent,
+  }) {
+    return getStudentsParent?.call(phoneNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int classId)? getStudents,
+    TResult Function(double phoneNumber)? getStudentsParent,
+    TResult Function(Student student, String parentName)? addStudent,
+    required TResult orElse(),
+  }) {
+    if (getStudentsParent != null) {
+      return getStudentsParent(phoneNumber);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetStudents value) getStudents,
+    required TResult Function(_GetStudentsParent value) getStudentsParent,
+    required TResult Function(_AddStudent value) addStudent,
+  }) {
+    return getStudentsParent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetStudents value)? getStudents,
+    TResult? Function(_GetStudentsParent value)? getStudentsParent,
+    TResult? Function(_AddStudent value)? addStudent,
+  }) {
+    return getStudentsParent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetStudents value)? getStudents,
+    TResult Function(_GetStudentsParent value)? getStudentsParent,
+    TResult Function(_AddStudent value)? addStudent,
+    required TResult orElse(),
+  }) {
+    if (getStudentsParent != null) {
+      return getStudentsParent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetStudentsParent implements StudentEvent {
+  const factory _GetStudentsParent(final double phoneNumber) =
+      _$_GetStudentsParent;
+
+  double get phoneNumber;
+  @JsonKey(ignore: true)
+  _$$_GetStudentsParentCopyWith<_$_GetStudentsParent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AddStudentCopyWith<$Res> {
+  factory _$$_AddStudentCopyWith(
+          _$_AddStudent value, $Res Function(_$_AddStudent) then) =
+      __$$_AddStudentCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Student student, String parentName});
+
+  $StudentCopyWith<$Res> get student;
+}
+
+/// @nodoc
+class __$$_AddStudentCopyWithImpl<$Res>
+    extends _$StudentEventCopyWithImpl<$Res, _$_AddStudent>
+    implements _$$_AddStudentCopyWith<$Res> {
+  __$$_AddStudentCopyWithImpl(
+      _$_AddStudent _value, $Res Function(_$_AddStudent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? student = null,
+    Object? parentName = null,
+  }) {
+    return _then(_$_AddStudent(
+      null == student
+          ? _value.student
+          : student // ignore: cast_nullable_to_non_nullable
+              as Student,
+      null == parentName
+          ? _value.parentName
+          : parentName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StudentCopyWith<$Res> get student {
+    return $StudentCopyWith<$Res>(_value.student, (value) {
+      return _then(_value.copyWith(student: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_AddStudent implements _AddStudent {
+  const _$_AddStudent(this.student, this.parentName);
+
+  @override
+  final Student student;
+  @override
+  final String parentName;
+
+  @override
+  String toString() {
+    return 'StudentEvent.addStudent(student: $student, parentName: $parentName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AddStudent &&
+            (identical(other.student, student) || other.student == student) &&
+            (identical(other.parentName, parentName) ||
+                other.parentName == parentName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, student, parentName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddStudentCopyWith<_$_AddStudent> get copyWith =>
+      __$$_AddStudentCopyWithImpl<_$_AddStudent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int classId) getStudents,
+    required TResult Function(double phoneNumber) getStudentsParent,
+    required TResult Function(Student student, String parentName) addStudent,
+  }) {
+    return addStudent(student, parentName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int classId)? getStudents,
+    TResult? Function(double phoneNumber)? getStudentsParent,
+    TResult? Function(Student student, String parentName)? addStudent,
+  }) {
+    return addStudent?.call(student, parentName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int classId)? getStudents,
+    TResult Function(double phoneNumber)? getStudentsParent,
+    TResult Function(Student student, String parentName)? addStudent,
+    required TResult orElse(),
+  }) {
+    if (addStudent != null) {
+      return addStudent(student, parentName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetStudents value) getStudents,
+    required TResult Function(_GetStudentsParent value) getStudentsParent,
+    required TResult Function(_AddStudent value) addStudent,
+  }) {
+    return addStudent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetStudents value)? getStudents,
+    TResult? Function(_GetStudentsParent value)? getStudentsParent,
+    TResult? Function(_AddStudent value)? addStudent,
+  }) {
+    return addStudent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetStudents value)? getStudents,
+    TResult Function(_GetStudentsParent value)? getStudentsParent,
+    TResult Function(_AddStudent value)? addStudent,
+    required TResult orElse(),
+  }) {
+    if (addStudent != null) {
+      return addStudent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddStudent implements StudentEvent {
+  const factory _AddStudent(final Student student, final String parentName) =
+      _$_AddStudent;
+
+  Student get student;
+  String get parentName;
+  @JsonKey(ignore: true)
+  _$$_AddStudentCopyWith<_$_AddStudent> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -2,6 +2,7 @@ import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/exam/data/data_sources/remote/exam_end_points.dart';
 import 'package:my_school/src/features/exam/domain/models/exam_model.dart';
 
 abstract class ExamRemoteDataSource {
@@ -33,15 +34,17 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> addExam(
           {required Exam exam}) =>
-      apiService.postMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
-        'exam': exam,
-      });
+      apiService.postMethod<Map<String, dynamic>>(
+          GeneralConstants.host + ExamEndpoints.addLink,
+          body: {
+            'exam': exam,
+          });
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> getExams(
       {required int classId}) {
     return apiService.getMethod(
-      GeneralConstants.host,
+      GeneralConstants.host + ExamEndpoints.getLink + classId.toString(),
     );
   }
 

@@ -9,8 +9,11 @@ import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
 import 'package:my_school/src/presentation/classroom/pages/classes_page.dart';
 import 'package:my_school/src/presentation/course/bloc/course/course_bloc.dart';
 import 'package:my_school/src/presentation/course/pages/course_page.dart';
+import 'package:my_school/src/presentation/exam/bloc/exam/exam_bloc.dart';
 import 'package:my_school/src/presentation/home/bloc/home_bloc.dart';
 import 'package:my_school/src/presentation/home/widgets/home_appbar_widget.dart';
+import 'package:my_school/src/presentation/score/bloc/score/score_bloc.dart';
+import 'package:my_school/src/presentation/score/bloc/score_board/score_board_bloc.dart';
 import 'package:my_school/src/presentation/student/bloc/student/student_bloc.dart';
 import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:my_school/src/presentation/teacher/bloc/teacher_detail/teacher_detail_bloc.dart';
@@ -46,6 +49,15 @@ class HomePage extends StatelessWidget {
             ),
             BlocProvider<StudentBloc>(
               create: (_) => getIt.get<StudentBloc>(),
+            ),
+            BlocProvider<ScoreBoardBloc>(
+              create: (_) => getIt.get<ScoreBoardBloc>(),
+            ),
+            BlocProvider<ExamBloc>(
+              create: (_) => getIt.get<ExamBloc>(),
+            ),
+            BlocProvider<ScoreBloc>(
+              create: (_) => getIt.get<ScoreBloc>(),
             ),
           ],
           child: SizedBox(

@@ -48,7 +48,7 @@ class RollcallSuccessResponseAdapter
 RollcallSuccessResponse _$RollcallSuccessResponseFromJson(
         Map<String, dynamic> json) =>
     RollcallSuccessResponse(
-      rollcall: (json['rollcall'] as List<dynamic>)
+      rollcall: (json['RollCalls'] as List<dynamic>)
           .map((e) => Rollcall.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -56,5 +56,5 @@ RollcallSuccessResponse _$RollcallSuccessResponseFromJson(
 Map<String, dynamic> _$RollcallSuccessResponseToJson(
         RollcallSuccessResponse instance) =>
     <String, dynamic>{
-      'rollcall': instance.rollcall,
+      'RollCalls': instance.rollcall,
     };
