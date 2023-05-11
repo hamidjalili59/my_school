@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'otp_verify_response.g.dart';
@@ -16,8 +15,9 @@ class OtpVerifyResponse {
     required this.phoneNumber,
     required this.jwt,
   });
-  
-  factory OtpVerifyResponse.fromJson(Map<String,dynamic>json) => _$OtpVerifyResponseFromJson(json);
 
-  Map<String, dynamic> toJson()=> _$OtpVerifyResponseToJson(this);
+  factory OtpVerifyResponse.fromJson(Map<String, dynamic> json) =>
+      _$OtpVerifyResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OtpVerifyResponseToJson(this);
 }

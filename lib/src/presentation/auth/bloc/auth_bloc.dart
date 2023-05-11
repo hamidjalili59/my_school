@@ -18,7 +18,7 @@ part 'auth_state.dart';
 part 'auth_event.dart';
 part 'auth_bloc.freezed.dart';
 
-@injectable
+@lazySingleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final OtpHandshakeUseCase _otpHandshakeUseCase;
   final CacheAuthDataUseCase _cacheAuthDataUseCase;

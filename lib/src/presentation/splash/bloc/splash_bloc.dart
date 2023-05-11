@@ -14,7 +14,6 @@ import 'package:my_school/src/features/auth/domain/failures/auth_failure.dart';
 import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/injectable/injectable.dart';
-// import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_school/src/features/auth/domain/use_cases/get_cached_auth_data_use_case.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ndialog/ndialog.dart';
@@ -23,7 +22,7 @@ part 'splash_bloc.freezed.dart';
 part 'splash_event.dart';
 part 'splash_state.dart';
 
-@injectable
+@lazySingleton
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final GetCachedAuthDataUseCase _getCachedAuthDataUseCase;
   final AppRouter appRoute = getIt.get<AppRouter>();

@@ -6,10 +6,23 @@ import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/splash/bloc/splash_bloc.dart';
 
-class SplashPage extends StatelessWidget {
-  SplashPage({super.key});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
   final SplashBloc _splashBloc = getIt.get<SplashBloc>();
+
   final AppRouter _appRoute = getIt.get<AppRouter>();
+  @override
+  void initState() {
+    super.initState();
+
+    getIt.get<SplashBloc>().add(const SplashEvent.tokenIsExist());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +38,19 @@ class SplashPage extends StatelessWidget {
                   _appRoute.replaceNamed('/auth');
                 },
                 jwtIsNotExp: (typeOfUser) {
+                  print('---------------------------------33');
                   _appRoute.replaceNamed('/home_page');
                 },
                 jwtExist: (r) {
+                  print('---------------------------------44');
                   _splashBloc.add(SplashEvent.getClientData(r));
                 },
-                loadInProgress: () {},
-                orElse: () {},
+                loadInProgress: () {
+                  print('---------------------------------55');
+                },
+                orElse: () {
+                  print('---------------------------------66');
+                },
               );
             },
             child: SizedBox(

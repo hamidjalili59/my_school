@@ -287,7 +287,7 @@ _i1.GetIt $initGetIt(
       () => studentFeatureModule.getStudentsUseCase);
   gh.factory<_i52.GetTeacherUseCase>(
       () => teacherFeatureModule.getTeachersUseCase);
-  gh.factory<_i53.HomeBloc>(() => _i53.HomeBloc());
+  gh.lazySingleton<_i53.HomeBloc>(() => _i53.HomeBloc());
   gh.factory<_i54.MediatorLocalDataSource>(() => mediatorFeatureModule.localDS);
   gh.factory<_i55.MediatorRemoteDataSource>(
       () => mediatorFeatureModule.remoteDS);
@@ -322,7 +322,7 @@ _i1.GetIt $initGetIt(
   gh.factory<_i74.ScoreLocalDataSource>(() => scoreFeatureModule.localDS);
   gh.factory<_i75.ScoreRemoteDataSource>(() => scoreFeatureModule.remoteDS);
   gh.factory<_i76.ScoreRepository>(() => scoreFeatureModule.repo);
-  gh.factory<_i77.SplashBloc>(
+  gh.lazySingleton<_i77.SplashBloc>(
       () => _i77.SplashBloc(get<_i33.GetCachedAuthDataUseCase>()));
   gh.lazySingleton<_i78.StudentBloc>(() => _i78.StudentBloc(
         get<_i51.GetStudentUseCase>(),
@@ -352,7 +352,7 @@ _i1.GetIt $initGetIt(
       () => studentFeatureModule.updateStudentUseCase);
   gh.factory<_i92.UpdateTeacherUseCase>(
       () => teacherFeatureModule.updateTeacherUseCase);
-  gh.factory<_i93.AuthBloc>(() => _i93.AuthBloc(
+  gh.lazySingleton<_i93.AuthBloc>(() => _i93.AuthBloc(
         get<_i57.OtpHandshakeUseCase>(),
         get<_i14.CacheAuthDataUseCase>(),
       ));
