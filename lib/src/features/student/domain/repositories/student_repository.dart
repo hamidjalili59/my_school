@@ -7,7 +7,7 @@ import 'package:my_school/src/features/student/domain/models/student_model/stude
 abstract class StudentRepository {
   //
   Future<Either<StudentFailure, StudentSuccessResponse>> addStudent(
-      {required Student student});
+      {required Student student, required String parentName});
   //
   Future<Either<StudentFailure, StudentSuccessResponse>> updateStudent({
     required int classId,
@@ -23,12 +23,14 @@ abstract class StudentRepository {
   Future<Either<StudentFailure, StudentGetResponse>> getStudents({
     required int classId,
   });
+  Future<Either<StudentFailure, StudentGetResponse>> getStudentsParent({
+    required double phonenumber,
+  });
   //
   Future<Either<StudentFailure, void>> cacheStudentsData({
     required List<Student> students,
   });
   //
-  Future<Either<StudentFailure, StudentGetResponse>>
-      getCachedStudentData();
+  Future<Either<StudentFailure, StudentGetResponse>> getCachedStudentData();
   //
 }

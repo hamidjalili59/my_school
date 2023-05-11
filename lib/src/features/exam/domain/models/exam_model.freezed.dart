@@ -21,17 +21,26 @@ Exam _$ExamFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Exam {
 // account email
-  @HiveField(0)
-  int? get examId => throw _privateConstructorUsedError; //
-  @HiveField(1)
-  int? get teacherId => throw _privateConstructorUsedError; // basic Information
-  @HiveField(2)
-  bool? get isDone => throw _privateConstructorUsedError; // basic Information
-  @HiveField(3)
-  String? get examDescription =>
+  @HiveField(0, defaultValue: 0)
+  @JsonKey(name: 'exam_ID')
+  int get examId => throw _privateConstructorUsedError; //
+  @HiveField(1, defaultValue: 0)
+  @JsonKey(name: 'teacher_ID')
+  int get teacherId => throw _privateConstructorUsedError; // basic Information
+  @HiveField(2, defaultValue: false)
+  @JsonKey(name: 'done')
+  bool get isDone => throw _privateConstructorUsedError; // basic Information
+  @HiveField(3, defaultValue: '')
+  @JsonKey(name: 'exam_Describtion')
+  String get examDescription =>
       throw _privateConstructorUsedError; // basic Information
-  @HiveField(4)
-  String? get teacherName => throw _privateConstructorUsedError;
+  @HiveField(4, defaultValue: '')
+  @JsonKey(name: 'teacher_Name')
+  String get teacherName =>
+      throw _privateConstructorUsedError; // basic Information
+  @HiveField(5, defaultValue: 0)
+  @JsonKey(name: 'class_ID')
+  int get classId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,11 +53,24 @@ abstract class $ExamCopyWith<$Res> {
       _$ExamCopyWithImpl<$Res, Exam>;
   @useResult
   $Res call(
-      {@HiveField(0) int? examId,
-      @HiveField(1) int? teacherId,
-      @HiveField(2) bool? isDone,
-      @HiveField(3) String? examDescription,
-      @HiveField(4) String? teacherName});
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'exam_ID')
+          int examId,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'teacher_ID')
+          int teacherId,
+      @HiveField(2, defaultValue: false)
+      @JsonKey(name: 'done')
+          bool isDone,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'exam_Describtion')
+          String examDescription,
+      @HiveField(4, defaultValue: '')
+      @JsonKey(name: 'teacher_Name')
+          String teacherName,
+      @HiveField(5, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          int classId});
 }
 
 /// @nodoc
@@ -64,33 +86,38 @@ class _$ExamCopyWithImpl<$Res, $Val extends Exam>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? examId = freezed,
-    Object? teacherId = freezed,
-    Object? isDone = freezed,
-    Object? examDescription = freezed,
-    Object? teacherName = freezed,
+    Object? examId = null,
+    Object? teacherId = null,
+    Object? isDone = null,
+    Object? examDescription = null,
+    Object? teacherName = null,
+    Object? classId = null,
   }) {
     return _then(_value.copyWith(
-      examId: freezed == examId
+      examId: null == examId
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      teacherId: freezed == teacherId
+              as int,
+      teacherId: null == teacherId
           ? _value.teacherId
           : teacherId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isDone: freezed == isDone
+              as int,
+      isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      examDescription: freezed == examDescription
+              as bool,
+      examDescription: null == examDescription
           ? _value.examDescription
           : examDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      teacherName: freezed == teacherName
+              as String,
+      teacherName: null == teacherName
           ? _value.teacherName
           : teacherName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      classId: null == classId
+          ? _value.classId
+          : classId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -102,11 +129,24 @@ abstract class _$$_ExamCopyWith<$Res> implements $ExamCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int? examId,
-      @HiveField(1) int? teacherId,
-      @HiveField(2) bool? isDone,
-      @HiveField(3) String? examDescription,
-      @HiveField(4) String? teacherName});
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'exam_ID')
+          int examId,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'teacher_ID')
+          int teacherId,
+      @HiveField(2, defaultValue: false)
+      @JsonKey(name: 'done')
+          bool isDone,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'exam_Describtion')
+          String examDescription,
+      @HiveField(4, defaultValue: '')
+      @JsonKey(name: 'teacher_Name')
+          String teacherName,
+      @HiveField(5, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          int classId});
 }
 
 /// @nodoc
@@ -118,74 +158,102 @@ class __$$_ExamCopyWithImpl<$Res> extends _$ExamCopyWithImpl<$Res, _$_Exam>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? examId = freezed,
-    Object? teacherId = freezed,
-    Object? isDone = freezed,
-    Object? examDescription = freezed,
-    Object? teacherName = freezed,
+    Object? examId = null,
+    Object? teacherId = null,
+    Object? isDone = null,
+    Object? examDescription = null,
+    Object? teacherName = null,
+    Object? classId = null,
   }) {
     return _then(_$_Exam(
-      examId: freezed == examId
+      examId: null == examId
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      teacherId: freezed == teacherId
+              as int,
+      teacherId: null == teacherId
           ? _value.teacherId
           : teacherId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isDone: freezed == isDone
+              as int,
+      isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      examDescription: freezed == examDescription
+              as bool,
+      examDescription: null == examDescription
           ? _value.examDescription
           : examDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      teacherName: freezed == teacherName
+              as String,
+      teacherName: null == teacherName
           ? _value.teacherName
           : teacherName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      classId: null == classId
+          ? _value.classId
+          : classId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 10)
+@HiveType(typeId: 14)
 class _$_Exam implements _Exam {
   _$_Exam(
-      {@HiveField(0) this.examId,
-      @HiveField(1) this.teacherId,
-      @HiveField(2) this.isDone,
-      @HiveField(3) this.examDescription,
-      @HiveField(4) this.teacherName});
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'exam_ID')
+          this.examId = 0,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'teacher_ID')
+          this.teacherId = 0,
+      @HiveField(2, defaultValue: false)
+      @JsonKey(name: 'done')
+          this.isDone = false,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'exam_Describtion')
+          this.examDescription = '',
+      @HiveField(4, defaultValue: '')
+      @JsonKey(name: 'teacher_Name')
+          this.teacherName = '',
+      @HiveField(5, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          this.classId = 0});
 
   factory _$_Exam.fromJson(Map<String, dynamic> json) => _$$_ExamFromJson(json);
 
 // account email
   @override
-  @HiveField(0)
-  final int? examId;
+  @HiveField(0, defaultValue: 0)
+  @JsonKey(name: 'exam_ID')
+  final int examId;
 //
   @override
-  @HiveField(1)
-  final int? teacherId;
+  @HiveField(1, defaultValue: 0)
+  @JsonKey(name: 'teacher_ID')
+  final int teacherId;
 // basic Information
   @override
-  @HiveField(2)
-  final bool? isDone;
+  @HiveField(2, defaultValue: false)
+  @JsonKey(name: 'done')
+  final bool isDone;
 // basic Information
   @override
-  @HiveField(3)
-  final String? examDescription;
+  @HiveField(3, defaultValue: '')
+  @JsonKey(name: 'exam_Describtion')
+  final String examDescription;
 // basic Information
   @override
-  @HiveField(4)
-  final String? teacherName;
+  @HiveField(4, defaultValue: '')
+  @JsonKey(name: 'teacher_Name')
+  final String teacherName;
+// basic Information
+  @override
+  @HiveField(5, defaultValue: 0)
+  @JsonKey(name: 'class_ID')
+  final int classId;
 
   @override
   String toString() {
-    return 'Exam(examId: $examId, teacherId: $teacherId, isDone: $isDone, examDescription: $examDescription, teacherName: $teacherName)';
+    return 'Exam(examId: $examId, teacherId: $teacherId, isDone: $isDone, examDescription: $examDescription, teacherName: $teacherName, classId: $classId)';
   }
 
   @override
@@ -200,13 +268,14 @@ class _$_Exam implements _Exam {
             (identical(other.examDescription, examDescription) ||
                 other.examDescription == examDescription) &&
             (identical(other.teacherName, teacherName) ||
-                other.teacherName == teacherName));
+                other.teacherName == teacherName) &&
+            (identical(other.classId, classId) || other.classId == classId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, examId, teacherId, isDone, examDescription, teacherName);
+  int get hashCode => Object.hash(runtimeType, examId, teacherId, isDone,
+      examDescription, teacherName, classId);
 
   @JsonKey(ignore: true)
   @override
@@ -224,29 +293,51 @@ class _$_Exam implements _Exam {
 
 abstract class _Exam implements Exam {
   factory _Exam(
-      {@HiveField(0) final int? examId,
-      @HiveField(1) final int? teacherId,
-      @HiveField(2) final bool? isDone,
-      @HiveField(3) final String? examDescription,
-      @HiveField(4) final String? teacherName}) = _$_Exam;
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'exam_ID')
+          final int examId,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'teacher_ID')
+          final int teacherId,
+      @HiveField(2, defaultValue: false)
+      @JsonKey(name: 'done')
+          final bool isDone,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'exam_Describtion')
+          final String examDescription,
+      @HiveField(4, defaultValue: '')
+      @JsonKey(name: 'teacher_Name')
+          final String teacherName,
+      @HiveField(5, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          final int classId}) = _$_Exam;
 
   factory _Exam.fromJson(Map<String, dynamic> json) = _$_Exam.fromJson;
 
   @override // account email
-  @HiveField(0)
-  int? get examId;
+  @HiveField(0, defaultValue: 0)
+  @JsonKey(name: 'exam_ID')
+  int get examId;
   @override //
-  @HiveField(1)
-  int? get teacherId;
+  @HiveField(1, defaultValue: 0)
+  @JsonKey(name: 'teacher_ID')
+  int get teacherId;
   @override // basic Information
-  @HiveField(2)
-  bool? get isDone;
+  @HiveField(2, defaultValue: false)
+  @JsonKey(name: 'done')
+  bool get isDone;
   @override // basic Information
-  @HiveField(3)
-  String? get examDescription;
+  @HiveField(3, defaultValue: '')
+  @JsonKey(name: 'exam_Describtion')
+  String get examDescription;
   @override // basic Information
-  @HiveField(4)
-  String? get teacherName;
+  @HiveField(4, defaultValue: '')
+  @JsonKey(name: 'teacher_Name')
+  String get teacherName;
+  @override // basic Information
+  @HiveField(5, defaultValue: 0)
+  @JsonKey(name: 'class_ID')
+  int get classId;
   @override
   @JsonKey(ignore: true)
   _$$_ExamCopyWith<_$_Exam> get copyWith => throw _privateConstructorUsedError;

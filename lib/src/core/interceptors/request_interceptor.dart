@@ -16,7 +16,7 @@ class RequestInterceptor extends Interceptor {
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     appHelper.logMessage(
-      'REQUEST[${options.method}] => PATH: ${options.path}',
+      'REQUEST[${options.method}] => PATH: ${options.path}\nRequestData[${options.data}]',
     );
     options.baseUrl = '';
     String token = '';
@@ -32,7 +32,7 @@ class RequestInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     appHelper.logMessage(
-      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
+      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}\nDATA[${response.data}]',
     );
     super.onResponse(response, handler);
   }

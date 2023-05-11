@@ -5,7 +5,7 @@ import 'package:my_school/src/features/core/models/basic_info_model.dart';
 
 part 'teacher_model.g.dart';
 
-@HiveType(typeId: 7)
+@HiveType(typeId: 9)
 @JsonSerializable()
 class TeacherModel {
   @HiveField(0)

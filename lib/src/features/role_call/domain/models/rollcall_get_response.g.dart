@@ -8,7 +8,7 @@ part of 'rollcall_get_response.dart';
 
 class RollcallGetResponseAdapter extends TypeAdapter<RollcallGetResponse> {
   @override
-  final int typeId = 12;
+  final int typeId = 21;
 
   @override
   RollcallGetResponse read(BinaryReader reader) {
@@ -46,7 +46,7 @@ class RollcallGetResponseAdapter extends TypeAdapter<RollcallGetResponse> {
 
 RollcallGetResponse _$RollcallGetResponseFromJson(Map<String, dynamic> json) =>
     RollcallGetResponse(
-      rollcalls: (json['rollcalls'] as List<dynamic>)
+      rollcalls: (json['RollCalls'] as List<dynamic>)
           .map((e) => Rollcall.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -54,5 +54,5 @@ RollcallGetResponse _$RollcallGetResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$RollcallGetResponseToJson(
         RollcallGetResponse instance) =>
     <String, dynamic>{
-      'rollcalls': instance.rollcalls,
+      'RollCalls': instance.rollcalls,
     };

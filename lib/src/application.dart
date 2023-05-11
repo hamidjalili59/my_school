@@ -16,6 +16,7 @@ class Application extends StatelessWidget {
         minTextAdapt: true,
         builder: (_, __) {
           return MaterialApp.router(
+            theme: ThemeData(useMaterial3: true),
             routerDelegate: _appRouter.delegate(),
             routeInformationParser: _appRouter.defaultRouteParser(),
             debugShowCheckedModeBanner: false,

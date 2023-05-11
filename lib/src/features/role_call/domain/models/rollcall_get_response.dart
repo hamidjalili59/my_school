@@ -5,15 +5,17 @@ import 'package:my_school/src/features/role_call/domain/models/rollcall_model.da
 
 part 'rollcall_get_response.g.dart';
 
-@HiveType(typeId: 12)
+@HiveType(typeId: 21)
 @JsonSerializable()
 class RollcallGetResponse {
   @HiveField(0)
+  @JsonKey(name: 'RollCalls')
   final List<Rollcall> rollcalls;
 
   RollcallGetResponse({required this.rollcalls});
-  
-  factory RollcallGetResponse.fromJson(Map<String,dynamic>json) => _$RollcallGetResponseFromJson(json);
 
-  Map<String, dynamic> toJson()=> _$RollcallGetResponseToJson(this);
+  factory RollcallGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$RollcallGetResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RollcallGetResponseToJson(this);
 }

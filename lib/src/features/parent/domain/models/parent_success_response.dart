@@ -3,10 +3,9 @@ import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_school/src/features/parent/domain/models/parent_model/parent.dart';
 
-
 part 'parent_success_response.g.dart';
 
-@HiveType(typeId: 13)
+@HiveType(typeId: 18)
 @JsonSerializable()
 class ParentSuccessResponse {
   @HiveField(0)

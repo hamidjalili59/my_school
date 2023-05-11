@@ -5,7 +5,7 @@ import 'package:my_school/src/features/exam/domain/models/exam_model.dart';
 
 part 'exam_success_response.g.dart';
 
-@HiveType(typeId: 13)
+@HiveType(typeId: 16)
 @JsonSerializable()
 class ExamSuccessResponse {
   @HiveField(0)

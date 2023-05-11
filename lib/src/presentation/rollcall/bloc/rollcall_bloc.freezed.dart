@@ -16,49 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RollcallState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  List<Rollcall> get rollcalls => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loadInProgress,
-    required TResult Function(int pageState) currentPageIndex,
+    required TResult Function(bool isLoading, List<Rollcall> rollcalls) idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loadInProgress,
-    TResult? Function(int pageState)? currentPageIndex,
+    TResult? Function(bool isLoading, List<Rollcall> rollcalls)? idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(int pageState)? currentPageIndex,
+    TResult Function(bool isLoading, List<Rollcall> rollcalls)? idle,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_CurrentPageIndex value) currentPageIndex,
+    required TResult Function(_Idle value) idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_CurrentPageIndex value)? currentPageIndex,
+    TResult? Function(_Idle value)? idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_CurrentPageIndex value)? currentPageIndex,
+    TResult Function(_Idle value)? idle,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RollcallStateCopyWith<RollcallState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +61,8 @@ abstract class $RollcallStateCopyWith<$Res> {
   factory $RollcallStateCopyWith(
           RollcallState value, $Res Function(RollcallState) then) =
       _$RollcallStateCopyWithImpl<$Res, RollcallState>;
+  @useResult
+  $Res call({bool isLoading, List<Rollcall> rollcalls});
 }
 
 /// @nodoc
@@ -78,316 +74,129 @@ class _$RollcallStateCopyWithImpl<$Res, $Val extends RollcallState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? rollcalls = null,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      rollcalls: null == rollcalls
+          ? _value.rollcalls
+          : rollcalls // ignore: cast_nullable_to_non_nullable
+              as List<Rollcall>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$RollcallStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Initial implements _Initial {
-  const _$_Initial();
-
+abstract class _$$_IdleCopyWith<$Res> implements $RollcallStateCopyWith<$Res> {
+  factory _$$_IdleCopyWith(_$_Idle value, $Res Function(_$_Idle) then) =
+      __$$_IdleCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'RollcallState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loadInProgress,
-    required TResult Function(int pageState) currentPageIndex,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loadInProgress,
-    TResult? Function(int pageState)? currentPageIndex,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(int pageState)? currentPageIndex,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_CurrentPageIndex value) currentPageIndex,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_CurrentPageIndex value)? currentPageIndex,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_CurrentPageIndex value)? currentPageIndex,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements RollcallState {
-  const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_LoadInProgressCopyWith<$Res> {
-  factory _$$_LoadInProgressCopyWith(
-          _$_LoadInProgress value, $Res Function(_$_LoadInProgress) then) =
-      __$$_LoadInProgressCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_LoadInProgressCopyWithImpl<$Res>
-    extends _$RollcallStateCopyWithImpl<$Res, _$_LoadInProgress>
-    implements _$$_LoadInProgressCopyWith<$Res> {
-  __$$_LoadInProgressCopyWithImpl(
-      _$_LoadInProgress _value, $Res Function(_$_LoadInProgress) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_LoadInProgress implements _LoadInProgress {
-  const _$_LoadInProgress();
-
-  @override
-  String toString() {
-    return 'RollcallState.loadInProgress()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadInProgress);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loadInProgress,
-    required TResult Function(int pageState) currentPageIndex,
-  }) {
-    return loadInProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loadInProgress,
-    TResult? Function(int pageState)? currentPageIndex,
-  }) {
-    return loadInProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(int pageState)? currentPageIndex,
-    required TResult orElse(),
-  }) {
-    if (loadInProgress != null) {
-      return loadInProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_CurrentPageIndex value) currentPageIndex,
-  }) {
-    return loadInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_CurrentPageIndex value)? currentPageIndex,
-  }) {
-    return loadInProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_CurrentPageIndex value)? currentPageIndex,
-    required TResult orElse(),
-  }) {
-    if (loadInProgress != null) {
-      return loadInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadInProgress implements RollcallState {
-  const factory _LoadInProgress() = _$_LoadInProgress;
-}
-
-/// @nodoc
-abstract class _$$_CurrentPageIndexCopyWith<$Res> {
-  factory _$$_CurrentPageIndexCopyWith(
-          _$_CurrentPageIndex value, $Res Function(_$_CurrentPageIndex) then) =
-      __$$_CurrentPageIndexCopyWithImpl<$Res>;
   @useResult
-  $Res call({int pageState});
+  $Res call({bool isLoading, List<Rollcall> rollcalls});
 }
 
 /// @nodoc
-class __$$_CurrentPageIndexCopyWithImpl<$Res>
-    extends _$RollcallStateCopyWithImpl<$Res, _$_CurrentPageIndex>
-    implements _$$_CurrentPageIndexCopyWith<$Res> {
-  __$$_CurrentPageIndexCopyWithImpl(
-      _$_CurrentPageIndex _value, $Res Function(_$_CurrentPageIndex) _then)
+class __$$_IdleCopyWithImpl<$Res>
+    extends _$RollcallStateCopyWithImpl<$Res, _$_Idle>
+    implements _$$_IdleCopyWith<$Res> {
+  __$$_IdleCopyWithImpl(_$_Idle _value, $Res Function(_$_Idle) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pageState = null,
+    Object? isLoading = null,
+    Object? rollcalls = null,
   }) {
-    return _then(_$_CurrentPageIndex(
-      pageState: null == pageState
-          ? _value.pageState
-          : pageState // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$_Idle(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      rollcalls: null == rollcalls
+          ? _value._rollcalls
+          : rollcalls // ignore: cast_nullable_to_non_nullable
+              as List<Rollcall>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_CurrentPageIndex implements _CurrentPageIndex {
-  const _$_CurrentPageIndex({this.pageState = 0});
+class _$_Idle implements _Idle {
+  const _$_Idle(
+      {this.isLoading = false, final List<Rollcall> rollcalls = const []})
+      : _rollcalls = rollcalls;
 
   @override
   @JsonKey()
-  final int pageState;
+  final bool isLoading;
+  final List<Rollcall> _rollcalls;
+  @override
+  @JsonKey()
+  List<Rollcall> get rollcalls {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_rollcalls);
+  }
 
   @override
   String toString() {
-    return 'RollcallState.currentPageIndex(pageState: $pageState)';
+    return 'RollcallState.idle(isLoading: $isLoading, rollcalls: $rollcalls)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CurrentPageIndex &&
-            (identical(other.pageState, pageState) ||
-                other.pageState == pageState));
+            other is _$_Idle &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other._rollcalls, _rollcalls));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState);
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, const DeepCollectionEquality().hash(_rollcalls));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CurrentPageIndexCopyWith<_$_CurrentPageIndex> get copyWith =>
-      __$$_CurrentPageIndexCopyWithImpl<_$_CurrentPageIndex>(this, _$identity);
+  _$$_IdleCopyWith<_$_Idle> get copyWith =>
+      __$$_IdleCopyWithImpl<_$_Idle>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loadInProgress,
-    required TResult Function(int pageState) currentPageIndex,
+    required TResult Function(bool isLoading, List<Rollcall> rollcalls) idle,
   }) {
-    return currentPageIndex(pageState);
+    return idle(isLoading, rollcalls);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loadInProgress,
-    TResult? Function(int pageState)? currentPageIndex,
+    TResult? Function(bool isLoading, List<Rollcall> rollcalls)? idle,
   }) {
-    return currentPageIndex?.call(pageState);
+    return idle?.call(isLoading, rollcalls);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(int pageState)? currentPageIndex,
+    TResult Function(bool isLoading, List<Rollcall> rollcalls)? idle,
     required TResult orElse(),
   }) {
-    if (currentPageIndex != null) {
-      return currentPageIndex(pageState);
+    if (idle != null) {
+      return idle(isLoading, rollcalls);
     }
     return orElse();
   }
@@ -395,105 +204,83 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_CurrentPageIndex value) currentPageIndex,
+    required TResult Function(_Idle value) idle,
   }) {
-    return currentPageIndex(this);
+    return idle(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_CurrentPageIndex value)? currentPageIndex,
+    TResult? Function(_Idle value)? idle,
   }) {
-    return currentPageIndex?.call(this);
+    return idle?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_CurrentPageIndex value)? currentPageIndex,
+    TResult Function(_Idle value)? idle,
     required TResult orElse(),
   }) {
-    if (currentPageIndex != null) {
-      return currentPageIndex(this);
+    if (idle != null) {
+      return idle(this);
     }
     return orElse();
   }
 }
 
-abstract class _CurrentPageIndex implements RollcallState {
-  const factory _CurrentPageIndex({final int pageState}) = _$_CurrentPageIndex;
+abstract class _Idle implements RollcallState {
+  const factory _Idle({final bool isLoading, final List<Rollcall> rollcalls}) =
+      _$_Idle;
 
-  int get pageState;
+  @override
+  bool get isLoading;
+  @override
+  List<Rollcall> get rollcalls;
+  @override
   @JsonKey(ignore: true)
-  _$$_CurrentPageIndexCopyWith<_$_CurrentPageIndex> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_IdleCopyWith<_$_Idle> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$RollcallEvent {
+  int get studentId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int index) changeStudent,
-    required TResult Function(int index) studentIsReady,
-    required TResult Function() getStudentList,
-    required TResult Function() changePageViewToTable,
-    required TResult Function() finishRollCall,
+    required TResult Function(int studentId) getRollcalls,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? changeStudent,
-    TResult? Function(int index)? studentIsReady,
-    TResult? Function()? getStudentList,
-    TResult? Function()? changePageViewToTable,
-    TResult? Function()? finishRollCall,
+    TResult? Function(int studentId)? getRollcalls,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? changeStudent,
-    TResult Function(int index)? studentIsReady,
-    TResult Function()? getStudentList,
-    TResult Function()? changePageViewToTable,
-    TResult Function()? finishRollCall,
+    TResult Function(int studentId)? getRollcalls,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ChangeStudent value) changeStudent,
-    required TResult Function(_StudentIsReady value) studentIsReady,
-    required TResult Function(_GetStudentList value) getStudentList,
-    required TResult Function(_ChangePageViewToTable value)
-        changePageViewToTable,
-    required TResult Function(_FinishRollCall value) finishRollCall,
+    required TResult Function(_GetRollcalls value) getRollcalls,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChangeStudent value)? changeStudent,
-    TResult? Function(_StudentIsReady value)? studentIsReady,
-    TResult? Function(_GetStudentList value)? getStudentList,
-    TResult? Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult? Function(_FinishRollCall value)? finishRollCall,
+    TResult? Function(_GetRollcalls value)? getRollcalls,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChangeStudent value)? changeStudent,
-    TResult Function(_StudentIsReady value)? studentIsReady,
-    TResult Function(_GetStudentList value)? getStudentList,
-    TResult Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult Function(_FinishRollCall value)? finishRollCall,
+    TResult Function(_GetRollcalls value)? getRollcalls,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RollcallEventCopyWith<RollcallEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -502,6 +289,8 @@ abstract class $RollcallEventCopyWith<$Res> {
   factory $RollcallEventCopyWith(
           RollcallEvent value, $Res Function(RollcallEvent) then) =
       _$RollcallEventCopyWithImpl<$Res, RollcallEvent>;
+  @useResult
+  $Res call({int studentId});
 }
 
 /// @nodoc
@@ -513,34 +302,49 @@ class _$RollcallEventCopyWithImpl<$Res, $Val extends RollcallEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? studentId = null,
+  }) {
+    return _then(_value.copyWith(
+      studentId: null == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_ChangeStudentCopyWith<$Res> {
-  factory _$$_ChangeStudentCopyWith(
-          _$_ChangeStudent value, $Res Function(_$_ChangeStudent) then) =
-      __$$_ChangeStudentCopyWithImpl<$Res>;
+abstract class _$$_GetRollcallsCopyWith<$Res>
+    implements $RollcallEventCopyWith<$Res> {
+  factory _$$_GetRollcallsCopyWith(
+          _$_GetRollcalls value, $Res Function(_$_GetRollcalls) then) =
+      __$$_GetRollcallsCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({int index});
+  $Res call({int studentId});
 }
 
 /// @nodoc
-class __$$_ChangeStudentCopyWithImpl<$Res>
-    extends _$RollcallEventCopyWithImpl<$Res, _$_ChangeStudent>
-    implements _$$_ChangeStudentCopyWith<$Res> {
-  __$$_ChangeStudentCopyWithImpl(
-      _$_ChangeStudent _value, $Res Function(_$_ChangeStudent) _then)
+class __$$_GetRollcallsCopyWithImpl<$Res>
+    extends _$RollcallEventCopyWithImpl<$Res, _$_GetRollcalls>
+    implements _$$_GetRollcallsCopyWith<$Res> {
+  __$$_GetRollcallsCopyWithImpl(
+      _$_GetRollcalls _value, $Res Function(_$_GetRollcalls) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = null,
+    Object? studentId = null,
   }) {
-    return _then(_$_ChangeStudent(
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
+    return _then(_$_GetRollcalls(
+      null == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -548,70 +352,59 @@ class __$$_ChangeStudentCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChangeStudent implements _ChangeStudent {
-  const _$_ChangeStudent(this.index);
+class _$_GetRollcalls implements _GetRollcalls {
+  const _$_GetRollcalls(this.studentId);
 
   @override
-  final int index;
+  final int studentId;
 
   @override
   String toString() {
-    return 'RollcallEvent.changeStudent(index: $index)';
+    return 'RollcallEvent.getRollcalls(studentId: $studentId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChangeStudent &&
-            (identical(other.index, index) || other.index == index));
+            other is _$_GetRollcalls &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index);
+  int get hashCode => Object.hash(runtimeType, studentId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChangeStudentCopyWith<_$_ChangeStudent> get copyWith =>
-      __$$_ChangeStudentCopyWithImpl<_$_ChangeStudent>(this, _$identity);
+  _$$_GetRollcallsCopyWith<_$_GetRollcalls> get copyWith =>
+      __$$_GetRollcallsCopyWithImpl<_$_GetRollcalls>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int index) changeStudent,
-    required TResult Function(int index) studentIsReady,
-    required TResult Function() getStudentList,
-    required TResult Function() changePageViewToTable,
-    required TResult Function() finishRollCall,
+    required TResult Function(int studentId) getRollcalls,
   }) {
-    return changeStudent(index);
+    return getRollcalls(studentId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? changeStudent,
-    TResult? Function(int index)? studentIsReady,
-    TResult? Function()? getStudentList,
-    TResult? Function()? changePageViewToTable,
-    TResult? Function()? finishRollCall,
+    TResult? Function(int studentId)? getRollcalls,
   }) {
-    return changeStudent?.call(index);
+    return getRollcalls?.call(studentId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? changeStudent,
-    TResult Function(int index)? studentIsReady,
-    TResult Function()? getStudentList,
-    TResult Function()? changePageViewToTable,
-    TResult Function()? finishRollCall,
+    TResult Function(int studentId)? getRollcalls,
     required TResult orElse(),
   }) {
-    if (changeStudent != null) {
-      return changeStudent(index);
+    if (getRollcalls != null) {
+      return getRollcalls(studentId);
     }
     return orElse();
   }
@@ -619,565 +412,39 @@ class _$_ChangeStudent implements _ChangeStudent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ChangeStudent value) changeStudent,
-    required TResult Function(_StudentIsReady value) studentIsReady,
-    required TResult Function(_GetStudentList value) getStudentList,
-    required TResult Function(_ChangePageViewToTable value)
-        changePageViewToTable,
-    required TResult Function(_FinishRollCall value) finishRollCall,
+    required TResult Function(_GetRollcalls value) getRollcalls,
   }) {
-    return changeStudent(this);
+    return getRollcalls(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChangeStudent value)? changeStudent,
-    TResult? Function(_StudentIsReady value)? studentIsReady,
-    TResult? Function(_GetStudentList value)? getStudentList,
-    TResult? Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult? Function(_FinishRollCall value)? finishRollCall,
+    TResult? Function(_GetRollcalls value)? getRollcalls,
   }) {
-    return changeStudent?.call(this);
+    return getRollcalls?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChangeStudent value)? changeStudent,
-    TResult Function(_StudentIsReady value)? studentIsReady,
-    TResult Function(_GetStudentList value)? getStudentList,
-    TResult Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult Function(_FinishRollCall value)? finishRollCall,
+    TResult Function(_GetRollcalls value)? getRollcalls,
     required TResult orElse(),
   }) {
-    if (changeStudent != null) {
-      return changeStudent(this);
+    if (getRollcalls != null) {
+      return getRollcalls(this);
     }
     return orElse();
   }
 }
 
-abstract class _ChangeStudent implements RollcallEvent {
-  const factory _ChangeStudent(final int index) = _$_ChangeStudent;
+abstract class _GetRollcalls implements RollcallEvent {
+  const factory _GetRollcalls(final int studentId) = _$_GetRollcalls;
 
-  int get index;
+  @override
+  int get studentId;
+  @override
   @JsonKey(ignore: true)
-  _$$_ChangeStudentCopyWith<_$_ChangeStudent> get copyWith =>
+  _$$_GetRollcallsCopyWith<_$_GetRollcalls> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_StudentIsReadyCopyWith<$Res> {
-  factory _$$_StudentIsReadyCopyWith(
-          _$_StudentIsReady value, $Res Function(_$_StudentIsReady) then) =
-      __$$_StudentIsReadyCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int index});
-}
-
-/// @nodoc
-class __$$_StudentIsReadyCopyWithImpl<$Res>
-    extends _$RollcallEventCopyWithImpl<$Res, _$_StudentIsReady>
-    implements _$$_StudentIsReadyCopyWith<$Res> {
-  __$$_StudentIsReadyCopyWithImpl(
-      _$_StudentIsReady _value, $Res Function(_$_StudentIsReady) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? index = null,
-  }) {
-    return _then(_$_StudentIsReady(
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_StudentIsReady implements _StudentIsReady {
-  const _$_StudentIsReady(this.index);
-
-  @override
-  final int index;
-
-  @override
-  String toString() {
-    return 'RollcallEvent.studentIsReady(index: $index)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_StudentIsReady &&
-            (identical(other.index, index) || other.index == index));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, index);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_StudentIsReadyCopyWith<_$_StudentIsReady> get copyWith =>
-      __$$_StudentIsReadyCopyWithImpl<_$_StudentIsReady>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int index) changeStudent,
-    required TResult Function(int index) studentIsReady,
-    required TResult Function() getStudentList,
-    required TResult Function() changePageViewToTable,
-    required TResult Function() finishRollCall,
-  }) {
-    return studentIsReady(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? changeStudent,
-    TResult? Function(int index)? studentIsReady,
-    TResult? Function()? getStudentList,
-    TResult? Function()? changePageViewToTable,
-    TResult? Function()? finishRollCall,
-  }) {
-    return studentIsReady?.call(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? changeStudent,
-    TResult Function(int index)? studentIsReady,
-    TResult Function()? getStudentList,
-    TResult Function()? changePageViewToTable,
-    TResult Function()? finishRollCall,
-    required TResult orElse(),
-  }) {
-    if (studentIsReady != null) {
-      return studentIsReady(index);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ChangeStudent value) changeStudent,
-    required TResult Function(_StudentIsReady value) studentIsReady,
-    required TResult Function(_GetStudentList value) getStudentList,
-    required TResult Function(_ChangePageViewToTable value)
-        changePageViewToTable,
-    required TResult Function(_FinishRollCall value) finishRollCall,
-  }) {
-    return studentIsReady(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChangeStudent value)? changeStudent,
-    TResult? Function(_StudentIsReady value)? studentIsReady,
-    TResult? Function(_GetStudentList value)? getStudentList,
-    TResult? Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult? Function(_FinishRollCall value)? finishRollCall,
-  }) {
-    return studentIsReady?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChangeStudent value)? changeStudent,
-    TResult Function(_StudentIsReady value)? studentIsReady,
-    TResult Function(_GetStudentList value)? getStudentList,
-    TResult Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult Function(_FinishRollCall value)? finishRollCall,
-    required TResult orElse(),
-  }) {
-    if (studentIsReady != null) {
-      return studentIsReady(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StudentIsReady implements RollcallEvent {
-  const factory _StudentIsReady(final int index) = _$_StudentIsReady;
-
-  int get index;
-  @JsonKey(ignore: true)
-  _$$_StudentIsReadyCopyWith<_$_StudentIsReady> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_GetStudentListCopyWith<$Res> {
-  factory _$$_GetStudentListCopyWith(
-          _$_GetStudentList value, $Res Function(_$_GetStudentList) then) =
-      __$$_GetStudentListCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_GetStudentListCopyWithImpl<$Res>
-    extends _$RollcallEventCopyWithImpl<$Res, _$_GetStudentList>
-    implements _$$_GetStudentListCopyWith<$Res> {
-  __$$_GetStudentListCopyWithImpl(
-      _$_GetStudentList _value, $Res Function(_$_GetStudentList) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_GetStudentList implements _GetStudentList {
-  const _$_GetStudentList();
-
-  @override
-  String toString() {
-    return 'RollcallEvent.getStudentList()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetStudentList);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int index) changeStudent,
-    required TResult Function(int index) studentIsReady,
-    required TResult Function() getStudentList,
-    required TResult Function() changePageViewToTable,
-    required TResult Function() finishRollCall,
-  }) {
-    return getStudentList();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? changeStudent,
-    TResult? Function(int index)? studentIsReady,
-    TResult? Function()? getStudentList,
-    TResult? Function()? changePageViewToTable,
-    TResult? Function()? finishRollCall,
-  }) {
-    return getStudentList?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? changeStudent,
-    TResult Function(int index)? studentIsReady,
-    TResult Function()? getStudentList,
-    TResult Function()? changePageViewToTable,
-    TResult Function()? finishRollCall,
-    required TResult orElse(),
-  }) {
-    if (getStudentList != null) {
-      return getStudentList();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ChangeStudent value) changeStudent,
-    required TResult Function(_StudentIsReady value) studentIsReady,
-    required TResult Function(_GetStudentList value) getStudentList,
-    required TResult Function(_ChangePageViewToTable value)
-        changePageViewToTable,
-    required TResult Function(_FinishRollCall value) finishRollCall,
-  }) {
-    return getStudentList(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChangeStudent value)? changeStudent,
-    TResult? Function(_StudentIsReady value)? studentIsReady,
-    TResult? Function(_GetStudentList value)? getStudentList,
-    TResult? Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult? Function(_FinishRollCall value)? finishRollCall,
-  }) {
-    return getStudentList?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChangeStudent value)? changeStudent,
-    TResult Function(_StudentIsReady value)? studentIsReady,
-    TResult Function(_GetStudentList value)? getStudentList,
-    TResult Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult Function(_FinishRollCall value)? finishRollCall,
-    required TResult orElse(),
-  }) {
-    if (getStudentList != null) {
-      return getStudentList(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetStudentList implements RollcallEvent {
-  const factory _GetStudentList() = _$_GetStudentList;
-}
-
-/// @nodoc
-abstract class _$$_ChangePageViewToTableCopyWith<$Res> {
-  factory _$$_ChangePageViewToTableCopyWith(_$_ChangePageViewToTable value,
-          $Res Function(_$_ChangePageViewToTable) then) =
-      __$$_ChangePageViewToTableCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_ChangePageViewToTableCopyWithImpl<$Res>
-    extends _$RollcallEventCopyWithImpl<$Res, _$_ChangePageViewToTable>
-    implements _$$_ChangePageViewToTableCopyWith<$Res> {
-  __$$_ChangePageViewToTableCopyWithImpl(_$_ChangePageViewToTable _value,
-      $Res Function(_$_ChangePageViewToTable) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_ChangePageViewToTable implements _ChangePageViewToTable {
-  const _$_ChangePageViewToTable();
-
-  @override
-  String toString() {
-    return 'RollcallEvent.changePageViewToTable()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ChangePageViewToTable);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int index) changeStudent,
-    required TResult Function(int index) studentIsReady,
-    required TResult Function() getStudentList,
-    required TResult Function() changePageViewToTable,
-    required TResult Function() finishRollCall,
-  }) {
-    return changePageViewToTable();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? changeStudent,
-    TResult? Function(int index)? studentIsReady,
-    TResult? Function()? getStudentList,
-    TResult? Function()? changePageViewToTable,
-    TResult? Function()? finishRollCall,
-  }) {
-    return changePageViewToTable?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? changeStudent,
-    TResult Function(int index)? studentIsReady,
-    TResult Function()? getStudentList,
-    TResult Function()? changePageViewToTable,
-    TResult Function()? finishRollCall,
-    required TResult orElse(),
-  }) {
-    if (changePageViewToTable != null) {
-      return changePageViewToTable();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ChangeStudent value) changeStudent,
-    required TResult Function(_StudentIsReady value) studentIsReady,
-    required TResult Function(_GetStudentList value) getStudentList,
-    required TResult Function(_ChangePageViewToTable value)
-        changePageViewToTable,
-    required TResult Function(_FinishRollCall value) finishRollCall,
-  }) {
-    return changePageViewToTable(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChangeStudent value)? changeStudent,
-    TResult? Function(_StudentIsReady value)? studentIsReady,
-    TResult? Function(_GetStudentList value)? getStudentList,
-    TResult? Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult? Function(_FinishRollCall value)? finishRollCall,
-  }) {
-    return changePageViewToTable?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChangeStudent value)? changeStudent,
-    TResult Function(_StudentIsReady value)? studentIsReady,
-    TResult Function(_GetStudentList value)? getStudentList,
-    TResult Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult Function(_FinishRollCall value)? finishRollCall,
-    required TResult orElse(),
-  }) {
-    if (changePageViewToTable != null) {
-      return changePageViewToTable(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ChangePageViewToTable implements RollcallEvent {
-  const factory _ChangePageViewToTable() = _$_ChangePageViewToTable;
-}
-
-/// @nodoc
-abstract class _$$_FinishRollCallCopyWith<$Res> {
-  factory _$$_FinishRollCallCopyWith(
-          _$_FinishRollCall value, $Res Function(_$_FinishRollCall) then) =
-      __$$_FinishRollCallCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_FinishRollCallCopyWithImpl<$Res>
-    extends _$RollcallEventCopyWithImpl<$Res, _$_FinishRollCall>
-    implements _$$_FinishRollCallCopyWith<$Res> {
-  __$$_FinishRollCallCopyWithImpl(
-      _$_FinishRollCall _value, $Res Function(_$_FinishRollCall) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_FinishRollCall implements _FinishRollCall {
-  const _$_FinishRollCall();
-
-  @override
-  String toString() {
-    return 'RollcallEvent.finishRollCall()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_FinishRollCall);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int index) changeStudent,
-    required TResult Function(int index) studentIsReady,
-    required TResult Function() getStudentList,
-    required TResult Function() changePageViewToTable,
-    required TResult Function() finishRollCall,
-  }) {
-    return finishRollCall();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? changeStudent,
-    TResult? Function(int index)? studentIsReady,
-    TResult? Function()? getStudentList,
-    TResult? Function()? changePageViewToTable,
-    TResult? Function()? finishRollCall,
-  }) {
-    return finishRollCall?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? changeStudent,
-    TResult Function(int index)? studentIsReady,
-    TResult Function()? getStudentList,
-    TResult Function()? changePageViewToTable,
-    TResult Function()? finishRollCall,
-    required TResult orElse(),
-  }) {
-    if (finishRollCall != null) {
-      return finishRollCall();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ChangeStudent value) changeStudent,
-    required TResult Function(_StudentIsReady value) studentIsReady,
-    required TResult Function(_GetStudentList value) getStudentList,
-    required TResult Function(_ChangePageViewToTable value)
-        changePageViewToTable,
-    required TResult Function(_FinishRollCall value) finishRollCall,
-  }) {
-    return finishRollCall(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChangeStudent value)? changeStudent,
-    TResult? Function(_StudentIsReady value)? studentIsReady,
-    TResult? Function(_GetStudentList value)? getStudentList,
-    TResult? Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult? Function(_FinishRollCall value)? finishRollCall,
-  }) {
-    return finishRollCall?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChangeStudent value)? changeStudent,
-    TResult Function(_StudentIsReady value)? studentIsReady,
-    TResult Function(_GetStudentList value)? getStudentList,
-    TResult Function(_ChangePageViewToTable value)? changePageViewToTable,
-    TResult Function(_FinishRollCall value)? finishRollCall,
-    required TResult orElse(),
-  }) {
-    if (finishRollCall != null) {
-      return finishRollCall(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FinishRollCall implements RollcallEvent {
-  const factory _FinishRollCall() = _$_FinishRollCall;
 }

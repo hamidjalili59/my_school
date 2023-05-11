@@ -20,73 +20,69 @@ class ClassesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt.get<ClassroomBloc>(),
-      child: SafeArea(
-        child: Scaffold(
-          floatingActionButton: FloatingActionButton.extended(
-            icon: Icon(
-              Icons.add_circle,
-              size: 26.r,
-            ),
-            onPressed: _addClassDialogMethod,
-            label: Text(
-              'افزودن‌کلاس',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.r,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            backgroundColor: GeneralConstants.mainColor,
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          icon: Icon(
+            Icons.add_circle,
+            color: Colors.white,
+            size: 26.r,
           ),
-          backgroundColor: GeneralConstants.backgroundColor,
-          body: BlocBuilder<ClassroomBloc, ClassroomState>(
-            bloc: getIt.get<ClassroomBloc>(),
-            builder: (context, state) {
-              return state.maybeWhen(
-                orElse: () {
-                  return Center(
-                    child: SizedBox(
-                      width: 60.w,
-                      height: 60.w,
-                      child: const CircularProgressIndicator(),
-                    ),
-                  );
-                },
-                idle: (isLoading, pageState, classes, currentClass) {
-                  return Padding(
-                    padding: EdgeInsets.only(top: 8.0.h),
-                    child: isLoading
-                        ? Center(
-                            child: SizedBox(
-                                width: 60.w,
-                                height: 60.w,
-                                child: const CircularProgressIndicator()),
-                          )
-                        : SizedBox(
-                            width: 1.sw,
-                            child: ListView.builder(
-                              itemCount: classes.length,
-                              itemBuilder: (context, index) =>
-                                  ClassesCardWidget(
-                                title: classes[index].className ?? 'بدون نام',
-                                appRouter: appRouter,
-                              ),
+          onPressed: _addClassDialogMethod,
+          label: Text(
+            'افزودن‌کلاس',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.r,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          backgroundColor: GeneralConstants.mainColor,
+        ),
+        backgroundColor: GeneralConstants.backgroundColor,
+        body: BlocBuilder<ClassroomBloc, ClassroomState>(
+          bloc: getIt.get<ClassroomBloc>(),
+          builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () {
+                return Center(
+                  child: SizedBox(
+                    width: 60.w,
+                    height: 60.w,
+                    child: const CircularProgressIndicator(),
+                  ),
+                );
+              },
+              idle: (isLoading, classes, currentClass) {
+                return Padding(
+                  padding: EdgeInsets.only(top: 8.0.h),
+                  child: isLoading
+                      ? Center(
+                          child: SizedBox(
+                              width: 60.w,
+                              height: 60.w,
+                              child: const CircularProgressIndicator()),
+                        )
+                      : SizedBox(
+                          width: 1.sw,
+                          child: ListView.builder(
+                            itemCount: classes.length,
+                            itemBuilder: (context, index) => ClassesCardWidget(
+                              classroom: classes[index],
+                              appRouter: appRouter,
                             ),
                           ),
-                  );
-                },
-              );
-            },
-          ),
+                        ),
+                );
+              },
+            );
+          },
         ),
       ),
     );
   }
 
   _addClassDialogMethod() {
-    //TODO implement show Add Teacher here
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(

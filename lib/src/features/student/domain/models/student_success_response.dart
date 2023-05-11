@@ -3,13 +3,13 @@ import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_school/src/features/student/domain/models/student_model/student.dart';
 
-
 part 'student_success_response.g.dart';
 
-@HiveType(typeId: 13)
+@HiveType(typeId: 30)
 @JsonSerializable()
 class StudentSuccessResponse {
   @HiveField(0)
+  @JsonKey(name: 'Student')
   final Student student;
 
   StudentSuccessResponse({required this.student});

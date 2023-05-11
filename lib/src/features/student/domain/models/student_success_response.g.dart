@@ -9,7 +9,7 @@ part of 'student_success_response.dart';
 class StudentSuccessResponseAdapter
     extends TypeAdapter<StudentSuccessResponse> {
   @override
-  final int typeId = 13;
+  final int typeId = 30;
 
   @override
   StudentSuccessResponse read(BinaryReader reader) {
@@ -48,11 +48,11 @@ class StudentSuccessResponseAdapter
 StudentSuccessResponse _$StudentSuccessResponseFromJson(
         Map<String, dynamic> json) =>
     StudentSuccessResponse(
-      student: Student.fromJson(json['student'] as Map<String, dynamic>),
+      student: Student.fromJson(json['Student'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$StudentSuccessResponseToJson(
         StudentSuccessResponse instance) =>
     <String, dynamic>{
-      'student': instance.student,
+      'Student': instance.student,
     };

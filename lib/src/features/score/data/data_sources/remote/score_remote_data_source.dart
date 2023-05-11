@@ -2,6 +2,7 @@ import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/score/data/data_sources/remote/score_end_points.dart';
 import 'package:my_school/src/features/score/domain/models/score_model.dart';
 
 abstract class ScoreRemoteDataSource {
@@ -11,7 +12,7 @@ abstract class ScoreRemoteDataSource {
   });
 
   Future<Either<DioError, Response<Map<String, dynamic>>>> getScores(
-      {required int classId, required double phoneNumber});
+      {required int studentId});
 
   Future<Either<DioError, Response<Map<String, dynamic>>>> updateScore({
     required int scoreId,
@@ -32,15 +33,17 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
     required List<Score> scores,
     required int classId,
   }) =>
-      apiService.postMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
-        'scores': scores,
-      });
+      apiService.postMethod<Map<String, dynamic>>(
+          GeneralConstants.host + ScoreEndpoints.addLink,
+          body: {
+            'scores': scores,
+          });
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> getScores(
-      {required int classId, required double phoneNumber}) {
+      {required int studentId}) {
     return apiService.getMethod(
-      GeneralConstants.host,
+      GeneralConstants.host + ScoreEndpoints.getLink + studentId.toString(),
     );
   }
 

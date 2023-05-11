@@ -16,22 +16,40 @@ part 'exam_model.g.dart';
 /// asd
 class Exam with _$Exam {
   ///adsasd
-  @HiveType(typeId: 10)
+  @HiveType(typeId: 14)
   factory Exam({
     // account email
-    @HiveField(0) int? examId,
+    @HiveField(0, defaultValue: 0)
+    @JsonKey(name: 'exam_ID')
+    @Default(0)
+        int examId,
     //
-    @HiveField(1) int? teacherId,
+    @HiveField(1, defaultValue: 0)
+    @JsonKey(name: 'teacher_ID')
+    @Default(0)
+        int teacherId,
     // basic Information
-    @HiveField(2) bool? isDone,
+    @HiveField(2, defaultValue: false)
+    @JsonKey(name: 'done')
+    @Default(false)
+        bool isDone,
     // basic Information
-    @HiveField(3) String? examDescription,
+    @HiveField(3, defaultValue: '')
+    @JsonKey(name: 'exam_Describtion')
+    @Default('')
+        String examDescription,
     // basic Information
-    @HiveField(4) String? teacherName,
-
+    @HiveField(4, defaultValue: '')
+    @JsonKey(name: 'teacher_Name')
+    @Default('')
+        String teacherName,
+    // basic Information
+    @HiveField(5, defaultValue: 0)
+    @JsonKey(name: 'class_ID')
+    @Default(0)
+        int classId,
   }) = _Exam;
 
   ///das
-  factory Exam.fromJson(Map<String, Object?> json) =>
-      _$ExamFromJson(json);
+  factory Exam.fromJson(Map<String, Object?> json) => _$ExamFromJson(json);
 }

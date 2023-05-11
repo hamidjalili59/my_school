@@ -35,8 +35,8 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
       apiService.postMethod<Map<String, dynamic>>(
           '${GeneralConstants.host}api/v1/Teacher',
           body: {
-            'name': teacher.basicInfo.name,
-            'phoneNumber': teacher.basicInfo.phoneNumber,
+            'name': teacher.basicInfo!.name,
+            'phoneNumber': teacher.basicInfo!.phoneNumber,
             'school_ID': int.parse(getIt.get<OtpHandshakeResponse>().token),
           });
 

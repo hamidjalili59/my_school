@@ -7,20 +7,20 @@ part of 'rollcall_model.dart';
 // **************************************************************************
 
 _$_Rollcall _$$_RollcallFromJson(Map<String, dynamic> json) => _$_Rollcall(
-      rolecallId: json['rolecallId'] as int?,
-      studentId: json['studentId'] as int?,
-      classId: json['classId'] as String?,
-      classTime: json['classTime'] as int?,
-      absent: json['absent'] as bool?,
-      date: json['date'] as String?,
+      rolecallId: json['rollCall_ID'] as int? ?? 0,
+      studentId: json['student_ID'] as int? ?? 0,
+      classId: json['class_ID'] as int? ?? 0,
+      classTime: json['class_Time'] as int? ?? 0,
+      absent: json['absent'] as bool? ?? false,
+      date: json['date'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_RollcallToJson(_$_Rollcall instance) =>
     <String, dynamic>{
-      'rolecallId': instance.rolecallId,
-      'studentId': instance.studentId,
-      'classId': instance.classId,
-      'classTime': instance.classTime,
+      'rollCall_ID': instance.rolecallId,
+      'student_ID': instance.studentId,
+      'class_ID': instance.classId,
+      'class_Time': instance.classTime,
       'absent': instance.absent,
       'date': instance.date,
     };

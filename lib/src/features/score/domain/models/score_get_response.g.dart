@@ -8,7 +8,7 @@ part of 'score_get_response.dart';
 
 class ScoreGetResponseAdapter extends TypeAdapter<ScoreGetResponse> {
   @override
-  final int typeId = 12;
+  final int typeId = 25;
 
   @override
   ScoreGetResponse read(BinaryReader reader) {
@@ -46,12 +46,12 @@ class ScoreGetResponseAdapter extends TypeAdapter<ScoreGetResponse> {
 
 ScoreGetResponse _$ScoreGetResponseFromJson(Map<String, dynamic> json) =>
     ScoreGetResponse(
-      scores: (json['scores'] as List<dynamic>)
+      scores: (json['Grades'] as List<dynamic>)
           .map((e) => Score.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$ScoreGetResponseToJson(ScoreGetResponse instance) =>
     <String, dynamic>{
-      'scores': instance.scores,
+      'Grades': instance.scores,
     };

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/features/core/models/basic_info_model.dart';
@@ -9,6 +10,7 @@ import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
 import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:my_school/src/presentation/teacher/widget/custom_card_teacher_widget.dart';
+import 'package:my_school/src/presentation/teacher/widget/teacher_class_card_widget.dart';
 import 'package:ndialog/ndialog.dart';
 
 class TeacherPage extends StatelessWidget {
@@ -19,12 +21,12 @@ class TeacherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt.get<TeacherBloc>(),
-      child: Scaffold(
+    if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+      return Scaffold(
         floatingActionButton: FloatingActionButton.extended(
             icon: Icon(
               Icons.add_circle,
+              color: Colors.white,
               size: 26.r,
             ),
             onPressed: () {
@@ -44,39 +46,79 @@ class TeacherPage extends StatelessWidget {
           builder: (context, state) {
             return state.maybeWhen(
               idle: (isLoading, teachers) {
-                return SizedBox(
-                  width: 1.sw,
-                  height: 1.sh,
-                  child: ListView.builder(
-                    itemCount: teachers.length,
-                    itemBuilder: (context, index) {
-                      return CustomCardTeacherWidget(
-                        name: teachers[index].basicInfo.name,
-                        phone:
-                            '0${teachers[index].basicInfo.phoneNumber.toInt()}',
-                        method: () {
-                          _addTeacherDialogMethod(
-                            true,
-                            teacher: teachers[index],
+                if (state.isLoading) {
+                  return Center(
+                    child: SizedBox(
+                        width: 55.w,
+                        height: 55.w,
+                        child: const CircularProgressIndicator()),
+                  );
+                } else {
+                  if (state.teachers.isNotEmpty) {
+                    return SizedBox(
+                      width: 1.sw,
+                      height: 1.sh,
+                      child: ListView.builder(
+                        itemCount: teachers.length,
+                        itemBuilder: (context, index) {
+                          return CustomCardTeacherWidget(
+                            name: teachers[index].basicInfo!.name,
+                            phone:
+                                '0${teachers[index].basicInfo!.phoneNumber.toInt()}',
+                            method: () {
+                              _addTeacherDialogMethod(
+                                true,
+                                teacher: teachers[index],
+                              );
+                            },
+                            nameController: _controllerName,
+                            phoneController: _controllerPhone,
                           );
                         },
-                        nameController: _controllerName,
-                        phoneController: _controllerPhone,
-                      );
-                    },
-                  ),
-                );
+                      ),
+                    );
+                  } else {
+                    return SizedBox(
+                      width: 1.sw,
+                      height: 0.8.sh,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              width: 0.95.sw,
+                              height: 0.5.sh,
+                              child: Padding(
+                                padding: EdgeInsets.all(54.0.r),
+                                child: SvgPicture.asset(
+                                  'assets/empty.svg',
+                                ),
+                              ),
+                            ),
+                            Text(
+                              'دبیری وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                              textDirection: TextDirection.rtl,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800, fontSize: 18.r),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                }
               },
               orElse: () => const SizedBox(),
             );
           },
         ),
-      ),
-    );
+      );
+    } else {
+      return const TeacherClassWidget();
+    }
   }
 
   _addTeacherDialogMethod(bool isEditing, {Teacher? teacher}) {
-    //TODO implement show Add Teacher here
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(
@@ -139,14 +181,22 @@ class TeacherPage extends StatelessWidget {
                 onTap: () {
                   if (isEditing) {
                     getIt.get<TeacherBloc>().add(
-                          TeacherEvent.updateTeacher(teacher!),
+                          TeacherEvent.updateTeacher(
+                            teacher!.copyWith(
+                              basicInfo: BasicInfoModel(
+                                name: _controllerName.text,
+                                phoneNumber:
+                                    double.tryParse(_controllerPhone.text) ?? 0,
+                              ),
+                            ),
+                          ),
                         );
                   } else {
                     getIt.get<TeacherBloc>().add(
                           TeacherEvent.addTeacher(
                             Teacher(
-                              0,
-                              BasicInfoModel(
+                              teacherId: 0,
+                              basicInfo: BasicInfoModel(
                                 name: _controllerName.text,
                                 phoneNumber:
                                     double.tryParse(_controllerPhone.text) ?? 0,

@@ -8,7 +8,7 @@ part of 'parent_get_response.dart';
 
 class ParentGetResponseAdapter extends TypeAdapter<ParentGetResponse> {
   @override
-  final int typeId = 12;
+  final int typeId = 17;
 
   @override
   ParentGetResponse read(BinaryReader reader) {

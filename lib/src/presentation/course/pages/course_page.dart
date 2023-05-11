@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/features/course/domain/models/course_model/course.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
 import 'package:my_school/src/presentation/course/bloc/course/course_bloc.dart';
@@ -14,54 +15,61 @@ class CoursePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CourseBloc>(
-      create: (_) => getIt.get<CourseBloc>(),
-      child: SafeArea(
-        child: Scaffold(
-          floatingActionButton: FloatingActionButton.extended(
-              icon: Icon(
-                Icons.add_circle,
-                size: 26.r,
-              ),
-              onPressed: _addCourseDialogMethod,
-              label: Text(
-                'افزودن‌درس',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.r,
-                    fontWeight: FontWeight.w700),
-              ),
-              backgroundColor: GeneralConstants.mainColor),
-          backgroundColor: GeneralConstants.backgroundColor,
-          body: BlocBuilder<CourseBloc, CourseState>(
-            bloc: getIt.get<CourseBloc>(),
-            builder: (context, state) {
-              return state.maybeWhen(
-                idle: (isLoading, courses) {
-                  return SizedBox(
-                    width: 1.sw,
-                    height: 1.sh,
-                    child: ListView.builder(
-                      itemCount: courses.length,
-                      itemBuilder: (context, index) {
-                        return CourseTileWidget(
-                          courseName: courses[index].name ?? 'بدون نام',
-                        );
-                      },
-                    ),
-                  );
-                },
-                orElse: () => const SizedBox(),
-              );
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+            icon: Icon(
+              Icons.add_circle,
+              color: Colors.white,
+              size: 26.r,
+            ),
+            onPressed: () {
+              _addCourseDialogMethod(false);
             },
-          ),
+            label: Text(
+              'افزودن‌درس',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.r,
+                  fontWeight: FontWeight.w700),
+            ),
+            backgroundColor: GeneralConstants.mainColor),
+        backgroundColor: GeneralConstants.backgroundColor,
+        body: BlocBuilder<CourseBloc, CourseState>(
+          bloc: getIt.get<CourseBloc>(),
+          builder: (context, state) {
+            return state.maybeWhen(
+              idle: (isLoading, courses) {
+                return SizedBox(
+                  width: 1.sw,
+                  height: 1.sh,
+                  child: ListView.builder(
+                    itemCount: courses.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          _addCourseDialogMethod(true, course: courses[index]);
+                        },
+                        child: CourseTileWidget(
+                          courseName: courses[index].courseName,
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+              orElse: () => const SizedBox(),
+            );
+          },
         ),
       ),
     );
   }
 
-  _addCourseDialogMethod() {
-    //TODO implement show Add Teacher here
+  _addCourseDialogMethod(bool isEditing, {Course? course}) {
+    if (course != null) {
+      _controller.text = course.courseName;
+    }
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(
@@ -109,11 +117,21 @@ class CoursePage extends StatelessWidget {
               ),
               SizedBox(height: 15.h),
               InkWell(
-                onTap: () => getIt.get<CourseBloc>().add(
-                      CourseEvent.addCourse(
-                        _controller.text,
-                      ),
-                    ),
+                onTap: () {
+                  if (isEditing) {
+                    getIt.get<CourseBloc>().add(
+                          CourseEvent.updateCourse(
+                            course!.copyWith(courseName: _controller.text),
+                          ),
+                        );
+                  } else {
+                    getIt.get<CourseBloc>().add(
+                          CourseEvent.addCourse(
+                            _controller.text,
+                          ),
+                        );
+                  }
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: GeneralConstants.mainColor,

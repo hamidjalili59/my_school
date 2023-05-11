@@ -7,16 +7,16 @@ part of 'student.dart';
 // **************************************************************************
 
 _$_Student _$$_StudentFromJson(Map<String, dynamic> json) => _$_Student(
-      studentId: json['studentId'] as int?,
-      classId: json['classId'] as int?,
-      basicInfo: json['basicInfo'] == null
+      studentId: json['student_ID'] as int? ?? 0,
+      classId: json['class_ID'] as int? ?? 0,
+      basicInfo: json['basic_Info'] == null
           ? null
-          : BasicInfoModel.fromJson(json['basicInfo'] as Map<String, dynamic>),
+          : BasicInfoModel.fromJson(json['basic_Info'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_StudentToJson(_$_Student instance) =>
     <String, dynamic>{
-      'studentId': instance.studentId,
-      'classId': instance.classId,
-      'basicInfo': instance.basicInfo,
+      'student_ID': instance.studentId,
+      'class_ID': instance.classId,
+      'basic_Info': instance.basicInfo,
     };

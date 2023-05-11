@@ -21,22 +21,28 @@ Score _$ScoreFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Score {
 // account email
-  @HiveField(0)
-  int? get gradeId => throw _privateConstructorUsedError; //
-  @HiveField(1)
-  int? get classId => throw _privateConstructorUsedError; // basic Information
-  @HiveField(2)
-  BasicInfoModel? get studentInfo =>
+  @HiveField(0, defaultValue: 0)
+  @JsonKey(name: 'grade_ID')
+  int get gradeId => throw _privateConstructorUsedError; //
+  @HiveField(1, defaultValue: 0)
+  @JsonKey(name: 'class_ID')
+  int get classId => throw _privateConstructorUsedError; // basic Information
+  @HiveField(2, defaultValue: '')
+  @JsonKey(name: 'teacher_Name')
+  String get teacherName =>
       throw _privateConstructorUsedError; // basic Information
-  @HiveField(3)
-  String? get teacherName =>
+  @HiveField(3, defaultValue: '')
+  @JsonKey(name: 'course_Name')
+  String get courseName =>
       throw _privateConstructorUsedError; // basic Information
-  @HiveField(4)
-  String? get courseName =>
-      throw _privateConstructorUsedError; // basic Information
-  @HiveField(4)
-  double? get grade => throw _privateConstructorUsedError; // basic Information
-  @HiveField(4)
+  @HiveField(4, defaultValue: 0.0)
+  @JsonKey(name: 'grade')
+  double get grade => throw _privateConstructorUsedError; // basic Information
+  @HiveField(5, defaultValue: 0)
+  @JsonKey(name: 'student_ID')
+  int get studentId => throw _privateConstructorUsedError;
+  @HiveField(6)
+  @JsonKey(name: 'created_Date')
   DateTime? get createdDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,13 +56,27 @@ abstract class $ScoreCopyWith<$Res> {
       _$ScoreCopyWithImpl<$Res, Score>;
   @useResult
   $Res call(
-      {@HiveField(0) int? gradeId,
-      @HiveField(1) int? classId,
-      @HiveField(2) BasicInfoModel? studentInfo,
-      @HiveField(3) String? teacherName,
-      @HiveField(4) String? courseName,
-      @HiveField(4) double? grade,
-      @HiveField(4) DateTime? createdDate});
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'grade_ID')
+          int gradeId,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          int classId,
+      @HiveField(2, defaultValue: '')
+      @JsonKey(name: 'teacher_Name')
+          String teacherName,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'course_Name')
+          String courseName,
+      @HiveField(4, defaultValue: 0.0)
+      @JsonKey(name: 'grade')
+          double grade,
+      @HiveField(5, defaultValue: 0)
+      @JsonKey(name: 'student_ID')
+          int studentId,
+      @HiveField(6)
+      @JsonKey(name: 'created_Date')
+          DateTime? createdDate});
 }
 
 /// @nodoc
@@ -72,39 +92,39 @@ class _$ScoreCopyWithImpl<$Res, $Val extends Score>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? gradeId = freezed,
-    Object? classId = freezed,
-    Object? studentInfo = freezed,
-    Object? teacherName = freezed,
-    Object? courseName = freezed,
-    Object? grade = freezed,
+    Object? gradeId = null,
+    Object? classId = null,
+    Object? teacherName = null,
+    Object? courseName = null,
+    Object? grade = null,
+    Object? studentId = null,
     Object? createdDate = freezed,
   }) {
     return _then(_value.copyWith(
-      gradeId: freezed == gradeId
+      gradeId: null == gradeId
           ? _value.gradeId
           : gradeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      classId: freezed == classId
+              as int,
+      classId: null == classId
           ? _value.classId
           : classId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      studentInfo: freezed == studentInfo
-          ? _value.studentInfo
-          : studentInfo // ignore: cast_nullable_to_non_nullable
-              as BasicInfoModel?,
-      teacherName: freezed == teacherName
+              as int,
+      teacherName: null == teacherName
           ? _value.teacherName
           : teacherName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      courseName: freezed == courseName
+              as String,
+      courseName: null == courseName
           ? _value.courseName
           : courseName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      grade: freezed == grade
+              as String,
+      grade: null == grade
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
+      studentId: null == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int,
       createdDate: freezed == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -120,13 +140,27 @@ abstract class _$$_ScoreCopyWith<$Res> implements $ScoreCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int? gradeId,
-      @HiveField(1) int? classId,
-      @HiveField(2) BasicInfoModel? studentInfo,
-      @HiveField(3) String? teacherName,
-      @HiveField(4) String? courseName,
-      @HiveField(4) double? grade,
-      @HiveField(4) DateTime? createdDate});
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'grade_ID')
+          int gradeId,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          int classId,
+      @HiveField(2, defaultValue: '')
+      @JsonKey(name: 'teacher_Name')
+          String teacherName,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'course_Name')
+          String courseName,
+      @HiveField(4, defaultValue: 0.0)
+      @JsonKey(name: 'grade')
+          double grade,
+      @HiveField(5, defaultValue: 0)
+      @JsonKey(name: 'student_ID')
+          int studentId,
+      @HiveField(6)
+      @JsonKey(name: 'created_Date')
+          DateTime? createdDate});
 }
 
 /// @nodoc
@@ -138,39 +172,39 @@ class __$$_ScoreCopyWithImpl<$Res> extends _$ScoreCopyWithImpl<$Res, _$_Score>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? gradeId = freezed,
-    Object? classId = freezed,
-    Object? studentInfo = freezed,
-    Object? teacherName = freezed,
-    Object? courseName = freezed,
-    Object? grade = freezed,
+    Object? gradeId = null,
+    Object? classId = null,
+    Object? teacherName = null,
+    Object? courseName = null,
+    Object? grade = null,
+    Object? studentId = null,
     Object? createdDate = freezed,
   }) {
     return _then(_$_Score(
-      gradeId: freezed == gradeId
+      gradeId: null == gradeId
           ? _value.gradeId
           : gradeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      classId: freezed == classId
+              as int,
+      classId: null == classId
           ? _value.classId
           : classId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      studentInfo: freezed == studentInfo
-          ? _value.studentInfo
-          : studentInfo // ignore: cast_nullable_to_non_nullable
-              as BasicInfoModel?,
-      teacherName: freezed == teacherName
+              as int,
+      teacherName: null == teacherName
           ? _value.teacherName
           : teacherName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      courseName: freezed == courseName
+              as String,
+      courseName: null == courseName
           ? _value.courseName
           : courseName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      grade: freezed == grade
+              as String,
+      grade: null == grade
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
+      studentId: null == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int,
       createdDate: freezed == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -181,52 +215,72 @@ class __$$_ScoreCopyWithImpl<$Res> extends _$ScoreCopyWithImpl<$Res, _$_Score>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 10)
+@HiveType(typeId: 26)
 class _$_Score implements _Score {
   _$_Score(
-      {@HiveField(0) this.gradeId,
-      @HiveField(1) this.classId,
-      @HiveField(2) this.studentInfo,
-      @HiveField(3) this.teacherName,
-      @HiveField(4) this.courseName,
-      @HiveField(4) this.grade,
-      @HiveField(4) this.createdDate});
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'grade_ID')
+          this.gradeId = 0,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          this.classId = 0,
+      @HiveField(2, defaultValue: '')
+      @JsonKey(name: 'teacher_Name')
+          this.teacherName = '',
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'course_Name')
+          this.courseName = '',
+      @HiveField(4, defaultValue: 0.0)
+      @JsonKey(name: 'grade')
+          this.grade = 0.0,
+      @HiveField(5, defaultValue: 0)
+      @JsonKey(name: 'student_ID')
+          this.studentId = 0,
+      @HiveField(6)
+      @JsonKey(name: 'created_Date')
+          this.createdDate});
 
   factory _$_Score.fromJson(Map<String, dynamic> json) =>
       _$$_ScoreFromJson(json);
 
 // account email
   @override
-  @HiveField(0)
-  final int? gradeId;
+  @HiveField(0, defaultValue: 0)
+  @JsonKey(name: 'grade_ID')
+  final int gradeId;
 //
   @override
-  @HiveField(1)
-  final int? classId;
+  @HiveField(1, defaultValue: 0)
+  @JsonKey(name: 'class_ID')
+  final int classId;
 // basic Information
   @override
-  @HiveField(2)
-  final BasicInfoModel? studentInfo;
+  @HiveField(2, defaultValue: '')
+  @JsonKey(name: 'teacher_Name')
+  final String teacherName;
 // basic Information
   @override
-  @HiveField(3)
-  final String? teacherName;
+  @HiveField(3, defaultValue: '')
+  @JsonKey(name: 'course_Name')
+  final String courseName;
 // basic Information
   @override
-  @HiveField(4)
-  final String? courseName;
+  @HiveField(4, defaultValue: 0.0)
+  @JsonKey(name: 'grade')
+  final double grade;
 // basic Information
   @override
-  @HiveField(4)
-  final double? grade;
-// basic Information
+  @HiveField(5, defaultValue: 0)
+  @JsonKey(name: 'student_ID')
+  final int studentId;
   @override
-  @HiveField(4)
+  @HiveField(6)
+  @JsonKey(name: 'created_Date')
   final DateTime? createdDate;
 
   @override
   String toString() {
-    return 'Score(gradeId: $gradeId, classId: $classId, studentInfo: $studentInfo, teacherName: $teacherName, courseName: $courseName, grade: $grade, createdDate: $createdDate)';
+    return 'Score(gradeId: $gradeId, classId: $classId, teacherName: $teacherName, courseName: $courseName, grade: $grade, studentId: $studentId, createdDate: $createdDate)';
   }
 
   @override
@@ -236,21 +290,21 @@ class _$_Score implements _Score {
             other is _$_Score &&
             (identical(other.gradeId, gradeId) || other.gradeId == gradeId) &&
             (identical(other.classId, classId) || other.classId == classId) &&
-            (identical(other.studentInfo, studentInfo) ||
-                other.studentInfo == studentInfo) &&
             (identical(other.teacherName, teacherName) ||
                 other.teacherName == teacherName) &&
             (identical(other.courseName, courseName) ||
                 other.courseName == courseName) &&
             (identical(other.grade, grade) || other.grade == grade) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, gradeId, classId, studentInfo,
-      teacherName, courseName, grade, createdDate);
+  int get hashCode => Object.hash(runtimeType, gradeId, classId, teacherName,
+      courseName, grade, studentId, createdDate);
 
   @JsonKey(ignore: true)
   @override
@@ -268,36 +322,57 @@ class _$_Score implements _Score {
 
 abstract class _Score implements Score {
   factory _Score(
-      {@HiveField(0) final int? gradeId,
-      @HiveField(1) final int? classId,
-      @HiveField(2) final BasicInfoModel? studentInfo,
-      @HiveField(3) final String? teacherName,
-      @HiveField(4) final String? courseName,
-      @HiveField(4) final double? grade,
-      @HiveField(4) final DateTime? createdDate}) = _$_Score;
+      {@HiveField(0, defaultValue: 0)
+      @JsonKey(name: 'grade_ID')
+          final int gradeId,
+      @HiveField(1, defaultValue: 0)
+      @JsonKey(name: 'class_ID')
+          final int classId,
+      @HiveField(2, defaultValue: '')
+      @JsonKey(name: 'teacher_Name')
+          final String teacherName,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'course_Name')
+          final String courseName,
+      @HiveField(4, defaultValue: 0.0)
+      @JsonKey(name: 'grade')
+          final double grade,
+      @HiveField(5, defaultValue: 0)
+      @JsonKey(name: 'student_ID')
+          final int studentId,
+      @HiveField(6)
+      @JsonKey(name: 'created_Date')
+          final DateTime? createdDate}) = _$_Score;
 
   factory _Score.fromJson(Map<String, dynamic> json) = _$_Score.fromJson;
 
   @override // account email
-  @HiveField(0)
-  int? get gradeId;
+  @HiveField(0, defaultValue: 0)
+  @JsonKey(name: 'grade_ID')
+  int get gradeId;
   @override //
-  @HiveField(1)
-  int? get classId;
+  @HiveField(1, defaultValue: 0)
+  @JsonKey(name: 'class_ID')
+  int get classId;
   @override // basic Information
-  @HiveField(2)
-  BasicInfoModel? get studentInfo;
+  @HiveField(2, defaultValue: '')
+  @JsonKey(name: 'teacher_Name')
+  String get teacherName;
   @override // basic Information
-  @HiveField(3)
-  String? get teacherName;
+  @HiveField(3, defaultValue: '')
+  @JsonKey(name: 'course_Name')
+  String get courseName;
   @override // basic Information
-  @HiveField(4)
-  String? get courseName;
+  @HiveField(4, defaultValue: 0.0)
+  @JsonKey(name: 'grade')
+  double get grade;
   @override // basic Information
-  @HiveField(4)
-  double? get grade;
-  @override // basic Information
-  @HiveField(4)
+  @HiveField(5, defaultValue: 0)
+  @JsonKey(name: 'student_ID')
+  int get studentId;
+  @override
+  @HiveField(6)
+  @JsonKey(name: 'created_Date')
   DateTime? get createdDate;
   @override
   @JsonKey(ignore: true)

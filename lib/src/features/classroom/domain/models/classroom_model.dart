@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 
 part 'classroom_model.g.dart';
 
-@HiveType(typeId: 8)
+@HiveType(typeId: 4)
 @JsonSerializable()
 class Classroom {
   @HiveField(0)

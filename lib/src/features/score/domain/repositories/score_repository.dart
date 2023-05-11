@@ -19,7 +19,7 @@ abstract class ScoreRepository {
   });
   //
   Future<Either<ScoreFailure, ScoreGetResponse>> getScores(
-      {required int classId,required double phoneNumber});
+      {required int studentId});
   //
   Future<Either<ScoreFailure, void>> cacheScoresData({
     required List<Score> scores,

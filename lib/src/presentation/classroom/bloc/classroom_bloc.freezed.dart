@@ -18,24 +18,24 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ClassroomState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading, AppbarPageType pageState,
-            List<Classroom> classes, Classroom? currentClass)
+    required TResult Function(
+            bool isLoading, List<Classroom> classes, Classroom? currentClass)
         idle,
     required TResult Function(String pageState) currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, AppbarPageType pageState,
-            List<Classroom> classes, Classroom? currentClass)?
+    TResult? Function(
+            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
         idle,
     TResult? Function(String pageState)? currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, AppbarPageType pageState,
-            List<Classroom> classes, Classroom? currentClass)?
+    TResult Function(
+            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
         idle,
     TResult Function(String pageState)? currentPageIndex,
     required TResult orElse(),
@@ -85,11 +85,7 @@ abstract class _$$_IdleCopyWith<$Res> {
   factory _$$_IdleCopyWith(_$_Idle value, $Res Function(_$_Idle) then) =
       __$$_IdleCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      AppbarPageType pageState,
-      List<Classroom> classes,
-      Classroom? currentClass});
+  $Res call({bool isLoading, List<Classroom> classes, Classroom? currentClass});
 }
 
 /// @nodoc
@@ -103,7 +99,6 @@ class __$$_IdleCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
-    Object? pageState = null,
     Object? classes = null,
     Object? currentClass = freezed,
   }) {
@@ -112,10 +107,6 @@ class __$$_IdleCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      pageState: null == pageState
-          ? _value.pageState
-          : pageState // ignore: cast_nullable_to_non_nullable
-              as AppbarPageType,
       classes: null == classes
           ? _value._classes
           : classes // ignore: cast_nullable_to_non_nullable
@@ -133,7 +124,6 @@ class __$$_IdleCopyWithImpl<$Res>
 class _$_Idle implements _Idle {
   const _$_Idle(
       {this.isLoading = false,
-      this.pageState = AppbarPageType.student,
       final List<Classroom> classes = const [],
       this.currentClass})
       : _classes = classes;
@@ -141,10 +131,9 @@ class _$_Idle implements _Idle {
   @override
   @JsonKey()
   final bool isLoading;
-  @override
-  @JsonKey()
-  final AppbarPageType pageState;
+// @Default(AppbarPageType.student) AppbarPageType pageState,
   final List<Classroom> _classes;
+// @Default(AppbarPageType.student) AppbarPageType pageState,
   @override
   @JsonKey()
   List<Classroom> get classes {
@@ -157,7 +146,7 @@ class _$_Idle implements _Idle {
 
   @override
   String toString() {
-    return 'ClassroomState.idle(isLoading: $isLoading, pageState: $pageState, classes: $classes, currentClass: $currentClass)';
+    return 'ClassroomState.idle(isLoading: $isLoading, classes: $classes, currentClass: $currentClass)';
   }
 
   @override
@@ -167,15 +156,13 @@ class _$_Idle implements _Idle {
             other is _$_Idle &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.pageState, pageState) ||
-                other.pageState == pageState) &&
             const DeepCollectionEquality().equals(other._classes, _classes) &&
             (identical(other.currentClass, currentClass) ||
                 other.currentClass == currentClass));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, pageState,
+  int get hashCode => Object.hash(runtimeType, isLoading,
       const DeepCollectionEquality().hash(_classes), currentClass);
 
   @JsonKey(ignore: true)
@@ -187,36 +174,36 @@ class _$_Idle implements _Idle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading, AppbarPageType pageState,
-            List<Classroom> classes, Classroom? currentClass)
+    required TResult Function(
+            bool isLoading, List<Classroom> classes, Classroom? currentClass)
         idle,
     required TResult Function(String pageState) currentPageIndex,
   }) {
-    return idle(isLoading, pageState, classes, currentClass);
+    return idle(isLoading, classes, currentClass);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, AppbarPageType pageState,
-            List<Classroom> classes, Classroom? currentClass)?
+    TResult? Function(
+            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
         idle,
     TResult? Function(String pageState)? currentPageIndex,
   }) {
-    return idle?.call(isLoading, pageState, classes, currentClass);
+    return idle?.call(isLoading, classes, currentClass);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, AppbarPageType pageState,
-            List<Classroom> classes, Classroom? currentClass)?
+    TResult Function(
+            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
         idle,
     TResult Function(String pageState)? currentPageIndex,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle(isLoading, pageState, classes, currentClass);
+      return idle(isLoading, classes, currentClass);
     }
     return orElse();
   }
@@ -256,12 +243,11 @@ class _$_Idle implements _Idle {
 abstract class _Idle implements ClassroomState {
   const factory _Idle(
       {final bool isLoading,
-      final AppbarPageType pageState,
       final List<Classroom> classes,
       final Classroom? currentClass}) = _$_Idle;
 
-  bool get isLoading;
-  AppbarPageType get pageState;
+  bool
+      get isLoading; // @Default(AppbarPageType.student) AppbarPageType pageState,
   List<Classroom> get classes;
   Classroom? get currentClass;
   @JsonKey(ignore: true)
@@ -334,8 +320,8 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading, AppbarPageType pageState,
-            List<Classroom> classes, Classroom? currentClass)
+    required TResult Function(
+            bool isLoading, List<Classroom> classes, Classroom? currentClass)
         idle,
     required TResult Function(String pageState) currentPageIndex,
   }) {
@@ -345,8 +331,8 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, AppbarPageType pageState,
-            List<Classroom> classes, Classroom? currentClass)?
+    TResult? Function(
+            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
         idle,
     TResult? Function(String pageState)? currentPageIndex,
   }) {
@@ -356,8 +342,8 @@ class _$_CurrentPageIndex implements _CurrentPageIndex {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, AppbarPageType pageState,
-            List<Classroom> classes, Classroom? currentClass)?
+    TResult Function(
+            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
         idle,
     TResult Function(String pageState)? currentPageIndex,
     required TResult orElse(),

@@ -8,7 +8,6 @@ import 'package:my_school/src/features/parent/domain/models/parent_model/parent.
 import 'package:my_school/src/features/parent/domain/repositories/parent_repository.dart';
 import 'package:my_school/src/features/core/models/base_response.dart';
 
-//TODO: یک ابجکت برای درس ها داخل دیپندنسی ریجیستر کنم و داخل توسط فانکشن های خود  پرش کنم
 class ParentRepositoryImpl extends ParentRepository {
   final ParentRemoteDataSource _remoteDS;
   final ParentLocalDataSource _localDS;

@@ -8,7 +8,7 @@ part of 'base_response.dart';
 
 class BaseResponseAdapter extends TypeAdapter<BaseResponse> {
   @override
-  final int typeId = 4;
+  final int typeId = 6;
 
   @override
   BaseResponse read(BinaryReader reader) {

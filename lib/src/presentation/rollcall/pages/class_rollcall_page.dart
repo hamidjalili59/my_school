@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/injectable/injectable.dart';
@@ -60,13 +61,8 @@ class ClassRollCallPage extends StatelessWidget {
                                   child: Container(
                                     color: const Color.fromARGB(
                                         255, 255, 255, 255),
-                                    child: Image.asset(
-                                      false
-                                          ? 'assets/per.jpg'
-                                          : PngAssets.studentProfile,
-                                      filterQuality: FilterQuality.high,
-                                      fit: BoxFit.fitHeight,
-                                    ),
+                                    child:
+                                        SvgPicture.asset('assets/profile.svg'),
                                   ),
                                 ),
                               ),

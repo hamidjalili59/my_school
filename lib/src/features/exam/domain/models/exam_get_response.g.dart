@@ -8,7 +8,7 @@ part of 'exam_get_response.dart';
 
 class ExamGetResponseAdapter extends TypeAdapter<ExamGetResponse> {
   @override
-  final int typeId = 12;
+  final int typeId = 13;
 
   @override
   ExamGetResponse read(BinaryReader reader) {
@@ -46,12 +46,12 @@ class ExamGetResponseAdapter extends TypeAdapter<ExamGetResponse> {
 
 ExamGetResponse _$ExamGetResponseFromJson(Map<String, dynamic> json) =>
     ExamGetResponse(
-      exams: (json['exams'] as List<dynamic>)
+      exams: (json['Exams'] as List<dynamic>)
           .map((e) => Exam.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$ExamGetResponseToJson(ExamGetResponse instance) =>
     <String, dynamic>{
-      'exams': instance.exams,
+      'Exams': instance.exams,
     };

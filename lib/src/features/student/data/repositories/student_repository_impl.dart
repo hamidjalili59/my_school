@@ -8,7 +8,6 @@ import 'package:my_school/src/features/student/domain/models/student_model/stude
 import 'package:my_school/src/features/student/domain/repositories/student_repository.dart';
 import 'package:my_school/src/features/core/models/base_response.dart';
 
-//TODO: یک ابجکت برای درس ها داخل دیپندنسی ریجیستر کنم و داخل توسط فانکشن های خود  پرش کنم
 class StudentRepositoryImpl extends StudentRepository {
   final StudentRemoteDataSource _remoteDS;
   final StudentLocalDataSource _localDS;
@@ -18,14 +17,14 @@ class StudentRepositoryImpl extends StudentRepository {
 
   @override
   Future<Either<StudentFailure, StudentSuccessResponse>> addStudent(
-      {required Student student}) {
-    return _remoteDS.addStudent(student: student).then(
+      {required Student student, required String parentName}) {
+    return _remoteDS.addStudent(student: student, parentName: parentName).then(
           (value) => value.fold(
             (l) => left<StudentFailure, StudentSuccessResponse>(
                 StudentFailure.api(l)),
             (r) async {
               final studentAddSuccessResponse = StudentSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<StudentFailure, StudentSuccessResponse>(
                 studentAddSuccessResponse,
@@ -68,7 +67,7 @@ class StudentRepositoryImpl extends StudentRepository {
             ),
             (r) async {
               final studentsDataFromServer = StudentGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<StudentFailure, StudentGetResponse>(
                 studentsDataFromServer,
@@ -87,7 +86,7 @@ class StudentRepositoryImpl extends StudentRepository {
             ),
             (r) async {
               final removeStudentFromServer = StudentSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<StudentFailure, StudentSuccessResponse>(
                 removeStudentFromServer,
@@ -118,10 +117,30 @@ class StudentRepositoryImpl extends StudentRepository {
             ),
             (r) async {
               final updateStudentOnServer = StudentSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<StudentFailure, StudentSuccessResponse>(
                 updateStudentOnServer,
+              );
+            },
+          ),
+        );
+  }
+
+  @override
+  Future<Either<StudentFailure, StudentGetResponse>> getStudentsParent(
+      {required double phonenumber}) {
+    return _remoteDS.getStudentsParent(phonenumber: phonenumber).then(
+          (value) => value.fold(
+            (l) => left<StudentFailure, StudentGetResponse>(
+              StudentFailure.api(l),
+            ),
+            (r) async {
+              final studentsDataFromServer = StudentGetResponse.fromJson(
+                BaseResponse.fromJson(r.data ?? {}).payload,
+              );
+              return right<StudentFailure, StudentGetResponse>(
+                studentsDataFromServer,
               );
             },
           ),

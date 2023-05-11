@@ -8,7 +8,7 @@ part of 'score_success_response.dart';
 
 class ScoreSuccessResponseAdapter extends TypeAdapter<ScoreSuccessResponse> {
   @override
-  final int typeId = 13;
+  final int typeId = 28;
 
   @override
   ScoreSuccessResponse read(BinaryReader reader) {
@@ -47,11 +47,11 @@ class ScoreSuccessResponseAdapter extends TypeAdapter<ScoreSuccessResponse> {
 ScoreSuccessResponse _$ScoreSuccessResponseFromJson(
         Map<String, dynamic> json) =>
     ScoreSuccessResponse(
-      score: Score.fromJson(json['score'] as Map<String, dynamic>),
+      score: Score.fromJson(json['Grades'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ScoreSuccessResponseToJson(
         ScoreSuccessResponse instance) =>
     <String, dynamic>{
-      'score': instance.score,
+      'Grades': instance.score,
     };

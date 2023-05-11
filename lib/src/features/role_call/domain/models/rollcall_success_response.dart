@@ -5,10 +5,11 @@ import 'package:my_school/src/features/role_call/domain/models/rollcall_model.da
 
 part 'rollcall_success_response.g.dart';
 
-@HiveType(typeId: 13)
+@HiveType(typeId: 24)
 @JsonSerializable()
 class RollcallSuccessResponse {
   @HiveField(0)
+  @JsonKey(name: 'RollCalls')
   final List<Rollcall> rollcall;
 
   RollcallSuccessResponse({required this.rollcall});

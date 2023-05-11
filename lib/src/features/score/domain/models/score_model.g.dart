@@ -7,26 +7,23 @@ part of 'score_model.dart';
 // **************************************************************************
 
 _$_Score _$$_ScoreFromJson(Map<String, dynamic> json) => _$_Score(
-      gradeId: json['gradeId'] as int?,
-      classId: json['classId'] as int?,
-      studentInfo: json['studentInfo'] == null
+      gradeId: json['grade_ID'] as int? ?? 0,
+      classId: json['class_ID'] as int? ?? 0,
+      teacherName: json['teacher_Name'] as String? ?? '',
+      courseName: json['course_Name'] as String? ?? '',
+      grade: (json['grade'] as num?)?.toDouble() ?? 0.0,
+      studentId: json['student_ID'] as int? ?? 0,
+      createdDate: json['created_Date'] == null
           ? null
-          : BasicInfoModel.fromJson(
-              json['studentInfo'] as Map<String, dynamic>),
-      teacherName: json['teacherName'] as String?,
-      courseName: json['courseName'] as String?,
-      grade: (json['grade'] as num?)?.toDouble(),
-      createdDate: json['createdDate'] == null
-          ? null
-          : DateTime.parse(json['createdDate'] as String),
+          : DateTime.parse(json['created_Date'] as String),
     );
 
 Map<String, dynamic> _$$_ScoreToJson(_$_Score instance) => <String, dynamic>{
-      'gradeId': instance.gradeId,
-      'classId': instance.classId,
-      'studentInfo': instance.studentInfo,
-      'teacherName': instance.teacherName,
-      'courseName': instance.courseName,
+      'grade_ID': instance.gradeId,
+      'class_ID': instance.classId,
+      'teacher_Name': instance.teacherName,
+      'course_Name': instance.courseName,
       'grade': instance.grade,
-      'createdDate': instance.createdDate?.toIso8601String(),
+      'student_ID': instance.studentId,
+      'created_Date': instance.createdDate?.toIso8601String(),
     };

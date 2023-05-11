@@ -10,7 +10,6 @@ import 'package:my_school/src/features/course/domain/models/course_get_response.
 import 'package:my_school/src/features/course/domain/repositories/course_repository.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
-//TODO: یک ابجکت برای درس ها داخل دیپندنسی ریجیستر کنم و داخل توسط فانکشن های خود  پرش کنم
 class CourseRepositoryImpl extends CourseRepository {
   final CourseRemoteDataSource _remoteDS;
   final CourseLocalDataSource _localDS;
@@ -118,7 +117,7 @@ class CourseRepositoryImpl extends CourseRepository {
             ),
             (r) async {
               final updateCourseOnServer = CourseSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<CourseFailure, CourseSuccessResponse>(
                 updateCourseOnServer,

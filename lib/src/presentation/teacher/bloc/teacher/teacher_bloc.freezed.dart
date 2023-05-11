@@ -467,6 +467,8 @@ abstract class _$$_AddTeacherCopyWith<$Res> {
       __$$_AddTeacherCopyWithImpl<$Res>;
   @useResult
   $Res call({Teacher teacher});
+
+  $TeacherCopyWith<$Res> get teacher;
 }
 
 /// @nodoc
@@ -488,6 +490,14 @@ class __$$_AddTeacherCopyWithImpl<$Res>
           : teacher // ignore: cast_nullable_to_non_nullable
               as Teacher,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TeacherCopyWith<$Res> get teacher {
+    return $TeacherCopyWith<$Res>(_value.teacher, (value) {
+      return _then(_value.copyWith(teacher: value));
+    });
   }
 }
 
@@ -612,6 +622,8 @@ abstract class _$$_UpdateTeacherCopyWith<$Res> {
       __$$_UpdateTeacherCopyWithImpl<$Res>;
   @useResult
   $Res call({Teacher teacher});
+
+  $TeacherCopyWith<$Res> get teacher;
 }
 
 /// @nodoc
@@ -633,6 +645,14 @@ class __$$_UpdateTeacherCopyWithImpl<$Res>
           : teacher // ignore: cast_nullable_to_non_nullable
               as Teacher,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TeacherCopyWith<$Res> get teacher {
+    return $TeacherCopyWith<$Res>(_value.teacher, (value) {
+      return _then(_value.copyWith(teacher: value));
+    });
   }
 }
 

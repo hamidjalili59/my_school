@@ -6,13 +6,15 @@ class GeneralConstants {
 
   static double defaultBorderRadius = 10;
   static int currentIndexPage = 0;
+  static int roleCount = 0;
   static String defaultFontName = '';
-  static String host = 'http://myschool.asatic.ir/';
+  static String host = 'https://my-school.iran.liara.run/';
   static String firstAppbarItem = '';
-  static String appbarTitle = 'مدرسه من';
+  // static String appbarTitle = 'مدرسه من';
   static String jwt = '';
   static bool isParent = false;
   static bool isTeacher = false;
+  static bool isAdmin = false;
   static UserType userType = UserType.admin;
   static bool didStartSetup = false;
 

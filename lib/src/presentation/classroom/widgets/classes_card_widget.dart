@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
+import 'package:my_school/src/injectable/injectable.dart';
 
 class ClassesCardWidget extends StatelessWidget {
   const ClassesCardWidget({
     Key? key,
-    required this.title,
+    required this.classroom,
     required this.appRouter,
   }) : super(key: key);
 
-  final String title;
+  final Classroom classroom;
   final AppRouter appRouter;
 
   @override
@@ -20,7 +21,12 @@ class ClassesCardWidget extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 8.0.h),
       child: InkWell(
         onTap: () {
-          GeneralConstants.appbarTitle = title;
+          if (getIt.isRegistered<Classroom>()) {
+            getIt.unregister<Classroom>();
+            getIt.registerSingleton<Classroom>(classroom);
+          } else {
+            getIt.registerSingleton<Classroom>(classroom);
+          }
           appRouter.pushNamed('/class_details_page');
         },
         child: SizedBox(
@@ -51,7 +57,7 @@ class ClassesCardWidget extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(left: 22.0.w, bottom: 8.w),
-                    child: Text(title,
+                    child: Text(classroom.className!,
                         style: TextStyle(
                             fontSize: 20.r, fontWeight: FontWeight.w600),
                         textAlign: TextAlign.right,

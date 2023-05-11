@@ -8,7 +8,7 @@ part of 'classroom_get_response.dart';
 
 class ClassroomGetResponseAdapter extends TypeAdapter<ClassroomGetResponse> {
   @override
-  final int typeId = 12;
+  final int typeId = 3;
 
   @override
   ClassroomGetResponse read(BinaryReader reader) {

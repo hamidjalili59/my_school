@@ -1,7 +1,5 @@
-// ignore: depend_on_referenced_packages
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
-import 'package:my_school/src/features/core/models/basic_info_model.dart';
 
 part 'score_model.freezed.dart';
 part 'score_model.g.dart';
@@ -17,26 +15,41 @@ part 'score_model.g.dart';
 /// asd
 class Score with _$Score {
   ///adsasd
-  @HiveType(typeId: 10)
+  @HiveType(typeId: 26)
   factory Score({
     // account email
-    @HiveField(0) int? gradeId,
+    @HiveField(0, defaultValue: 0)
+    @JsonKey(name: 'grade_ID')
+    @Default(0)
+        int gradeId,
     //
-    @HiveField(1) int? classId,
+    @HiveField(1, defaultValue: 0)
+    @JsonKey(name: 'class_ID')
+    @Default(0)
+        int classId,
     // basic Information
-    @HiveField(2) BasicInfoModel? studentInfo,
+    @HiveField(2, defaultValue: '')
+    @JsonKey(name: 'teacher_Name')
+    @Default('')
+        String teacherName,
     // basic Information
-    @HiveField(3) String? teacherName,
+    @HiveField(3, defaultValue: '')
+    @JsonKey(name: 'course_Name')
+    @Default('')
+        String courseName,
     // basic Information
-    @HiveField(4) String? courseName,
+    @HiveField(4, defaultValue: 0.0)
+    @JsonKey(name: 'grade')
+    @Default(0.0)
+        double grade,
     // basic Information
-    @HiveField(4) double? grade,
-    // basic Information
-    @HiveField(4) DateTime? createdDate,
-
+    @HiveField(5, defaultValue: 0)
+    @JsonKey(name: 'student_ID')
+    @Default(0)
+        int studentId,
+    @HiveField(6) @JsonKey(name: 'created_Date') DateTime? createdDate,
   }) = _Score;
 
   ///das
-  factory Score.fromJson(Map<String, Object?> json) =>
-      _$ScoreFromJson(json);
+  factory Score.fromJson(Map<String, Object?> json) => _$ScoreFromJson(json);
 }

@@ -8,7 +8,6 @@ import 'package:my_school/src/features/exam/domain/repositories/exam_repository.
 import 'package:my_school/src/features/core/models/base_response.dart';
 import 'package:my_school/src/features/exam/domain/models/exam_get_response.dart';
 
-//TODO: یک ابجکت برای درس ها داخل دیپندنسی ریجیستر کنم و داخل توسط فانکشن های خود  پرش کنم
 class ExamRepositoryImpl extends ExamRepository {
   final ExamRemoteDataSource _remoteDS;
   final ExamLocalDataSource _localDS;
@@ -17,17 +16,13 @@ class ExamRepositoryImpl extends ExamRepository {
   ExamRepositoryImpl(this._remoteDS, this._localDS);
 
   @override
-  Future<Either<ExamFailure, ExamSuccessResponse>> addExam(
-      {required Exam exam}) {
+  Future<Either<ExamFailure, void>> addExam({required Exam exam}) {
     return _remoteDS.addExam(exam: exam).then(
           (value) => value.fold(
-            (l) => left<ExamFailure, ExamSuccessResponse>(ExamFailure.api(l)),
+            (l) => left<ExamFailure, void>(ExamFailure.api(l)),
             (r) async {
-              final examAddSuccessResponse = ExamSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ExamFailure, ExamSuccessResponse>(
-                examAddSuccessResponse,
+              return right<ExamFailure, void>(
+                null,
               );
             },
           ),
@@ -66,7 +61,7 @@ class ExamRepositoryImpl extends ExamRepository {
             ),
             (r) async {
               final examsDataFromServer = ExamGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
               return right<ExamFailure, ExamGetResponse>(
                 examsDataFromServer,

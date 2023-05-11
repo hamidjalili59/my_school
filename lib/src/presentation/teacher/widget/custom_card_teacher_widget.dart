@@ -110,7 +110,6 @@ class CustomCardTeacherWidget extends StatelessWidget {
   }
 
   void _showTeacherClassesMethod() {
-    //TODO implement show classes here
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(

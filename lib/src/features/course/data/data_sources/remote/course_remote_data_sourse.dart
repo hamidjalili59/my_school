@@ -57,8 +57,12 @@ class CourseRemoteDataSourceImpl implements CourseRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> updateCourse(
           {required int courseId, required String courseName}) =>
-      apiService.putMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
-        'course_id': courseId,
-        'course_name': courseName,
-      });
+      apiService.putMethod<Map<String, dynamic>>(
+          GeneralConstants.host +
+              CourseEndpoints.editLink +
+              courseId.toString(),
+          body: {
+            'course_id': courseId,
+            'course_name': courseName,
+          });
 }
