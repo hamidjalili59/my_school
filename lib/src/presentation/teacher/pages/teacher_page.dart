@@ -168,7 +168,7 @@ class TeacherPage extends StatelessWidget {
               SizedBox(height: 15.h),
               SizedBox(
                 width: 0.6.sw,
-                height: 0.055.sh,
+                height: 55.h,
                 child: CustomTextField(
                   keyboardType: TextInputType.phone,
                   maxLength: 15,
@@ -177,54 +177,69 @@ class TeacherPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 15.h),
-              InkWell(
-                onTap: () {
-                  if (isEditing) {
-                    getIt.get<TeacherBloc>().add(
-                          TeacherEvent.updateTeacher(
-                            teacher!.copyWith(
-                              basicInfo: BasicInfoModel(
-                                name: _controllerName.text,
-                                phoneNumber:
-                                    double.tryParse(_controllerPhone.text) ?? 0,
-                              ),
-                            ),
+              BlocBuilder<TeacherBloc, TeacherState>(
+                  bloc: getIt.get<TeacherBloc>(),
+                  builder: (context, teacherState) {
+                    return IgnorePointer(
+                      ignoring: teacherState.isLoading,
+                      child: InkWell(
+                        onTap: () {
+                          if (teacherState.isLoading) {
+                            return;
+                          }
+                          if (isEditing) {
+                            getIt.get<TeacherBloc>().add(
+                                  TeacherEvent.updateTeacher(
+                                    teacher!.copyWith(
+                                      basicInfo: BasicInfoModel(
+                                        name: _controllerName.text,
+                                        phoneNumber: double.tryParse(
+                                                _controllerPhone.text) ??
+                                            0,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                          } else {
+                            getIt.get<TeacherBloc>().add(
+                                  TeacherEvent.addTeacher(
+                                    Teacher(
+                                      teacherId: 0,
+                                      basicInfo: BasicInfoModel(
+                                        name: _controllerName.text,
+                                        phoneNumber: double.tryParse(
+                                                _controllerPhone.text) ??
+                                            0,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: GeneralConstants.mainColor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.r)),
                           ),
-                        );
-                  } else {
-                    getIt.get<TeacherBloc>().add(
-                          TeacherEvent.addTeacher(
-                            Teacher(
-                              teacherId: 0,
-                              basicInfo: BasicInfoModel(
-                                name: _controllerName.text,
-                                phoneNumber:
-                                    double.tryParse(_controllerPhone.text) ?? 0,
-                              ),
-                            ),
-                          ),
-                        );
-                  }
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: GeneralConstants.mainColor,
-                    borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                  ),
-                  width: 0.45.sw,
-                  height: 40.h,
-                  alignment: Alignment.center,
-                  child: Text(
-                    'تایید',
-                    style: TextStyle(
-                      fontSize: 16.r,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
+                          width: 0.45.sw,
+                          height: 40.h,
+                          alignment: Alignment.center,
+                          child: teacherState.isLoading
+                              ? const CircularProgressIndicator()
+                              : Text(
+                                  'تایید',
+                                  style: TextStyle(
+                                    fontSize: 16.r,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                        ),
+                      ),
+                    );
+                  }),
               SizedBox(height: 10.h),
             ],
           ),

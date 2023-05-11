@@ -33,14 +33,12 @@ class CustomRowButtonWidget extends StatelessWidget {
                 : GeneralConstants.backgroundColor,
             borderRadius: BorderRadius.circular(8.r),
           ),
-          width: 95.w,
-          height: 35.h,
           child: Text(
             title,
             style: TextStyle(
               color:
                   currentIndexType == indexType ? Colors.white : Colors.black87,
-              fontSize: 18.r,
+              fontSize: ScreenUtil().screenWidth > 340 ? 14.r : 9.r,
               fontWeight: FontWeight.w900,
             ),
           ),

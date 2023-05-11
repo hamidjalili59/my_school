@@ -116,41 +116,55 @@ class CoursePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 15.h),
-              InkWell(
-                onTap: () {
-                  if (isEditing) {
-                    getIt.get<CourseBloc>().add(
-                          CourseEvent.updateCourse(
-                            course!.copyWith(courseName: _controller.text),
+              BlocBuilder<CourseBloc, CourseState>(
+                  bloc: getIt.get<CourseBloc>(),
+                  builder: (context, courseState) {
+                    return IgnorePointer(
+                      ignoring: courseState.isLoading,
+                      child: InkWell(
+                        onTap: () {
+                          if (courseState.isLoading) {
+                            return;
+                          }
+                          if (isEditing) {
+                            getIt.get<CourseBloc>().add(
+                                  CourseEvent.updateCourse(
+                                    course!
+                                        .copyWith(courseName: _controller.text),
+                                  ),
+                                );
+                          } else {
+                            getIt.get<CourseBloc>().add(
+                                  CourseEvent.addCourse(
+                                    _controller.text,
+                                  ),
+                                );
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: GeneralConstants.mainColor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.r)),
                           ),
-                        );
-                  } else {
-                    getIt.get<CourseBloc>().add(
-                          CourseEvent.addCourse(
-                            _controller.text,
-                          ),
-                        );
-                  }
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: GeneralConstants.mainColor,
-                    borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                  ),
-                  width: 0.45.sw,
-                  height: 40.h,
-                  alignment: Alignment.center,
-                  child: Text(
-                    'تایید',
-                    style: TextStyle(
-                      fontSize: 16.r,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
+                          width: 0.45.sw,
+                          height: 40.h,
+                          alignment: Alignment.center,
+                          child: courseState.isLoading
+                              ? const CircularProgressIndicator()
+                              : Text(
+                                  'تایید',
+                                  style: TextStyle(
+                                    fontSize: 16.r,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                        ),
+                      ),
+                    );
+                  }),
               SizedBox(height: 10.h),
             ],
           ),

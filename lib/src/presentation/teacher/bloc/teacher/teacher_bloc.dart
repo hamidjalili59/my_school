@@ -57,6 +57,7 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
 
   FutureOr<void> _onAddTeacher(
       _AddTeacher event, Emitter<TeacherState> emit) async {
+    emit(TeacherState.idle(isLoading: true, teachers: state.teachers));
     await _addTeacherUseCase
         .call(param: tuple.Tuple1<Teacher>(event.teacher))
         .then(
@@ -66,7 +67,7 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
               return null;
             },
             (r) {
-              List<Teacher> tempTeachers = state.teachers;
+              List<Teacher> tempTeachers = state.teachers.toList();
               tempTeachers.add(r.teacher);
               emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
               getIt.get<AppRouter>().pop();

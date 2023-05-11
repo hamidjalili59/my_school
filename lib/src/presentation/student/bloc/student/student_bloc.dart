@@ -58,15 +58,17 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
 
   FutureOr<void> _onAddStudent(
       _AddStudent event, Emitter<StudentState> emit) async {
+    emit(StudentState.idle(isLoading: true, students: state.students));
     await _addStudentUseCase
         .call(
             param:
                 tuple.Tuple2<Student, String>(event.student, event.parentName))
         .then(
           (value) => value.fold(
-            (l) => null,
+            (l) => emit(
+                StudentState.idle(isLoading: false, students: state.students)),
             (r) {
-              List<Student> tempList = [];
+              List<Student> tempList = state.students.toList();
               tempList.add(r.student);
               return emit(
                   StudentState.idle(isLoading: false, students: tempList));

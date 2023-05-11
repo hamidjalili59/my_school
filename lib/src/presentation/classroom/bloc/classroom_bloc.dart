@@ -92,8 +92,8 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
         .then((value) => value.fold(
               (l) => print,
               (r) {
-                List<Classroom> tempClasses = [];
-                tempClasses = getIt.get<ClassroomGetResponse>().classrooms;
+                List<Classroom> tempClasses =
+                    getIt.get<ClassroomGetResponse>().classrooms.toList();
                 tempClasses.add(r.classroom);
                 emit(ClassroomState.idle(
                   isLoading: false,

@@ -5,7 +5,7 @@ part 'score_model.freezed.dart';
 part 'score_model.g.dart';
 
 @Freezed(
-  makeCollectionsUnmodifiable: true,
+  makeCollectionsUnmodifiable: false,
   copyWith: true,
   fromJson: true,
   toJson: true,

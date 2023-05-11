@@ -6,7 +6,7 @@ part 'exam_model.freezed.dart';
 part 'exam_model.g.dart';
 
 @Freezed(
-  makeCollectionsUnmodifiable: true,
+  makeCollectionsUnmodifiable: false,
   copyWith: true,
   fromJson: true,
   toJson: true,
