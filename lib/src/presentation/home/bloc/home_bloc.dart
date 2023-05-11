@@ -12,7 +12,7 @@ part 'home_state.dart';
 part 'home_event.dart';
 part 'home_bloc.freezed.dart';
 
-@lazySingleton
+@injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc()
       : super(const _CurrentPageIndex(pageState: AppbarPageType.classroom)) {
