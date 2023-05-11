@@ -287,7 +287,7 @@ _i1.GetIt $initGetIt(
       () => studentFeatureModule.getStudentsUseCase);
   gh.factory<_i52.GetTeacherUseCase>(
       () => teacherFeatureModule.getTeachersUseCase);
-  gh.lazySingleton<_i53.HomeBloc>(() => _i53.HomeBloc());
+  gh.factory<_i53.HomeBloc>(() => _i53.HomeBloc());
   gh.factory<_i54.MediatorLocalDataSource>(() => mediatorFeatureModule.localDS);
   gh.factory<_i55.MediatorRemoteDataSource>(
       () => mediatorFeatureModule.remoteDS);

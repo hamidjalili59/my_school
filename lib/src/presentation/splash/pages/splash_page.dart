@@ -38,19 +38,13 @@ class _SplashPageState extends State<SplashPage> {
                   _appRoute.replaceNamed('/auth');
                 },
                 jwtIsNotExp: (typeOfUser) {
-                  print('---------------------------------33');
                   _appRoute.replaceNamed('/home_page');
                 },
                 jwtExist: (r) {
-                  print('---------------------------------44');
                   _splashBloc.add(SplashEvent.getClientData(r));
                 },
-                loadInProgress: () {
-                  print('---------------------------------55');
-                },
-                orElse: () {
-                  print('---------------------------------66');
-                },
+                loadInProgress: () {},
+                orElse: () {},
               );
             },
             child: SizedBox(
