@@ -31,12 +31,16 @@ class ScoreBoardBloc extends Bloc<ScoreBoardEvent, ScoreBoardState> {
 
   FutureOr<void> _onGetStudents(
       _GetStudents event, Emitter<ScoreBoardState> emit) async {
-    emit(const ScoreBoardState.idle(isLoading: true));
+    emit(ScoreBoardState.idle(
+        isLoading: true, scores: state.scores, students: state.students));
     await _getStudentUseCase
-        .call(param: tuple.Tuple1<int>(getIt.get<Classroom>().classID!))
+        .call(param: tuple.Tuple1<int>(getIt.get<Classroom>().classID))
         .then(
           (value) => value.fold(
-            (l) => null,
+            (l) => emit(ScoreBoardState.idle(
+                isLoading: false,
+                scores: state.scores,
+                students: state.students)),
             (r) => emit(ScoreBoardState.idle(
               isLoading: false,
               students: r.students,

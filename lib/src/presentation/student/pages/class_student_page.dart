@@ -42,7 +42,7 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
     } else {
       getIt.get<StudentBloc>().add(
             StudentEvent.getStudents(
-              getIt.get<Classroom>().classID!,
+              getIt.get<Classroom>().classID,
             ),
           );
     }
@@ -492,8 +492,8 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(34.0.r),
-                  child:
-                      const Icon(Icons.person_rounded, color: Colors.black87),
+                  child: Icon(Icons.person_rounded,
+                      size: 46.r, color: Colors.black87),
                 ),
               ),
               SizedBox(
@@ -548,7 +548,7 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                               0,
                                         ),
                                         classId:
-                                            getIt.get<Classroom>().classID!),
+                                            getIt.get<Classroom>().classID),
                                     _studentParentController.text,
                                   ),
                                 );

@@ -188,7 +188,7 @@ class _SingleStudentRollcallsPageState
                                         padding:
                                             const EdgeInsets.only(left: 16.0),
                                         child: Text(
-                                          getIt.get<Classroom>().className!,
+                                          getIt.get<Classroom>().className,
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.w600,

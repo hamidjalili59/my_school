@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
@@ -6,9 +7,13 @@ import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_get_response.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
+import 'package:my_school/src/features/core/models/basic_info_model.dart';
 import 'package:my_school/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_school/src/injectable/injectable.dart';
+import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
 import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
+import 'package:my_school/src/presentation/student/bloc/student/student_bloc.dart';
+import 'package:ndialog/ndialog.dart';
 
 class CustomClassDetailButtonWidget extends StatefulWidget {
   const CustomClassDetailButtonWidget({
@@ -26,6 +31,17 @@ class CustomClassDetailButtonWidget extends StatefulWidget {
 
 class _CustomClassDetailButtonWidgetState
     extends State<CustomClassDetailButtonWidget> {
+  final TextEditingController _phoneController =
+      TextEditingController(text: '');
+  final TextEditingController _nameController = TextEditingController(text: '');
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    _nameController.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +51,12 @@ class _CustomClassDetailButtonWidgetState
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onLongPress: () {
+        _phoneController.text =
+            '0${widget.student.basicInfo!.phoneNumber.toInt().toString()}';
+        _nameController.text = widget.student.basicInfo!.name;
+        _updateStudentDialog(widget.student);
+      },
       onTap: () {
         _studentTileDialogMethod(widget.student);
       },
@@ -123,5 +145,102 @@ class _CustomClassDetailButtonWidgetState
       }
     }
     getIt.get<AppRouter>().pushNamed('/student_details_page');
+  }
+
+  void _updateStudentDialog(Student student) {
+    NDialog(
+      content: SizedBox(
+        width: 0.75.sw,
+        height: 0.68.sh,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: 0.45.sw,
+                height: 0.6.sw,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black38,
+                      blurRadius: 3,
+                      spreadRadius: 1,
+                      offset: Offset(1, 3),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(34.0.r),
+                  child: Icon(Icons.person_rounded,
+                      color: Colors.black87, size: 46.r),
+                ),
+              ),
+              SizedBox(
+                width: 0.65.sw,
+                height: 55.h,
+                child: CustomTextField(
+                    icon: Icons.person,
+                    maxLength: 30,
+                    keyboardType: TextInputType.name,
+                    controller: _nameController,
+                    hint: 'نام دانش‌آموز'),
+              ),
+              SizedBox(height: 5.h),
+              SizedBox(
+                width: 0.65.sw,
+                height: 55.h,
+                child: CustomTextField(
+                    icon: Icons.phone,
+                    maxLength: 30,
+                    keyboardType: TextInputType.phone,
+                    controller: _phoneController,
+                    hint: 'شماره تماس'),
+              ),
+              SizedBox(height: 10.h),
+              BlocBuilder<StudentBloc, StudentState>(
+                  bloc: getIt.get<StudentBloc>(),
+                  builder: (context, studentStateBotton) {
+                    return IgnorePointer(
+                      ignoring: studentStateBotton.isLoading,
+                      child: MaterialButton(
+                        onPressed: () {
+                          if (!studentStateBotton.isLoading) {
+                            getIt.get<StudentBloc>().add(
+                                  StudentEvent.updateStudent(
+                                    Student(
+                                      basicInfo: BasicInfoModel(
+                                          name: _nameController.text,
+                                          phoneNumber: double.parse(
+                                              _phoneController.text)),
+                                      classId: student.classId,
+                                      studentId: student.studentId,
+                                    ),
+                                  ),
+                                );
+                          }
+                        },
+                        color: GeneralConstants.mainColor,
+                        elevation: 5,
+                        height: 55.h,
+                        minWidth: 0.65.sw,
+                        child: studentStateBotton.isLoading
+                            ? const CircularProgressIndicator()
+                            : Text(
+                                'ثبت دانش‌آموز',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.r,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                      ),
+                    );
+                  }),
+            ],
+          ),
+        ),
+      ),
+    ).show(context);
   }
 }

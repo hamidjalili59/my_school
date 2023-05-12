@@ -223,7 +223,10 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
               ],
             ),
           ),
-        ).show(getIt.get<AppRouter>().navigatorKey.currentContext!);
+        ).show(
+          getIt.get<AppRouter>().navigatorKey.currentContext!,
+          dismissable: false,
+        );
       } else {
         if (event.token.typeOfUser == 'principal') {
           GeneralConstants.userType = UserType.admin;

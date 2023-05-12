@@ -40,33 +40,36 @@ class CustomTextField extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(8.r),
       ),
-      child: TextField(
-        onSubmitted: onSubmitted,
-        maxLines: maxLines,
-        minLines: minLines,
-        controller: controller,
-        decoration: InputDecoration(
-          icon: Padding(
-            padding: EdgeInsets.only(left: 8.0.w),
-            child: Icon(
-              icon,
-              size: 26.r,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: TextField(
+          onSubmitted: onSubmitted,
+          maxLines: maxLines,
+          minLines: minLines,
+          controller: controller,
+          decoration: InputDecoration(
+            icon: Padding(
+              padding: EdgeInsets.only(left: 8.0.w),
+              child: Icon(
+                icon,
+                size: 26.r,
+              ),
             ),
+            hintText: hint,
+            hintStyle: TextStyle(color: Colors.black45, fontSize: 16.r),
+            iconColor: const Color.fromARGB(255, 141, 108, 159),
+            border: InputBorder.none,
+            counterText: '',
           ),
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.black45, fontSize: 16.r),
-          iconColor: const Color.fromARGB(255, 141, 108, 159),
-          border: InputBorder.none,
-          counterText: '',
+          keyboardType: keyboardType,
+          maxLength: maxLength,
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w800,
+            fontSize: 16.r,
+          ),
+          textAlign: TextAlign.center,
         ),
-        keyboardType: keyboardType,
-        maxLength: maxLength,
-        style: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.w800,
-          fontSize: 16.r,
-        ),
-        textAlign: TextAlign.center,
       ),
     );
   }

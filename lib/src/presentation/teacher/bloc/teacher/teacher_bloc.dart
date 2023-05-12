@@ -48,7 +48,8 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
     await _getTeacherUseCase
         .call(param: tuple.Tuple1(event.schoolId))
         .then((value) => value.fold(
-              (l) => null,
+              (l) => emit(TeacherState.idle(
+                  isLoading: false, teachers: state.teachers)),
               (r) {
                 emit(TeacherState.idle(isLoading: false, teachers: r.teachers));
               },
@@ -64,7 +65,8 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
           (value) => value.fold(
             (l) {
               getIt.get<AppRouter>().pop();
-              return null;
+              return emit(TeacherState.idle(
+                  isLoading: false, teachers: state.teachers));
             },
             (r) {
               List<Teacher> tempTeachers = state.teachers.toList();
@@ -90,7 +92,8 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
           (value) => value.fold(
             (l) {
               getIt.get<AppRouter>().pop();
-              return null;
+              return emit(TeacherState.idle(
+                  isLoading: false, teachers: state.teachers));
             },
             (r) {
               List<Teacher> tempTeachers = state.teachers;

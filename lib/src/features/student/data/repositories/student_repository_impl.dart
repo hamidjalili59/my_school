@@ -23,12 +23,18 @@ class StudentRepositoryImpl extends StudentRepository {
             (l) => left<StudentFailure, StudentSuccessResponse>(
                 StudentFailure.api(l)),
             (r) async {
-              final studentAddSuccessResponse = StudentSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<StudentFailure, StudentSuccessResponse>(
-                studentAddSuccessResponse,
-              );
+              try {
+                final studentAddSuccessResponse =
+                    StudentSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<StudentFailure, StudentSuccessResponse>(
+                  studentAddSuccessResponse,
+                );
+              } catch (e) {
+                return left<StudentFailure, StudentSuccessResponse>(
+                    const StudentFailure.nullParam());
+              }
             },
           ),
         );
@@ -66,12 +72,17 @@ class StudentRepositoryImpl extends StudentRepository {
               StudentFailure.api(l),
             ),
             (r) async {
-              final studentsDataFromServer = StudentGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<StudentFailure, StudentGetResponse>(
-                studentsDataFromServer,
-              );
+              try {
+                final studentsDataFromServer = StudentGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<StudentFailure, StudentGetResponse>(
+                  studentsDataFromServer,
+                );
+              } catch (e) {
+                return left<StudentFailure, StudentGetResponse>(
+                    const StudentFailure.nullParam());
+              }
             },
           ),
         );
@@ -85,12 +96,17 @@ class StudentRepositoryImpl extends StudentRepository {
               StudentFailure.api(l),
             ),
             (r) async {
-              final removeStudentFromServer = StudentSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<StudentFailure, StudentSuccessResponse>(
-                removeStudentFromServer,
-              );
+              try {
+                final removeStudentFromServer = StudentSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<StudentFailure, StudentSuccessResponse>(
+                  removeStudentFromServer,
+                );
+              } catch (e) {
+                return left<StudentFailure, StudentSuccessResponse>(
+                    const StudentFailure.nullParam());
+              }
             },
           ),
         );
@@ -98,17 +114,11 @@ class StudentRepositoryImpl extends StudentRepository {
 
   @override
   Future<Either<StudentFailure, StudentSuccessResponse>> updateStudent({
-    required int classId,
-    required int studentId,
-    required String name,
-    required double phoneNumber,
+    required Student student,
   }) {
     return _remoteDS
         .updateStudent(
-          studentId: studentId,
-          classId: classId,
-          phoneNumber: phoneNumber,
-          name: name,
+          student: student,
         )
         .then(
           (value) => value.fold(
@@ -116,12 +126,17 @@ class StudentRepositoryImpl extends StudentRepository {
               StudentFailure.api(l),
             ),
             (r) async {
-              final updateStudentOnServer = StudentSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<StudentFailure, StudentSuccessResponse>(
-                updateStudentOnServer,
-              );
+              try {
+                final updateStudentOnServer = StudentSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<StudentFailure, StudentSuccessResponse>(
+                  updateStudentOnServer,
+                );
+              } catch (e) {
+                return left<StudentFailure, StudentSuccessResponse>(
+                    const StudentFailure.nullParam());
+              }
             },
           ),
         );

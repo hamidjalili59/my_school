@@ -25,14 +25,14 @@ class UserAuthenticationPage extends StatelessWidget {
               width: 1.sw,
               height: 1.sh,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 0.1.sh),
                   SizedBox(
                     width: 0.85.sw,
                     height: 0.85.sw,
                     child: Image.asset(PngAssets.schoolAppIcon),
                   ),
-                  SizedBox(height: 0.1.sh),
+                  SizedBox(height: 40.h),
                   SizedBox(
                     child: Text(
                       'لطفا شماره خود را وارد نمایید',
@@ -56,7 +56,7 @@ class UserAuthenticationPage extends StatelessWidget {
                       controller: phoneController,
                     ),
                   ),
-                  SizedBox(height: 0.08.sh),
+                  SizedBox(height: 50.h),
                   Material(
                     color: GeneralConstants.backgroundColor,
                     borderRadius: BorderRadius.circular(8.r),

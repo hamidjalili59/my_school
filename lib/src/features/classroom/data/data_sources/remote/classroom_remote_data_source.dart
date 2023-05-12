@@ -1,8 +1,11 @@
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
+import 'package:my_school/src/features/classroom/data/data_sources/remote/classroom_end_points.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:my_school/src/injectable/injectable.dart';
 
 abstract class ClassroomRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> addClass(
@@ -10,13 +13,14 @@ abstract class ClassroomRemoteDataSource {
 
   Future<Either<DioError, Response<Map<String, dynamic>>>> getClasses(
       {required int schoolId});
+  Future<Either<DioError, Response<Map<String, dynamic>>>> getTeacherClasses(
+      {required int schoolId, required int teacherId});
 
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeClass(
       {required int classId});
 
   Future<Either<DioError, Response<Map<String, dynamic>>>> updateClass({
-    required int classroomId,
-    required String classroomName,
+    required Classroom classroom,
   });
 }
 
@@ -45,6 +49,14 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
   }
 
   @override
+  Future<Either<DioError, Response<Map<String, dynamic>>>> getTeacherClasses(
+      {required int schoolId, required int teacherId}) {
+    return apiService.getMethod(
+      '${GeneralConstants.host}${ClassroomEndpoints.getTeacherClassLink}$schoolId?teacherId=$teacherId',
+    );
+  }
+
+  @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeClass(
       {required int classId}) {
     return apiService.deleteMethod(GeneralConstants.host, body: {
@@ -54,9 +66,13 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> updateClass(
-          {required int classroomId, required String classroomName}) =>
-      apiService.putMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
-        'course_id': classroomId,
-        'course_name': classroomName,
-      });
+          {required Classroom classroom}) =>
+      apiService.putMethod<Map<String, dynamic>>(
+          GeneralConstants.host +
+              ClassroomEndpoints.editLink +
+              classroom.classID.toString(),
+          body: {
+            'school_ID': int.parse(getIt.get<OtpHandshakeResponse>().token),
+            'class_Name': classroom.className,
+          });
 }

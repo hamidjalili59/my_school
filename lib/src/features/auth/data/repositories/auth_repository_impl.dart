@@ -19,10 +19,15 @@ class AuthRepositoryImpl extends AuthRepository {
       return response.fold(
         (l) => left<AuthFailure, OtpHandshakeResponse>(AuthFailure.api(l)),
         (r) {
-          r.data!['phoneNumber'] = phoneNumber;
-          return right<AuthFailure, OtpHandshakeResponse>(
-            OtpHandshakeResponse.fromJson(r.data ?? {}),
-          );
+          try {
+            r.data!['phoneNumber'] = phoneNumber;
+            return right<AuthFailure, OtpHandshakeResponse>(
+              OtpHandshakeResponse.fromJson(r.data ?? {}),
+            );
+          } catch (e) {
+            return left<AuthFailure, OtpHandshakeResponse>(
+                const AuthFailure.nullParam());
+          }
         },
       );
     });

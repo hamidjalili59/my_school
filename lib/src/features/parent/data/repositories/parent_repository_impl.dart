@@ -47,12 +47,17 @@ class ParentRepositoryImpl extends ParentRepository {
               ParentFailure.api(l),
             ),
             (r) async {
-              final parentsDataFromServer = ParentGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ParentFailure, ParentGetResponse>(
-                parentsDataFromServer,
-              );
+              try {
+                final parentsDataFromServer = ParentGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                );
+                return right<ParentFailure, ParentGetResponse>(
+                  parentsDataFromServer,
+                );
+              } catch (e) {
+                return left<ParentFailure, ParentGetResponse>(
+                    const ParentFailure.nullParam());
+              }
             },
           ),
         );
@@ -78,12 +83,17 @@ class ParentRepositoryImpl extends ParentRepository {
               ParentFailure.api(l),
             ),
             (r) async {
-              final updateParentOnServer = ParentSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ParentFailure, ParentSuccessResponse>(
-                updateParentOnServer,
-              );
+              try {
+                final updateParentOnServer = ParentSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                );
+                return right<ParentFailure, ParentSuccessResponse>(
+                  updateParentOnServer,
+                );
+              } catch (e) {
+                return left<ParentFailure, ParentSuccessResponse>(
+                    const ParentFailure.nullParam());
+              }
             },
           ),
         );

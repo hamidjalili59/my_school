@@ -23,12 +23,18 @@ class TeacherRepositoryImpl extends TeacherRepository {
             (l) => left<TeacherFailure, TeacherSuccessResponse>(
                 TeacherFailure.api(l)),
             (r) async {
-              final teacherAddSuccessResponse = TeacherSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<TeacherFailure, TeacherSuccessResponse>(
-                teacherAddSuccessResponse,
-              );
+              try {
+                final teacherAddSuccessResponse =
+                    TeacherSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<TeacherFailure, TeacherSuccessResponse>(
+                  teacherAddSuccessResponse,
+                );
+              } catch (e) {
+                return left<TeacherFailure, TeacherSuccessResponse>(
+                    const TeacherFailure.nullParam());
+              }
             },
           ),
         );
@@ -66,12 +72,17 @@ class TeacherRepositoryImpl extends TeacherRepository {
               TeacherFailure.api(l),
             ),
             (r) async {
-              final teachersDataFromServer = TeacherGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<TeacherFailure, TeacherGetResponse>(
-                teachersDataFromServer,
-              );
+              try {
+                final teachersDataFromServer = TeacherGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<TeacherFailure, TeacherGetResponse>(
+                  teachersDataFromServer,
+                );
+              } catch (e) {
+                return left<TeacherFailure, TeacherGetResponse>(
+                    const TeacherFailure.nullParam());
+              }
             },
           ),
         );
@@ -85,12 +96,17 @@ class TeacherRepositoryImpl extends TeacherRepository {
               TeacherFailure.api(l),
             ),
             (r) async {
-              final removeTeacherFromServer = TeacherSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<TeacherFailure, TeacherSuccessResponse>(
-                removeTeacherFromServer,
-              );
+              try {
+                final removeTeacherFromServer = TeacherSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                );
+                return right<TeacherFailure, TeacherSuccessResponse>(
+                  removeTeacherFromServer,
+                );
+              } catch (e) {
+                return left<TeacherFailure, TeacherSuccessResponse>(
+                    const TeacherFailure.nullParam());
+              }
             },
           ),
         );
@@ -110,12 +126,17 @@ class TeacherRepositoryImpl extends TeacherRepository {
               TeacherFailure.api(l),
             ),
             (r) async {
-              final updateTeacherOnServer = TeacherSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<TeacherFailure, TeacherSuccessResponse>(
-                updateTeacherOnServer,
-              );
+              try {
+                final updateTeacherOnServer = TeacherSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<TeacherFailure, TeacherSuccessResponse>(
+                  updateTeacherOnServer,
+                );
+              } catch (e) {
+                return left<TeacherFailure, TeacherSuccessResponse>(
+                    const TeacherFailure.nullParam());
+              }
             },
           ),
         );

@@ -62,9 +62,7 @@ class TeacherPage extends StatelessWidget {
                         itemCount: teachers.length,
                         itemBuilder: (context, index) {
                           return CustomCardTeacherWidget(
-                            name: teachers[index].basicInfo!.name,
-                            phone:
-                                '0${teachers[index].basicInfo!.phoneNumber.toInt()}',
+                            teacher: teachers[index],
                             method: () {
                               _addTeacherDialogMethod(
                                 true,
@@ -137,7 +135,7 @@ class TeacherPage extends StatelessWidget {
         ),
         height: 50.h,
         child: Text(
-          'افزودن دبیر',
+          isEditing ? 'تغییر دبیر' : 'افزودن دبیر',
           style: TextStyle(
               color: Colors.white, fontSize: 16.r, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
@@ -157,7 +155,7 @@ class TeacherPage extends StatelessWidget {
               SizedBox(height: 10.h),
               SizedBox(
                 width: 0.6.sw,
-                height: 0.055.sh,
+                height: 55.h,
                 child: CustomTextField(
                   keyboardType: TextInputType.text,
                   maxLength: 15,

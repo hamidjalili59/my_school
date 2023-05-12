@@ -23,16 +23,21 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
             (l) => left<ClassroomFailure, ClassroomSuccessResponse>(
                 ClassroomFailure.api(l)),
             (r) async {
-              if (r.statusCode == 201) {
-                final classroomAddSuccessResponse =
-                    ClassroomSuccessResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).payload,
-                );
-                return right<ClassroomFailure, ClassroomSuccessResponse>(
-                  classroomAddSuccessResponse,
-                );
+              try {
+                if (r.statusCode == 201) {
+                  final classroomAddSuccessResponse =
+                      ClassroomSuccessResponse.fromJson(
+                    BaseResponse.fromJson(r.data ?? {}).payload,
+                  );
+                  return right<ClassroomFailure, ClassroomSuccessResponse>(
+                    classroomAddSuccessResponse,
+                  );
+                }
+                return left(const ClassroomFailure.nullParam());
+              } catch (e) {
+                return left<ClassroomFailure, ClassroomSuccessResponse>(
+                    const ClassroomFailure.nullParam());
               }
-              return left(const ClassroomFailure.nullParam());
             },
           ),
         );
@@ -71,12 +76,17 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
               ClassroomFailure.api(l),
             ),
             (r) async {
-              final classroomsDataFromServer = ClassroomGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<ClassroomFailure, ClassroomGetResponse>(
-                classroomsDataFromServer,
-              );
+              try {
+                final classroomsDataFromServer = ClassroomGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<ClassroomFailure, ClassroomGetResponse>(
+                  classroomsDataFromServer,
+                );
+              } catch (e) {
+                return left<ClassroomFailure, ClassroomGetResponse>(
+                    const ClassroomFailure.nullParam());
+              }
             },
           ),
         );
@@ -91,13 +101,18 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
               ClassroomFailure.api(l),
             ),
             (r) async {
-              final removeClassroomFromServer =
-                  ClassroomSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ClassroomFailure, ClassroomSuccessResponse>(
-                removeClassroomFromServer,
-              );
+              try {
+                final removeClassroomFromServer =
+                    ClassroomSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                );
+                return right<ClassroomFailure, ClassroomSuccessResponse>(
+                  removeClassroomFromServer,
+                );
+              } catch (e) {
+                return left<ClassroomFailure, ClassroomGetResponse>(
+                    const ClassroomFailure.nullParam());
+              }
             },
           ),
         );
@@ -105,21 +120,52 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
 
   @override
   Future<Either<ClassroomFailure, ClassroomSuccessResponse>> updateClassroom(
-      {required String classroomName, required int classroomId}) {
-    return _remoteDS
-        .updateClass(classroomId: classroomId, classroomName: classroomName)
-        .then(
+      {required Classroom classroom}) {
+    return _remoteDS.updateClass(classroom: classroom).then(
           (value) => value.fold(
             (l) => left<ClassroomFailure, ClassroomSuccessResponse>(
               ClassroomFailure.api(l),
             ),
             (r) async {
-              final updateClassroomOnServer = ClassroomSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ClassroomFailure, ClassroomSuccessResponse>(
-                updateClassroomOnServer,
-              );
+              try {
+                final updateClassroomOnServer =
+                    ClassroomSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<ClassroomFailure, ClassroomSuccessResponse>(
+                  updateClassroomOnServer,
+                );
+              } catch (e) {
+                return left<ClassroomFailure, ClassroomSuccessResponse>(
+                    const ClassroomFailure.nullParam());
+              }
+            },
+          ),
+        );
+  }
+
+  @override
+  Future<Either<ClassroomFailure, ClassroomGetResponse>> getTeacherClassrooms(
+      {required int teacherId, required int schoolId}) {
+    return _remoteDS
+        .getTeacherClasses(schoolId: schoolId, teacherId: teacherId)
+        .then(
+          (value) => value.fold(
+            (l) => left<ClassroomFailure, ClassroomGetResponse>(
+              ClassroomFailure.api(l),
+            ),
+            (r) async {
+              try {
+                final classroomsDataFromServer = ClassroomGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<ClassroomFailure, ClassroomGetResponse>(
+                  classroomsDataFromServer,
+                );
+              } catch (e) {
+                return left<ClassroomFailure, ClassroomGetResponse>(
+                    const ClassroomFailure.nullParam());
+              }
             },
           ),
         );

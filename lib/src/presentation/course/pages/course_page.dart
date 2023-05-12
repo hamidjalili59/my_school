@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/features/course/domain/models/course_model/course.dart';
@@ -38,28 +39,63 @@ class CoursePage extends StatelessWidget {
         body: BlocBuilder<CourseBloc, CourseState>(
           bloc: getIt.get<CourseBloc>(),
           builder: (context, state) {
-            return state.maybeWhen(
-              idle: (isLoading, courses) {
+            if (state.isLoading) {
+              return Center(
+                child: SizedBox(
+                    width: 55.w,
+                    height: 55.w,
+                    child: const CircularProgressIndicator()),
+              );
+            } else {
+              if (state.courses.isNotEmpty) {
                 return SizedBox(
                   width: 1.sw,
                   height: 1.sh,
                   child: ListView.builder(
-                    itemCount: courses.length,
+                    itemCount: state.courses.length,
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          _addCourseDialogMethod(true, course: courses[index]);
+                          _addCourseDialogMethod(true,
+                              course: state.courses[index]);
                         },
                         child: CourseTileWidget(
-                          courseName: courses[index].courseName,
+                          courseName: state.courses[index].courseName,
                         ),
                       );
                     },
                   ),
                 );
-              },
-              orElse: () => const SizedBox(),
-            );
+              } else {
+                return SizedBox(
+                  width: 1.sw,
+                  height: 0.8.sh,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: 0.95.sw,
+                          height: 0.5.sh,
+                          child: Padding(
+                            padding: EdgeInsets.all(54.0.r),
+                            child: SvgPicture.asset(
+                              'assets/empty.svg',
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'امتحانی وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                          textDirection: TextDirection.rtl,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w800, fontSize: 18.r),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              }
+            }
           },
         ),
       ),
@@ -87,7 +123,7 @@ class CoursePage extends StatelessWidget {
         // width: 0.15.sw,
         height: 50.h,
         child: Text(
-          'افزودن دبیر',
+          isEditing ? 'تغییر درس' : 'افزودن درس',
           style: TextStyle(
               color: Colors.white, fontSize: 16.r, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
@@ -107,7 +143,7 @@ class CoursePage extends StatelessWidget {
               SizedBox(height: 10.h),
               SizedBox(
                 width: 0.6.sw,
-                height: 0.055.sh,
+                height: 55.h,
                 child: CustomTextField(
                   keyboardType: TextInputType.text,
                   maxLength: 15,

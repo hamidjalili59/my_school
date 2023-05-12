@@ -32,12 +32,17 @@ class CourseRepositoryImpl extends CourseRepository {
             (l) => left<CourseFailure, CourseSuccessResponse>(
                 CourseFailure.api(l)),
             (r) async {
-              final courseAddSuccessResponse = CourseSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<CourseFailure, CourseSuccessResponse>(
-                courseAddSuccessResponse,
-              );
+              try {
+                final courseAddSuccessResponse = CourseSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<CourseFailure, CourseSuccessResponse>(
+                  courseAddSuccessResponse,
+                );
+              } catch (e) {
+                return left<CourseFailure, CourseSuccessResponse>(
+                    const CourseFailure.nullParam());
+              }
             },
           ),
         );
@@ -75,12 +80,17 @@ class CourseRepositoryImpl extends CourseRepository {
               CourseFailure.api(l),
             ),
             (r) async {
-              final coursesDataFromServer = CourseGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<CourseFailure, CourseGetResponse>(
-                coursesDataFromServer,
-              );
+              try {
+                final coursesDataFromServer = CourseGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<CourseFailure, CourseGetResponse>(
+                  coursesDataFromServer,
+                );
+              } catch (e) {
+                return left<CourseFailure, CourseGetResponse>(
+                    const CourseFailure.nullParam());
+              }
             },
           ),
         );
@@ -94,12 +104,17 @@ class CourseRepositoryImpl extends CourseRepository {
               CourseFailure.api(l),
             ),
             (r) async {
-              final removeCourseFromServer = CourseSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<CourseFailure, CourseSuccessResponse>(
-                removeCourseFromServer,
-              );
+              try {
+                final removeCourseFromServer = CourseSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                );
+                return right<CourseFailure, CourseSuccessResponse>(
+                  removeCourseFromServer,
+                );
+              } catch (e) {
+                return left<CourseFailure, CourseSuccessResponse>(
+                    const CourseFailure.nullParam());
+              }
             },
           ),
         );
@@ -116,12 +131,17 @@ class CourseRepositoryImpl extends CourseRepository {
               CourseFailure.api(l),
             ),
             (r) async {
-              final updateCourseOnServer = CourseSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<CourseFailure, CourseSuccessResponse>(
-                updateCourseOnServer,
-              );
+              try {
+                final updateCourseOnServer = CourseSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<CourseFailure, CourseSuccessResponse>(
+                  updateCourseOnServer,
+                );
+              } catch (e) {
+                return left<CourseFailure, CourseSuccessResponse>(
+                    const CourseFailure.nullParam());
+              }
             },
           ),
         );

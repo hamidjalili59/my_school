@@ -56,7 +56,7 @@ class ClassesPage extends StatelessWidget {
                   ),
                 );
               },
-              idle: (isLoading, classes, currentClass) {
+              idle: (isLoading, classes, teacherClasses, currentClass) {
                 return Padding(
                   padding: EdgeInsets.only(top: 8.0.h),
                   child: isLoading
@@ -125,7 +125,7 @@ class ClassesPage extends StatelessWidget {
                   SizedBox(height: 15.h),
                   SizedBox(
                     width: 0.6.sw,
-                    height: 0.07.sh,
+                    height: 55.h,
                     child: CustomTextField(
                       icon: Icons.meeting_room_outlined,
                       keyboardType: TextInputType.text,
@@ -135,7 +135,7 @@ class ClassesPage extends StatelessWidget {
                   ),
                   SizedBox(height: 15.h),
                   classState.maybeWhen<Widget>(
-                    idle: (isLoading, classes, currentClass) {
+                    idle: (isLoading, classes, teacherClasses, currentClass) {
                       return IgnorePointer(
                         ignoring: isLoading,
                         child: InkWell(

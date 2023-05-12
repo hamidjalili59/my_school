@@ -8,6 +8,9 @@ class StudentEvent with _$StudentEvent {
   const factory StudentEvent.getStudentsParent(
     double phoneNumber,
   ) = _GetStudentsParent;
+  const factory StudentEvent.updateStudent(
+    Student student,
+  ) = _UpdateStudent;
   const factory StudentEvent.addStudent(
     Student student,
     String parentName,

@@ -21,10 +21,11 @@ class ScoreBloc extends Bloc<ScoreEvent, ScoreState> {
 
   FutureOr<void> _onGetScores(
       _GetScores event, Emitter<ScoreState> emit) async {
-    emit(const ScoreState.idle(isLoading: true));
+    emit(ScoreState.idle(isLoading: false, scores: state.scores));
     await _getScoreUseCase.call(param: tuple.Tuple1<int>(event.studentId)).then(
           (value) => value.fold(
-            (l) => null,
+            (l) =>
+                emit(ScoreState.idle(isLoading: false, scores: state.scores)),
             (r) => emit(ScoreState.idle(isLoading: false, scores: r.scores)),
           ),
         );

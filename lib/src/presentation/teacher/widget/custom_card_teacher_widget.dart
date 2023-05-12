@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/teacher/domain/models/teacher.dart';
+import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
 import 'package:ndialog/ndialog.dart';
 
 import 'package:my_school/src/config/routes/router.dart';
@@ -12,14 +15,12 @@ import 'package:my_school/src/presentation/teacher/widget/inside_card_custom_but
 class CustomCardTeacherWidget extends StatelessWidget {
   const CustomCardTeacherWidget({
     Key? key,
-    required this.name,
-    required this.phone,
     required this.phoneController,
+    required this.teacher,
     required this.nameController,
     required this.method,
   }) : super(key: key);
-  final String name;
-  final String phone;
+  final Teacher teacher;
   final TextEditingController phoneController;
   final TextEditingController nameController;
   final Function() method;
@@ -67,8 +68,10 @@ class CustomCardTeacherWidget extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CustomLabelField(title: name),
-                          CustomLabelField(title: phone),
+                          CustomLabelField(title: teacher.basicInfo!.name),
+                          CustomLabelField(
+                              title:
+                                  '0${teacher.basicInfo!.phoneNumber.toInt()}'),
                         ],
                       ),
                     )
@@ -88,15 +91,21 @@ class CustomCardTeacherWidget extends StatelessWidget {
                       InsideCardCustomButtonWidget(
                         title: "تغییر‌ مشخصات",
                         onTap: () {
-                          nameController.text = name;
-                          phoneController.text = phone;
+                          nameController.text = teacher.basicInfo!.name;
+                          phoneController.text =
+                              '0${teacher.basicInfo!.phoneNumber.toInt()}';
                           method();
                         },
                       ),
                       SizedBox(width: 5.w),
                       InsideCardCustomButtonWidget(
                         title: "کلاس‌ها",
-                        onTap: _showTeacherClassesMethod,
+                        onTap: () {
+                          getIt.get<ClassroomBloc>().add(
+                              ClassroomEvent.getTeacherClasses(
+                                  teacher.teacherId));
+                          _showTeacherClassesMethod();
+                        },
                       ),
                     ],
                   ),
@@ -113,9 +122,10 @@ class CustomCardTeacherWidget extends StatelessWidget {
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(
-          titlePadding: EdgeInsets.symmetric(horizontal: 0.r, vertical: 0.r),
-          backgroundColor: GeneralConstants.mainColor,
-          contentPadding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 3.r)),
+        titlePadding: EdgeInsets.zero,
+        backgroundColor: GeneralConstants.mainColor,
+        contentPadding: EdgeInsets.zero,
+      ),
       title: Container(
         alignment: Alignment.center,
         padding: EdgeInsets.zero,
@@ -133,30 +143,59 @@ class CustomCardTeacherWidget extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
-      content: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: 0.1.sh,
-            minWidth: 0.75.sw,
-            maxHeight: 0.8.sh,
-            maxWidth: 0.8.sw,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                ShowTeacherClassWidget(),
-                ShowTeacherClassWidget(),
-                ShowTeacherClassWidget(),
-              ],
-            ),
-          )),
+      content: BlocBuilder<ClassroomBloc, ClassroomState>(
+        bloc: getIt.get<ClassroomBloc>(),
+        builder: (context, state) {
+          return SizedBox(
+            width: 0.7.sw,
+            height: 0.3.sh,
+            child: state.isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  )
+                : ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: state.teacherClasses.isEmpty
+                        ? 1
+                        : state.teacherClasses.length,
+                    itemBuilder: (context, index) {
+                      if (state.teacherClasses.isEmpty) {
+                        return Center(
+                          child: SizedBox(
+                            width: 0.5.sw,
+                            child: Text(
+                              'دبیر داخل هیچ کلاسی\nاضافه نشده است',
+                              textDirection: TextDirection.rtl,
+                              textAlign: TextAlign.center,
+                              maxLines: 3,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.r,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      return ShowTeacherClassWidget(
+                        name: state.teacherClasses[index].className,
+                      );
+                    },
+                  ),
+          );
+        },
+      ),
     ).show(appRputer.navigatorKey.currentContext!);
   }
 }
 
 class ShowTeacherClassWidget extends StatelessWidget {
+  final String name;
   const ShowTeacherClassWidget({
     Key? key,
+    required this.name,
   }) : super(key: key);
 
   @override
@@ -164,7 +203,7 @@ class ShowTeacherClassWidget extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Padding(
-        padding: EdgeInsets.only(bottom: 4.0.h),
+        padding: EdgeInsets.only(bottom: 10.0.h),
         child: Container(
           decoration: BoxDecoration(
               color: GeneralConstants.backgroundColor,
@@ -173,7 +212,7 @@ class ShowTeacherClassWidget extends StatelessWidget {
           width: double.infinity,
           height: 50.h,
           child: Text(
-            'کلاس 202',
+            name,
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 18.r,
