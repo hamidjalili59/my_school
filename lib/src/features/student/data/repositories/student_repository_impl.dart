@@ -89,7 +89,8 @@ class StudentRepositoryImpl extends StudentRepository {
   }
 
   @override
-  Future<Either<StudentFailure, void>> removeStudent({required int studentId}) {
+  Future<Either<StudentFailure, StudentSuccessResponse>> removeStudent(
+      {required int studentId}) {
     return _remoteDS.removeStudent(studentId: studentId).then(
           (value) => value.fold(
             (l) => left<StudentFailure, StudentSuccessResponse>(

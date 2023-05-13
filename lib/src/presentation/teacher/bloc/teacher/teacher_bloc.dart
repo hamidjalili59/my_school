@@ -10,6 +10,7 @@ import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_school/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_school/src/features/teacher/domain/use_cases/add_teacher_use_case.dart';
 import 'package:my_school/src/features/teacher/domain/use_cases/get_teachers_use_case.dart';
+import 'package:my_school/src/features/teacher/domain/use_cases/remove_teacher_use_case.dart';
 import 'package:my_school/src/features/teacher/domain/use_cases/update_teacher_use_case.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
@@ -22,14 +23,17 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
   final GetTeacherUseCase _getTeacherUseCase;
   final AddTeacherUseCase _addTeacherUseCase;
   final UpdateTeacherUseCase _updateTeacherUseCase;
+  final RemoveTeacherUseCase _removeTeacherUseCase;
   TeacherBloc(
     this._getTeacherUseCase,
     this._addTeacherUseCase,
     this._updateTeacherUseCase,
+    this._removeTeacherUseCase,
   ) : super(const TeacherState.idle(isLoading: true)) {
     on<_GetTeachers>(_onGetTeachers);
     on<_AddTeacher>(_onAddTeacher);
     on<_UpdateTeacher>(_onUpdateTeacher);
+    on<_RemoveTeacher>(_onRemoveTeacher);
     add(TeacherEvent.getTeachers(
       int.parse(getIt.get<OtpHandshakeResponse>().token),
     ));
@@ -113,5 +117,32 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
             },
           ),
         );
+  }
+
+  FutureOr<void> _onRemoveTeacher(
+      _RemoveTeacher event, Emitter<TeacherState> emit) async {
+    emit(TeacherState.idle(isLoading: true, teachers: state.teachers));
+    try {
+      await _removeTeacherUseCase
+          .call(param: tuple.Tuple1<int>(event.teacherId))
+          .then(
+            (value) => value.fold(
+              (l) => emit(TeacherState.idle(
+                  isLoading: false, teachers: state.teachers)),
+              (r) {
+                List<Teacher> tempList = state.teachers.toList();
+                tempList.removeAt(tempList
+                    .map((e) => e.teacherId)
+                    .toList()
+                    .indexOf(event.teacherId));
+                emit(TeacherState.idle(isLoading: false, teachers: tempList));
+              },
+            ),
+          );
+      getIt.get<AppRouter>().pop();
+    } catch (e) {
+      emit(TeacherState.idle(isLoading: false, teachers: state.teachers));
+      getIt.get<AppRouter>().pop();
+    }
   }
 }

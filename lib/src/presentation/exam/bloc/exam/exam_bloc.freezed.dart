@@ -244,18 +244,21 @@ mixin _$ExamEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getExams,
+    required TResult Function(int examId) removeExam,
     required TResult Function(Exam exam) acceptExams,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getExams,
+    TResult? Function(int examId)? removeExam,
     TResult? Function(Exam exam)? acceptExams,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getExams,
+    TResult Function(int examId)? removeExam,
     TResult Function(Exam exam)? acceptExams,
     required TResult orElse(),
   }) =>
@@ -263,18 +266,21 @@ mixin _$ExamEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetExams value) getExams,
+    required TResult Function(_RemoveExam value) removeExam,
     required TResult Function(_AcceptExams value) acceptExams,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetExams value)? getExams,
+    TResult? Function(_RemoveExam value)? removeExam,
     TResult? Function(_AcceptExams value)? acceptExams,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetExams value)? getExams,
+    TResult Function(_RemoveExam value)? removeExam,
     TResult Function(_AcceptExams value)? acceptExams,
     required TResult orElse(),
   }) =>
@@ -337,6 +343,7 @@ class _$_GetExams implements _GetExams {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getExams,
+    required TResult Function(int examId) removeExam,
     required TResult Function(Exam exam) acceptExams,
   }) {
     return getExams();
@@ -346,6 +353,7 @@ class _$_GetExams implements _GetExams {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getExams,
+    TResult? Function(int examId)? removeExam,
     TResult? Function(Exam exam)? acceptExams,
   }) {
     return getExams?.call();
@@ -355,6 +363,7 @@ class _$_GetExams implements _GetExams {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getExams,
+    TResult Function(int examId)? removeExam,
     TResult Function(Exam exam)? acceptExams,
     required TResult orElse(),
   }) {
@@ -368,6 +377,7 @@ class _$_GetExams implements _GetExams {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetExams value) getExams,
+    required TResult Function(_RemoveExam value) removeExam,
     required TResult Function(_AcceptExams value) acceptExams,
   }) {
     return getExams(this);
@@ -377,6 +387,7 @@ class _$_GetExams implements _GetExams {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetExams value)? getExams,
+    TResult? Function(_RemoveExam value)? removeExam,
     TResult? Function(_AcceptExams value)? acceptExams,
   }) {
     return getExams?.call(this);
@@ -386,6 +397,7 @@ class _$_GetExams implements _GetExams {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetExams value)? getExams,
+    TResult Function(_RemoveExam value)? removeExam,
     TResult Function(_AcceptExams value)? acceptExams,
     required TResult orElse(),
   }) {
@@ -398,6 +410,145 @@ class _$_GetExams implements _GetExams {
 
 abstract class _GetExams implements ExamEvent {
   const factory _GetExams() = _$_GetExams;
+}
+
+/// @nodoc
+abstract class _$$_RemoveExamCopyWith<$Res> {
+  factory _$$_RemoveExamCopyWith(
+          _$_RemoveExam value, $Res Function(_$_RemoveExam) then) =
+      __$$_RemoveExamCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int examId});
+}
+
+/// @nodoc
+class __$$_RemoveExamCopyWithImpl<$Res>
+    extends _$ExamEventCopyWithImpl<$Res, _$_RemoveExam>
+    implements _$$_RemoveExamCopyWith<$Res> {
+  __$$_RemoveExamCopyWithImpl(
+      _$_RemoveExam _value, $Res Function(_$_RemoveExam) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? examId = null,
+  }) {
+    return _then(_$_RemoveExam(
+      null == examId
+          ? _value.examId
+          : examId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RemoveExam implements _RemoveExam {
+  const _$_RemoveExam(this.examId);
+
+  @override
+  final int examId;
+
+  @override
+  String toString() {
+    return 'ExamEvent.removeExam(examId: $examId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveExam &&
+            (identical(other.examId, examId) || other.examId == examId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, examId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RemoveExamCopyWith<_$_RemoveExam> get copyWith =>
+      __$$_RemoveExamCopyWithImpl<_$_RemoveExam>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getExams,
+    required TResult Function(int examId) removeExam,
+    required TResult Function(Exam exam) acceptExams,
+  }) {
+    return removeExam(examId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getExams,
+    TResult? Function(int examId)? removeExam,
+    TResult? Function(Exam exam)? acceptExams,
+  }) {
+    return removeExam?.call(examId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getExams,
+    TResult Function(int examId)? removeExam,
+    TResult Function(Exam exam)? acceptExams,
+    required TResult orElse(),
+  }) {
+    if (removeExam != null) {
+      return removeExam(examId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetExams value) getExams,
+    required TResult Function(_RemoveExam value) removeExam,
+    required TResult Function(_AcceptExams value) acceptExams,
+  }) {
+    return removeExam(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetExams value)? getExams,
+    TResult? Function(_RemoveExam value)? removeExam,
+    TResult? Function(_AcceptExams value)? acceptExams,
+  }) {
+    return removeExam?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetExams value)? getExams,
+    TResult Function(_RemoveExam value)? removeExam,
+    TResult Function(_AcceptExams value)? acceptExams,
+    required TResult orElse(),
+  }) {
+    if (removeExam != null) {
+      return removeExam(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveExam implements ExamEvent {
+  const factory _RemoveExam(final int examId) = _$_RemoveExam;
+
+  int get examId;
+  @JsonKey(ignore: true)
+  _$$_RemoveExamCopyWith<_$_RemoveExam> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -475,6 +626,7 @@ class _$_AcceptExams implements _AcceptExams {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getExams,
+    required TResult Function(int examId) removeExam,
     required TResult Function(Exam exam) acceptExams,
   }) {
     return acceptExams(exam);
@@ -484,6 +636,7 @@ class _$_AcceptExams implements _AcceptExams {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getExams,
+    TResult? Function(int examId)? removeExam,
     TResult? Function(Exam exam)? acceptExams,
   }) {
     return acceptExams?.call(exam);
@@ -493,6 +646,7 @@ class _$_AcceptExams implements _AcceptExams {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getExams,
+    TResult Function(int examId)? removeExam,
     TResult Function(Exam exam)? acceptExams,
     required TResult orElse(),
   }) {
@@ -506,6 +660,7 @@ class _$_AcceptExams implements _AcceptExams {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetExams value) getExams,
+    required TResult Function(_RemoveExam value) removeExam,
     required TResult Function(_AcceptExams value) acceptExams,
   }) {
     return acceptExams(this);
@@ -515,6 +670,7 @@ class _$_AcceptExams implements _AcceptExams {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetExams value)? getExams,
+    TResult? Function(_RemoveExam value)? removeExam,
     TResult? Function(_AcceptExams value)? acceptExams,
   }) {
     return acceptExams?.call(this);
@@ -524,6 +680,7 @@ class _$_AcceptExams implements _AcceptExams {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetExams value)? getExams,
+    TResult Function(_RemoveExam value)? removeExam,
     TResult Function(_AcceptExams value)? acceptExams,
     required TResult orElse(),
   }) {

@@ -249,6 +249,7 @@ mixin _$CourseEvent {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(String courseName) addCourse,
     required TResult Function(Course course) updateCourse,
+    required TResult Function(int courseId) removeCourse,
     required TResult Function(int schoolId) getCourses,
   }) =>
       throw _privateConstructorUsedError;
@@ -257,6 +258,7 @@ mixin _$CourseEvent {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(String courseName)? addCourse,
     TResult? Function(Course course)? updateCourse,
+    TResult? Function(int courseId)? removeCourse,
     TResult? Function(int schoolId)? getCourses,
   }) =>
       throw _privateConstructorUsedError;
@@ -265,6 +267,7 @@ mixin _$CourseEvent {
     TResult Function(int schoolId)? getClasses,
     TResult Function(String courseName)? addCourse,
     TResult Function(Course course)? updateCourse,
+    TResult Function(int courseId)? removeCourse,
     TResult Function(int schoolId)? getCourses,
     required TResult orElse(),
   }) =>
@@ -274,6 +277,7 @@ mixin _$CourseEvent {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddCourse value) addCourse,
     required TResult Function(_UpdateCourse value) updateCourse,
+    required TResult Function(_RemoveCourse value) removeCourse,
     required TResult Function(_GetCourses value) getCourses,
   }) =>
       throw _privateConstructorUsedError;
@@ -282,6 +286,7 @@ mixin _$CourseEvent {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddCourse value)? addCourse,
     TResult? Function(_UpdateCourse value)? updateCourse,
+    TResult? Function(_RemoveCourse value)? removeCourse,
     TResult? Function(_GetCourses value)? getCourses,
   }) =>
       throw _privateConstructorUsedError;
@@ -290,6 +295,7 @@ mixin _$CourseEvent {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddCourse value)? addCourse,
     TResult Function(_UpdateCourse value)? updateCourse,
+    TResult Function(_RemoveCourse value)? removeCourse,
     TResult Function(_GetCourses value)? getCourses,
     required TResult orElse(),
   }) =>
@@ -382,6 +388,7 @@ class _$_GetClasses implements _GetClasses {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(String courseName) addCourse,
     required TResult Function(Course course) updateCourse,
+    required TResult Function(int courseId) removeCourse,
     required TResult Function(int schoolId) getCourses,
   }) {
     return getClasses(schoolId);
@@ -393,6 +400,7 @@ class _$_GetClasses implements _GetClasses {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(String courseName)? addCourse,
     TResult? Function(Course course)? updateCourse,
+    TResult? Function(int courseId)? removeCourse,
     TResult? Function(int schoolId)? getCourses,
   }) {
     return getClasses?.call(schoolId);
@@ -404,6 +412,7 @@ class _$_GetClasses implements _GetClasses {
     TResult Function(int schoolId)? getClasses,
     TResult Function(String courseName)? addCourse,
     TResult Function(Course course)? updateCourse,
+    TResult Function(int courseId)? removeCourse,
     TResult Function(int schoolId)? getCourses,
     required TResult orElse(),
   }) {
@@ -419,6 +428,7 @@ class _$_GetClasses implements _GetClasses {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddCourse value) addCourse,
     required TResult Function(_UpdateCourse value) updateCourse,
+    required TResult Function(_RemoveCourse value) removeCourse,
     required TResult Function(_GetCourses value) getCourses,
   }) {
     return getClasses(this);
@@ -430,6 +440,7 @@ class _$_GetClasses implements _GetClasses {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddCourse value)? addCourse,
     TResult? Function(_UpdateCourse value)? updateCourse,
+    TResult? Function(_RemoveCourse value)? removeCourse,
     TResult? Function(_GetCourses value)? getCourses,
   }) {
     return getClasses?.call(this);
@@ -441,6 +452,7 @@ class _$_GetClasses implements _GetClasses {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddCourse value)? addCourse,
     TResult Function(_UpdateCourse value)? updateCourse,
+    TResult Function(_RemoveCourse value)? removeCourse,
     TResult Function(_GetCourses value)? getCourses,
     required TResult orElse(),
   }) {
@@ -528,6 +540,7 @@ class _$_AddCourse implements _AddCourse {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(String courseName) addCourse,
     required TResult Function(Course course) updateCourse,
+    required TResult Function(int courseId) removeCourse,
     required TResult Function(int schoolId) getCourses,
   }) {
     return addCourse(courseName);
@@ -539,6 +552,7 @@ class _$_AddCourse implements _AddCourse {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(String courseName)? addCourse,
     TResult? Function(Course course)? updateCourse,
+    TResult? Function(int courseId)? removeCourse,
     TResult? Function(int schoolId)? getCourses,
   }) {
     return addCourse?.call(courseName);
@@ -550,6 +564,7 @@ class _$_AddCourse implements _AddCourse {
     TResult Function(int schoolId)? getClasses,
     TResult Function(String courseName)? addCourse,
     TResult Function(Course course)? updateCourse,
+    TResult Function(int courseId)? removeCourse,
     TResult Function(int schoolId)? getCourses,
     required TResult orElse(),
   }) {
@@ -565,6 +580,7 @@ class _$_AddCourse implements _AddCourse {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddCourse value) addCourse,
     required TResult Function(_UpdateCourse value) updateCourse,
+    required TResult Function(_RemoveCourse value) removeCourse,
     required TResult Function(_GetCourses value) getCourses,
   }) {
     return addCourse(this);
@@ -576,6 +592,7 @@ class _$_AddCourse implements _AddCourse {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddCourse value)? addCourse,
     TResult? Function(_UpdateCourse value)? updateCourse,
+    TResult? Function(_RemoveCourse value)? removeCourse,
     TResult? Function(_GetCourses value)? getCourses,
   }) {
     return addCourse?.call(this);
@@ -587,6 +604,7 @@ class _$_AddCourse implements _AddCourse {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddCourse value)? addCourse,
     TResult Function(_UpdateCourse value)? updateCourse,
+    TResult Function(_RemoveCourse value)? removeCourse,
     TResult Function(_GetCourses value)? getCourses,
     required TResult orElse(),
   }) {
@@ -683,6 +701,7 @@ class _$_UpdateCourse implements _UpdateCourse {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(String courseName) addCourse,
     required TResult Function(Course course) updateCourse,
+    required TResult Function(int courseId) removeCourse,
     required TResult Function(int schoolId) getCourses,
   }) {
     return updateCourse(course);
@@ -694,6 +713,7 @@ class _$_UpdateCourse implements _UpdateCourse {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(String courseName)? addCourse,
     TResult? Function(Course course)? updateCourse,
+    TResult? Function(int courseId)? removeCourse,
     TResult? Function(int schoolId)? getCourses,
   }) {
     return updateCourse?.call(course);
@@ -705,6 +725,7 @@ class _$_UpdateCourse implements _UpdateCourse {
     TResult Function(int schoolId)? getClasses,
     TResult Function(String courseName)? addCourse,
     TResult Function(Course course)? updateCourse,
+    TResult Function(int courseId)? removeCourse,
     TResult Function(int schoolId)? getCourses,
     required TResult orElse(),
   }) {
@@ -720,6 +741,7 @@ class _$_UpdateCourse implements _UpdateCourse {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddCourse value) addCourse,
     required TResult Function(_UpdateCourse value) updateCourse,
+    required TResult Function(_RemoveCourse value) removeCourse,
     required TResult Function(_GetCourses value) getCourses,
   }) {
     return updateCourse(this);
@@ -731,6 +753,7 @@ class _$_UpdateCourse implements _UpdateCourse {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddCourse value)? addCourse,
     TResult? Function(_UpdateCourse value)? updateCourse,
+    TResult? Function(_RemoveCourse value)? removeCourse,
     TResult? Function(_GetCourses value)? getCourses,
   }) {
     return updateCourse?.call(this);
@@ -742,6 +765,7 @@ class _$_UpdateCourse implements _UpdateCourse {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddCourse value)? addCourse,
     TResult Function(_UpdateCourse value)? updateCourse,
+    TResult Function(_RemoveCourse value)? removeCourse,
     TResult Function(_GetCourses value)? getCourses,
     required TResult orElse(),
   }) {
@@ -758,6 +782,158 @@ abstract class _UpdateCourse implements CourseEvent {
   Course get course;
   @JsonKey(ignore: true)
   _$$_UpdateCourseCopyWith<_$_UpdateCourse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RemoveCourseCopyWith<$Res> {
+  factory _$$_RemoveCourseCopyWith(
+          _$_RemoveCourse value, $Res Function(_$_RemoveCourse) then) =
+      __$$_RemoveCourseCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int courseId});
+}
+
+/// @nodoc
+class __$$_RemoveCourseCopyWithImpl<$Res>
+    extends _$CourseEventCopyWithImpl<$Res, _$_RemoveCourse>
+    implements _$$_RemoveCourseCopyWith<$Res> {
+  __$$_RemoveCourseCopyWithImpl(
+      _$_RemoveCourse _value, $Res Function(_$_RemoveCourse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? courseId = null,
+  }) {
+    return _then(_$_RemoveCourse(
+      null == courseId
+          ? _value.courseId
+          : courseId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RemoveCourse implements _RemoveCourse {
+  const _$_RemoveCourse(this.courseId);
+
+  @override
+  final int courseId;
+
+  @override
+  String toString() {
+    return 'CourseEvent.removeCourse(courseId: $courseId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveCourse &&
+            (identical(other.courseId, courseId) ||
+                other.courseId == courseId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, courseId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RemoveCourseCopyWith<_$_RemoveCourse> get copyWith =>
+      __$$_RemoveCourseCopyWithImpl<_$_RemoveCourse>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int schoolId) getClasses,
+    required TResult Function(String courseName) addCourse,
+    required TResult Function(Course course) updateCourse,
+    required TResult Function(int courseId) removeCourse,
+    required TResult Function(int schoolId) getCourses,
+  }) {
+    return removeCourse(courseId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int schoolId)? getClasses,
+    TResult? Function(String courseName)? addCourse,
+    TResult? Function(Course course)? updateCourse,
+    TResult? Function(int courseId)? removeCourse,
+    TResult? Function(int schoolId)? getCourses,
+  }) {
+    return removeCourse?.call(courseId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int schoolId)? getClasses,
+    TResult Function(String courseName)? addCourse,
+    TResult Function(Course course)? updateCourse,
+    TResult Function(int courseId)? removeCourse,
+    TResult Function(int schoolId)? getCourses,
+    required TResult orElse(),
+  }) {
+    if (removeCourse != null) {
+      return removeCourse(courseId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_AddCourse value) addCourse,
+    required TResult Function(_UpdateCourse value) updateCourse,
+    required TResult Function(_RemoveCourse value) removeCourse,
+    required TResult Function(_GetCourses value) getCourses,
+  }) {
+    return removeCourse(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_AddCourse value)? addCourse,
+    TResult? Function(_UpdateCourse value)? updateCourse,
+    TResult? Function(_RemoveCourse value)? removeCourse,
+    TResult? Function(_GetCourses value)? getCourses,
+  }) {
+    return removeCourse?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_AddCourse value)? addCourse,
+    TResult Function(_UpdateCourse value)? updateCourse,
+    TResult Function(_RemoveCourse value)? removeCourse,
+    TResult Function(_GetCourses value)? getCourses,
+    required TResult orElse(),
+  }) {
+    if (removeCourse != null) {
+      return removeCourse(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveCourse implements CourseEvent {
+  const factory _RemoveCourse(final int courseId) = _$_RemoveCourse;
+
+  int get courseId;
+  @JsonKey(ignore: true)
+  _$$_RemoveCourseCopyWith<_$_RemoveCourse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -829,6 +1005,7 @@ class _$_GetCourses implements _GetCourses {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(String courseName) addCourse,
     required TResult Function(Course course) updateCourse,
+    required TResult Function(int courseId) removeCourse,
     required TResult Function(int schoolId) getCourses,
   }) {
     return getCourses(schoolId);
@@ -840,6 +1017,7 @@ class _$_GetCourses implements _GetCourses {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(String courseName)? addCourse,
     TResult? Function(Course course)? updateCourse,
+    TResult? Function(int courseId)? removeCourse,
     TResult? Function(int schoolId)? getCourses,
   }) {
     return getCourses?.call(schoolId);
@@ -851,6 +1029,7 @@ class _$_GetCourses implements _GetCourses {
     TResult Function(int schoolId)? getClasses,
     TResult Function(String courseName)? addCourse,
     TResult Function(Course course)? updateCourse,
+    TResult Function(int courseId)? removeCourse,
     TResult Function(int schoolId)? getCourses,
     required TResult orElse(),
   }) {
@@ -866,6 +1045,7 @@ class _$_GetCourses implements _GetCourses {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddCourse value) addCourse,
     required TResult Function(_UpdateCourse value) updateCourse,
+    required TResult Function(_RemoveCourse value) removeCourse,
     required TResult Function(_GetCourses value) getCourses,
   }) {
     return getCourses(this);
@@ -877,6 +1057,7 @@ class _$_GetCourses implements _GetCourses {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddCourse value)? addCourse,
     TResult? Function(_UpdateCourse value)? updateCourse,
+    TResult? Function(_RemoveCourse value)? removeCourse,
     TResult? Function(_GetCourses value)? getCourses,
   }) {
     return getCourses?.call(this);
@@ -888,6 +1069,7 @@ class _$_GetCourses implements _GetCourses {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddCourse value)? addCourse,
     TResult Function(_UpdateCourse value)? updateCourse,
+    TResult Function(_RemoveCourse value)? removeCourse,
     TResult Function(_GetCourses value)? getCourses,
     required TResult orElse(),
   }) {

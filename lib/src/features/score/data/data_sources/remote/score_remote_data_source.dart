@@ -14,6 +14,9 @@ abstract class ScoreRemoteDataSource {
   Future<Either<DioError, Response<Map<String, dynamic>>>> getScores(
       {required int studentId});
 
+  Future<Either<DioError, Response<Map<String, dynamic>>>> deleteScore(
+      {required int gradeId});
+
   Future<Either<DioError, Response<Map<String, dynamic>>>> updateScore({
     required int scoreId,
     required int classId,
@@ -60,4 +63,11 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
         'score_description': scoreDescription,
         'grade': grade,
       });
+
+  @override
+  Future<Either<DioError, Response<Map<String, dynamic>>>> deleteScore(
+      {required int gradeId}) {
+    return apiService.deleteMethod(
+        GeneralConstants.host + ScoreEndpoints.deleteLink + gradeId.toString());
+  }
 }

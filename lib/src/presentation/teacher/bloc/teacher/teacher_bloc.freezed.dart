@@ -249,6 +249,7 @@ mixin _$TeacherEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int teacherId) getClasses,
     required TResult Function(Teacher teacher) addTeacher,
+    required TResult Function(int teacherId) removeTeacher,
     required TResult Function(Teacher teacher) updateTeacher,
     required TResult Function(int schoolId) getTeachers,
   }) =>
@@ -257,6 +258,7 @@ mixin _$TeacherEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int teacherId)? getClasses,
     TResult? Function(Teacher teacher)? addTeacher,
+    TResult? Function(int teacherId)? removeTeacher,
     TResult? Function(Teacher teacher)? updateTeacher,
     TResult? Function(int schoolId)? getTeachers,
   }) =>
@@ -265,6 +267,7 @@ mixin _$TeacherEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int teacherId)? getClasses,
     TResult Function(Teacher teacher)? addTeacher,
+    TResult Function(int teacherId)? removeTeacher,
     TResult Function(Teacher teacher)? updateTeacher,
     TResult Function(int schoolId)? getTeachers,
     required TResult orElse(),
@@ -274,6 +277,7 @@ mixin _$TeacherEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddTeacher value) addTeacher,
+    required TResult Function(_RemoveTeacher value) removeTeacher,
     required TResult Function(_UpdateTeacher value) updateTeacher,
     required TResult Function(_GetTeachers value) getTeachers,
   }) =>
@@ -282,6 +286,7 @@ mixin _$TeacherEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddTeacher value)? addTeacher,
+    TResult? Function(_RemoveTeacher value)? removeTeacher,
     TResult? Function(_UpdateTeacher value)? updateTeacher,
     TResult? Function(_GetTeachers value)? getTeachers,
   }) =>
@@ -290,6 +295,7 @@ mixin _$TeacherEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddTeacher value)? addTeacher,
+    TResult Function(_RemoveTeacher value)? removeTeacher,
     TResult Function(_UpdateTeacher value)? updateTeacher,
     TResult Function(_GetTeachers value)? getTeachers,
     required TResult orElse(),
@@ -382,6 +388,7 @@ class _$_GetClasses implements _GetClasses {
   TResult when<TResult extends Object?>({
     required TResult Function(int teacherId) getClasses,
     required TResult Function(Teacher teacher) addTeacher,
+    required TResult Function(int teacherId) removeTeacher,
     required TResult Function(Teacher teacher) updateTeacher,
     required TResult Function(int schoolId) getTeachers,
   }) {
@@ -393,6 +400,7 @@ class _$_GetClasses implements _GetClasses {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int teacherId)? getClasses,
     TResult? Function(Teacher teacher)? addTeacher,
+    TResult? Function(int teacherId)? removeTeacher,
     TResult? Function(Teacher teacher)? updateTeacher,
     TResult? Function(int schoolId)? getTeachers,
   }) {
@@ -404,6 +412,7 @@ class _$_GetClasses implements _GetClasses {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int teacherId)? getClasses,
     TResult Function(Teacher teacher)? addTeacher,
+    TResult Function(int teacherId)? removeTeacher,
     TResult Function(Teacher teacher)? updateTeacher,
     TResult Function(int schoolId)? getTeachers,
     required TResult orElse(),
@@ -419,6 +428,7 @@ class _$_GetClasses implements _GetClasses {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddTeacher value) addTeacher,
+    required TResult Function(_RemoveTeacher value) removeTeacher,
     required TResult Function(_UpdateTeacher value) updateTeacher,
     required TResult Function(_GetTeachers value) getTeachers,
   }) {
@@ -430,6 +440,7 @@ class _$_GetClasses implements _GetClasses {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddTeacher value)? addTeacher,
+    TResult? Function(_RemoveTeacher value)? removeTeacher,
     TResult? Function(_UpdateTeacher value)? updateTeacher,
     TResult? Function(_GetTeachers value)? getTeachers,
   }) {
@@ -441,6 +452,7 @@ class _$_GetClasses implements _GetClasses {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddTeacher value)? addTeacher,
+    TResult Function(_RemoveTeacher value)? removeTeacher,
     TResult Function(_UpdateTeacher value)? updateTeacher,
     TResult Function(_GetTeachers value)? getTeachers,
     required TResult orElse(),
@@ -537,6 +549,7 @@ class _$_AddTeacher implements _AddTeacher {
   TResult when<TResult extends Object?>({
     required TResult Function(int teacherId) getClasses,
     required TResult Function(Teacher teacher) addTeacher,
+    required TResult Function(int teacherId) removeTeacher,
     required TResult Function(Teacher teacher) updateTeacher,
     required TResult Function(int schoolId) getTeachers,
   }) {
@@ -548,6 +561,7 @@ class _$_AddTeacher implements _AddTeacher {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int teacherId)? getClasses,
     TResult? Function(Teacher teacher)? addTeacher,
+    TResult? Function(int teacherId)? removeTeacher,
     TResult? Function(Teacher teacher)? updateTeacher,
     TResult? Function(int schoolId)? getTeachers,
   }) {
@@ -559,6 +573,7 @@ class _$_AddTeacher implements _AddTeacher {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int teacherId)? getClasses,
     TResult Function(Teacher teacher)? addTeacher,
+    TResult Function(int teacherId)? removeTeacher,
     TResult Function(Teacher teacher)? updateTeacher,
     TResult Function(int schoolId)? getTeachers,
     required TResult orElse(),
@@ -574,6 +589,7 @@ class _$_AddTeacher implements _AddTeacher {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddTeacher value) addTeacher,
+    required TResult Function(_RemoveTeacher value) removeTeacher,
     required TResult Function(_UpdateTeacher value) updateTeacher,
     required TResult Function(_GetTeachers value) getTeachers,
   }) {
@@ -585,6 +601,7 @@ class _$_AddTeacher implements _AddTeacher {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddTeacher value)? addTeacher,
+    TResult? Function(_RemoveTeacher value)? removeTeacher,
     TResult? Function(_UpdateTeacher value)? updateTeacher,
     TResult? Function(_GetTeachers value)? getTeachers,
   }) {
@@ -596,6 +613,7 @@ class _$_AddTeacher implements _AddTeacher {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddTeacher value)? addTeacher,
+    TResult Function(_RemoveTeacher value)? removeTeacher,
     TResult Function(_UpdateTeacher value)? updateTeacher,
     TResult Function(_GetTeachers value)? getTeachers,
     required TResult orElse(),
@@ -613,6 +631,158 @@ abstract class _AddTeacher implements TeacherEvent {
   Teacher get teacher;
   @JsonKey(ignore: true)
   _$$_AddTeacherCopyWith<_$_AddTeacher> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RemoveTeacherCopyWith<$Res> {
+  factory _$$_RemoveTeacherCopyWith(
+          _$_RemoveTeacher value, $Res Function(_$_RemoveTeacher) then) =
+      __$$_RemoveTeacherCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int teacherId});
+}
+
+/// @nodoc
+class __$$_RemoveTeacherCopyWithImpl<$Res>
+    extends _$TeacherEventCopyWithImpl<$Res, _$_RemoveTeacher>
+    implements _$$_RemoveTeacherCopyWith<$Res> {
+  __$$_RemoveTeacherCopyWithImpl(
+      _$_RemoveTeacher _value, $Res Function(_$_RemoveTeacher) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? teacherId = null,
+  }) {
+    return _then(_$_RemoveTeacher(
+      null == teacherId
+          ? _value.teacherId
+          : teacherId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RemoveTeacher implements _RemoveTeacher {
+  const _$_RemoveTeacher(this.teacherId);
+
+  @override
+  final int teacherId;
+
+  @override
+  String toString() {
+    return 'TeacherEvent.removeTeacher(teacherId: $teacherId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveTeacher &&
+            (identical(other.teacherId, teacherId) ||
+                other.teacherId == teacherId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, teacherId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RemoveTeacherCopyWith<_$_RemoveTeacher> get copyWith =>
+      __$$_RemoveTeacherCopyWithImpl<_$_RemoveTeacher>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int teacherId) getClasses,
+    required TResult Function(Teacher teacher) addTeacher,
+    required TResult Function(int teacherId) removeTeacher,
+    required TResult Function(Teacher teacher) updateTeacher,
+    required TResult Function(int schoolId) getTeachers,
+  }) {
+    return removeTeacher(teacherId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int teacherId)? getClasses,
+    TResult? Function(Teacher teacher)? addTeacher,
+    TResult? Function(int teacherId)? removeTeacher,
+    TResult? Function(Teacher teacher)? updateTeacher,
+    TResult? Function(int schoolId)? getTeachers,
+  }) {
+    return removeTeacher?.call(teacherId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int teacherId)? getClasses,
+    TResult Function(Teacher teacher)? addTeacher,
+    TResult Function(int teacherId)? removeTeacher,
+    TResult Function(Teacher teacher)? updateTeacher,
+    TResult Function(int schoolId)? getTeachers,
+    required TResult orElse(),
+  }) {
+    if (removeTeacher != null) {
+      return removeTeacher(teacherId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_AddTeacher value) addTeacher,
+    required TResult Function(_RemoveTeacher value) removeTeacher,
+    required TResult Function(_UpdateTeacher value) updateTeacher,
+    required TResult Function(_GetTeachers value) getTeachers,
+  }) {
+    return removeTeacher(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_AddTeacher value)? addTeacher,
+    TResult? Function(_RemoveTeacher value)? removeTeacher,
+    TResult? Function(_UpdateTeacher value)? updateTeacher,
+    TResult? Function(_GetTeachers value)? getTeachers,
+  }) {
+    return removeTeacher?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_AddTeacher value)? addTeacher,
+    TResult Function(_RemoveTeacher value)? removeTeacher,
+    TResult Function(_UpdateTeacher value)? updateTeacher,
+    TResult Function(_GetTeachers value)? getTeachers,
+    required TResult orElse(),
+  }) {
+    if (removeTeacher != null) {
+      return removeTeacher(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveTeacher implements TeacherEvent {
+  const factory _RemoveTeacher(final int teacherId) = _$_RemoveTeacher;
+
+  int get teacherId;
+  @JsonKey(ignore: true)
+  _$$_RemoveTeacherCopyWith<_$_RemoveTeacher> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -692,6 +862,7 @@ class _$_UpdateTeacher implements _UpdateTeacher {
   TResult when<TResult extends Object?>({
     required TResult Function(int teacherId) getClasses,
     required TResult Function(Teacher teacher) addTeacher,
+    required TResult Function(int teacherId) removeTeacher,
     required TResult Function(Teacher teacher) updateTeacher,
     required TResult Function(int schoolId) getTeachers,
   }) {
@@ -703,6 +874,7 @@ class _$_UpdateTeacher implements _UpdateTeacher {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int teacherId)? getClasses,
     TResult? Function(Teacher teacher)? addTeacher,
+    TResult? Function(int teacherId)? removeTeacher,
     TResult? Function(Teacher teacher)? updateTeacher,
     TResult? Function(int schoolId)? getTeachers,
   }) {
@@ -714,6 +886,7 @@ class _$_UpdateTeacher implements _UpdateTeacher {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int teacherId)? getClasses,
     TResult Function(Teacher teacher)? addTeacher,
+    TResult Function(int teacherId)? removeTeacher,
     TResult Function(Teacher teacher)? updateTeacher,
     TResult Function(int schoolId)? getTeachers,
     required TResult orElse(),
@@ -729,6 +902,7 @@ class _$_UpdateTeacher implements _UpdateTeacher {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddTeacher value) addTeacher,
+    required TResult Function(_RemoveTeacher value) removeTeacher,
     required TResult Function(_UpdateTeacher value) updateTeacher,
     required TResult Function(_GetTeachers value) getTeachers,
   }) {
@@ -740,6 +914,7 @@ class _$_UpdateTeacher implements _UpdateTeacher {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddTeacher value)? addTeacher,
+    TResult? Function(_RemoveTeacher value)? removeTeacher,
     TResult? Function(_UpdateTeacher value)? updateTeacher,
     TResult? Function(_GetTeachers value)? getTeachers,
   }) {
@@ -751,6 +926,7 @@ class _$_UpdateTeacher implements _UpdateTeacher {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddTeacher value)? addTeacher,
+    TResult Function(_RemoveTeacher value)? removeTeacher,
     TResult Function(_UpdateTeacher value)? updateTeacher,
     TResult Function(_GetTeachers value)? getTeachers,
     required TResult orElse(),
@@ -838,6 +1014,7 @@ class _$_GetTeachers implements _GetTeachers {
   TResult when<TResult extends Object?>({
     required TResult Function(int teacherId) getClasses,
     required TResult Function(Teacher teacher) addTeacher,
+    required TResult Function(int teacherId) removeTeacher,
     required TResult Function(Teacher teacher) updateTeacher,
     required TResult Function(int schoolId) getTeachers,
   }) {
@@ -849,6 +1026,7 @@ class _$_GetTeachers implements _GetTeachers {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int teacherId)? getClasses,
     TResult? Function(Teacher teacher)? addTeacher,
+    TResult? Function(int teacherId)? removeTeacher,
     TResult? Function(Teacher teacher)? updateTeacher,
     TResult? Function(int schoolId)? getTeachers,
   }) {
@@ -860,6 +1038,7 @@ class _$_GetTeachers implements _GetTeachers {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int teacherId)? getClasses,
     TResult Function(Teacher teacher)? addTeacher,
+    TResult Function(int teacherId)? removeTeacher,
     TResult Function(Teacher teacher)? updateTeacher,
     TResult Function(int schoolId)? getTeachers,
     required TResult orElse(),
@@ -875,6 +1054,7 @@ class _$_GetTeachers implements _GetTeachers {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_AddTeacher value) addTeacher,
+    required TResult Function(_RemoveTeacher value) removeTeacher,
     required TResult Function(_UpdateTeacher value) updateTeacher,
     required TResult Function(_GetTeachers value) getTeachers,
   }) {
@@ -886,6 +1066,7 @@ class _$_GetTeachers implements _GetTeachers {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_AddTeacher value)? addTeacher,
+    TResult? Function(_RemoveTeacher value)? removeTeacher,
     TResult? Function(_UpdateTeacher value)? updateTeacher,
     TResult? Function(_GetTeachers value)? getTeachers,
   }) {
@@ -897,6 +1078,7 @@ class _$_GetTeachers implements _GetTeachers {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_AddTeacher value)? addTeacher,
+    TResult Function(_RemoveTeacher value)? removeTeacher,
     TResult Function(_UpdateTeacher value)? updateTeacher,
     TResult Function(_GetTeachers value)? getTeachers,
     required TResult orElse(),

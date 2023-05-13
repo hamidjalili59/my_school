@@ -82,7 +82,8 @@ class ExamRepositoryImpl extends ExamRepository {
   }
 
   @override
-  Future<Either<ExamFailure, void>> removeExam({required int examId}) {
+  Future<Either<ExamFailure, ExamSuccessResponse>> removeExam(
+      {required int examId}) {
     return _remoteDS.removeExam(examId: examId).then(
           (value) => value.fold(
             (l) => left<ExamFailure, ExamSuccessResponse>(
@@ -91,13 +92,13 @@ class ExamRepositoryImpl extends ExamRepository {
             (r) async {
               try {
                 final removeExamFromServer = ExamSuccessResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<ExamFailure, ExamSuccessResponse>(
                   removeExamFromServer,
                 );
               } catch (e) {
-                return left<ExamFailure, ExamGetResponse>(
+                return left<ExamFailure, ExamSuccessResponse>(
                     const ExamFailure.nullParam());
               }
             },
@@ -121,7 +122,7 @@ class ExamRepositoryImpl extends ExamRepository {
             (r) async {
               try {
                 final updateExamOnServer = ExamSuccessResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<ExamFailure, ExamSuccessResponse>(
                   updateExamOnServer,
@@ -146,7 +147,7 @@ class ExamRepositoryImpl extends ExamRepository {
             (r) async {
               try {
                 final examsDataFromServer = ExamGetResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<ExamFailure, ExamGetResponse>(
                   examsDataFromServer,

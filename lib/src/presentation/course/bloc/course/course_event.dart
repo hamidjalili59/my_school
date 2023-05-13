@@ -11,6 +11,7 @@ class CourseEvent with _$CourseEvent {
   const factory CourseEvent.updateCourse(
     Course course,
   ) = _UpdateCourse;
+  const factory CourseEvent.removeCourse(int courseId) = _RemoveCourse;
   const factory CourseEvent.getCourses(
     int schoolId,
   ) = _GetCourses;

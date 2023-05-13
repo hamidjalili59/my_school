@@ -21,6 +21,9 @@ abstract class ScoreRepository {
   Future<Either<ScoreFailure, ScoreGetResponse>> getScores(
       {required int studentId});
   //
+  Future<Either<ScoreFailure, ScoreSuccessResponse>> removeScore(
+      {required int gradeId});
+  //
   Future<Either<ScoreFailure, void>> cacheScoresData({
     required List<Score> scores,
   });

@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/config/utils/function_helper.dart';
 import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
@@ -169,9 +170,37 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                     ? studentState.students.length
                     : 1,
                 itemBuilder: (context, index) {
-                  return CustomClassDetailButtonWidget(
-                    icon: Icons.person,
-                    student: studentState.students[index],
+                  return SizedBox(
+                    width: 0.4.sw,
+                    height: 0.28.sh,
+                    child: Stack(
+                      children: [
+                        CustomClassDetailButtonWidget(
+                          icon: Icons.person,
+                          student: studentState.students[index],
+                        ),
+                        GeneralConstants.userType == UserType.parent
+                            ? const SizedBox()
+                            : Align(
+                                alignment: Alignment.topRight,
+                                child: InkWell(
+                                  onTap: () => FunctionHelper().removeDialog(
+                                    'دانش آموز',
+                                    () => getIt.get<StudentBloc>().add(
+                                          StudentEvent.removeStudent(
+                                              studentState
+                                                  .students[index].studentId),
+                                        ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16.0.w, vertical: 8.h),
+                                    child: Icon(Icons.close, size: 26.r),
+                                  ),
+                                ),
+                              ),
+                      ],
+                    ),
                   );
                 },
               );

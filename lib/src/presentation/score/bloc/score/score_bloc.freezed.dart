@@ -244,42 +244,43 @@ abstract class _Idle implements ScoreState {
 
 /// @nodoc
 mixin _$ScoreEvent {
-  int get studentId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int scoreId) removeScore,
     required TResult Function(int studentId) getScores,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int scoreId)? removeScore,
     TResult? Function(int studentId)? getScores,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int scoreId)? removeScore,
     TResult Function(int studentId)? getScores,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_RemoveScore value) removeScore,
     required TResult Function(_GetScores value) getScores,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RemoveScore value)? removeScore,
     TResult? Function(_GetScores value)? getScores,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RemoveScore value)? removeScore,
     TResult Function(_GetScores value)? getScores,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ScoreEventCopyWith<ScoreEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -288,8 +289,6 @@ abstract class $ScoreEventCopyWith<$Res> {
   factory $ScoreEventCopyWith(
           ScoreEvent value, $Res Function(ScoreEvent) then) =
       _$ScoreEventCopyWithImpl<$Res, ScoreEvent>;
-  @useResult
-  $Res call({int studentId});
 }
 
 /// @nodoc
@@ -301,28 +300,146 @@ class _$ScoreEventCopyWithImpl<$Res, $Val extends ScoreEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_RemoveScoreCopyWith<$Res> {
+  factory _$$_RemoveScoreCopyWith(
+          _$_RemoveScore value, $Res Function(_$_RemoveScore) then) =
+      __$$_RemoveScoreCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int scoreId});
+}
+
+/// @nodoc
+class __$$_RemoveScoreCopyWithImpl<$Res>
+    extends _$ScoreEventCopyWithImpl<$Res, _$_RemoveScore>
+    implements _$$_RemoveScoreCopyWith<$Res> {
+  __$$_RemoveScoreCopyWithImpl(
+      _$_RemoveScore _value, $Res Function(_$_RemoveScore) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? studentId = null,
+    Object? scoreId = null,
   }) {
-    return _then(_value.copyWith(
-      studentId: null == studentId
-          ? _value.studentId
-          : studentId // ignore: cast_nullable_to_non_nullable
+    return _then(_$_RemoveScore(
+      null == scoreId
+          ? _value.scoreId
+          : scoreId // ignore: cast_nullable_to_non_nullable
               as int,
-    ) as $Val);
+    ));
   }
 }
 
 /// @nodoc
-abstract class _$$_GetScoresCopyWith<$Res>
-    implements $ScoreEventCopyWith<$Res> {
+
+class _$_RemoveScore implements _RemoveScore {
+  const _$_RemoveScore(this.scoreId);
+
+  @override
+  final int scoreId;
+
+  @override
+  String toString() {
+    return 'ScoreEvent.removeScore(scoreId: $scoreId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveScore &&
+            (identical(other.scoreId, scoreId) || other.scoreId == scoreId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, scoreId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RemoveScoreCopyWith<_$_RemoveScore> get copyWith =>
+      __$$_RemoveScoreCopyWithImpl<_$_RemoveScore>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int scoreId) removeScore,
+    required TResult Function(int studentId) getScores,
+  }) {
+    return removeScore(scoreId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int scoreId)? removeScore,
+    TResult? Function(int studentId)? getScores,
+  }) {
+    return removeScore?.call(scoreId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int scoreId)? removeScore,
+    TResult Function(int studentId)? getScores,
+    required TResult orElse(),
+  }) {
+    if (removeScore != null) {
+      return removeScore(scoreId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RemoveScore value) removeScore,
+    required TResult Function(_GetScores value) getScores,
+  }) {
+    return removeScore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RemoveScore value)? removeScore,
+    TResult? Function(_GetScores value)? getScores,
+  }) {
+    return removeScore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RemoveScore value)? removeScore,
+    TResult Function(_GetScores value)? getScores,
+    required TResult orElse(),
+  }) {
+    if (removeScore != null) {
+      return removeScore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveScore implements ScoreEvent {
+  const factory _RemoveScore(final int scoreId) = _$_RemoveScore;
+
+  int get scoreId;
+  @JsonKey(ignore: true)
+  _$$_RemoveScoreCopyWith<_$_RemoveScore> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_GetScoresCopyWith<$Res> {
   factory _$$_GetScoresCopyWith(
           _$_GetScores value, $Res Function(_$_GetScores) then) =
       __$$_GetScoresCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int studentId});
 }
@@ -383,6 +500,7 @@ class _$_GetScores implements _GetScores {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int scoreId) removeScore,
     required TResult Function(int studentId) getScores,
   }) {
     return getScores(studentId);
@@ -391,6 +509,7 @@ class _$_GetScores implements _GetScores {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int scoreId)? removeScore,
     TResult? Function(int studentId)? getScores,
   }) {
     return getScores?.call(studentId);
@@ -399,6 +518,7 @@ class _$_GetScores implements _GetScores {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int scoreId)? removeScore,
     TResult Function(int studentId)? getScores,
     required TResult orElse(),
   }) {
@@ -411,6 +531,7 @@ class _$_GetScores implements _GetScores {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_RemoveScore value) removeScore,
     required TResult Function(_GetScores value) getScores,
   }) {
     return getScores(this);
@@ -419,6 +540,7 @@ class _$_GetScores implements _GetScores {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RemoveScore value)? removeScore,
     TResult? Function(_GetScores value)? getScores,
   }) {
     return getScores?.call(this);
@@ -427,6 +549,7 @@ class _$_GetScores implements _GetScores {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RemoveScore value)? removeScore,
     TResult Function(_GetScores value)? getScores,
     required TResult orElse(),
   }) {
@@ -440,9 +563,7 @@ class _$_GetScores implements _GetScores {
 abstract class _GetScores implements ScoreEvent {
   const factory _GetScores(final int studentId) = _$_GetScores;
 
-  @override
   int get studentId;
-  @override
   @JsonKey(ignore: true)
   _$$_GetScoresCopyWith<_$_GetScores> get copyWith =>
       throw _privateConstructorUsedError;

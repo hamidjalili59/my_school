@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/config/utils/function_helper.dart';
+import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
+import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:ndialog/ndialog.dart';
 
 import 'package:my_school/src/config/routes/router.dart';
@@ -53,7 +56,26 @@ class CustomCardTeacherWidget extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              flex: 1,
+                flex: 1,
+                child: GeneralConstants.userType == UserType.parent
+                    ? const SizedBox()
+                    : Align(
+                        alignment: Alignment.centerRight,
+                        child: InkWell(
+                          onTap: () => FunctionHelper().removeDialog(
+                            'دبیر',
+                            () => getIt.get<TeacherBloc>().add(
+                                  TeacherEvent.removeTeacher(teacher.teacherId),
+                                ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4.0.h, horizontal: 10.w),
+                            child: Icon(Icons.close, size: 26.r),
+                          ),
+                        ))),
+            Expanded(
+              flex: 5,
               child: Padding(
                 padding: EdgeInsets.only(top: 8.0.h),
                 child: Row(
@@ -80,7 +102,7 @@ class CustomCardTeacherWidget extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 1,
+              flex: 5,
               child: Padding(
                 padding: EdgeInsets.all(16.0.r),
                 child: Container(

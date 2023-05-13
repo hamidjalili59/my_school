@@ -97,7 +97,8 @@ class CourseRepositoryImpl extends CourseRepository {
   }
 
   @override
-  Future<Either<CourseFailure, void>> removeCourse({required int courseId}) {
+  Future<Either<CourseFailure, CourseSuccessResponse>> removeCourse(
+      {required int courseId}) {
     return _remoteDS.removeCourse(courseId: courseId).then(
           (value) => value.fold(
             (l) => left<CourseFailure, CourseSuccessResponse>(
@@ -106,7 +107,7 @@ class CourseRepositoryImpl extends CourseRepository {
             (r) async {
               try {
                 final removeCourseFromServer = CourseSuccessResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<CourseFailure, CourseSuccessResponse>(
                   removeCourseFromServer,

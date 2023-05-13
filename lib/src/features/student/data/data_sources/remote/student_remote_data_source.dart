@@ -55,9 +55,9 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeStudent(
       {required int studentId}) {
-    return apiService.deleteMethod(GeneralConstants.host, body: {
-      'student_id': studentId,
-    });
+    return apiService.deleteMethod(GeneralConstants.host +
+        StudentEndpoints.deleteLink +
+        studentId.toString());
   }
 
   @override

@@ -93,7 +93,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
   }
 
   @override
-  Future<Either<ClassroomFailure, void>> removeClassroom(
+  Future<Either<ClassroomFailure, ClassroomSuccessResponse>> removeClassroom(
       {required int classroomId}) {
     return _remoteDS.removeClass(classId: classroomId).then(
           (value) => value.fold(
@@ -104,13 +104,13 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
               try {
                 final removeClassroomFromServer =
                     ClassroomSuccessResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<ClassroomFailure, ClassroomSuccessResponse>(
                   removeClassroomFromServer,
                 );
               } catch (e) {
-                return left<ClassroomFailure, ClassroomGetResponse>(
+                return left<ClassroomFailure, ClassroomSuccessResponse>(
                     const ClassroomFailure.nullParam());
               }
             },
