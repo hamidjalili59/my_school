@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'classroom_bloc.dart';
 
@@ -16,49 +16,51 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClassroomState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  List<Classroom> get classes => throw _privateConstructorUsedError;
+  List<Classroom> get teacherClasses => throw _privateConstructorUsedError;
+  Classroom? get currentClass => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, List<Classroom> classes, Classroom? currentClass)
+    required TResult Function(bool isLoading, List<Classroom> classes,
+            List<Classroom> teacherClasses, Classroom? currentClass)
         idle,
-    required TResult Function(String pageState) currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
+    TResult? Function(bool isLoading, List<Classroom> classes,
+            List<Classroom> teacherClasses, Classroom? currentClass)?
         idle,
-    TResult? Function(String pageState)? currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
+    TResult Function(bool isLoading, List<Classroom> classes,
+            List<Classroom> teacherClasses, Classroom? currentClass)?
         idle,
-    TResult Function(String pageState)? currentPageIndex,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Idle value) idle,
-    required TResult Function(_CurrentPageIndex value) currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Idle value)? idle,
-    TResult? Function(_CurrentPageIndex value)? currentPageIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Idle value)? idle,
-    TResult Function(_CurrentPageIndex value)? currentPageIndex,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ClassroomStateCopyWith<ClassroomState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +69,14 @@ abstract class $ClassroomStateCopyWith<$Res> {
   factory $ClassroomStateCopyWith(
           ClassroomState value, $Res Function(ClassroomState) then) =
       _$ClassroomStateCopyWithImpl<$Res, ClassroomState>;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      List<Classroom> classes,
+      List<Classroom> teacherClasses,
+      Classroom? currentClass});
+
+  $ClassroomCopyWith<$Res>? get currentClass;
 }
 
 /// @nodoc
@@ -78,14 +88,62 @@ class _$ClassroomStateCopyWithImpl<$Res, $Val extends ClassroomState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? classes = null,
+    Object? teacherClasses = null,
+    Object? currentClass = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      classes: null == classes
+          ? _value.classes
+          : classes // ignore: cast_nullable_to_non_nullable
+              as List<Classroom>,
+      teacherClasses: null == teacherClasses
+          ? _value.teacherClasses
+          : teacherClasses // ignore: cast_nullable_to_non_nullable
+              as List<Classroom>,
+      currentClass: freezed == currentClass
+          ? _value.currentClass
+          : currentClass // ignore: cast_nullable_to_non_nullable
+              as Classroom?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClassroomCopyWith<$Res>? get currentClass {
+    if (_value.currentClass == null) {
+      return null;
+    }
+
+    return $ClassroomCopyWith<$Res>(_value.currentClass!, (value) {
+      return _then(_value.copyWith(currentClass: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_IdleCopyWith<$Res> {
+abstract class _$$_IdleCopyWith<$Res> implements $ClassroomStateCopyWith<$Res> {
   factory _$$_IdleCopyWith(_$_Idle value, $Res Function(_$_Idle) then) =
       __$$_IdleCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({bool isLoading, List<Classroom> classes, Classroom? currentClass});
+  $Res call(
+      {bool isLoading,
+      List<Classroom> classes,
+      List<Classroom> teacherClasses,
+      Classroom? currentClass});
+
+  @override
+  $ClassroomCopyWith<$Res>? get currentClass;
 }
 
 /// @nodoc
@@ -100,6 +158,7 @@ class __$$_IdleCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? classes = null,
+    Object? teacherClasses = null,
     Object? currentClass = freezed,
   }) {
     return _then(_$_Idle(
@@ -110,6 +169,10 @@ class __$$_IdleCopyWithImpl<$Res>
       classes: null == classes
           ? _value._classes
           : classes // ignore: cast_nullable_to_non_nullable
+              as List<Classroom>,
+      teacherClasses: null == teacherClasses
+          ? _value._teacherClasses
+          : teacherClasses // ignore: cast_nullable_to_non_nullable
               as List<Classroom>,
       currentClass: freezed == currentClass
           ? _value.currentClass
@@ -125,20 +188,30 @@ class _$_Idle implements _Idle {
   const _$_Idle(
       {this.isLoading = false,
       final List<Classroom> classes = const [],
+      final List<Classroom> teacherClasses = const [],
       this.currentClass})
-      : _classes = classes;
+      : _classes = classes,
+        _teacherClasses = teacherClasses;
 
   @override
   @JsonKey()
   final bool isLoading;
-// @Default(AppbarPageType.student) AppbarPageType pageState,
   final List<Classroom> _classes;
-// @Default(AppbarPageType.student) AppbarPageType pageState,
   @override
   @JsonKey()
   List<Classroom> get classes {
+    if (_classes is EqualUnmodifiableListView) return _classes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_classes);
+  }
+
+  final List<Classroom> _teacherClasses;
+  @override
+  @JsonKey()
+  List<Classroom> get teacherClasses {
+    if (_teacherClasses is EqualUnmodifiableListView) return _teacherClasses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_teacherClasses);
   }
 
   @override
@@ -146,7 +219,7 @@ class _$_Idle implements _Idle {
 
   @override
   String toString() {
-    return 'ClassroomState.idle(isLoading: $isLoading, classes: $classes, currentClass: $currentClass)';
+    return 'ClassroomState.idle(isLoading: $isLoading, classes: $classes, teacherClasses: $teacherClasses, currentClass: $currentClass)';
   }
 
   @override
@@ -157,13 +230,19 @@ class _$_Idle implements _Idle {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other._classes, _classes) &&
+            const DeepCollectionEquality()
+                .equals(other._teacherClasses, _teacherClasses) &&
             (identical(other.currentClass, currentClass) ||
                 other.currentClass == currentClass));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading,
-      const DeepCollectionEquality().hash(_classes), currentClass);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      const DeepCollectionEquality().hash(_classes),
+      const DeepCollectionEquality().hash(_teacherClasses),
+      currentClass);
 
   @JsonKey(ignore: true)
   @override
@@ -174,36 +253,33 @@ class _$_Idle implements _Idle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, List<Classroom> classes, Classroom? currentClass)
+    required TResult Function(bool isLoading, List<Classroom> classes,
+            List<Classroom> teacherClasses, Classroom? currentClass)
         idle,
-    required TResult Function(String pageState) currentPageIndex,
   }) {
-    return idle(isLoading, classes, currentClass);
+    return idle(isLoading, classes, teacherClasses, currentClass);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
+    TResult? Function(bool isLoading, List<Classroom> classes,
+            List<Classroom> teacherClasses, Classroom? currentClass)?
         idle,
-    TResult? Function(String pageState)? currentPageIndex,
   }) {
-    return idle?.call(isLoading, classes, currentClass);
+    return idle?.call(isLoading, classes, teacherClasses, currentClass);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
+    TResult Function(bool isLoading, List<Classroom> classes,
+            List<Classroom> teacherClasses, Classroom? currentClass)?
         idle,
-    TResult Function(String pageState)? currentPageIndex,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle(isLoading, classes, currentClass);
+      return idle(isLoading, classes, teacherClasses, currentClass);
     }
     return orElse();
   }
@@ -212,7 +288,6 @@ class _$_Idle implements _Idle {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Idle value) idle,
-    required TResult Function(_CurrentPageIndex value) currentPageIndex,
   }) {
     return idle(this);
   }
@@ -221,7 +296,6 @@ class _$_Idle implements _Idle {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Idle value)? idle,
-    TResult? Function(_CurrentPageIndex value)? currentPageIndex,
   }) {
     return idle?.call(this);
   }
@@ -230,7 +304,6 @@ class _$_Idle implements _Idle {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Idle value)? idle,
-    TResult Function(_CurrentPageIndex value)? currentPageIndex,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -244,156 +317,20 @@ abstract class _Idle implements ClassroomState {
   const factory _Idle(
       {final bool isLoading,
       final List<Classroom> classes,
+      final List<Classroom> teacherClasses,
       final Classroom? currentClass}) = _$_Idle;
 
-  bool
-      get isLoading; // @Default(AppbarPageType.student) AppbarPageType pageState,
+  @override
+  bool get isLoading;
+  @override
   List<Classroom> get classes;
+  @override
+  List<Classroom> get teacherClasses;
+  @override
   Classroom? get currentClass;
+  @override
   @JsonKey(ignore: true)
   _$$_IdleCopyWith<_$_Idle> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_CurrentPageIndexCopyWith<$Res> {
-  factory _$$_CurrentPageIndexCopyWith(
-          _$_CurrentPageIndex value, $Res Function(_$_CurrentPageIndex) then) =
-      __$$_CurrentPageIndexCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String pageState});
-}
-
-/// @nodoc
-class __$$_CurrentPageIndexCopyWithImpl<$Res>
-    extends _$ClassroomStateCopyWithImpl<$Res, _$_CurrentPageIndex>
-    implements _$$_CurrentPageIndexCopyWith<$Res> {
-  __$$_CurrentPageIndexCopyWithImpl(
-      _$_CurrentPageIndex _value, $Res Function(_$_CurrentPageIndex) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? pageState = null,
-  }) {
-    return _then(_$_CurrentPageIndex(
-      pageState: null == pageState
-          ? _value.pageState
-          : pageState // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_CurrentPageIndex implements _CurrentPageIndex {
-  const _$_CurrentPageIndex({this.pageState = 'دانش‌آموزان'});
-
-  @override
-  @JsonKey()
-  final String pageState;
-
-  @override
-  String toString() {
-    return 'ClassroomState.currentPageIndex(pageState: $pageState)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CurrentPageIndex &&
-            (identical(other.pageState, pageState) ||
-                other.pageState == pageState));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, pageState);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_CurrentPageIndexCopyWith<_$_CurrentPageIndex> get copyWith =>
-      __$$_CurrentPageIndexCopyWithImpl<_$_CurrentPageIndex>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, List<Classroom> classes, Classroom? currentClass)
-        idle,
-    required TResult Function(String pageState) currentPageIndex,
-  }) {
-    return currentPageIndex(pageState);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
-        idle,
-    TResult? Function(String pageState)? currentPageIndex,
-  }) {
-    return currentPageIndex?.call(pageState);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool isLoading, List<Classroom> classes, Classroom? currentClass)?
-        idle,
-    TResult Function(String pageState)? currentPageIndex,
-    required TResult orElse(),
-  }) {
-    if (currentPageIndex != null) {
-      return currentPageIndex(pageState);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Idle value) idle,
-    required TResult Function(_CurrentPageIndex value) currentPageIndex,
-  }) {
-    return currentPageIndex(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Idle value)? idle,
-    TResult? Function(_CurrentPageIndex value)? currentPageIndex,
-  }) {
-    return currentPageIndex?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Idle value)? idle,
-    TResult Function(_CurrentPageIndex value)? currentPageIndex,
-    required TResult orElse(),
-  }) {
-    if (currentPageIndex != null) {
-      return currentPageIndex(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CurrentPageIndex implements ClassroomState {
-  const factory _CurrentPageIndex({final String pageState}) =
-      _$_CurrentPageIndex;
-
-  String get pageState;
-  @JsonKey(ignore: true)
-  _$$_CurrentPageIndexCopyWith<_$_CurrentPageIndex> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -402,6 +339,8 @@ mixin _$ClassroomEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function(Classroom classroom) updateClass,
+    required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(String className) createClasses,
   }) =>
       throw _privateConstructorUsedError;
@@ -409,6 +348,8 @@ mixin _$ClassroomEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function(Classroom classroom)? updateClass,
+    TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(String className)? createClasses,
   }) =>
       throw _privateConstructorUsedError;
@@ -416,6 +357,8 @@ mixin _$ClassroomEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function(Classroom classroom)? updateClass,
+    TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(String className)? createClasses,
     required TResult orElse(),
   }) =>
@@ -424,6 +367,8 @@ mixin _$ClassroomEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_UpdateClass value) updateClass,
+    required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_CreateClasses value) createClasses,
   }) =>
       throw _privateConstructorUsedError;
@@ -431,6 +376,8 @@ mixin _$ClassroomEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_UpdateClass value)? updateClass,
+    TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_CreateClasses value)? createClasses,
   }) =>
       throw _privateConstructorUsedError;
@@ -438,6 +385,8 @@ mixin _$ClassroomEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_UpdateClass value)? updateClass,
+    TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_CreateClasses value)? createClasses,
     required TResult orElse(),
   }) =>
@@ -529,6 +478,8 @@ class _$_ChangePages implements _ChangePages {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function(Classroom classroom) updateClass,
+    required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(String className) createClasses,
   }) {
     return changePages(indexName);
@@ -539,6 +490,8 @@ class _$_ChangePages implements _ChangePages {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function(Classroom classroom)? updateClass,
+    TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(String className)? createClasses,
   }) {
     return changePages?.call(indexName);
@@ -549,6 +502,8 @@ class _$_ChangePages implements _ChangePages {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function(Classroom classroom)? updateClass,
+    TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(String className)? createClasses,
     required TResult orElse(),
   }) {
@@ -563,6 +518,8 @@ class _$_ChangePages implements _ChangePages {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_UpdateClass value) updateClass,
+    required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_CreateClasses value) createClasses,
   }) {
     return changePages(this);
@@ -573,6 +530,8 @@ class _$_ChangePages implements _ChangePages {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_UpdateClass value)? updateClass,
+    TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_CreateClasses value)? createClasses,
   }) {
     return changePages?.call(this);
@@ -583,6 +542,8 @@ class _$_ChangePages implements _ChangePages {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_UpdateClass value)? updateClass,
+    TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_CreateClasses value)? createClasses,
     required TResult orElse(),
   }) {
@@ -642,6 +603,8 @@ class _$_GetClasses implements _GetClasses {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function(Classroom classroom) updateClass,
+    required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(String className) createClasses,
   }) {
     return getClasses();
@@ -652,6 +615,8 @@ class _$_GetClasses implements _GetClasses {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function(Classroom classroom)? updateClass,
+    TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(String className)? createClasses,
   }) {
     return getClasses?.call();
@@ -662,6 +627,8 @@ class _$_GetClasses implements _GetClasses {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function(Classroom classroom)? updateClass,
+    TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(String className)? createClasses,
     required TResult orElse(),
   }) {
@@ -676,6 +643,8 @@ class _$_GetClasses implements _GetClasses {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_UpdateClass value) updateClass,
+    required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_CreateClasses value) createClasses,
   }) {
     return getClasses(this);
@@ -686,6 +655,8 @@ class _$_GetClasses implements _GetClasses {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_UpdateClass value)? updateClass,
+    TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_CreateClasses value)? createClasses,
   }) {
     return getClasses?.call(this);
@@ -696,6 +667,8 @@ class _$_GetClasses implements _GetClasses {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_UpdateClass value)? updateClass,
+    TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_CreateClasses value)? createClasses,
     required TResult orElse(),
   }) {
@@ -708,6 +681,321 @@ class _$_GetClasses implements _GetClasses {
 
 abstract class _GetClasses implements ClassroomEvent {
   const factory _GetClasses() = _$_GetClasses;
+}
+
+/// @nodoc
+abstract class _$$_UpdateClassCopyWith<$Res> {
+  factory _$$_UpdateClassCopyWith(
+          _$_UpdateClass value, $Res Function(_$_UpdateClass) then) =
+      __$$_UpdateClassCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Classroom classroom});
+
+  $ClassroomCopyWith<$Res> get classroom;
+}
+
+/// @nodoc
+class __$$_UpdateClassCopyWithImpl<$Res>
+    extends _$ClassroomEventCopyWithImpl<$Res, _$_UpdateClass>
+    implements _$$_UpdateClassCopyWith<$Res> {
+  __$$_UpdateClassCopyWithImpl(
+      _$_UpdateClass _value, $Res Function(_$_UpdateClass) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? classroom = null,
+  }) {
+    return _then(_$_UpdateClass(
+      null == classroom
+          ? _value.classroom
+          : classroom // ignore: cast_nullable_to_non_nullable
+              as Classroom,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClassroomCopyWith<$Res> get classroom {
+    return $ClassroomCopyWith<$Res>(_value.classroom, (value) {
+      return _then(_value.copyWith(classroom: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateClass implements _UpdateClass {
+  const _$_UpdateClass(this.classroom);
+
+  @override
+  final Classroom classroom;
+
+  @override
+  String toString() {
+    return 'ClassroomEvent.updateClass(classroom: $classroom)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateClass &&
+            (identical(other.classroom, classroom) ||
+                other.classroom == classroom));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, classroom);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UpdateClassCopyWith<_$_UpdateClass> get copyWith =>
+      __$$_UpdateClassCopyWithImpl<_$_UpdateClass>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String indexName) changePages,
+    required TResult Function() getClasses,
+    required TResult Function(Classroom classroom) updateClass,
+    required TResult Function(int teacherId) getTeacherClasses,
+    required TResult Function(String className) createClasses,
+  }) {
+    return updateClass(classroom);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String indexName)? changePages,
+    TResult? Function()? getClasses,
+    TResult? Function(Classroom classroom)? updateClass,
+    TResult? Function(int teacherId)? getTeacherClasses,
+    TResult? Function(String className)? createClasses,
+  }) {
+    return updateClass?.call(classroom);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String indexName)? changePages,
+    TResult Function()? getClasses,
+    TResult Function(Classroom classroom)? updateClass,
+    TResult Function(int teacherId)? getTeacherClasses,
+    TResult Function(String className)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (updateClass != null) {
+      return updateClass(classroom);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePages value) changePages,
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_UpdateClass value) updateClass,
+    required TResult Function(_GetTeacherClasses value) getTeacherClasses,
+    required TResult Function(_CreateClasses value) createClasses,
+  }) {
+    return updateClass(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangePages value)? changePages,
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_UpdateClass value)? updateClass,
+    TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
+    TResult? Function(_CreateClasses value)? createClasses,
+  }) {
+    return updateClass?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePages value)? changePages,
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_UpdateClass value)? updateClass,
+    TResult Function(_GetTeacherClasses value)? getTeacherClasses,
+    TResult Function(_CreateClasses value)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (updateClass != null) {
+      return updateClass(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateClass implements ClassroomEvent {
+  const factory _UpdateClass(final Classroom classroom) = _$_UpdateClass;
+
+  Classroom get classroom;
+  @JsonKey(ignore: true)
+  _$$_UpdateClassCopyWith<_$_UpdateClass> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_GetTeacherClassesCopyWith<$Res> {
+  factory _$$_GetTeacherClassesCopyWith(_$_GetTeacherClasses value,
+          $Res Function(_$_GetTeacherClasses) then) =
+      __$$_GetTeacherClassesCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int teacherId});
+}
+
+/// @nodoc
+class __$$_GetTeacherClassesCopyWithImpl<$Res>
+    extends _$ClassroomEventCopyWithImpl<$Res, _$_GetTeacherClasses>
+    implements _$$_GetTeacherClassesCopyWith<$Res> {
+  __$$_GetTeacherClassesCopyWithImpl(
+      _$_GetTeacherClasses _value, $Res Function(_$_GetTeacherClasses) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? teacherId = null,
+  }) {
+    return _then(_$_GetTeacherClasses(
+      null == teacherId
+          ? _value.teacherId
+          : teacherId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetTeacherClasses implements _GetTeacherClasses {
+  const _$_GetTeacherClasses(this.teacherId);
+
+  @override
+  final int teacherId;
+
+  @override
+  String toString() {
+    return 'ClassroomEvent.getTeacherClasses(teacherId: $teacherId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GetTeacherClasses &&
+            (identical(other.teacherId, teacherId) ||
+                other.teacherId == teacherId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, teacherId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_GetTeacherClassesCopyWith<_$_GetTeacherClasses> get copyWith =>
+      __$$_GetTeacherClassesCopyWithImpl<_$_GetTeacherClasses>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String indexName) changePages,
+    required TResult Function() getClasses,
+    required TResult Function(Classroom classroom) updateClass,
+    required TResult Function(int teacherId) getTeacherClasses,
+    required TResult Function(String className) createClasses,
+  }) {
+    return getTeacherClasses(teacherId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String indexName)? changePages,
+    TResult? Function()? getClasses,
+    TResult? Function(Classroom classroom)? updateClass,
+    TResult? Function(int teacherId)? getTeacherClasses,
+    TResult? Function(String className)? createClasses,
+  }) {
+    return getTeacherClasses?.call(teacherId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String indexName)? changePages,
+    TResult Function()? getClasses,
+    TResult Function(Classroom classroom)? updateClass,
+    TResult Function(int teacherId)? getTeacherClasses,
+    TResult Function(String className)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (getTeacherClasses != null) {
+      return getTeacherClasses(teacherId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePages value) changePages,
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_UpdateClass value) updateClass,
+    required TResult Function(_GetTeacherClasses value) getTeacherClasses,
+    required TResult Function(_CreateClasses value) createClasses,
+  }) {
+    return getTeacherClasses(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangePages value)? changePages,
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_UpdateClass value)? updateClass,
+    TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
+    TResult? Function(_CreateClasses value)? createClasses,
+  }) {
+    return getTeacherClasses?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePages value)? changePages,
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_UpdateClass value)? updateClass,
+    TResult Function(_GetTeacherClasses value)? getTeacherClasses,
+    TResult Function(_CreateClasses value)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (getTeacherClasses != null) {
+      return getTeacherClasses(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetTeacherClasses implements ClassroomEvent {
+  const factory _GetTeacherClasses(final int teacherId) = _$_GetTeacherClasses;
+
+  int get teacherId;
+  @JsonKey(ignore: true)
+  _$$_GetTeacherClassesCopyWith<_$_GetTeacherClasses> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -777,6 +1065,8 @@ class _$_CreateClasses implements _CreateClasses {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function(Classroom classroom) updateClass,
+    required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(String className) createClasses,
   }) {
     return createClasses(className);
@@ -787,6 +1077,8 @@ class _$_CreateClasses implements _CreateClasses {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function(Classroom classroom)? updateClass,
+    TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(String className)? createClasses,
   }) {
     return createClasses?.call(className);
@@ -797,6 +1089,8 @@ class _$_CreateClasses implements _CreateClasses {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function(Classroom classroom)? updateClass,
+    TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(String className)? createClasses,
     required TResult orElse(),
   }) {
@@ -811,6 +1105,8 @@ class _$_CreateClasses implements _CreateClasses {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_UpdateClass value) updateClass,
+    required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_CreateClasses value) createClasses,
   }) {
     return createClasses(this);
@@ -821,6 +1117,8 @@ class _$_CreateClasses implements _CreateClasses {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_UpdateClass value)? updateClass,
+    TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_CreateClasses value)? createClasses,
   }) {
     return createClasses?.call(this);
@@ -831,6 +1129,8 @@ class _$_CreateClasses implements _CreateClasses {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_UpdateClass value)? updateClass,
+    TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_CreateClasses value)? createClasses,
     required TResult orElse(),
   }) {

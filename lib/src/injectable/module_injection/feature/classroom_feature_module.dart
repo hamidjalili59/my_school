@@ -9,6 +9,7 @@ import 'package:my_school/src/features/classroom/domain/use_cases/add_classroom_
 import 'package:my_school/src/features/classroom/domain/use_cases/cache_classrooms_data_use_case.dart';
 import 'package:my_school/src/features/classroom/domain/use_cases/get_cache_classrooms_data_use_case.dart';
 import 'package:my_school/src/features/classroom/domain/use_cases/get_classrooms_use_case.dart';
+import 'package:my_school/src/features/classroom/domain/use_cases/get_teacher_classroom_use_case.dart';
 import 'package:my_school/src/features/classroom/domain/use_cases/remove_classroom_use_case.dart';
 import 'package:my_school/src/features/classroom/domain/use_cases/update_classroom_use_case.dart';
 import 'package:my_school/src/injectable/injectable.dart';
@@ -30,6 +31,8 @@ abstract class ClassroomFeatureModule {
       CacheClassroomsDataUseCase(repo);
   GetCachedClassroomsDataUseCase get getCachedClassroomDataUseCase =>
       GetCachedClassroomsDataUseCase(repo);
+  GetTeacherClassroomsUseCase get getTeacherClassroomDataUseCase =>
+      GetTeacherClassroomsUseCase(repo);
   RemoveClassroomUseCase get removeClassroomUseCase =>
       RemoveClassroomUseCase(repo);
   UpdateClassroomUseCase get updateClassroomUseCase =>

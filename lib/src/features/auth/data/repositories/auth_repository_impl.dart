@@ -19,10 +19,15 @@ class AuthRepositoryImpl extends AuthRepository {
       return response.fold(
         (l) => left<AuthFailure, OtpHandshakeResponse>(AuthFailure.api(l)),
         (r) {
-          r.data!['phoneNumber'] = phoneNumber;
-          return right<AuthFailure, OtpHandshakeResponse>(
-            OtpHandshakeResponse.fromJson(r.data ?? {}),
-          );
+          try {
+            r.data!['phoneNumber'] = phoneNumber;
+            return right<AuthFailure, OtpHandshakeResponse>(
+              OtpHandshakeResponse.fromJson(r.data ?? {}),
+            );
+          } catch (e) {
+            return left<AuthFailure, OtpHandshakeResponse>(
+                const AuthFailure.nullParam());
+          }
         },
       );
     });
@@ -55,4 +60,18 @@ class AuthRepositoryImpl extends AuthRepository {
               (r) => right<AuthFailure, OtpHandshakeResponse?>(r),
             ),
           );
+
+  @override
+  Future<Either<AuthFailure, void>> logout() {
+    return _localDS
+        .removeData(
+          fieldKey: tokenFieldKey,
+        )
+        .then(
+          (value) => value.fold(
+            (l) => left<AuthFailure, void>(AuthFailure.database(l)),
+            (r) => right<AuthFailure, void>(null),
+          ),
+        );
+  }
 }

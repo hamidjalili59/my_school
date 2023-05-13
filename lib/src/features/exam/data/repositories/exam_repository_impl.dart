@@ -21,9 +21,14 @@ class ExamRepositoryImpl extends ExamRepository {
           (value) => value.fold(
             (l) => left<ExamFailure, void>(ExamFailure.api(l)),
             (r) async {
-              return right<ExamFailure, void>(
-                null,
-              );
+              try {
+                return right<ExamFailure, void>(
+                  null,
+                );
+              } catch (e) {
+                return left<ExamFailure, ExamGetResponse>(
+                    const ExamFailure.nullParam());
+              }
             },
           ),
         );
@@ -60,12 +65,17 @@ class ExamRepositoryImpl extends ExamRepository {
               ExamFailure.api(l),
             ),
             (r) async {
-              final examsDataFromServer = ExamGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<ExamFailure, ExamGetResponse>(
-                examsDataFromServer,
-              );
+              try {
+                final examsDataFromServer = ExamGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<ExamFailure, ExamGetResponse>(
+                  examsDataFromServer,
+                );
+              } catch (e) {
+                return left<ExamFailure, ExamGetResponse>(
+                    const ExamFailure.nullParam());
+              }
             },
           ),
         );
@@ -79,12 +89,17 @@ class ExamRepositoryImpl extends ExamRepository {
               ExamFailure.api(l),
             ),
             (r) async {
-              final removeExamFromServer = ExamSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ExamFailure, ExamSuccessResponse>(
-                removeExamFromServer,
-              );
+              try {
+                final removeExamFromServer = ExamSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                );
+                return right<ExamFailure, ExamSuccessResponse>(
+                  removeExamFromServer,
+                );
+              } catch (e) {
+                return left<ExamFailure, ExamGetResponse>(
+                    const ExamFailure.nullParam());
+              }
             },
           ),
         );
@@ -104,12 +119,17 @@ class ExamRepositoryImpl extends ExamRepository {
               ExamFailure.api(l),
             ),
             (r) async {
-              final updateExamOnServer = ExamSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ExamFailure, ExamSuccessResponse>(
-                updateExamOnServer,
-              );
+              try {
+                final updateExamOnServer = ExamSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                );
+                return right<ExamFailure, ExamSuccessResponse>(
+                  updateExamOnServer,
+                );
+              } catch (e) {
+                return left<ExamFailure, ExamSuccessResponse>(
+                    const ExamFailure.nullParam());
+              }
             },
           ),
         );
@@ -124,12 +144,17 @@ class ExamRepositoryImpl extends ExamRepository {
               ExamFailure.api(l),
             ),
             (r) async {
-              final examsDataFromServer = ExamGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
-              );
-              return right<ExamFailure, ExamGetResponse>(
-                examsDataFromServer,
-              );
+              try {
+                final examsDataFromServer = ExamGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                );
+                return right<ExamFailure, ExamGetResponse>(
+                  examsDataFromServer,
+                );
+              } catch (e) {
+                return left<ExamFailure, ExamGetResponse>(
+                    const ExamFailure.nullParam());
+              }
             },
           ),
         );

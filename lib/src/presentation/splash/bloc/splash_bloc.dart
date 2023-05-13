@@ -128,6 +128,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     }
     try {
       if (GeneralConstants.roleCount > 1) {
+        GeneralConstants.roleCount = 0;
         NDialog(
           title: Center(
             child: Text(
@@ -223,7 +224,10 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
               ],
             ),
           ),
-        ).show(getIt.get<AppRouter>().navigatorKey.currentContext!);
+        ).show(
+          getIt.get<AppRouter>().navigatorKey.currentContext!,
+          dismissable: false,
+        );
       } else {
         if (event.token.typeOfUser == 'principal') {
           GeneralConstants.userType = UserType.admin;
@@ -232,7 +236,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
           GeneralConstants.userType = UserType.teacher;
         } else {
           GeneralConstants.userType = UserType.parent;
-          appRoute.replaceNamed('/home_page');
+          appRoute.replaceNamed('/class_details_page');
         }
       }
     } catch (e) {

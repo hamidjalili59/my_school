@@ -21,10 +21,7 @@ abstract class StudentRemoteDataSource {
       {required int studentId});
 
   Future<Either<DioError, Response<Map<String, dynamic>>>> updateStudent({
-    required int classId,
-    required int studentId,
-    required String name,
-    required double phoneNumber,
+    required Student student,
   });
 }
 
@@ -65,17 +62,17 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> updateStudent({
-    required int classId,
-    required int studentId,
-    required String name,
-    required double phoneNumber,
+    required Student student,
   }) =>
-      apiService.putMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
-        'student_id': studentId,
-        'class_id': classId,
-        'name': name,
-        'phone_number': phoneNumber,
-      });
+      apiService.putMethod<Map<String, dynamic>>(
+          GeneralConstants.host +
+              StudentEndpoints.editLink +
+              student.studentId.toString(),
+          body: {
+            'class_ID': student.classId,
+            'name': student.basicInfo!.name,
+            'phoneNumber': student.basicInfo!.phoneNumber,
+          });
 
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> getStudentsParent(

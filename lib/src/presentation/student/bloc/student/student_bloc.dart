@@ -11,6 +11,7 @@ import 'package:my_school/src/features/student/domain/use_cases/add_student_use_
 import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_school/src/features/student/domain/use_cases/get_students_parent_use_case.dart';
 import 'package:my_school/src/features/student/domain/use_cases/get_students_use_case.dart';
+import 'package:my_school/src/features/student/domain/use_cases/update_student_use_case.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
 part 'student_state.dart';
@@ -22,14 +23,17 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
   final GetStudentUseCase _getStudentUseCase;
   final AddStudentUseCase _addStudentUseCase;
   final GetStudentParentUseCase _getStudentParentUseCase;
+  final UpdateStudentUseCase _updateStudentUseCase;
   StudentBloc(
     this._getStudentUseCase,
     this._addStudentUseCase,
     this._getStudentParentUseCase,
+    this._updateStudentUseCase,
   ) : super(const StudentState.idle(isLoading: true)) {
     on<_GetStudents>(_onGetStudents);
     on<_AddStudent>(_onAddStudent);
     on<_GetStudentsParent>(_onAddStudentParent);
+    on<_UpdateStudent>(_onUpdateStudent);
   }
 
   @override
@@ -48,9 +52,10 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
         )
         .then(
           (value) => value.fold(
-            (l) => null,
+            (l) => emit(
+                StudentState.idle(isLoading: false, students: state.students)),
             (r) {
-              emit(StudentState.idle(students: r.students));
+              emit(StudentState.idle(isLoading: false, students: r.students));
             },
           ),
         );
@@ -89,9 +94,37 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
         )
         .then(
           (value) => value.fold(
-            (l) => null,
+            (l) => emit(
+                StudentState.idle(isLoading: false, students: state.students)),
             (r) =>
                 emit(StudentState.idle(isLoading: false, students: r.students)),
+          ),
+        );
+  }
+
+  FutureOr<void> _onUpdateStudent(
+      _UpdateStudent event, Emitter<StudentState> emit) async {
+    emit(StudentState.idle(isLoading: true, students: state.students));
+    await _updateStudentUseCase
+        .call(param: tuple.Tuple1<Student>(event.student))
+        .then(
+          (value) => value.fold(
+            (l) => emit(
+              StudentState.idle(
+                isLoading: false,
+                students: state.students,
+              ),
+            ),
+            (r) {
+              List<Student> tempList = state.students.toList();
+              tempList[tempList
+                  .map((e) => e.studentId)
+                  .toList()
+                  .indexOf(r.student.studentId)] = r.student;
+              getIt.get<AppRouter>().pop();
+              return emit(
+                  StudentState.idle(isLoading: false, students: tempList));
+            },
           ),
         );
   }

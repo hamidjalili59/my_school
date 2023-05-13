@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_school/src/injectable/injectable.dart';
@@ -34,11 +35,17 @@ class StudentDetailsPage extends StatelessWidget {
                       child: HomeCustomAppBar(
                         bloc: bloc,
                         title: getIt.get<Student>().basicInfo!.name,
-                        buttonsList: const [
-                          AppbarPageType.score,
-                          AppbarPageType.rollcall,
-                          AppbarPageType.exams,
-                        ],
+                        buttonsList:
+                            GeneralConstants.userType == UserType.parent
+                                ? const [
+                                    AppbarPageType.score,
+                                    AppbarPageType.rollcall,
+                                    AppbarPageType.exams,
+                                  ]
+                                : const [
+                                    AppbarPageType.score,
+                                    AppbarPageType.rollcall,
+                                  ],
                       )),
                   Expanded(
                     flex: 12,

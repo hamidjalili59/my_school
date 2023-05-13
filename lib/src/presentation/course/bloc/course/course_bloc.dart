@@ -41,22 +41,21 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
         .call(param: tuple.Tuple1<int>(event.schoolId))
         .then(
           (value) => value.fold(
-            (l) {},
-            (r) {
-              emit(CourseState.idle(isLoading: false, courses: r.courses));
-            },
+            (l) => emit(
+                CourseState.idle(isLoading: false, courses: state.courses)),
+            (r) => emit(CourseState.idle(isLoading: false, courses: r.courses)),
           ),
         );
   }
 
   FutureOr<void> _onAddCourse(
       _AddCourse event, Emitter<CourseState> emit) async {
-    emit(const CourseState.idle(isLoading: true));
+    emit(CourseState.idle(isLoading: true, courses: state.courses));
     await _addCourseUseCase.call(param: tuple.Tuple1(event.courseName)).then(
           (value) => value.fold(
-            (l) => null,
+            (l) => emit(
+                CourseState.idle(isLoading: false, courses: state.courses)),
             (r) {
-              emit(CourseState.idle(isLoading: true, courses: state.courses));
               List<Course> tempList = state.courses.toList();
               tempList.add(r.course);
               emit(CourseState.idle(isLoading: false, courses: tempList));
@@ -68,13 +67,15 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
 
   FutureOr<void> _onUpdateCourse(
       _UpdateCourse event, Emitter<CourseState> emit) async {
+    emit(CourseState.idle(isLoading: true, courses: state.courses));
     await _updateCourseUseCase
         .call(
             param: tuple.Tuple2<int, String>(
                 event.course.courseId, event.course.courseName))
         .then(
           (value) => value.fold(
-            (l) => null,
+            (l) => emit(
+                CourseState.idle(isLoading: false, courses: state.courses)),
             (r) {
               add(CourseEvent.getCourses(
                 int.parse(getIt.get<OtpHandshakeResponse>().token),

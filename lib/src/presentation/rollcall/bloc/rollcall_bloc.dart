@@ -32,7 +32,8 @@ class RollcallBloc extends Bloc<RollcallEvent, RollcallState> {
         .call(param: tuple.Tuple1<int>(event.studentId))
         .then(
           (value) => value.fold(
-            (l) => null,
+            (l) => emit(RollcallState.idle(
+                isLoading: false, rollcalls: state.rollcalls)),
             (r) => emit(
                 RollcallState.idle(isLoading: false, rollcalls: r.rollcalls)),
           ),

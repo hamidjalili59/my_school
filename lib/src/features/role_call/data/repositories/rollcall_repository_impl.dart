@@ -23,13 +23,18 @@ class RollcallRepositoryImpl extends RollcallRepository {
             (l) => left<RollcallFailure, RollcallSuccessResponse>(
                 RollcallFailure.api(l)),
             (r) async {
-              final rollcallAddSuccessResponse =
-                  RollcallSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<RollcallFailure, RollcallSuccessResponse>(
-                rollcallAddSuccessResponse,
-              );
+              try {
+                final rollcallAddSuccessResponse =
+                    RollcallSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<RollcallFailure, RollcallSuccessResponse>(
+                  rollcallAddSuccessResponse,
+                );
+              } catch (e) {
+                return left<RollcallFailure, RollcallSuccessResponse>(
+                    const RollcallFailure.nullParam());
+              }
             },
           ),
         );
@@ -67,12 +72,17 @@ class RollcallRepositoryImpl extends RollcallRepository {
               RollcallFailure.api(l),
             ),
             (r) async {
-              final rollcallsDataFromServer = RollcallGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<RollcallFailure, RollcallGetResponse>(
-                rollcallsDataFromServer,
-              );
+              try {
+                final rollcallsDataFromServer = RollcallGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<RollcallFailure, RollcallGetResponse>(
+                  rollcallsDataFromServer,
+                );
+              } catch (e) {
+                return left<RollcallFailure, RollcallGetResponse>(
+                    const RollcallFailure.nullParam());
+              }
             },
           ),
         );

@@ -56,8 +56,8 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
             param: tuple.Tuple2<Mediator, int>(
                 Mediator(
                   teacherID: state.selectedTeacher!.teacherId,
-                  classID: getIt.get<Classroom>().classID!,
-                  courseName: getIt.get<Classroom>().className!,
+                  classID: getIt.get<Classroom>().classID,
+                  courseName: getIt.get<Classroom>().className,
                 ),
                 state.selectedCourse!.courseId))
         .then(
@@ -73,12 +73,20 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
 
   FutureOr<void> _onGetMediators(
       _GetMediators event, Emitter<TeacherDetailState> emit) async {
-    emit(const TeacherDetailState.idle(isLoading: true));
+    emit(TeacherDetailState.idle(
+        isLoading: true,
+        mediators: state.mediators,
+        selectedCourse: state.selectedCourse,
+        selectedTeacher: state.selectedTeacher));
     await _getMediatorUseCase
-        .call(param: tuple.Tuple1<int>(getIt.get<Classroom>().classID!))
+        .call(param: tuple.Tuple1<int>(getIt.get<Classroom>().classID))
         .then(
           (value) => value.fold(
-            (l) => null,
+            (l) => emit(TeacherDetailState.idle(
+                isLoading: false,
+                mediators: state.mediators,
+                selectedCourse: state.selectedCourse,
+                selectedTeacher: state.selectedTeacher)),
             (r) => emit(TeacherDetailState.idle(
               isLoading: false,
               mediators: r.mediators,

@@ -10,8 +10,7 @@ abstract class ClassroomRepository {
       {required Classroom classroom});
   //
   Future<Either<ClassroomFailure, ClassroomSuccessResponse>> updateClassroom({
-    required String classroomName,
-    required int classroomId,
+    required Classroom classroom,
   });
   //
   Future<Either<ClassroomFailure, void>> removeClassroom({
@@ -19,6 +18,10 @@ abstract class ClassroomRepository {
   });
   //
   Future<Either<ClassroomFailure, ClassroomGetResponse>> getClassrooms({
+    required int schoolId,
+  });
+  Future<Either<ClassroomFailure, ClassroomGetResponse>> getTeacherClassrooms({
+    required int teacherId,
     required int schoolId,
   });
   //

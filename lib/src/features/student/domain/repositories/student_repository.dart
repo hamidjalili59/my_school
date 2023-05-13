@@ -10,10 +10,7 @@ abstract class StudentRepository {
       {required Student student, required String parentName});
   //
   Future<Either<StudentFailure, StudentSuccessResponse>> updateStudent({
-    required int classId,
-    required int studentId,
-    required String name,
-    required double phoneNumber,
+    required Student student,
   });
   //
   Future<Either<StudentFailure, void>> removeStudent({

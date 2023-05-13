@@ -11,19 +11,19 @@ import 'package:my_school/src/presentation/core/widgets/loading_widget.dart';
 
 class AuthPage extends StatelessWidget {
   AuthPage({super.key});
-  final AuthBloc _loginBloc = getIt.get<AuthBloc>();
+  final AuthBloc bloc = getIt.get<AuthBloc>();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => _loginBloc,
+      create: (_) => bloc,
       child: SafeArea(
         child: Scaffold(
           body: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               return state.maybeWhen(
                 otpHandshakeSuccess: (o) {
-                  _loginBloc.add(
+                  bloc.add(
                     AuthEvent.cacheAuthData(
                       OtpHandshakeResponse(
                         token: o.token,
@@ -65,7 +65,7 @@ class AuthPage extends StatelessWidget {
                               SizedBox(
                                 width: 1.sw,
                                 height: 0.9.sh,
-                                child: UserAuthenticationPage(bloc: _loginBloc),
+                                child: UserAuthenticationPage(bloc: bloc),
                               ),
                             ],
                           )),
@@ -77,7 +77,7 @@ class AuthPage extends StatelessWidget {
                   );
                 },
                 failure: (f, s) {
-                  _loginBloc.add(
+                  bloc.add(
                     const AuthEvent.resetIdel(),
                   );
                   return Stack(
@@ -86,14 +86,14 @@ class AuthPage extends StatelessWidget {
                         child: SizedBox(
                           width: 1.sw,
                           height: 1.sh,
-                          child: UserAuthenticationPage(bloc: _loginBloc),
+                          child: UserAuthenticationPage(bloc: bloc),
                         ),
                       ),
                     ],
                   );
                 },
                 orElse: () {
-                  _loginBloc.add(
+                  bloc.add(
                     const AuthEvent.resetIdel(),
                   );
                   return SizedBox(
@@ -107,7 +107,7 @@ class AuthPage extends StatelessWidget {
                         SizedBox(
                           width: 1.sw,
                           height: 0.7.sh,
-                          child: UserAuthenticationPage(bloc: _loginBloc),
+                          child: UserAuthenticationPage(bloc: bloc),
                         ),
                         SizedBox(height: 0.05.sh),
                         Material(

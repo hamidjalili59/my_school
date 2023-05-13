@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'auth_bloc.dart';
 
@@ -873,6 +873,7 @@ mixin _$AuthEvent {
     required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
     required TResult Function(OtpHandshakeResponse token) cacheAuthData,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -881,6 +882,7 @@ mixin _$AuthEvent {
     TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -889,6 +891,7 @@ mixin _$AuthEvent {
     TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -898,6 +901,7 @@ mixin _$AuthEvent {
     required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
     required TResult Function(_CacheAuthData value) cacheAuthData,
+    required TResult Function(_Logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -906,6 +910,7 @@ mixin _$AuthEvent {
     TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
     TResult? Function(_CacheAuthData value)? cacheAuthData,
+    TResult? Function(_Logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -914,6 +919,7 @@ mixin _$AuthEvent {
     TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
     TResult Function(_CacheAuthData value)? cacheAuthData,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1005,6 +1011,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
     required TResult Function(OtpHandshakeResponse token) cacheAuthData,
+    required TResult Function() logout,
   }) {
     return otpHandshake(phoneNumber);
   }
@@ -1016,6 +1023,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult? Function()? logout,
   }) {
     return otpHandshake?.call(phoneNumber);
   }
@@ -1027,6 +1035,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (otpHandshake != null) {
@@ -1042,6 +1051,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
     required TResult Function(_CacheAuthData value) cacheAuthData,
+    required TResult Function(_Logout value) logout,
   }) {
     return otpHandshake(this);
   }
@@ -1053,6 +1063,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
     TResult? Function(_CacheAuthData value)? cacheAuthData,
+    TResult? Function(_Logout value)? logout,
   }) {
     return otpHandshake?.call(this);
   }
@@ -1064,6 +1075,7 @@ class _$_OtpHandshake implements _OtpHandshake {
     TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
     TResult Function(_CacheAuthData value)? cacheAuthData,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (otpHandshake != null) {
@@ -1124,6 +1136,7 @@ class _$_ResetIdel implements _ResetIdel {
     required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
     required TResult Function(OtpHandshakeResponse token) cacheAuthData,
+    required TResult Function() logout,
   }) {
     return resetIdel();
   }
@@ -1135,6 +1148,7 @@ class _$_ResetIdel implements _ResetIdel {
     TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult? Function()? logout,
   }) {
     return resetIdel?.call();
   }
@@ -1146,6 +1160,7 @@ class _$_ResetIdel implements _ResetIdel {
     TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (resetIdel != null) {
@@ -1161,6 +1176,7 @@ class _$_ResetIdel implements _ResetIdel {
     required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
     required TResult Function(_CacheAuthData value) cacheAuthData,
+    required TResult Function(_Logout value) logout,
   }) {
     return resetIdel(this);
   }
@@ -1172,6 +1188,7 @@ class _$_ResetIdel implements _ResetIdel {
     TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
     TResult? Function(_CacheAuthData value)? cacheAuthData,
+    TResult? Function(_Logout value)? logout,
   }) {
     return resetIdel?.call(this);
   }
@@ -1183,6 +1200,7 @@ class _$_ResetIdel implements _ResetIdel {
     TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
     TResult Function(_CacheAuthData value)? cacheAuthData,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (resetIdel != null) {
@@ -1274,6 +1292,7 @@ class _$_OtpVerify implements _OtpVerify {
     required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
     required TResult Function(OtpHandshakeResponse token) cacheAuthData,
+    required TResult Function() logout,
   }) {
     return otpVerify(phoneNumber, verifyCode);
   }
@@ -1285,6 +1304,7 @@ class _$_OtpVerify implements _OtpVerify {
     TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult? Function()? logout,
   }) {
     return otpVerify?.call(phoneNumber, verifyCode);
   }
@@ -1296,6 +1316,7 @@ class _$_OtpVerify implements _OtpVerify {
     TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (otpVerify != null) {
@@ -1311,6 +1332,7 @@ class _$_OtpVerify implements _OtpVerify {
     required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
     required TResult Function(_CacheAuthData value) cacheAuthData,
+    required TResult Function(_Logout value) logout,
   }) {
     return otpVerify(this);
   }
@@ -1322,6 +1344,7 @@ class _$_OtpVerify implements _OtpVerify {
     TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
     TResult? Function(_CacheAuthData value)? cacheAuthData,
+    TResult? Function(_Logout value)? logout,
   }) {
     return otpVerify?.call(this);
   }
@@ -1333,6 +1356,7 @@ class _$_OtpVerify implements _OtpVerify {
     TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
     TResult Function(_CacheAuthData value)? cacheAuthData,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (otpVerify != null) {
@@ -1421,6 +1445,7 @@ class _$_CacheAuthData implements _CacheAuthData {
     required TResult Function() resetIdel,
     required TResult Function(double phoneNumber, int verifyCode) otpVerify,
     required TResult Function(OtpHandshakeResponse token) cacheAuthData,
+    required TResult Function() logout,
   }) {
     return cacheAuthData(token);
   }
@@ -1432,6 +1457,7 @@ class _$_CacheAuthData implements _CacheAuthData {
     TResult? Function()? resetIdel,
     TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult? Function()? logout,
   }) {
     return cacheAuthData?.call(token);
   }
@@ -1443,6 +1469,7 @@ class _$_CacheAuthData implements _CacheAuthData {
     TResult Function()? resetIdel,
     TResult Function(double phoneNumber, int verifyCode)? otpVerify,
     TResult Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (cacheAuthData != null) {
@@ -1458,6 +1485,7 @@ class _$_CacheAuthData implements _CacheAuthData {
     required TResult Function(_ResetIdel value) resetIdel,
     required TResult Function(_OtpVerify value) otpVerify,
     required TResult Function(_CacheAuthData value) cacheAuthData,
+    required TResult Function(_Logout value) logout,
   }) {
     return cacheAuthData(this);
   }
@@ -1469,6 +1497,7 @@ class _$_CacheAuthData implements _CacheAuthData {
     TResult? Function(_ResetIdel value)? resetIdel,
     TResult? Function(_OtpVerify value)? otpVerify,
     TResult? Function(_CacheAuthData value)? cacheAuthData,
+    TResult? Function(_Logout value)? logout,
   }) {
     return cacheAuthData?.call(this);
   }
@@ -1480,6 +1509,7 @@ class _$_CacheAuthData implements _CacheAuthData {
     TResult Function(_ResetIdel value)? resetIdel,
     TResult Function(_OtpVerify value)? otpVerify,
     TResult Function(_CacheAuthData value)? cacheAuthData,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (cacheAuthData != null) {
@@ -1497,4 +1527,122 @@ abstract class _CacheAuthData implements AuthEvent {
   @JsonKey(ignore: true)
   _$$_CacheAuthDataCopyWith<_$_CacheAuthData> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LogoutCopyWith<$Res> {
+  factory _$$_LogoutCopyWith(_$_Logout value, $Res Function(_$_Logout) then) =
+      __$$_LogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LogoutCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_Logout>
+    implements _$$_LogoutCopyWith<$Res> {
+  __$$_LogoutCopyWithImpl(_$_Logout _value, $Res Function(_$_Logout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Logout implements _Logout {
+  const _$_Logout();
+
+  @override
+  String toString() {
+    return 'AuthEvent.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Logout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double phoneNumber) otpHandshake,
+    required TResult Function() resetIdel,
+    required TResult Function(double phoneNumber, int verifyCode) otpVerify,
+    required TResult Function(OtpHandshakeResponse token) cacheAuthData,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double phoneNumber)? otpHandshake,
+    TResult? Function()? resetIdel,
+    TResult? Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult? Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult? Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double phoneNumber)? otpHandshake,
+    TResult Function()? resetIdel,
+    TResult Function(double phoneNumber, int verifyCode)? otpVerify,
+    TResult Function(OtpHandshakeResponse token)? cacheAuthData,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OtpHandshake value) otpHandshake,
+    required TResult Function(_ResetIdel value) resetIdel,
+    required TResult Function(_OtpVerify value) otpVerify,
+    required TResult Function(_CacheAuthData value) cacheAuthData,
+    required TResult Function(_Logout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OtpHandshake value)? otpHandshake,
+    TResult? Function(_ResetIdel value)? resetIdel,
+    TResult? Function(_OtpVerify value)? otpVerify,
+    TResult? Function(_CacheAuthData value)? cacheAuthData,
+    TResult? Function(_Logout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OtpHandshake value)? otpHandshake,
+    TResult Function(_ResetIdel value)? resetIdel,
+    TResult Function(_OtpVerify value)? otpVerify,
+    TResult Function(_CacheAuthData value)? cacheAuthData,
+    TResult Function(_Logout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Logout implements AuthEvent {
+  const factory _Logout() = _$_Logout;
 }

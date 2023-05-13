@@ -31,7 +31,7 @@ class AddScoreForClassPage extends StatelessWidget {
                               headingRowHeight: 70.h,
                               headingTextStyle: TextStyle(
                                   fontSize: 10.r, color: Colors.black),
-                              dataRowHeight: 50.h,
+                              // dataRowHeight: 50.h,
                               border: TableBorder.all(
                                   color: Colors.black54,
                                   borderRadius: BorderRadius.circular(8.r),

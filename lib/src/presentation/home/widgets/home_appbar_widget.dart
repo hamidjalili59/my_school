@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
@@ -55,10 +56,42 @@ class HomeCustomAppBar extends StatelessWidget {
                           ),
                         )
                       : SizedBox(
-                          width: 60.w,
-                          height: 80.w,
-                          child: Icon(Icons.more_vert_rounded,
-                              color: Colors.white, size: 28.r),
+                          width: 50.w,
+                          child: InkWell(
+                            onTap: () {},
+                            child: FormBuilderDropdown(
+                              name: 'more',
+                              icon: Icon(
+                                Icons.more_vert_rounded,
+                                color: Colors.white,
+                                size: 36.r,
+                              ),
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                              items: [
+                                DropdownMenuItem(
+                                  value: 'خروج از حساب',
+                                  child: InkWell(
+                                      onTap: () {
+                                        getIt
+                                            .get<HomeBloc>()
+                                            .add(const HomeEvent.logout());
+                                      },
+                                      child: const Text(
+                                        'خروج از حساب',
+                                        textAlign: TextAlign.center,
+                                      )),
+                                )
+                              ],
+                              // child: SizedBox(
+                              //     width: 60.w,
+                              //     height: 80.w,
+                              //     child: Icon(Icons.more_vert_rounded,
+                              //         color: Colors.white, size: 28.r),
+                              //   ),
+                            ),
+                          ),
                         ),
                   Padding(
                     padding: EdgeInsets.only(left: 24.0.w),

@@ -48,7 +48,8 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
     await _getTeacherUseCase
         .call(param: tuple.Tuple1(event.schoolId))
         .then((value) => value.fold(
-              (l) => null,
+              (l) => emit(TeacherState.idle(
+                  isLoading: false, teachers: state.teachers)),
               (r) {
                 emit(TeacherState.idle(isLoading: false, teachers: r.teachers));
               },
@@ -63,14 +64,19 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
         .then(
           (value) => value.fold(
             (l) {
-              getIt.get<AppRouter>().pop();
-              return null;
+              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+                getIt.get<AppRouter>().pop();
+              }
+              return emit(TeacherState.idle(
+                  isLoading: false, teachers: state.teachers));
             },
             (r) {
               List<Teacher> tempTeachers = state.teachers.toList();
               tempTeachers.add(r.teacher);
               emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
-              getIt.get<AppRouter>().pop();
+              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+                getIt.get<AppRouter>().pop();
+              }
             },
           ),
         );
@@ -89,8 +95,11 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
         .then(
           (value) => value.fold(
             (l) {
-              getIt.get<AppRouter>().pop();
-              return null;
+              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+                getIt.get<AppRouter>().pop();
+              }
+              return emit(TeacherState.idle(
+                  isLoading: false, teachers: state.teachers));
             },
             (r) {
               List<Teacher> tempTeachers = state.teachers;
@@ -98,7 +107,9 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
                 int.parse(getIt.get<OtpHandshakeResponse>().token),
               ));
               emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
-              getIt.get<AppRouter>().pop();
+              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+                getIt.get<AppRouter>().pop();
+              }
             },
           ),
         );

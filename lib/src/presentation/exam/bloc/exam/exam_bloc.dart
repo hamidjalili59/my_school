@@ -25,12 +25,12 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
   }
 
   FutureOr<void> _onGetExams(_GetExams event, Emitter<ExamState> emit) async {
-    emit(const ExamState.idle(isLoading: true));
+    emit(ExamState.idle(isLoading: true, exams: state.exams));
     await _getExamsUseCase
-        .call(param: tuple.Tuple1(getIt.get<Classroom>().classID!))
+        .call(param: tuple.Tuple1(getIt.get<Classroom>().classID))
         .then(
           (value) => value.fold(
-            (l) => null,
+            (l) => emit(ExamState.idle(isLoading: false, exams: state.exams)),
             (r) => emit(ExamState.idle(isLoading: false, exams: r.exams)),
           ),
         );

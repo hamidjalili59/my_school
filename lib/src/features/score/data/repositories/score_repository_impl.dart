@@ -23,12 +23,17 @@ class ScoreRepositoryImpl extends ScoreRepository {
             (l) =>
                 left<ScoreFailure, ScoreSuccessResponse>(ScoreFailure.api(l)),
             (r) async {
-              final scoreAddSuccessResponse = ScoreSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<ScoreFailure, ScoreSuccessResponse>(
-                scoreAddSuccessResponse,
-              );
+              try {
+                final scoreAddSuccessResponse = ScoreSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<ScoreFailure, ScoreSuccessResponse>(
+                  scoreAddSuccessResponse,
+                );
+              } catch (e) {
+                return left<ScoreFailure, ScoreSuccessResponse>(
+                    const ScoreFailure.nullParam());
+              }
             },
           ),
         );
@@ -66,12 +71,17 @@ class ScoreRepositoryImpl extends ScoreRepository {
               ScoreFailure.api(l),
             ),
             (r) async {
-              final scoresDataFromServer = ScoreGetResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<ScoreFailure, ScoreGetResponse>(
-                scoresDataFromServer,
-              );
+              try {
+                final scoresDataFromServer = ScoreGetResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<ScoreFailure, ScoreGetResponse>(
+                  scoresDataFromServer,
+                );
+              } catch (e) {
+                return left<ScoreFailure, ScoreGetResponse>(
+                    const ScoreFailure.nullParam());
+              }
             },
           ),
         );
@@ -97,12 +107,17 @@ class ScoreRepositoryImpl extends ScoreRepository {
               ScoreFailure.api(l),
             ),
             (r) async {
-              final updateScoreOnServer = ScoreSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).payload,
-              );
-              return right<ScoreFailure, ScoreSuccessResponse>(
-                updateScoreOnServer,
-              );
+              try {
+                final updateScoreOnServer = ScoreSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<ScoreFailure, ScoreSuccessResponse>(
+                  updateScoreOnServer,
+                );
+              } catch (e) {
+                return left<ScoreFailure, ScoreSuccessResponse>(
+                    const ScoreFailure.nullParam());
+              }
             },
           ),
         );

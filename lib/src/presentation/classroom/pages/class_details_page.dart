@@ -34,7 +34,7 @@ class ClassDetailsPage extends StatelessWidget {
                       child: HomeCustomAppBar(
                         bloc: bloc,
                         title: GeneralConstants.userType == UserType.admin
-                            ? getIt.get<Classroom>().className ?? 'مدرسه من'
+                            ? getIt.get<Classroom>().className
                             : 'مدرسه من',
                         buttonsList:
                             GeneralConstants.userType == UserType.parent

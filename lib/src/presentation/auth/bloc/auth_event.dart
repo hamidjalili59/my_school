@@ -15,4 +15,5 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.cacheAuthData(
     OtpHandshakeResponse token,
   ) = _CacheAuthData;
+  const factory AuthEvent.logout() = _Logout;
 }

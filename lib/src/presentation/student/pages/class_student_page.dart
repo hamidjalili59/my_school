@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
@@ -10,7 +12,7 @@ import 'package:my_school/src/features/classroom/domain/models/classroom_model.d
 import 'package:my_school/src/features/core/models/basic_info_model.dart';
 import 'package:my_school/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_school/src/injectable/injectable.dart';
-import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
+import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
 import 'package:my_school/src/presentation/student/bloc/student/student_bloc.dart';
 import 'package:my_school/src/presentation/student/widgets/custom_student_details.dart';
 import 'package:ndialog/ndialog.dart';
@@ -42,7 +44,7 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
     } else {
       getIt.get<StudentBloc>().add(
             StudentEvent.getStudents(
-              getIt.get<Classroom>().classID!,
+              getIt.get<Classroom>().classID,
             ),
           );
     }
@@ -392,193 +394,260 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
   // }
 
   // ignore: unused_element
-  _addExamDialogMethod() {
-    var appRputer = getIt.get<AppRouter>();
-    NDialog(
-      dialogStyle: DialogStyle(
-          titlePadding: EdgeInsets.symmetric(horizontal: 0.r, vertical: 0.r),
-          backgroundColor: GeneralConstants.backgroundColor,
-          contentPadding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 3.r)),
-      title: Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.zero,
-        decoration: BoxDecoration(
-            color: GeneralConstants.mainColor,
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(12.r),
-                bottomRight: Radius.circular(12.r))),
-        // width: 0.15.sw,
-        height: 50.h,
-        child: Text(
-          'افزودن دبیر',
-          style: TextStyle(
-              color: Colors.white, fontSize: 16.r, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
-      ),
-      content: ConstrainedBox(
-        constraints: BoxConstraints(
-          minHeight: 0.1.sh,
-          minWidth: 0.75.sw,
-          maxHeight: 0.8.sh,
-          maxWidth: 0.8.sw,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 10.h),
-              SizedBox(
-                width: 0.6.sw,
-                height: 0.155.sh,
-                child: CustomTextField(
-                  keyboardType: TextInputType.text,
-                  maxLength: 200,
-                  minLines: 2,
-                  maxLines: 6,
-                  icon: Icons.note_add_rounded,
-                  controller: _controllerExamDescription,
-                ),
-              ),
-              SizedBox(height: 15.h),
-              Container(
-                decoration: BoxDecoration(
-                  color: GeneralConstants.mainColor,
-                  borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                ),
-                width: 0.45.sw,
-                height: 40.h,
-                alignment: Alignment.center,
-                child: Text(
-                  'تایید',
-                  style: TextStyle(
-                    fontSize: 16.r,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(height: 10.h),
-            ],
-          ),
-        ),
-      ),
-    ).show(appRputer.navigatorKey.currentContext!);
-  }
+  // _addExamDialogMethod() {
+  //   final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
+  //   var appRputer = getIt.get<AppRouter>();
+  //   NDialog(
+  //     dialogStyle: DialogStyle(
+  //         titlePadding: EdgeInsets.symmetric(horizontal: 0.r, vertical: 0.r),
+  //         backgroundColor: GeneralConstants.backgroundColor,
+  //         contentPadding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 3.r)),
+  //     title: Container(
+  //       alignment: Alignment.center,
+  //       padding: EdgeInsets.zero,
+  //       decoration: BoxDecoration(
+  //           color: GeneralConstants.mainColor,
+  //           borderRadius: BorderRadius.only(
+  //               bottomLeft: Radius.circular(12.r),
+  //               bottomRight: Radius.circular(12.r))),
+  //       // width: 0.15.sw,
+  //       height: 50.h,
+  //       child: Text(
+  //         'افزودن امتحان',
+  //         style: TextStyle(
+  //             color: Colors.white, fontSize: 16.r, fontWeight: FontWeight.bold),
+  //         textAlign: TextAlign.center,
+  //       ),
+  //     ),
+  //     content: ConstrainedBox(
+  //       constraints: BoxConstraints(
+  //         minHeight: 0.1.sh,
+  //         minWidth: 0.75.sw,
+  //         maxHeight: 0.8.sh,
+  //         maxWidth: 0.8.sw,
+  //       ),
+  //       child: SingleChildScrollView(
+  //         child: FormBuilder(
+  //           key: formKey,
+  //           child: Column(
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               SizedBox(height: 10.h),
+  //               CustomTextField(
+  //                 keyboardType: TextInputType.text,
+  //                 name: 'exam_description',
+  //                 labelText: 'توضیح امتحان',
+  //                 validator: FormBuilderValidators.compose([
+  //                   FormBuilderValidators.required(
+  //                       errorText: 'انتخاب توضیح برای ساخت امتحان اجباری است'),
+  //                   FormBuilderValidators.maxLength(
+  //                     100,
+  //                     errorText:
+  //                         'لطفا توضیحاتی که انتخاب میکنید کمتر از 100 حرف داشته باشد',
+  //                   ),
+  //                   FormBuilderValidators.minLength(
+  //                     5,
+  //                     errorText:
+  //                         'لطفا توضیحاتی که انتخاب میکنید بیشتر از 5 حرف داشته باشد',
+  //                   ),
+  //                 ]),
+  //                 controller: _controllerExamDescription,
+  //                 initialValue: '',
+  //                 width: 200.w,
+  //                 heghit: 65.h,
+  //               ),
+  //               SizedBox(height: 15.h),
+  //               Container(
+  //                 decoration: BoxDecoration(
+  //                   color: GeneralConstants.mainColor,
+  //                   borderRadius: BorderRadius.all(Radius.circular(8.r)),
+  //                 ),
+  //                 width: 0.45.sw,
+  //                 height: 40.h,
+  //                 alignment: Alignment.center,
+  //                 child: Text(
+  //                   'تایید',
+  //                   style: TextStyle(
+  //                     fontSize: 16.r,
+  //                     fontWeight: FontWeight.w700,
+  //                     color: Colors.white,
+  //                   ),
+  //                   textAlign: TextAlign.center,
+  //                 ),
+  //               ),
+  //               SizedBox(height: 10.h),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   ).show(appRputer.navigatorKey.currentContext!);
+  // }
 
   void _addStudentDialog() {
+    final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
     NDialog(
       content: SizedBox(
         width: 0.75.sw,
         height: 0.68.sh,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                width: 0.45.sw,
-                height: 0.6.sw,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black38,
-                      blurRadius: 3,
-                      spreadRadius: 1,
-                      offset: Offset(1, 3),
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(34.0.r),
-                  child:
-                      const Icon(Icons.person_rounded, color: Colors.black87),
-                ),
-              ),
-              SizedBox(
-                width: 0.65.sw,
-                height: 55.h,
-                child: CustomTextField(
-                    icon: Icons.person,
-                    maxLength: 30,
-                    keyboardType: TextInputType.name,
-                    controller: _studentNameController,
-                    hint: 'نام دانش‌آموز'),
-              ),
-              SizedBox(height: 5.h),
-              SizedBox(
-                width: 0.65.sw,
-                height: 55.h,
-                child: CustomTextField(
-                    icon: Icons.family_restroom_rounded,
-                    maxLength: 30,
-                    keyboardType: TextInputType.name,
-                    controller: _studentParentController,
-                    hint: 'نام والد'),
-              ),
-              SizedBox(height: 5.h),
-              SizedBox(
-                width: 0.65.sw,
-                height: 55.h,
-                child: CustomTextField(
-                    icon: Icons.phone,
-                    maxLength: 30,
-                    keyboardType: TextInputType.phone,
-                    controller: _phonenumberController,
-                    hint: 'شماره تماس'),
-              ),
-              SizedBox(height: 10.h),
-              BlocBuilder<StudentBloc, StudentState>(
-                  bloc: getIt.get<StudentBloc>(),
-                  builder: (context, studentStateBotton) {
-                    return IgnorePointer(
-                      ignoring: studentStateBotton.isLoading,
-                      child: MaterialButton(
-                        onPressed: () {
-                          if (!studentStateBotton.isLoading) {
-                            getIt.get<StudentBloc>().add(
-                                  StudentEvent.addStudent(
-                                    Student(
-                                        basicInfo: BasicInfoModel(
-                                          name: _studentNameController.text,
-                                          phoneNumber: double.tryParse(
-                                                  _phonenumberController
-                                                      .text) ??
-                                              0,
-                                        ),
-                                        classId:
-                                            getIt.get<Classroom>().classID!),
-                                    _studentParentController.text,
-                                  ),
-                                );
-                          }
-                        },
-                        color: GeneralConstants.mainColor,
-                        elevation: 5,
-                        height: 55.h,
-                        minWidth: 0.65.sw,
-                        child: studentStateBotton.isLoading
-                            ? const CircularProgressIndicator()
-                            : Text(
-                                'ثبت دانش‌آموز',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.r,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+        child: FormBuilder(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  width: 0.45.sw,
+                  height: 0.6.sw,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black38,
+                        blurRadius: 3,
+                        spreadRadius: 1,
+                        offset: Offset(1, 3),
                       ),
-                    );
-                  }),
-            ],
+                    ],
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(34.0.r),
+                    child: Icon(Icons.person_rounded,
+                        size: 46.r, color: Colors.black87),
+                  ),
+                ),
+                CustomTextField(
+                  haveIcon: true,
+                  sIcon: Icons.person_rounded,
+                  name: 'student_name',
+                  labelText: 'اسم دانش آموز',
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                        errorText: 'انتخاب اسم برای ساخت دانش آموز اجباری است'),
+                    FormBuilderValidators.maxLength(
+                      30,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید کمتر از 30 حرف داشته باشد',
+                    ),
+                    FormBuilderValidators.minLength(
+                      5,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید بیشتر از 5 حرف داشته باشد',
+                    ),
+                  ]),
+                  controller: _studentNameController,
+                  initialValue: '',
+                  width: 200.w,
+                  heghit: 65.h,
+                  keyboardType: TextInputType.name,
+                ),
+                SizedBox(height: 5.h),
+                CustomTextField(
+                  haveIcon: true,
+                  sIcon: Icons.family_restroom_rounded,
+                  name: 'parent_name',
+                  labelText: 'اسم والد',
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                        errorText:
+                            'انتخاب اسم والد برای ساخت دانش آموز اجباری است'),
+                    FormBuilderValidators.maxLength(
+                      30,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید کمتر از 30 حرف داشته باشد',
+                    ),
+                    FormBuilderValidators.minLength(
+                      5,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید بیشتر از 5 حرف داشته باشد',
+                    ),
+                  ]),
+                  controller: _studentParentController,
+                  initialValue: '',
+                  width: 200.w,
+                  heghit: 65.h,
+                  keyboardType: TextInputType.name,
+                ),
+                SizedBox(height: 5.h),
+                CustomTextField(
+                  haveIcon: true,
+                  sIcon: Icons.phone_rounded,
+                  name: 'phone',
+                  labelText: 'شماره تماس',
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                        errorText:
+                            'انتخاب شماره برای ساخت دانش آموز اجباری است'),
+                    FormBuilderValidators.numeric(
+                        errorText: 'شماره تلفن باید عدد باشد'),
+                    FormBuilderValidators.equalLength(11,
+                        errorText:
+                            'شماره تلفن درست نیست ، شماره باید 11 رقم باشد و با صفر شروع شود'),
+                  ]),
+                  controller: _phonenumberController,
+                  initialValue: '',
+                  width: 200.w,
+                  heghit: 65.h,
+                  keyboardType: TextInputType.phone,
+                ),
+                SizedBox(height: 10.h),
+                BlocBuilder<StudentBloc, StudentState>(
+                    bloc: getIt.get<StudentBloc>(),
+                    builder: (context, studentStateBotton) {
+                      return IgnorePointer(
+                        ignoring: studentStateBotton.isLoading,
+                        child: MaterialButton(
+                          onPressed: () {
+                            if (!studentStateBotton.isLoading) {
+                              if (formKey.currentState?.validate() ?? false) {
+                                getIt.get<StudentBloc>().add(
+                                      StudentEvent.addStudent(
+                                        Student(
+                                            basicInfo: BasicInfoModel(
+                                              name: _studentNameController.text,
+                                              phoneNumber: double.tryParse(
+                                                      _phonenumberController
+                                                          .text) ??
+                                                  0,
+                                            ),
+                                            classId:
+                                                getIt.get<Classroom>().classID),
+                                        _studentParentController.text,
+                                      ),
+                                    );
+                                _studentNameController.clear();
+                                _phonenumberController.clear();
+                                _studentParentController.clear();
+
+                                Navigator.pop(getIt
+                                    .get<AppRouter>()
+                                    .navigatorKey
+                                    .currentContext!);
+                              } else {}
+                            }
+                          },
+                          color: GeneralConstants.mainColor,
+                          elevation: 5,
+                          height: 55.h,
+                          minWidth: 0.65.sw,
+                          child: studentStateBotton.isLoading
+                              ? const CircularProgressIndicator()
+                              : Text(
+                                  'ثبت دانش‌آموز',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.r,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                        ),
+                      );
+                    }),
+              ],
+            ),
           ),
         ),
       ),
     ).show(context);
   }
-
-  // void _enterScoreDialogMethod() {
-  //   getIt.get<AppRouter>().pushNamed('/add_score_for_class_page');
-  // }
 }

@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_school/src/injectable/injectable.dart';
+import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
+import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
+import 'package:ndialog/ndialog.dart';
 
 class ClassesCardWidget extends StatelessWidget {
-  const ClassesCardWidget({
+  final TextEditingController _classNameController =
+      TextEditingController(text: '');
+  ClassesCardWidget({
     Key? key,
     required this.classroom,
     required this.appRouter,
@@ -20,6 +29,10 @@ class ClassesCardWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 8.0.h),
       child: InkWell(
+        onLongPress: () {
+          _classNameController.text = classroom.className;
+          _updateClassroomDialogMethod(classroom: classroom);
+        },
         onTap: () {
           if (getIt.isRegistered<Classroom>()) {
             getIt.unregister<Classroom>();
@@ -57,7 +70,7 @@ class ClassesCardWidget extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(left: 22.0.w, bottom: 8.w),
-                    child: Text(classroom.className!,
+                    child: Text(classroom.className,
                         style: TextStyle(
                             fontSize: 20.r, fontWeight: FontWeight.w600),
                         textAlign: TextAlign.right,
@@ -104,5 +117,147 @@ class ClassesCardWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _updateClassroomDialogMethod({Classroom? classroom}) {
+    final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
+    if (classroom != null) {
+      _classNameController.text = classroom.className;
+    }
+    var appRputer = getIt.get<AppRouter>();
+    NDialog(
+      dialogStyle: DialogStyle(
+          titlePadding: EdgeInsets.symmetric(horizontal: 0.r, vertical: 0.r),
+          backgroundColor: GeneralConstants.backgroundColor,
+          contentPadding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 3.r)),
+      title: Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.zero,
+        decoration: BoxDecoration(
+            color: GeneralConstants.mainColor,
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(12.r),
+                bottomRight: Radius.circular(12.r))),
+        // width: 0.15.sw,
+        height: 50.h,
+        child: Text(
+          'تغییر اسم کلاس',
+          style: TextStyle(
+              color: Colors.white, fontSize: 16.r, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+        ),
+      ),
+      content: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: 0.1.sh,
+          minWidth: 0.75.sw,
+          maxHeight: 0.8.sh,
+          maxWidth: 0.8.sw,
+        ),
+        child: FormBuilder(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 10.h),
+                CustomTextField(
+                  key: formKey,
+                  name: 'class_name',
+                  labelText: 'نام کلاس',
+                  keyboardType: TextInputType.name,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                        errorText: 'انتخاب اسم برای ساخت کلاس اجباری است'),
+                    FormBuilderValidators.maxLength(
+                      20,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید کمتر از 20 حرف داشته باشد',
+                    ),
+                    FormBuilderValidators.minLength(
+                      3,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید بیشتر از 3 حرف داشته باشد',
+                    ),
+                  ]),
+                  onSubmitted: (value) {
+                    if (formKey.currentState?.validate() ?? false) {
+                      getIt.get<ClassroomBloc>().add(
+                            ClassroomEvent.updateClass(
+                              Classroom(
+                                classID: classroom!.classID,
+                                schoolId: classroom.schoolId,
+                                className: value!,
+                              ),
+                            ),
+                          );
+                      _classNameController.clear();
+                      Navigator.pop(
+                          getIt.get<AppRouter>().navigatorKey.currentContext!);
+                    } else {}
+                  },
+                  controller: _classNameController,
+                  initialValue: '',
+                  width: 200.w,
+                  heghit: 65.h,
+                ),
+                SizedBox(height: 15.h),
+                BlocBuilder<ClassroomBloc, ClassroomState>(
+                    bloc: getIt.get<ClassroomBloc>(),
+                    builder: (context, classroomState) {
+                      return IgnorePointer(
+                        ignoring: classroomState.isLoading,
+                        child: InkWell(
+                          onTap: () {
+                            if (classroomState.isLoading) {
+                              return;
+                            }
+                            if (formKey.currentState?.validate() ?? false) {
+                              getIt.get<ClassroomBloc>().add(
+                                    ClassroomEvent.updateClass(
+                                      Classroom(
+                                        classID: classroom!.classID,
+                                        schoolId: classroom.schoolId,
+                                        className: _classNameController.text,
+                                      ),
+                                    ),
+                                  );
+                              _classNameController.clear();
+                              Navigator.pop(getIt
+                                  .get<AppRouter>()
+                                  .navigatorKey
+                                  .currentContext!);
+                            } else {}
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: GeneralConstants.mainColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.r)),
+                            ),
+                            width: 0.45.sw,
+                            height: 40.h,
+                            alignment: Alignment.center,
+                            child: classroomState.isLoading
+                                ? const CircularProgressIndicator()
+                                : Text(
+                                    'تایید',
+                                    style: TextStyle(
+                                      fontSize: 16.r,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                          ),
+                        ),
+                      );
+                    }),
+                SizedBox(height: 10.h),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ).show(appRputer.navigatorKey.currentContext!);
   }
 }
