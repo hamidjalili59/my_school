@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextFieldWidget extends StatelessWidget {
   final IconData icon;
   final double? width;
   final double? height;
@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final TextEditingController controller;
   final String hint;
-  const CustomTextField({
+  const CustomTextFieldWidget({
     Key? key,
     required this.icon,
     this.width,

@@ -7,6 +7,8 @@ abstract class AuthRepository {
   Future<Either<AuthFailure, OtpHandshakeResponse>> otpHandshake(
       {required double phoneNumber});
   //
+  Future<Either<AuthFailure, void>> logout();
+  //
 
   //
   Future<Either<AuthFailure, void>> cacheAuthData({

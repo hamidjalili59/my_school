@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/features/core/models/basic_info_model.dart';
 import 'package:my_school/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_school/src/injectable/injectable.dart';
-import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
+import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
 import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:my_school/src/presentation/teacher/widget/custom_card_teacher_widget.dart';
 import 'package:my_school/src/presentation/teacher/widget/teacher_class_card_widget.dart';
@@ -30,6 +32,8 @@ class TeacherPage extends StatelessWidget {
               size: 26.r,
             ),
             onPressed: () {
+              _controllerName.clear();
+              _controllerPhone.clear();
               _addTeacherDialogMethod(false);
             },
             label: Text(
@@ -117,6 +121,7 @@ class TeacherPage extends StatelessWidget {
   }
 
   _addTeacherDialogMethod(bool isEditing, {Teacher? teacher}) {
+    final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(
@@ -148,98 +153,127 @@ class TeacherPage extends StatelessWidget {
           maxHeight: 0.8.sh,
           maxWidth: 0.8.sw,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 10.h),
-              SizedBox(
-                width: 0.6.sw,
-                height: 55.h,
-                child: CustomTextField(
-                  keyboardType: TextInputType.text,
-                  maxLength: 15,
-                  icon: Icons.person,
+        child: FormBuilder(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 10.h),
+                CustomTextField(
+                  haveIcon: true,
+                  sIcon: Icons.person_rounded,
+                  name: 'teacher_name',
+                  labelText: 'اسم دبیر',
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                        errorText: 'انتخاب اسم برای ساخت دبیر اجباری است'),
+                    FormBuilderValidators.maxLength(
+                      30,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید کمتر از 30 حرف داشته باشد',
+                    ),
+                    FormBuilderValidators.minLength(
+                      5,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید بیشتر از 5 حرف داشته باشد',
+                    ),
+                  ]),
                   controller: _controllerName,
+                  initialValue: '',
+                  width: 200.w,
+                  heghit: 65.h,
+                  keyboardType: TextInputType.name,
                 ),
-              ),
-              SizedBox(height: 15.h),
-              SizedBox(
-                width: 0.6.sw,
-                height: 55.h,
-                child: CustomTextField(
-                  keyboardType: TextInputType.phone,
-                  maxLength: 15,
-                  icon: Icons.phone_android_rounded,
+                CustomTextField(
+                  haveIcon: true,
+                  sIcon: Icons.phone,
+                  name: 'teacher_phone',
+                  labelText: 'شماره دبیر',
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                        errorText: 'انتخاب شماره برای ساخت دبیر اجباری است'),
+                    FormBuilderValidators.numeric(
+                        errorText: 'شماره تلفن باید عدد باشد'),
+                    FormBuilderValidators.equalLength(11,
+                        errorText:
+                            'شماره تلفن درست نیست ، شماره باید 11 رقم باشد و با صفر شروع شود'),
+                  ]),
                   controller: _controllerPhone,
+                  initialValue: '',
+                  width: 200.w,
+                  heghit: 65.h,
+                  keyboardType: TextInputType.phone,
                 ),
-              ),
-              SizedBox(height: 15.h),
-              BlocBuilder<TeacherBloc, TeacherState>(
-                  bloc: getIt.get<TeacherBloc>(),
-                  builder: (context, teacherState) {
-                    return IgnorePointer(
-                      ignoring: teacherState.isLoading,
-                      child: InkWell(
-                        onTap: () {
-                          if (teacherState.isLoading) {
-                            return;
-                          }
-                          if (isEditing) {
-                            getIt.get<TeacherBloc>().add(
-                                  TeacherEvent.updateTeacher(
-                                    teacher!.copyWith(
-                                      basicInfo: BasicInfoModel(
-                                        name: _controllerName.text,
-                                        phoneNumber: double.tryParse(
-                                                _controllerPhone.text) ??
-                                            0,
+                SizedBox(height: 15.h),
+                BlocBuilder<TeacherBloc, TeacherState>(
+                    bloc: getIt.get<TeacherBloc>(),
+                    builder: (context, teacherState) {
+                      return IgnorePointer(
+                        ignoring: teacherState.isLoading,
+                        child: InkWell(
+                          onTap: () {
+                            if (teacherState.isLoading) {
+                              return;
+                            }
+                            if (formKey.currentState?.validate() ?? false) {
+                              if (isEditing) {
+                                getIt.get<TeacherBloc>().add(
+                                      TeacherEvent.updateTeacher(
+                                        teacher!.copyWith(
+                                          basicInfo: BasicInfoModel(
+                                            name: _controllerName.text,
+                                            phoneNumber: double.tryParse(
+                                                    _controllerPhone.text) ??
+                                                0,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                );
-                          } else {
-                            getIt.get<TeacherBloc>().add(
-                                  TeacherEvent.addTeacher(
-                                    Teacher(
-                                      teacherId: 0,
-                                      basicInfo: BasicInfoModel(
-                                        name: _controllerName.text,
-                                        phoneNumber: double.tryParse(
-                                                _controllerPhone.text) ??
-                                            0,
+                                    );
+                              } else {
+                                getIt.get<TeacherBloc>().add(
+                                      TeacherEvent.addTeacher(
+                                        Teacher(
+                                          teacherId: 0,
+                                          basicInfo: BasicInfoModel(
+                                            name: _controllerName.text,
+                                            phoneNumber: double.tryParse(
+                                                    _controllerPhone.text) ??
+                                                0,
+                                          ),
+                                        ),
                                       ),
+                                    );
+                              }
+                            } else {}
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: GeneralConstants.mainColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.r)),
+                            ),
+                            width: 0.45.sw,
+                            height: 40.h,
+                            alignment: Alignment.center,
+                            child: teacherState.isLoading
+                                ? const CircularProgressIndicator()
+                                : Text(
+                                    'تایید',
+                                    style: TextStyle(
+                                      fontSize: 16.r,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
                                     ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                );
-                          }
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: GeneralConstants.mainColor,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.r)),
                           ),
-                          width: 0.45.sw,
-                          height: 40.h,
-                          alignment: Alignment.center,
-                          child: teacherState.isLoading
-                              ? const CircularProgressIndicator()
-                              : Text(
-                                  'تایید',
-                                  style: TextStyle(
-                                    fontSize: 16.r,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
                         ),
-                      ),
-                    );
-                  }),
-              SizedBox(height: 10.h),
-            ],
+                      );
+                    }),
+                SizedBox(height: 10.h),
+              ],
+            ),
           ),
         ),
       ),

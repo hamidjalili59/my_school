@@ -87,7 +87,6 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
         .call(
           param: tuple.Tuple1<Classroom>(
             Classroom(
-                classID: 0,
                 schoolId: int.parse(getIt.get<OtpHandshakeResponse>().token),
                 className: event.className),
           ),
@@ -96,8 +95,7 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
               (l) => emit(ClassroomState.idle(
                   isLoading: false, classes: state.classes)),
               (r) {
-                List<Classroom> tempClasses =
-                    getIt.get<ClassroomGetResponse>().classrooms.toList();
+                List<Classroom> tempClasses = state.classes.toList();
                 tempClasses.add(r.classroom);
                 emit(ClassroomState.idle(
                   isLoading: false,

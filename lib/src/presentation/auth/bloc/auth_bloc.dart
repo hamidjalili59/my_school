@@ -10,6 +10,7 @@ import 'package:my_school/src/features/auth/domain/failures/auth_failure.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_verify_response.dart';
 import 'package:my_school/src/features/auth/domain/use_cases/cache_auth_data_use_case.dart';
+import 'package:my_school/src/features/auth/domain/use_cases/logout_auth_use_case.dart';
 import 'package:my_school/src/features/auth/domain/use_cases/otp_handshake_use_case.dart';
 import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_school/src/injectable/injectable.dart';
@@ -18,18 +19,21 @@ part 'auth_state.dart';
 part 'auth_event.dart';
 part 'auth_bloc.freezed.dart';
 
-@lazySingleton
+@injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final OtpHandshakeUseCase _otpHandshakeUseCase;
   final CacheAuthDataUseCase _cacheAuthDataUseCase;
-  final AppRouter appRoute = getIt.get<AppRouter>();
+  final LogoutAuthDataUseCase _logoutAuthDataUseCase;
+  // final getIt.get<AppRouter>()r getIt.get<AppRouter>() = getIt.get<getIt.get<AppRouter>()r>();
   AuthBloc(
     this._otpHandshakeUseCase,
     this._cacheAuthDataUseCase,
+    this._logoutAuthDataUseCase,
   ) : super(const _Idle()) {
     on<_OtpHandshake>(_onOtpHandshake);
     on<_ResetIdel>(_onResetIdel);
     on<_CacheAuthData>(_onCacheAuthData);
+    on<_Logout>(_onLogout);
   }
 
   @override
@@ -58,9 +62,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           }
         },
       );
-
-      await Future.delayed(const Duration(seconds: 1));
-      appRoute.replaceNamed('/splash');
+      await Future.delayed(const Duration(milliseconds: 200));
+      emit(const AuthState.idle(isLoading: false));
+      getIt.get<AppRouter>().replaceNamed('/splash');
     } catch (e) {
       FunctionHelper().logErrorDetailMessage(
         e,
@@ -101,11 +105,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(_Failure(failure: l));
         },
         (r) {
-          return null;
+          return;
         },
       );
     } catch (e) {
       emit(_Failure(message: e.toString()));
     }
+  }
+
+  FutureOr<void> _onLogout(_Logout event, Emitter<AuthState> emit) async {
+    await _logoutAuthDataUseCase.call().then(
+          (value) => value.fold(
+            (l) => null,
+            (r) {
+              getIt.get<AppRouter>().replaceNamed('/splash');
+            },
+          ),
+        );
   }
 }

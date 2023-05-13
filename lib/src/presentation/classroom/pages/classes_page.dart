@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
+import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
 import 'package:ndialog/ndialog.dart';
 
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/injectable/injectable.dart';
-import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
 import 'package:my_school/src/presentation/classroom/widgets/classes_card_widget.dart';
 
 class ClassesPage extends StatelessWidget {
@@ -86,6 +88,7 @@ class ClassesPage extends StatelessWidget {
   }
 
   _addClassDialogMethod() {
+    final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(
@@ -119,67 +122,101 @@ class ClassesPage extends StatelessWidget {
                 maxHeight: 0.8.sh,
                 maxWidth: 0.8.sw,
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(height: 15.h),
-                  SizedBox(
-                    width: 0.6.sw,
-                    height: 55.h,
-                    child: CustomTextField(
-                      icon: Icons.meeting_room_outlined,
-                      keyboardType: TextInputType.text,
-                      maxLength: 15,
-                      controller: _controller,
-                    ),
-                  ),
-                  SizedBox(height: 15.h),
-                  classState.maybeWhen<Widget>(
-                    idle: (isLoading, classes, teacherClasses, currentClass) {
-                      return IgnorePointer(
-                        ignoring: isLoading,
-                        child: InkWell(
-                          onTap: () {
-                            getIt.get<ClassroomBloc>().add(
-                                ClassroomEvent.createClasses(_controller.text));
-                            Navigator.pop(getIt
-                                .get<AppRouter>()
-                                .navigatorKey
-                                .currentContext!);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: GeneralConstants.mainColor,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(8.r),
-                                topRight: Radius.circular(8.r),
-                                bottomRight: Radius.circular(8.r),
-                                bottomLeft: Radius.circular(8.r),
-                              ),
-                            ),
-                            width: 0.45.sw,
-                            height: 40.h,
-                            alignment: Alignment.center,
-                            child: isLoading
-                                ? const CircularProgressIndicator()
-                                : Text(
-                                    'تایید',
-                                    style: TextStyle(
-                                        fontSize: 16.r,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                          ),
+              child: FormBuilder(
+                key: formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 15.h),
+                    CustomTextField(
+                      name: 'class_name',
+                      labelText: 'نام کلاس',
+                      keyboardType: TextInputType.name,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                            errorText: 'انتخاب اسم برای ساخت کلاس اجباری است'),
+                        FormBuilderValidators.maxLength(
+                          20,
+                          errorText:
+                              'لطفا اسمی که انتخاب میکنید کمتر از 20 حرف داشته باشد',
                         ),
-                      );
-                    },
-                    orElse: () {
-                      return const SizedBox();
-                    },
-                  ),
-                  SizedBox(height: 10.h),
-                ],
+                        FormBuilderValidators.minLength(
+                          3,
+                          errorText:
+                              'لطفا اسمی که انتخاب میکنید بیشتر از 3 حرف داشته باشد',
+                        ),
+                      ]),
+                      onSubmitted: (value) {
+                        if (formKey.currentState?.validate() ?? false) {
+                          getIt
+                              .get<ClassroomBloc>()
+                              .add(ClassroomEvent.createClasses(value!));
+                          _controller.clear();
+                          Navigator.pop(getIt
+                              .get<AppRouter>()
+                              .navigatorKey
+                              .currentContext!);
+                        } else {}
+                      },
+                      controller: _controller,
+                      initialValue: '',
+                      width: 200.w,
+                      heghit: 65.h,
+                    ),
+                    SizedBox(height: 15.h),
+                    classState.maybeWhen<Widget>(
+                      idle: (isLoading, classes, teacherClasses, currentClass) {
+                        return IgnorePointer(
+                          ignoring: isLoading,
+                          child: InkWell(
+                            onTap: () {
+                              if (formKey.currentState?.validate() ?? false) {
+                                getIt.get<ClassroomBloc>().add(
+                                    ClassroomEvent.createClasses(
+                                        _controller.text));
+                                debugPrint(
+                                    formKey.currentState?.value.toString());
+                                _controller.clear();
+                                Navigator.pop(getIt
+                                    .get<AppRouter>()
+                                    .navigatorKey
+                                    .currentContext!);
+                              } else {}
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: GeneralConstants.mainColor,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(8.r),
+                                  topRight: Radius.circular(8.r),
+                                  bottomRight: Radius.circular(8.r),
+                                  bottomLeft: Radius.circular(8.r),
+                                ),
+                              ),
+                              width: 0.45.sw,
+                              height: 40.h,
+                              alignment: Alignment.center,
+                              child: isLoading
+                                  ? const CircularProgressIndicator()
+                                  : Text(
+                                      'تایید',
+                                      style: TextStyle(
+                                          fontSize: 16.r,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white),
+                                      textAlign: TextAlign.center,
+                                    ),
+                            ),
+                          ),
+                        );
+                      },
+                      orElse: () {
+                        return const SizedBox();
+                      },
+                    ),
+                    SizedBox(height: 10.h),
+                  ],
+                ),
               ),
             );
           }),

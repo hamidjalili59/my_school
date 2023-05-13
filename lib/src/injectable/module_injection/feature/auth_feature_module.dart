@@ -7,6 +7,7 @@ import 'package:my_school/src/features/auth/data/repositories/auth_repository_im
 import 'package:my_school/src/features/auth/domain/repositories/auth_repository.dart';
 import 'package:my_school/src/features/auth/domain/use_cases/cache_auth_data_use_case.dart';
 import 'package:my_school/src/features/auth/domain/use_cases/get_cached_auth_data_use_case.dart';
+import 'package:my_school/src/features/auth/domain/use_cases/logout_auth_use_case.dart';
 import 'package:my_school/src/features/auth/domain/use_cases/otp_handshake_use_case.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
@@ -19,10 +20,13 @@ abstract class AuthFeatureModule {
         getIt.get<DatabaseService>(),
       );
 
-      AuthRepository get repo => AuthRepositoryImpl(remoteDS, localDS);
+  AuthRepository get repo => AuthRepositoryImpl(remoteDS, localDS);
 
-      OtpHandshakeUseCase get otpAuthorizaUseCase => OtpHandshakeUseCase(repo);
-      // OtpVerifyUseCase get otpVerifyUseCase => OtpVerifyUseCase(repo);
-      CacheAuthDataUseCase get cacheAuthDataUseCase => CacheAuthDataUseCase(repo);
-      GetCachedAuthDataUseCase get getCacheDataUseCase => GetCachedAuthDataUseCase(repo);
+  OtpHandshakeUseCase get otpAuthorizaUseCase => OtpHandshakeUseCase(repo);
+  // OtpVerifyUseCase get otpVerifyUseCase => OtpVerifyUseCase(repo);
+  CacheAuthDataUseCase get cacheAuthDataUseCase => CacheAuthDataUseCase(repo);
+  GetCachedAuthDataUseCase get getCacheDataUseCase =>
+      GetCachedAuthDataUseCase(repo);
+  LogoutAuthDataUseCase get logoutAuthDataUseCase =>
+      LogoutAuthDataUseCase(repo);
 }

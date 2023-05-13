@@ -64,7 +64,9 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
         .then(
           (value) => value.fold(
             (l) {
-              getIt.get<AppRouter>().pop();
+              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+                getIt.get<AppRouter>().pop();
+              }
               return emit(TeacherState.idle(
                   isLoading: false, teachers: state.teachers));
             },
@@ -72,7 +74,9 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
               List<Teacher> tempTeachers = state.teachers.toList();
               tempTeachers.add(r.teacher);
               emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
-              getIt.get<AppRouter>().pop();
+              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+                getIt.get<AppRouter>().pop();
+              }
             },
           ),
         );
@@ -91,7 +95,9 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
         .then(
           (value) => value.fold(
             (l) {
-              getIt.get<AppRouter>().pop();
+              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+                getIt.get<AppRouter>().pop();
+              }
               return emit(TeacherState.idle(
                   isLoading: false, teachers: state.teachers));
             },
@@ -101,7 +107,9 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
                 int.parse(getIt.get<OtpHandshakeResponse>().token),
               ));
               emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
-              getIt.get<AppRouter>().pop();
+              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
+                getIt.get<AppRouter>().pop();
+              }
             },
           ),
         );

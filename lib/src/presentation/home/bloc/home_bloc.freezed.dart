@@ -229,6 +229,7 @@ mixin _$HomeEvent {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(int schoolId) getTeachers,
     required TResult Function(int schoolId) getCourses,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -237,6 +238,7 @@ mixin _$HomeEvent {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(int schoolId)? getTeachers,
     TResult? Function(int schoolId)? getCourses,
+    TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -245,6 +247,7 @@ mixin _$HomeEvent {
     TResult Function(int schoolId)? getClasses,
     TResult Function(int schoolId)? getTeachers,
     TResult Function(int schoolId)? getCourses,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -254,6 +257,7 @@ mixin _$HomeEvent {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_GetTeachers value) getTeachers,
     required TResult Function(_GetCourses value) getCourses,
+    required TResult Function(_Logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -262,6 +266,7 @@ mixin _$HomeEvent {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_GetTeachers value)? getTeachers,
     TResult? Function(_GetCourses value)? getCourses,
+    TResult? Function(_Logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -270,6 +275,7 @@ mixin _$HomeEvent {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_GetTeachers value)? getTeachers,
     TResult Function(_GetCourses value)? getCourses,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -360,6 +366,7 @@ class _$_ChangePages implements _ChangePages {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(int schoolId) getTeachers,
     required TResult Function(int schoolId) getCourses,
+    required TResult Function() logout,
   }) {
     return changePages(index);
   }
@@ -371,6 +378,7 @@ class _$_ChangePages implements _ChangePages {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(int schoolId)? getTeachers,
     TResult? Function(int schoolId)? getCourses,
+    TResult? Function()? logout,
   }) {
     return changePages?.call(index);
   }
@@ -382,6 +390,7 @@ class _$_ChangePages implements _ChangePages {
     TResult Function(int schoolId)? getClasses,
     TResult Function(int schoolId)? getTeachers,
     TResult Function(int schoolId)? getCourses,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (changePages != null) {
@@ -397,6 +406,7 @@ class _$_ChangePages implements _ChangePages {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_GetTeachers value) getTeachers,
     required TResult Function(_GetCourses value) getCourses,
+    required TResult Function(_Logout value) logout,
   }) {
     return changePages(this);
   }
@@ -408,6 +418,7 @@ class _$_ChangePages implements _ChangePages {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_GetTeachers value)? getTeachers,
     TResult? Function(_GetCourses value)? getCourses,
+    TResult? Function(_Logout value)? logout,
   }) {
     return changePages?.call(this);
   }
@@ -419,6 +430,7 @@ class _$_ChangePages implements _ChangePages {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_GetTeachers value)? getTeachers,
     TResult Function(_GetCourses value)? getCourses,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (changePages != null) {
@@ -506,6 +518,7 @@ class _$_GetClasses implements _GetClasses {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(int schoolId) getTeachers,
     required TResult Function(int schoolId) getCourses,
+    required TResult Function() logout,
   }) {
     return getClasses(schoolId);
   }
@@ -517,6 +530,7 @@ class _$_GetClasses implements _GetClasses {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(int schoolId)? getTeachers,
     TResult? Function(int schoolId)? getCourses,
+    TResult? Function()? logout,
   }) {
     return getClasses?.call(schoolId);
   }
@@ -528,6 +542,7 @@ class _$_GetClasses implements _GetClasses {
     TResult Function(int schoolId)? getClasses,
     TResult Function(int schoolId)? getTeachers,
     TResult Function(int schoolId)? getCourses,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (getClasses != null) {
@@ -543,6 +558,7 @@ class _$_GetClasses implements _GetClasses {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_GetTeachers value) getTeachers,
     required TResult Function(_GetCourses value) getCourses,
+    required TResult Function(_Logout value) logout,
   }) {
     return getClasses(this);
   }
@@ -554,6 +570,7 @@ class _$_GetClasses implements _GetClasses {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_GetTeachers value)? getTeachers,
     TResult? Function(_GetCourses value)? getCourses,
+    TResult? Function(_Logout value)? logout,
   }) {
     return getClasses?.call(this);
   }
@@ -565,6 +582,7 @@ class _$_GetClasses implements _GetClasses {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_GetTeachers value)? getTeachers,
     TResult Function(_GetCourses value)? getCourses,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (getClasses != null) {
@@ -652,6 +670,7 @@ class _$_GetTeachers implements _GetTeachers {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(int schoolId) getTeachers,
     required TResult Function(int schoolId) getCourses,
+    required TResult Function() logout,
   }) {
     return getTeachers(schoolId);
   }
@@ -663,6 +682,7 @@ class _$_GetTeachers implements _GetTeachers {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(int schoolId)? getTeachers,
     TResult? Function(int schoolId)? getCourses,
+    TResult? Function()? logout,
   }) {
     return getTeachers?.call(schoolId);
   }
@@ -674,6 +694,7 @@ class _$_GetTeachers implements _GetTeachers {
     TResult Function(int schoolId)? getClasses,
     TResult Function(int schoolId)? getTeachers,
     TResult Function(int schoolId)? getCourses,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (getTeachers != null) {
@@ -689,6 +710,7 @@ class _$_GetTeachers implements _GetTeachers {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_GetTeachers value) getTeachers,
     required TResult Function(_GetCourses value) getCourses,
+    required TResult Function(_Logout value) logout,
   }) {
     return getTeachers(this);
   }
@@ -700,6 +722,7 @@ class _$_GetTeachers implements _GetTeachers {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_GetTeachers value)? getTeachers,
     TResult? Function(_GetCourses value)? getCourses,
+    TResult? Function(_Logout value)? logout,
   }) {
     return getTeachers?.call(this);
   }
@@ -711,6 +734,7 @@ class _$_GetTeachers implements _GetTeachers {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_GetTeachers value)? getTeachers,
     TResult Function(_GetCourses value)? getCourses,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (getTeachers != null) {
@@ -798,6 +822,7 @@ class _$_GetCourses implements _GetCourses {
     required TResult Function(int schoolId) getClasses,
     required TResult Function(int schoolId) getTeachers,
     required TResult Function(int schoolId) getCourses,
+    required TResult Function() logout,
   }) {
     return getCourses(schoolId);
   }
@@ -809,6 +834,7 @@ class _$_GetCourses implements _GetCourses {
     TResult? Function(int schoolId)? getClasses,
     TResult? Function(int schoolId)? getTeachers,
     TResult? Function(int schoolId)? getCourses,
+    TResult? Function()? logout,
   }) {
     return getCourses?.call(schoolId);
   }
@@ -820,6 +846,7 @@ class _$_GetCourses implements _GetCourses {
     TResult Function(int schoolId)? getClasses,
     TResult Function(int schoolId)? getTeachers,
     TResult Function(int schoolId)? getCourses,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (getCourses != null) {
@@ -835,6 +862,7 @@ class _$_GetCourses implements _GetCourses {
     required TResult Function(_GetClasses value) getClasses,
     required TResult Function(_GetTeachers value) getTeachers,
     required TResult Function(_GetCourses value) getCourses,
+    required TResult Function(_Logout value) logout,
   }) {
     return getCourses(this);
   }
@@ -846,6 +874,7 @@ class _$_GetCourses implements _GetCourses {
     TResult? Function(_GetClasses value)? getClasses,
     TResult? Function(_GetTeachers value)? getTeachers,
     TResult? Function(_GetCourses value)? getCourses,
+    TResult? Function(_Logout value)? logout,
   }) {
     return getCourses?.call(this);
   }
@@ -857,6 +886,7 @@ class _$_GetCourses implements _GetCourses {
     TResult Function(_GetClasses value)? getClasses,
     TResult Function(_GetTeachers value)? getTeachers,
     TResult Function(_GetCourses value)? getCourses,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (getCourses != null) {
@@ -873,4 +903,122 @@ abstract class _GetCourses implements HomeEvent {
   @JsonKey(ignore: true)
   _$$_GetCoursesCopyWith<_$_GetCourses> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LogoutCopyWith<$Res> {
+  factory _$$_LogoutCopyWith(_$_Logout value, $Res Function(_$_Logout) then) =
+      __$$_LogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LogoutCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_Logout>
+    implements _$$_LogoutCopyWith<$Res> {
+  __$$_LogoutCopyWithImpl(_$_Logout _value, $Res Function(_$_Logout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Logout implements _Logout {
+  const _$_Logout();
+
+  @override
+  String toString() {
+    return 'HomeEvent.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Logout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(AppbarPageType index) changePages,
+    required TResult Function(int schoolId) getClasses,
+    required TResult Function(int schoolId) getTeachers,
+    required TResult Function(int schoolId) getCourses,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(AppbarPageType index)? changePages,
+    TResult? Function(int schoolId)? getClasses,
+    TResult? Function(int schoolId)? getTeachers,
+    TResult? Function(int schoolId)? getCourses,
+    TResult? Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(AppbarPageType index)? changePages,
+    TResult Function(int schoolId)? getClasses,
+    TResult Function(int schoolId)? getTeachers,
+    TResult Function(int schoolId)? getCourses,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePages value) changePages,
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_GetTeachers value) getTeachers,
+    required TResult Function(_GetCourses value) getCourses,
+    required TResult Function(_Logout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangePages value)? changePages,
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_GetTeachers value)? getTeachers,
+    TResult? Function(_GetCourses value)? getCourses,
+    TResult? Function(_Logout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePages value)? changePages,
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_GetTeachers value)? getTeachers,
+    TResult Function(_GetCourses value)? getCourses,
+    TResult Function(_Logout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Logout implements HomeEvent {
+  const factory _Logout() = _$_Logout;
 }

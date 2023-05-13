@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
 import 'package:my_school/src/presentation/auth/bloc/auth_bloc.dart';
-import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
+import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
 
 class UserAuthenticationPage extends StatelessWidget {
   UserAuthenticationPage({
@@ -13,6 +15,7 @@ class UserAuthenticationPage extends StatelessWidget {
   }) : super(key: key);
   final AuthBloc bloc;
   final TextEditingController phoneController = TextEditingController(text: '');
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +43,38 @@ class UserAuthenticationPage extends StatelessWidget {
                           fontSize: 18.r, fontWeight: FontWeight.w600),
                     ),
                   ),
-                  SizedBox(
-                    height: 50.h,
+                  SizedBox(height: 20.h),
+                  FormBuilder(
+                    key: _formKey,
                     child: CustomTextField(
-                      keyboardType: TextInputType.text,
+                      name: 'phone',
+                      labelText: 'شماره تلفن',
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                            errorText: 'شماره تلفن برای ورود اجباری است'),
+                        FormBuilderValidators.numeric(
+                            errorText: 'شماره تلفن باید عدد باشد'),
+                        FormBuilderValidators.equalLength(
+                          11,
+                          errorText:
+                              'شماره تلفن درست نیست ، شماره باید 11 رقم باشد و با صفر شروع شود',
+                        ),
+                      ]),
                       onSubmitted: (value) {
-                        bloc.add(
-                          AuthEvent.otpHandshake(
-                            double.parse(value),
-                          ),
-                        );
+                        if (_formKey.currentState?.validate() ?? false) {
+                          bloc.add(
+                            AuthEvent.otpHandshake(
+                              double.parse(value!),
+                            ),
+                          );
+                          phoneController.clear();
+                        } else {}
                       },
-                      maxLength: 15,
-                      icon: Icons.phone_android,
                       controller: phoneController,
+                      keyboardType: TextInputType.phone,
+                      initialValue: '',
+                      width: 200.w,
+                      heghit: 65.h,
                     ),
                   ),
                   SizedBox(height: 50.h),
@@ -64,11 +85,14 @@ class UserAuthenticationPage extends StatelessWidget {
                       splashColor: const Color.fromARGB(255, 141, 108, 159),
                       borderRadius: BorderRadius.circular(8.r),
                       onTap: () {
-                        bloc.add(
-                          AuthEvent.otpHandshake(
-                            double.parse(phoneController.text),
-                          ),
-                        );
+                        if (_formKey.currentState?.validate() ?? false) {
+                          bloc.add(
+                            AuthEvent.otpHandshake(
+                              double.parse(phoneController.text),
+                            ),
+                          );
+                          phoneController.clear();
+                        } else {}
                       },
                       child: Container(
                         width: 0.45.sw,

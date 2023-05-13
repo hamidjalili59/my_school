@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_school/src/injectable/injectable.dart';
-import 'package:my_school/src/presentation/auth/widgets/textfield_custom.dart';
 import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
+import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
 import 'package:ndialog/ndialog.dart';
 
 class ClassesCardWidget extends StatelessWidget {
@@ -118,6 +120,7 @@ class ClassesCardWidget extends StatelessWidget {
   }
 
   _updateClassroomDialogMethod({Classroom? classroom}) {
+    final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
     if (classroom != null) {
       _classNameController.text = classroom.className;
     }
@@ -151,68 +154,107 @@ class ClassesCardWidget extends StatelessWidget {
           maxHeight: 0.8.sh,
           maxWidth: 0.8.sw,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 10.h),
-              SizedBox(
-                width: 0.6.sw,
-                height: 55.h,
-                child: CustomTextField(
-                  keyboardType: TextInputType.text,
-                  maxLength: 15,
-                  icon: Icons.menu_book,
+        child: FormBuilder(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 10.h),
+                CustomTextField(
+                  key: formKey,
+                  name: 'class_name',
+                  labelText: 'نام کلاس',
+                  keyboardType: TextInputType.name,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                        errorText: 'انتخاب اسم برای ساخت کلاس اجباری است'),
+                    FormBuilderValidators.maxLength(
+                      20,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید کمتر از 20 حرف داشته باشد',
+                    ),
+                    FormBuilderValidators.minLength(
+                      3,
+                      errorText:
+                          'لطفا اسمی که انتخاب میکنید بیشتر از 3 حرف داشته باشد',
+                    ),
+                  ]),
+                  onSubmitted: (value) {
+                    if (formKey.currentState?.validate() ?? false) {
+                      getIt.get<ClassroomBloc>().add(
+                            ClassroomEvent.updateClass(
+                              Classroom(
+                                classID: classroom!.classID,
+                                schoolId: classroom.schoolId,
+                                className: value!,
+                              ),
+                            ),
+                          );
+                      _classNameController.clear();
+                      Navigator.pop(
+                          getIt.get<AppRouter>().navigatorKey.currentContext!);
+                    } else {}
+                  },
                   controller: _classNameController,
+                  initialValue: '',
+                  width: 200.w,
+                  heghit: 65.h,
                 ),
-              ),
-              SizedBox(height: 15.h),
-              BlocBuilder<ClassroomBloc, ClassroomState>(
-                  bloc: getIt.get<ClassroomBloc>(),
-                  builder: (context, classroomState) {
-                    return IgnorePointer(
-                      ignoring: classroomState.isLoading,
-                      child: InkWell(
-                        onTap: () {
-                          if (classroomState.isLoading) {
-                            return;
-                          }
-                          getIt.get<ClassroomBloc>().add(
-                                ClassroomEvent.updateClass(
-                                  Classroom(
-                                    classID: classroom!.classID,
-                                    schoolId: classroom.schoolId,
-                                    className: _classNameController.text,
+                SizedBox(height: 15.h),
+                BlocBuilder<ClassroomBloc, ClassroomState>(
+                    bloc: getIt.get<ClassroomBloc>(),
+                    builder: (context, classroomState) {
+                      return IgnorePointer(
+                        ignoring: classroomState.isLoading,
+                        child: InkWell(
+                          onTap: () {
+                            if (classroomState.isLoading) {
+                              return;
+                            }
+                            if (formKey.currentState?.validate() ?? false) {
+                              getIt.get<ClassroomBloc>().add(
+                                    ClassroomEvent.updateClass(
+                                      Classroom(
+                                        classID: classroom!.classID,
+                                        schoolId: classroom.schoolId,
+                                        className: _classNameController.text,
+                                      ),
+                                    ),
+                                  );
+                              _classNameController.clear();
+                              Navigator.pop(getIt
+                                  .get<AppRouter>()
+                                  .navigatorKey
+                                  .currentContext!);
+                            } else {}
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: GeneralConstants.mainColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.r)),
+                            ),
+                            width: 0.45.sw,
+                            height: 40.h,
+                            alignment: Alignment.center,
+                            child: classroomState.isLoading
+                                ? const CircularProgressIndicator()
+                                : Text(
+                                    'تایید',
+                                    style: TextStyle(
+                                      fontSize: 16.r,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                ),
-                              );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: GeneralConstants.mainColor,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.r)),
                           ),
-                          width: 0.45.sw,
-                          height: 40.h,
-                          alignment: Alignment.center,
-                          child: classroomState.isLoading
-                              ? const CircularProgressIndicator()
-                              : Text(
-                                  'تایید',
-                                  style: TextStyle(
-                                    fontSize: 16.r,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
                         ),
-                      ),
-                    );
-                  }),
-              SizedBox(height: 10.h),
-            ],
+                      );
+                    }),
+                SizedBox(height: 10.h),
+              ],
+            ),
           ),
         ),
       ),

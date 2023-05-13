@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-TextField customTextField({
+TextField customTextFieldMethod({
   TextInputType textType = TextInputType.text,
   int maxLength = 9,
   bool isEnable = false,

@@ -50,7 +50,7 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
 
   FutureOr<void> _onAddCourse(
       _AddCourse event, Emitter<CourseState> emit) async {
-    emit(const CourseState.idle(isLoading: true));
+    emit(CourseState.idle(isLoading: true, courses: state.courses));
     await _addCourseUseCase.call(param: tuple.Tuple1(event.courseName)).then(
           (value) => value.fold(
             (l) => emit(

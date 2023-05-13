@@ -28,12 +28,13 @@ dependencies:
   flutter_native_splash: ^2.2.11
   flutter_screenutil: ^5.5.4
   flutter_svg: ^2.0.5
+  form_builder_validators: ^9.0.0
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   injectable: ^2.1.1
-  intl: ^0.18.1
+  intl: ^0.18.0
   json_annotation: ^4.7.0
   logger: ^1.1.0
   lottie: ^2.3.2

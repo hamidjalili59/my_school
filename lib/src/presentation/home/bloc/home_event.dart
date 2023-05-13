@@ -14,4 +14,5 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.getCourses(
     int schoolId,
   ) = _GetCourses;
+  const factory HomeEvent.logout() = _Logout;
 }
