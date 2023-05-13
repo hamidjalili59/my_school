@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/config/utils/function_helper.dart';
+import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
@@ -112,6 +114,31 @@ class ClassesCardWidget extends StatelessWidget {
                       textDirection: TextDirection.rtl),
                 ),
               ),
+              GeneralConstants.userType == UserType.parent
+                  ? const SizedBox()
+                  : Align(
+                      alignment: Alignment.bottomLeft,
+                      child: InkWell(
+                        onTap: () {
+                          FunctionHelper().removeDialog(
+                            'کلاس',
+                            () => getIt.get<ClassroomBloc>().add(
+                                  ClassroomEvent.removeClass(
+                                    classroom.classID,
+                                  ),
+                                ),
+                          );
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 5.h, left: 18.w),
+                          child: Icon(
+                            Icons.close_rounded,
+                            color: Colors.black45,
+                            size: 24.r,
+                          ),
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),

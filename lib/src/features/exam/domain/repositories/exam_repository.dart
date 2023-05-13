@@ -14,7 +14,7 @@ abstract class ExamRepository {
     required bool isDone,
   });
   //
-  Future<Either<ExamFailure, void>> removeExam({
+  Future<Either<ExamFailure, ExamSuccessResponse>> removeExam({
     required int examId,
   });
   //

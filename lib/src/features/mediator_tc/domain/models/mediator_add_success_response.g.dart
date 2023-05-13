@@ -1,32 +1,33 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'score_success_response.dart';
+part of 'mediator_add_success_response.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ScoreSuccessResponseAdapter extends TypeAdapter<ScoreSuccessResponse> {
+class MediatorAddSuccessResponseAdapter
+    extends TypeAdapter<MediatorAddSuccessResponse> {
   @override
-  final int typeId = 28;
+  final int typeId = 38;
 
   @override
-  ScoreSuccessResponse read(BinaryReader reader) {
+  MediatorAddSuccessResponse read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ScoreSuccessResponse(
-      score: fields[0] as Score,
+    return MediatorAddSuccessResponse(
+      mediator: fields[0] as Mediator,
     );
   }
 
   @override
-  void write(BinaryWriter writer, ScoreSuccessResponse obj) {
+  void write(BinaryWriter writer, MediatorAddSuccessResponse obj) {
     writer
       ..writeByte(1)
       ..writeByte(0)
-      ..write(obj.score);
+      ..write(obj.mediator);
   }
 
   @override
@@ -35,7 +36,7 @@ class ScoreSuccessResponseAdapter extends TypeAdapter<ScoreSuccessResponse> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ScoreSuccessResponseAdapter &&
+      other is MediatorAddSuccessResponseAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -44,14 +45,14 @@ class ScoreSuccessResponseAdapter extends TypeAdapter<ScoreSuccessResponse> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ScoreSuccessResponse _$ScoreSuccessResponseFromJson(
+MediatorAddSuccessResponse _$MediatorAddSuccessResponseFromJson(
         Map<String, dynamic> json) =>
-    ScoreSuccessResponse(
-      score: Score.fromJson(json['Grade'] as Map<String, dynamic>),
+    MediatorAddSuccessResponse(
+      mediator: Mediator.fromJson(json['MediatorTC'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ScoreSuccessResponseToJson(
-        ScoreSuccessResponse instance) =>
+Map<String, dynamic> _$MediatorAddSuccessResponseToJson(
+        MediatorAddSuccessResponse instance) =>
     <String, dynamic>{
-      'Grade': instance.score,
+      'MediatorTC': instance.mediator,
     };

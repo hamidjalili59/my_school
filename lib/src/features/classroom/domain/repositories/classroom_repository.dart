@@ -13,7 +13,7 @@ abstract class ClassroomRepository {
     required Classroom classroom,
   });
   //
-  Future<Either<ClassroomFailure, void>> removeClassroom({
+  Future<Either<ClassroomFailure, ClassroomSuccessResponse>> removeClassroom({
     required int classroomId,
   });
   //

@@ -8,6 +8,8 @@ class TeacherEvent with _$TeacherEvent {
   const factory TeacherEvent.addTeacher(
     Teacher teacher,
   ) = _AddTeacher;
+
+  const factory TeacherEvent.removeTeacher(int teacherId) = _RemoveTeacher;
   const factory TeacherEvent.updateTeacher(
     Teacher teacher,
   ) = _UpdateTeacher;

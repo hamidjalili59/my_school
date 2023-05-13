@@ -11,6 +11,7 @@ import 'package:my_school/src/features/student/domain/use_cases/add_student_use_
 import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_school/src/features/student/domain/use_cases/get_students_parent_use_case.dart';
 import 'package:my_school/src/features/student/domain/use_cases/get_students_use_case.dart';
+import 'package:my_school/src/features/student/domain/use_cases/remove_student_use_case.dart';
 import 'package:my_school/src/features/student/domain/use_cases/update_student_use_case.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
@@ -22,6 +23,7 @@ part 'student_bloc.freezed.dart';
 class StudentBloc extends Bloc<StudentEvent, StudentState> {
   final GetStudentUseCase _getStudentUseCase;
   final AddStudentUseCase _addStudentUseCase;
+  final RemoveStudentUseCase _removeStudentUseCase;
   final GetStudentParentUseCase _getStudentParentUseCase;
   final UpdateStudentUseCase _updateStudentUseCase;
   StudentBloc(
@@ -29,8 +31,10 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     this._addStudentUseCase,
     this._getStudentParentUseCase,
     this._updateStudentUseCase,
+    this._removeStudentUseCase,
   ) : super(const StudentState.idle(isLoading: true)) {
     on<_GetStudents>(_onGetStudents);
+    on<_RemoveStudent>(_onRemoveStudent);
     on<_AddStudent>(_onAddStudent);
     on<_GetStudentsParent>(_onAddStudentParent);
     on<_UpdateStudent>(_onUpdateStudent);
@@ -127,5 +131,32 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
             },
           ),
         );
+  }
+
+  FutureOr<void> _onRemoveStudent(
+      _RemoveStudent event, Emitter<StudentState> emit) async {
+    emit(StudentState.idle(isLoading: true, students: state.students));
+    try {
+      await _removeStudentUseCase
+          .call(param: tuple.Tuple1<int>(event.studentId))
+          .then(
+            (value) => value.fold(
+              (l) => emit(StudentState.idle(
+                  isLoading: false, students: state.students)),
+              (r) {
+                List<Student> tempList = state.students.toList();
+                tempList.removeAt(tempList
+                    .map((e) => e.studentId)
+                    .toList()
+                    .indexOf(event.studentId));
+                emit(StudentState.idle(isLoading: false, students: tempList));
+              },
+            ),
+          );
+      getIt.get<AppRouter>().pop();
+    } catch (e) {
+      emit(StudentState.idle(isLoading: false, students: state.students));
+      getIt.get<AppRouter>().pop();
+    }
   }
 }

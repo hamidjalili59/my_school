@@ -348,6 +348,7 @@ mixin _$TeacherDetailEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Course? course) selectCourseItem,
     required TResult Function(Teacher? teacher) selectTeacherItem,
+    required TResult Function(int mediatorId) removeMediator,
     required TResult Function() acceptTeacher,
     required TResult Function() getMediators,
   }) =>
@@ -356,6 +357,7 @@ mixin _$TeacherDetailEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Course? course)? selectCourseItem,
     TResult? Function(Teacher? teacher)? selectTeacherItem,
+    TResult? Function(int mediatorId)? removeMediator,
     TResult? Function()? acceptTeacher,
     TResult? Function()? getMediators,
   }) =>
@@ -364,6 +366,7 @@ mixin _$TeacherDetailEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Course? course)? selectCourseItem,
     TResult Function(Teacher? teacher)? selectTeacherItem,
+    TResult Function(int mediatorId)? removeMediator,
     TResult Function()? acceptTeacher,
     TResult Function()? getMediators,
     required TResult orElse(),
@@ -373,6 +376,7 @@ mixin _$TeacherDetailEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_SelectCourseItem value) selectCourseItem,
     required TResult Function(_SelectTeacherItem value) selectTeacherItem,
+    required TResult Function(_RemoveMediator value) removeMediator,
     required TResult Function(_AcceptTeacher value) acceptTeacher,
     required TResult Function(_GetMediators value) getMediators,
   }) =>
@@ -381,6 +385,7 @@ mixin _$TeacherDetailEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SelectCourseItem value)? selectCourseItem,
     TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult? Function(_RemoveMediator value)? removeMediator,
     TResult? Function(_AcceptTeacher value)? acceptTeacher,
     TResult? Function(_GetMediators value)? getMediators,
   }) =>
@@ -389,6 +394,7 @@ mixin _$TeacherDetailEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SelectCourseItem value)? selectCourseItem,
     TResult Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult Function(_RemoveMediator value)? removeMediator,
     TResult Function(_AcceptTeacher value)? acceptTeacher,
     TResult Function(_GetMediators value)? getMediators,
     required TResult orElse(),
@@ -494,6 +500,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
   TResult when<TResult extends Object?>({
     required TResult Function(Course? course) selectCourseItem,
     required TResult Function(Teacher? teacher) selectTeacherItem,
+    required TResult Function(int mediatorId) removeMediator,
     required TResult Function() acceptTeacher,
     required TResult Function() getMediators,
   }) {
@@ -505,6 +512,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Course? course)? selectCourseItem,
     TResult? Function(Teacher? teacher)? selectTeacherItem,
+    TResult? Function(int mediatorId)? removeMediator,
     TResult? Function()? acceptTeacher,
     TResult? Function()? getMediators,
   }) {
@@ -516,6 +524,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Course? course)? selectCourseItem,
     TResult Function(Teacher? teacher)? selectTeacherItem,
+    TResult Function(int mediatorId)? removeMediator,
     TResult Function()? acceptTeacher,
     TResult Function()? getMediators,
     required TResult orElse(),
@@ -531,6 +540,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
   TResult map<TResult extends Object?>({
     required TResult Function(_SelectCourseItem value) selectCourseItem,
     required TResult Function(_SelectTeacherItem value) selectTeacherItem,
+    required TResult Function(_RemoveMediator value) removeMediator,
     required TResult Function(_AcceptTeacher value) acceptTeacher,
     required TResult Function(_GetMediators value) getMediators,
   }) {
@@ -542,6 +552,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SelectCourseItem value)? selectCourseItem,
     TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult? Function(_RemoveMediator value)? removeMediator,
     TResult? Function(_AcceptTeacher value)? acceptTeacher,
     TResult? Function(_GetMediators value)? getMediators,
   }) {
@@ -553,6 +564,7 @@ class _$_SelectCourseItem implements _SelectCourseItem {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SelectCourseItem value)? selectCourseItem,
     TResult Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult Function(_RemoveMediator value)? removeMediator,
     TResult Function(_AcceptTeacher value)? acceptTeacher,
     TResult Function(_GetMediators value)? getMediators,
     required TResult orElse(),
@@ -654,6 +666,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
   TResult when<TResult extends Object?>({
     required TResult Function(Course? course) selectCourseItem,
     required TResult Function(Teacher? teacher) selectTeacherItem,
+    required TResult Function(int mediatorId) removeMediator,
     required TResult Function() acceptTeacher,
     required TResult Function() getMediators,
   }) {
@@ -665,6 +678,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Course? course)? selectCourseItem,
     TResult? Function(Teacher? teacher)? selectTeacherItem,
+    TResult? Function(int mediatorId)? removeMediator,
     TResult? Function()? acceptTeacher,
     TResult? Function()? getMediators,
   }) {
@@ -676,6 +690,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Course? course)? selectCourseItem,
     TResult Function(Teacher? teacher)? selectTeacherItem,
+    TResult Function(int mediatorId)? removeMediator,
     TResult Function()? acceptTeacher,
     TResult Function()? getMediators,
     required TResult orElse(),
@@ -691,6 +706,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
   TResult map<TResult extends Object?>({
     required TResult Function(_SelectCourseItem value) selectCourseItem,
     required TResult Function(_SelectTeacherItem value) selectTeacherItem,
+    required TResult Function(_RemoveMediator value) removeMediator,
     required TResult Function(_AcceptTeacher value) acceptTeacher,
     required TResult Function(_GetMediators value) getMediators,
   }) {
@@ -702,6 +718,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SelectCourseItem value)? selectCourseItem,
     TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult? Function(_RemoveMediator value)? removeMediator,
     TResult? Function(_AcceptTeacher value)? acceptTeacher,
     TResult? Function(_GetMediators value)? getMediators,
   }) {
@@ -713,6 +730,7 @@ class _$_SelectTeacherItem implements _SelectTeacherItem {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SelectCourseItem value)? selectCourseItem,
     TResult Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult Function(_RemoveMediator value)? removeMediator,
     TResult Function(_AcceptTeacher value)? acceptTeacher,
     TResult Function(_GetMediators value)? getMediators,
     required TResult orElse(),
@@ -731,6 +749,158 @@ abstract class _SelectTeacherItem implements TeacherDetailEvent {
   Teacher? get teacher;
   @JsonKey(ignore: true)
   _$$_SelectTeacherItemCopyWith<_$_SelectTeacherItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RemoveMediatorCopyWith<$Res> {
+  factory _$$_RemoveMediatorCopyWith(
+          _$_RemoveMediator value, $Res Function(_$_RemoveMediator) then) =
+      __$$_RemoveMediatorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int mediatorId});
+}
+
+/// @nodoc
+class __$$_RemoveMediatorCopyWithImpl<$Res>
+    extends _$TeacherDetailEventCopyWithImpl<$Res, _$_RemoveMediator>
+    implements _$$_RemoveMediatorCopyWith<$Res> {
+  __$$_RemoveMediatorCopyWithImpl(
+      _$_RemoveMediator _value, $Res Function(_$_RemoveMediator) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mediatorId = null,
+  }) {
+    return _then(_$_RemoveMediator(
+      null == mediatorId
+          ? _value.mediatorId
+          : mediatorId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RemoveMediator implements _RemoveMediator {
+  const _$_RemoveMediator(this.mediatorId);
+
+  @override
+  final int mediatorId;
+
+  @override
+  String toString() {
+    return 'TeacherDetailEvent.removeMediator(mediatorId: $mediatorId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveMediator &&
+            (identical(other.mediatorId, mediatorId) ||
+                other.mediatorId == mediatorId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, mediatorId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RemoveMediatorCopyWith<_$_RemoveMediator> get copyWith =>
+      __$$_RemoveMediatorCopyWithImpl<_$_RemoveMediator>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Course? course) selectCourseItem,
+    required TResult Function(Teacher? teacher) selectTeacherItem,
+    required TResult Function(int mediatorId) removeMediator,
+    required TResult Function() acceptTeacher,
+    required TResult Function() getMediators,
+  }) {
+    return removeMediator(mediatorId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Course? course)? selectCourseItem,
+    TResult? Function(Teacher? teacher)? selectTeacherItem,
+    TResult? Function(int mediatorId)? removeMediator,
+    TResult? Function()? acceptTeacher,
+    TResult? Function()? getMediators,
+  }) {
+    return removeMediator?.call(mediatorId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Course? course)? selectCourseItem,
+    TResult Function(Teacher? teacher)? selectTeacherItem,
+    TResult Function(int mediatorId)? removeMediator,
+    TResult Function()? acceptTeacher,
+    TResult Function()? getMediators,
+    required TResult orElse(),
+  }) {
+    if (removeMediator != null) {
+      return removeMediator(mediatorId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SelectCourseItem value) selectCourseItem,
+    required TResult Function(_SelectTeacherItem value) selectTeacherItem,
+    required TResult Function(_RemoveMediator value) removeMediator,
+    required TResult Function(_AcceptTeacher value) acceptTeacher,
+    required TResult Function(_GetMediators value) getMediators,
+  }) {
+    return removeMediator(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SelectCourseItem value)? selectCourseItem,
+    TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult? Function(_RemoveMediator value)? removeMediator,
+    TResult? Function(_AcceptTeacher value)? acceptTeacher,
+    TResult? Function(_GetMediators value)? getMediators,
+  }) {
+    return removeMediator?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SelectCourseItem value)? selectCourseItem,
+    TResult Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult Function(_RemoveMediator value)? removeMediator,
+    TResult Function(_AcceptTeacher value)? acceptTeacher,
+    TResult Function(_GetMediators value)? getMediators,
+    required TResult orElse(),
+  }) {
+    if (removeMediator != null) {
+      return removeMediator(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveMediator implements TeacherDetailEvent {
+  const factory _RemoveMediator(final int mediatorId) = _$_RemoveMediator;
+
+  int get mediatorId;
+  @JsonKey(ignore: true)
+  _$$_RemoveMediatorCopyWith<_$_RemoveMediator> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -774,6 +944,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
   TResult when<TResult extends Object?>({
     required TResult Function(Course? course) selectCourseItem,
     required TResult Function(Teacher? teacher) selectTeacherItem,
+    required TResult Function(int mediatorId) removeMediator,
     required TResult Function() acceptTeacher,
     required TResult Function() getMediators,
   }) {
@@ -785,6 +956,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Course? course)? selectCourseItem,
     TResult? Function(Teacher? teacher)? selectTeacherItem,
+    TResult? Function(int mediatorId)? removeMediator,
     TResult? Function()? acceptTeacher,
     TResult? Function()? getMediators,
   }) {
@@ -796,6 +968,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Course? course)? selectCourseItem,
     TResult Function(Teacher? teacher)? selectTeacherItem,
+    TResult Function(int mediatorId)? removeMediator,
     TResult Function()? acceptTeacher,
     TResult Function()? getMediators,
     required TResult orElse(),
@@ -811,6 +984,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
   TResult map<TResult extends Object?>({
     required TResult Function(_SelectCourseItem value) selectCourseItem,
     required TResult Function(_SelectTeacherItem value) selectTeacherItem,
+    required TResult Function(_RemoveMediator value) removeMediator,
     required TResult Function(_AcceptTeacher value) acceptTeacher,
     required TResult Function(_GetMediators value) getMediators,
   }) {
@@ -822,6 +996,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SelectCourseItem value)? selectCourseItem,
     TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult? Function(_RemoveMediator value)? removeMediator,
     TResult? Function(_AcceptTeacher value)? acceptTeacher,
     TResult? Function(_GetMediators value)? getMediators,
   }) {
@@ -833,6 +1008,7 @@ class _$_AcceptTeacher implements _AcceptTeacher {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SelectCourseItem value)? selectCourseItem,
     TResult Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult Function(_RemoveMediator value)? removeMediator,
     TResult Function(_AcceptTeacher value)? acceptTeacher,
     TResult Function(_GetMediators value)? getMediators,
     required TResult orElse(),
@@ -888,6 +1064,7 @@ class _$_GetMediators implements _GetMediators {
   TResult when<TResult extends Object?>({
     required TResult Function(Course? course) selectCourseItem,
     required TResult Function(Teacher? teacher) selectTeacherItem,
+    required TResult Function(int mediatorId) removeMediator,
     required TResult Function() acceptTeacher,
     required TResult Function() getMediators,
   }) {
@@ -899,6 +1076,7 @@ class _$_GetMediators implements _GetMediators {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Course? course)? selectCourseItem,
     TResult? Function(Teacher? teacher)? selectTeacherItem,
+    TResult? Function(int mediatorId)? removeMediator,
     TResult? Function()? acceptTeacher,
     TResult? Function()? getMediators,
   }) {
@@ -910,6 +1088,7 @@ class _$_GetMediators implements _GetMediators {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Course? course)? selectCourseItem,
     TResult Function(Teacher? teacher)? selectTeacherItem,
+    TResult Function(int mediatorId)? removeMediator,
     TResult Function()? acceptTeacher,
     TResult Function()? getMediators,
     required TResult orElse(),
@@ -925,6 +1104,7 @@ class _$_GetMediators implements _GetMediators {
   TResult map<TResult extends Object?>({
     required TResult Function(_SelectCourseItem value) selectCourseItem,
     required TResult Function(_SelectTeacherItem value) selectTeacherItem,
+    required TResult Function(_RemoveMediator value) removeMediator,
     required TResult Function(_AcceptTeacher value) acceptTeacher,
     required TResult Function(_GetMediators value) getMediators,
   }) {
@@ -936,6 +1116,7 @@ class _$_GetMediators implements _GetMediators {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SelectCourseItem value)? selectCourseItem,
     TResult? Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult? Function(_RemoveMediator value)? removeMediator,
     TResult? Function(_AcceptTeacher value)? acceptTeacher,
     TResult? Function(_GetMediators value)? getMediators,
   }) {
@@ -947,6 +1128,7 @@ class _$_GetMediators implements _GetMediators {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SelectCourseItem value)? selectCourseItem,
     TResult Function(_SelectTeacherItem value)? selectTeacherItem,
+    TResult Function(_RemoveMediator value)? removeMediator,
     TResult Function(_AcceptTeacher value)? acceptTeacher,
     TResult Function(_GetMediators value)? getMediators,
     required TResult orElse(),

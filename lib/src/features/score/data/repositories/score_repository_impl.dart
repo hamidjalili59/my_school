@@ -122,4 +122,24 @@ class ScoreRepositoryImpl extends ScoreRepository {
           ),
         );
   }
+
+  @override
+  Future<Either<ScoreFailure, ScoreSuccessResponse>> removeScore(
+      {required int gradeId}) {
+    return _remoteDS.deleteScore(gradeId: gradeId).then(
+          (value) => value.fold(
+            (l) => left<ScoreFailure, ScoreSuccessResponse>(
+              ScoreFailure.api(l),
+            ),
+            (r) async {
+              final removeMediatorFromServer = ScoreSuccessResponse.fromJson(
+                BaseResponse.fromJson(r.data ?? {}).payload,
+              );
+              return right<ScoreFailure, ScoreSuccessResponse>(
+                removeMediatorFromServer,
+              );
+            },
+          ),
+        );
+  }
 }

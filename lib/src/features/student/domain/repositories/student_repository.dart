@@ -13,7 +13,7 @@ abstract class StudentRepository {
     required Student student,
   });
   //
-  Future<Either<StudentFailure, void>> removeStudent({
+  Future<Either<StudentFailure, StudentSuccessResponse>> removeStudent({
     required int studentId,
   });
   //

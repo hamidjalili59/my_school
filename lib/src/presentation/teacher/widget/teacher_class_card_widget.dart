@@ -5,6 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/config/utils/function_helper.dart';
+import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
+import 'package:my_school/src/features/mediator_tc/domain/models/mediator.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/course/bloc/course/course_bloc.dart';
 import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
@@ -100,9 +103,7 @@ class TeacherClassWidget extends StatelessWidget {
                   padding: EdgeInsets.only(top: 16.h, right: 12.w, left: 12.w),
                   itemBuilder: (context, index) {
                     return TeacherClassTileCardWidget(
-                      courseName: mediatorState.mediators[index].courseName,
-                      teacherName:
-                          mediatorState.mediators[index].basicInfo!.name,
+                      mediator: mediatorState.mediators[index],
                     );
                   },
                 ),
@@ -284,12 +285,10 @@ class AddMediatorDialogWidget extends StatelessWidget {
 }
 
 class TeacherClassTileCardWidget extends StatelessWidget {
-  final String teacherName;
-  final String courseName;
+  final Mediator mediator;
   const TeacherClassTileCardWidget({
     super.key,
-    required this.teacherName,
-    required this.courseName,
+    required this.mediator,
   });
 
   @override
@@ -309,6 +308,25 @@ class TeacherClassTileCardWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          GeneralConstants.userType == UserType.parent
+              ? const SizedBox()
+              : Align(
+                  alignment: Alignment.topRight,
+                  child: InkWell(
+                    onTap: () => FunctionHelper().removeDialog(
+                      'دبیر کلاس',
+                      () => getIt.get<TeacherDetailBloc>().add(
+                            TeacherDetailEvent.removeMediator(
+                                mediator.mediatorId),
+                          ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 16.0.w, vertical: 8.h),
+                      child: Icon(Icons.close, size: 26.r),
+                    ),
+                  ),
+                ),
           Flexible(
             flex: 9,
             child: CircleAvatar(
@@ -324,7 +342,7 @@ class TeacherClassTileCardWidget extends StatelessWidget {
             flex: 3,
             child: SizedBox(
               child: Text(
-                '$teacherName\n$courseName',
+                '${mediator.basicInfo!.name}\n${mediator.courseName}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black87,

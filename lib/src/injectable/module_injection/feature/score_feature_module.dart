@@ -9,6 +9,7 @@ import 'package:my_school/src/features/score/domain/use_cases/add_score_use_case
 import 'package:my_school/src/features/score/domain/use_cases/cache_score_data_use_case.dart';
 import 'package:my_school/src/features/score/domain/use_cases/get_cached_score_data_use_case.dart';
 import 'package:my_school/src/features/score/domain/use_cases/get_scores_use_case.dart';
+import 'package:my_school/src/features/score/domain/use_cases/remove_score_use_case.dart';
 import 'package:my_school/src/features/score/domain/use_cases/update_score_use_case.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
@@ -29,6 +30,6 @@ abstract class ScoreFeatureModule {
   GetCachedScoreDataUseCase get getCachedScoreDataUseCase =>
       GetCachedScoreDataUseCase(repo);
   GetScoreUseCase get getScoresUseCase => GetScoreUseCase(repo);
-  UpdateScoreUseCase get updateScoreUseCase =>
-      UpdateScoreUseCase(repo);
+  UpdateScoreUseCase get updateScoreUseCase => UpdateScoreUseCase(repo);
+  RemoveScoreUseCase get removeScoreUseCase => RemoveScoreUseCase(repo);
 }

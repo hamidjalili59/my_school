@@ -97,9 +97,7 @@ class _ExamPageState extends State<ExamPage> {
                     itemCount: examState.exams.length,
                     itemBuilder: (context, index) {
                       return CustomCardExamWidget(
-                        examDescription: examState.exams[index].examDescription,
-                        isDone: examState.exams[index].isDone,
-                        teacherName: examState.exams[index].teacherName,
+                        exam: examState.exams[index],
                       );
                     },
                   ));

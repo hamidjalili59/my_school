@@ -8,6 +8,7 @@ import 'package:my_school/src/features/classroom/domain/models/classroom_get_res
 import 'package:my_school/src/features/classroom/domain/use_cases/add_classroom_use_case.dart';
 import 'package:my_school/src/features/classroom/domain/use_cases/get_classrooms_use_case.dart';
 import 'package:my_school/src/features/classroom/domain/use_cases/get_teacher_classroom_use_case.dart';
+import 'package:my_school/src/features/classroom/domain/use_cases/remove_classroom_use_case.dart';
 import 'package:my_school/src/features/classroom/domain/use_cases/update_classroom_use_case.dart';
 import 'package:my_school/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_school/src/config/utils/function_helper.dart';
@@ -22,6 +23,7 @@ part 'classroom_bloc.freezed.dart';
 class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
   final GetClassroomsUseCase _getClassroomsUseCase;
   final AddClassroomUseCase _addClassroomUseCase;
+  final RemoveClassroomUseCase _removeClassroomUseCase;
   final GetTeacherClassroomsUseCase _getTeacherClassroomUseCase;
   final UpdateClassroomUseCase _updateClassroomUseCase;
   ClassroomBloc(
@@ -29,11 +31,13 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
     this._addClassroomUseCase,
     this._getTeacherClassroomUseCase,
     this._updateClassroomUseCase,
+    this._removeClassroomUseCase,
   ) : super(const ClassroomState.idle()) {
     on<_GetClasses>(_onGetClasses);
     on<_GetTeacherClasses>(_onGetTeacherClasses);
     on<_CreateClasses>(_onCreateClasses);
     on<_UpdateClass>(_onUpdateClass);
+    on<_RemoveClass>(_onRemoveClass);
     add(const ClassroomEvent.getClasses());
   }
 
@@ -171,5 +175,32 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
             },
           ),
         );
+  }
+
+  FutureOr<void> _onRemoveClass(
+      _RemoveClass event, Emitter<ClassroomState> emit) async {
+    emit(ClassroomState.idle(isLoading: true, classes: state.classes));
+    try {
+      await _removeClassroomUseCase
+          .call(param: tuple.Tuple1<int>(event.classId))
+          .then(
+            (value) => value.fold(
+              (l) => emit(ClassroomState.idle(
+                  isLoading: false, classes: state.classes)),
+              (r) {
+                List<Classroom> tempList = state.classes.toList();
+                tempList.removeAt(tempList
+                    .map((e) => e.classID)
+                    .toList()
+                    .indexOf(event.classId));
+                emit(ClassroomState.idle(isLoading: false, classes: tempList));
+              },
+            ),
+          );
+      getIt.get<AppRouter>().pop();
+    } catch (e) {
+      emit(ClassroomState.idle(isLoading: false, classes: state.classes));
+      getIt.get<AppRouter>().pop();
+    }
   }
 }

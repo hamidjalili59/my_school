@@ -2,6 +2,7 @@ import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
+import 'package:my_school/src/features/mediator_tc/data/data_sources/remote/mediator_end_points.dart';
 import 'package:my_school/src/features/mediator_tc/domain/models/mediator.dart';
 
 abstract class MediatorRemoteDataSource {
@@ -43,9 +44,8 @@ class MediatorRemoteDataSourceImpl implements MediatorRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeMediator(
       {required int mediatorId}) {
-    return apiService
-        .deleteMethod('${GeneralConstants.host}api/v1/MediatorTC/', body: {
-      'mediator_id': mediatorId,
-    });
+    return apiService.deleteMethod(GeneralConstants.host +
+        MediatorEndpoints.deleteLink +
+        mediatorId.toString());
   }
 }

@@ -46,11 +46,11 @@ class ExamSuccessResponseAdapter extends TypeAdapter<ExamSuccessResponse> {
 
 ExamSuccessResponse _$ExamSuccessResponseFromJson(Map<String, dynamic> json) =>
     ExamSuccessResponse(
-      exam: Exam.fromJson(json['exam'] as Map<String, dynamic>),
+      exam: Exam.fromJson(json['Exam'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ExamSuccessResponseToJson(
         ExamSuccessResponse instance) =>
     <String, dynamic>{
-      'exam': instance.exam,
+      'Exam': instance.exam,
     };

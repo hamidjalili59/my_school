@@ -59,9 +59,9 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeClass(
       {required int classId}) {
-    return apiService.deleteMethod(GeneralConstants.host, body: {
-      'course_id': classId,
-    });
+    return apiService.deleteMethod(GeneralConstants.host +
+        ClassroomEndpoints.deleteLink +
+        classId.toString());
   }
 
   @override

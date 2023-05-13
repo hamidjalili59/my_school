@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/config/utils/function_helper.dart';
+import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/course/domain/models/course_model/course.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
@@ -62,7 +64,7 @@ class CoursePage extends StatelessWidget {
                               course: state.courses[index]);
                         },
                         child: CourseTileWidget(
-                          courseName: state.courses[index].courseName,
+                          course: state.courses[index],
                         ),
                       );
                     },
@@ -271,10 +273,10 @@ class CoursePage extends StatelessWidget {
 }
 
 class CourseTileWidget extends StatelessWidget {
-  final String courseName;
+  final Course course;
   const CourseTileWidget({
     super.key,
-    required this.courseName,
+    required this.course,
   });
 
   @override
@@ -300,13 +302,38 @@ class CourseTileWidget extends StatelessWidget {
               fit: BoxFit.fill),
           borderRadius: BorderRadius.circular(8.r),
         ),
-        child: Text(
-          courseName,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 24.r,
-            fontWeight: FontWeight.w900,
-          ),
+        child: Stack(
+          children: [
+            GeneralConstants.userType == UserType.parent
+                ? const SizedBox()
+                : Align(
+                    alignment: Alignment.topRight,
+                    child: InkWell(
+                      onTap: () => FunctionHelper().removeDialog(
+                        'درس',
+                        () => getIt.get<CourseBloc>().add(
+                              CourseEvent.removeCourse(course.courseId),
+                            ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 8.0.w, vertical: 5.h),
+                        child: Icon(Icons.close, size: 26.r),
+                      ),
+                    ),
+                  ),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                course.courseName,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 24.r,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

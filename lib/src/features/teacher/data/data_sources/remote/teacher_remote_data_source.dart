@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
+import 'package:my_school/src/features/teacher/data/data_sources/remote/teacher_end_points.dart';
 import 'package:my_school/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
@@ -51,10 +52,9 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
   @override
   Future<Either<DioError, Response<Map<String, dynamic>>>> removeTeacher(
       {required int teacherId}) {
-    return apiService
-        .deleteMethod('${GeneralConstants.host}api/v1/Teacher/', body: {
-      'teacher_id': teacherId,
-    });
+    return apiService.deleteMethod(GeneralConstants.host +
+        TeacherEndpoints.deleteLink +
+        teacherId.toString());
   }
 
   @override

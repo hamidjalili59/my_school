@@ -89,7 +89,8 @@ class TeacherRepositoryImpl extends TeacherRepository {
   }
 
   @override
-  Future<Either<TeacherFailure, void>> removeTeacher({required int teacherId}) {
+  Future<Either<TeacherFailure, TeacherSuccessResponse>> removeTeacher(
+      {required int teacherId}) {
     return _remoteDS.removeTeacher(teacherId: teacherId).then(
           (value) => value.fold(
             (l) => left<TeacherFailure, TeacherSuccessResponse>(
@@ -98,7 +99,7 @@ class TeacherRepositoryImpl extends TeacherRepository {
             (r) async {
               try {
                 final removeTeacherFromServer = TeacherSuccessResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<TeacherFailure, TeacherSuccessResponse>(
                   removeTeacherFromServer,

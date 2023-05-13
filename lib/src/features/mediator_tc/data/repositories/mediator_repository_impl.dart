@@ -4,6 +4,7 @@ import 'package:my_school/src/features/mediator_tc/data/data_sources/local/media
 import 'package:my_school/src/features/mediator_tc/data/data_sources/remote/mediator_remote_data_source.dart';
 import 'package:my_school/src/features/mediator_tc/domain/failure/mediator_failure.dart';
 import 'package:my_school/src/features/mediator_tc/domain/models/mediator.dart';
+import 'package:my_school/src/features/mediator_tc/domain/models/mediator_add_success_response.dart';
 import 'package:my_school/src/features/mediator_tc/domain/models/mediator_success_response.dart';
 import 'package:my_school/src/features/mediator_tc/domain/repositories/mediator_repository.dart';
 
@@ -15,22 +16,22 @@ class MediatorRepositoryImpl extends MediatorRepository {
   MediatorRepositoryImpl(this._remoteDS, this._localDS);
 
   @override
-  Future<Either<MediatorFailure, void>> addMediator(
+  Future<Either<MediatorFailure, MediatorAddSuccessResponse>> addMediator(
       {required Mediator mediator, required int courseId}) {
     return _remoteDS.addMediator(mediator: mediator, courseId: courseId).then(
           (value) => value.fold(
-            (l) => left<MediatorFailure, MediatorSuccessResponse>(
+            (l) => left<MediatorFailure, MediatorAddSuccessResponse>(
                 MediatorFailure.api(l)),
             (r) async {
-              // final mediatorAddSuccessResponse =
-              //     MediatorSuccessResponse.fromJson(
-              //   BaseResponse.fromJson(r.data ?? {}).payload.isEmpty
-              //       ? {'MediatorTC': []}
-              //       : BaseResponse.fromJson(r.data ?? {}).payload,
-              // );
-              return right<MediatorFailure, void>(null
-                  // mediatorAddSuccessResponse,
-                  );
+              final mediatorAddSuccessResponse =
+                  MediatorAddSuccessResponse.fromJson(
+                BaseResponse.fromJson(r.data ?? {}).payload.isEmpty
+                    ? {'MediatorTC': []}
+                    : BaseResponse.fromJson(r.data ?? {}).payload,
+              );
+              return right<MediatorFailure, MediatorAddSuccessResponse>(
+                mediatorAddSuccessResponse,
+              );
             },
           ),
         );
@@ -81,18 +82,19 @@ class MediatorRepositoryImpl extends MediatorRepository {
   }
 
   @override
-  Future<Either<MediatorFailure, void>> removeMediator(
+  Future<Either<MediatorFailure, MediatorAddSuccessResponse>> removeMediator(
       {required int mediatorId}) {
     return _remoteDS.removeMediator(mediatorId: mediatorId).then(
           (value) => value.fold(
-            (l) => left<MediatorFailure, MediatorSuccessResponse>(
+            (l) => left<MediatorFailure, MediatorAddSuccessResponse>(
               MediatorFailure.api(l),
             ),
             (r) async {
-              final removeMediatorFromServer = MediatorSuccessResponse.fromJson(
-                BaseResponse.fromJson(r.data ?? {}).toJson(),
+              final removeMediatorFromServer =
+                  MediatorAddSuccessResponse.fromJson(
+                BaseResponse.fromJson(r.data ?? {}).payload,
               );
-              return right<MediatorFailure, MediatorSuccessResponse>(
+              return right<MediatorFailure, MediatorAddSuccessResponse>(
                 removeMediatorFromServer,
               );
             },

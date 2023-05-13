@@ -14,7 +14,7 @@ abstract class CourseRepository {
     required int courseId,
   });
   //
-  Future<Either<CourseFailure, void>> removeCourse({
+  Future<Either<CourseFailure, CourseSuccessResponse>> removeCourse({
     required int courseId,
   });
   //

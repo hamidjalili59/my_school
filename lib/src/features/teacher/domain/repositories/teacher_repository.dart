@@ -15,7 +15,7 @@ abstract class TeacherRepository {
     required String name,
   });
   //
-  Future<Either<TeacherFailure, void>> removeTeacher({
+  Future<Either<TeacherFailure, TeacherSuccessResponse>> removeTeacher({
     required int teacherId,
   });
   //
@@ -27,7 +27,6 @@ abstract class TeacherRepository {
     required List<Teacher> teachers,
   });
   //
-  Future<Either<TeacherFailure, TeacherGetResponse>>
-      getCachedTeacherData();
+  Future<Either<TeacherFailure, TeacherGetResponse>> getCachedTeacherData();
   //
 }
