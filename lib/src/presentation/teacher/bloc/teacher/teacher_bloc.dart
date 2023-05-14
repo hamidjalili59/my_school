@@ -68,9 +68,6 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
         .then(
           (value) => value.fold(
             (l) {
-              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
-                getIt.get<AppRouter>().pop();
-              }
               return emit(TeacherState.idle(
                   isLoading: false, teachers: state.teachers));
             },
@@ -78,12 +75,10 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
               List<Teacher> tempTeachers = state.teachers.toList();
               tempTeachers.add(r.teacher);
               emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
-              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
-                getIt.get<AppRouter>().pop();
-              }
             },
           ),
         );
+    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onUpdateTeacher(
@@ -99,9 +94,6 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
         .then(
           (value) => value.fold(
             (l) {
-              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
-                getIt.get<AppRouter>().pop();
-              }
               return emit(TeacherState.idle(
                   isLoading: false, teachers: state.teachers));
             },
@@ -111,12 +103,10 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
                 int.parse(getIt.get<OtpHandshakeResponse>().token),
               ));
               emit(TeacherState.idle(isLoading: false, teachers: tempTeachers));
-              if (getIt.get<AppRouter>().current.name == 'HomeRoute') {
-                getIt.get<AppRouter>().pop();
-              }
             },
           ),
         );
+    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onRemoveTeacher(
@@ -139,10 +129,10 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
               },
             ),
           );
-      getIt.get<AppRouter>().pop();
+      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     } catch (e) {
       emit(TeacherState.idle(isLoading: false, teachers: state.teachers));
-      getIt.get<AppRouter>().pop();
+      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     }
   }
 }

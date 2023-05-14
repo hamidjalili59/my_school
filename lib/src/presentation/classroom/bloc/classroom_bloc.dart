@@ -171,10 +171,11 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
                   currentClass: state.currentClass,
                 ),
               );
-              getIt.get<AppRouter>().pop();
             },
           ),
         );
+
+    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onRemoveClass(
@@ -197,10 +198,12 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
               },
             ),
           );
-      getIt.get<AppRouter>().pop();
+
+      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     } catch (e) {
       emit(ClassroomState.idle(isLoading: false, classes: state.classes));
-      getIt.get<AppRouter>().pop();
+
+      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     }
   }
 }

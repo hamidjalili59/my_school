@@ -63,10 +63,11 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
               List<Course> tempList = state.courses.toList();
               tempList.add(r.course);
               emit(CourseState.idle(isLoading: false, courses: tempList));
-              getIt.get<AppRouter>().pop();
             },
           ),
         );
+
+    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onUpdateCourse(
@@ -84,10 +85,11 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
               add(CourseEvent.getCourses(
                 int.parse(getIt.get<OtpHandshakeResponse>().token),
               ));
-              getIt.get<AppRouter>().pop();
             },
           ),
         );
+
+    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onRemoveCourse(
@@ -110,10 +112,12 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
               },
             ),
           );
-      getIt.get<AppRouter>().pop();
+
+      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     } catch (e) {
       emit(CourseState.idle(isLoading: false, courses: state.courses));
-      getIt.get<AppRouter>().pop();
+
+      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     }
   }
 }

@@ -174,9 +174,9 @@ class TeacherPage extends StatelessWidget {
                           'لطفا اسمی که انتخاب میکنید کمتر از 30 حرف داشته باشد',
                     ),
                     FormBuilderValidators.minLength(
-                      5,
+                      3,
                       errorText:
-                          'لطفا اسمی که انتخاب میکنید بیشتر از 5 حرف داشته باشد',
+                          'لطفا اسمی که انتخاب میکنید بیشتر از 3 حرف داشته باشد',
                     ),
                   ]),
                   controller: _controllerName,

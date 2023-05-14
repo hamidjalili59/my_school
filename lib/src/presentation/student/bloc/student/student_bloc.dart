@@ -84,7 +84,8 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
             },
           ),
         );
-    getIt.get<AppRouter>().pop();
+
+    getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
   }
 
   FutureOr<void> _onAddStudentParent(
@@ -125,12 +126,12 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
                   .map((e) => e.studentId)
                   .toList()
                   .indexOf(r.student.studentId)] = r.student;
-              getIt.get<AppRouter>().pop();
-              return emit(
-                  StudentState.idle(isLoading: false, students: tempList));
+              emit(StudentState.idle(isLoading: false, students: tempList));
             },
           ),
         );
+
+    getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
   }
 
   FutureOr<void> _onRemoveStudent(
@@ -153,10 +154,12 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
               },
             ),
           );
-      getIt.get<AppRouter>().pop();
+
+      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     } catch (e) {
       emit(StudentState.idle(isLoading: false, students: state.students));
-      getIt.get<AppRouter>().pop();
+
+      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     }
   }
 }
