@@ -51,20 +51,32 @@ class TeacherClassWidget extends StatelessWidget {
                           color: Colors.white,
                           fontWeight: FontWeight.w700),
                     )),
-                MaterialButton(
-                  onPressed: () {
-                    getIt
-                        .get<TeacherDetailBloc>()
-                        .add(const TeacherDetailEvent.acceptTeacher());
+                BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
+                  bloc: getIt.get<TeacherDetailBloc>(),
+                  builder: (context, teacherState) {
+                    return MaterialButton(
+                      onPressed: teacherState.isLoading
+                          ? () {}
+                          : () {
+                              if (teacherState.isLoading) {
+                                return;
+                              }
+                              getIt.get<TeacherDetailBloc>().add(
+                                    const TeacherDetailEvent.acceptTeacher(),
+                                  );
+                            },
+                      color: GeneralConstants.mainColor,
+                      child: teacherState.isLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : Text(
+                              'تایید',
+                              style: TextStyle(
+                                  fontSize: 16.r,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                    );
                   },
-                  color: GeneralConstants.mainColor,
-                  child: Text(
-                    'تایید',
-                    style: TextStyle(
-                        fontSize: 16.r,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700),
-                  ),
                 ),
               ],
             ).show(context, dismissable: false);

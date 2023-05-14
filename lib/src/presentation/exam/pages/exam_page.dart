@@ -185,7 +185,7 @@ class _ExamPageState extends State<ExamPage> {
                     FormBuilderValidators.maxLength(
                       200,
                       errorText:
-                          'لطفا توضیحاتی که انتخاب میکنید کمتر از 100 حرف داشته باشد',
+                          'لطفا توضیحاتی که انتخاب میکنید کمتر از 200 حرف داشته باشد',
                     ),
                     FormBuilderValidators.minLength(
                       5,

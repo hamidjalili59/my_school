@@ -156,9 +156,9 @@ class CoursePage extends StatelessWidget {
                     FormBuilderValidators.required(
                         errorText: 'انتخاب اسم برای ساخت درس اجباری است'),
                     FormBuilderValidators.maxLength(
-                      20,
+                      30,
                       errorText:
-                          'لطفا اسمی که انتخاب میکنید کمتر از 20 حرف داشته باشد',
+                          'لطفا اسمی که انتخاب میکنید کمتر از 30 حرف داشته باشد',
                     ),
                     FormBuilderValidators.minLength(
                       3,

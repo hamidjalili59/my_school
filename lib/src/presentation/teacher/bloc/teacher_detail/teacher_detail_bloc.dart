@@ -102,7 +102,8 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
             },
           ),
         );
-    getIt.get<AppRouter>().pop();
+
+    getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
   }
 
   FutureOr<void> _onGetMediators(
@@ -150,11 +151,13 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
               },
             ),
           );
-      getIt.get<AppRouter>().pop();
+
+      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     } catch (e) {
       emit(TeacherDetailState.idle(
           isLoading: false, mediators: state.mediators));
-      getIt.get<AppRouter>().pop();
+
+      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     }
   }
 }

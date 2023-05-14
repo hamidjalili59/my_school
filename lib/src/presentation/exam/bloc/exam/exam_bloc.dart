@@ -71,10 +71,10 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
               },
             ),
           );
-      getIt.get<AppRouter>().pop();
+      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     } catch (e) {
       emit(ExamState.idle(isLoading: false, exams: state.exams));
-      getIt.get<AppRouter>().pop();
+      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     }
   }
 }
