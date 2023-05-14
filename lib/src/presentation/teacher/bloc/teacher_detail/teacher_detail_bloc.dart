@@ -44,13 +44,19 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
   FutureOr<void> _onSelectCourseItem(
       _SelectCourseItem event, Emitter<TeacherDetailState> emit) {
     emit(TeacherDetailState.idle(
-        selectedCourse: event.course, selectedTeacher: state.selectedTeacher));
+        selectedCourse: event.course,
+        selectedTeacher: state.selectedTeacher,
+        isLoading: false,
+        mediators: state.mediators));
   }
 
   FutureOr<void> _onSelectTeacherItem(
       _SelectTeacherItem event, Emitter<TeacherDetailState> emit) {
     emit(TeacherDetailState.idle(
-        selectedTeacher: event.teacher, selectedCourse: state.selectedCourse));
+        selectedTeacher: event.teacher,
+        selectedCourse: state.selectedCourse,
+        isLoading: false,
+        mediators: state.mediators));
   }
 
   FutureOr<void> _onAcceptTeacher(
@@ -83,7 +89,7 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
               ),
             ),
             (r) {
-              List<Mediator> tempList = state.mediators;
+              List<Mediator> tempList = state.mediators.toList();
               tempList.add(r.mediator);
               emit(
                 TeacherDetailState.idle(
@@ -93,10 +99,10 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
                   selectedTeacher: state.selectedTeacher,
                 ),
               );
-              getIt.get<AppRouter>().pop();
             },
           ),
         );
+    getIt.get<AppRouter>().pop();
   }
 
   FutureOr<void> _onGetMediators(
