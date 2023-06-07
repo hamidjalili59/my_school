@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 
-// ignore: must_be_immutable
 class InsideCardCustomButtonWidget extends StatelessWidget {
-  InsideCardCustomButtonWidget({
+  const InsideCardCustomButtonWidget({
     Key? key,
     required this.title,
     required this.onTap,
   }) : super(key: key);
   final String title;
-  void Function()? onTap;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(

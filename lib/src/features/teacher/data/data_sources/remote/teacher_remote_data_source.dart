@@ -8,16 +8,16 @@ import 'package:my_school/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
 abstract class TeacherRemoteDataSource {
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addTeacher(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addTeacher(
       {required Teacher teacher});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getTeachers(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getTeachers(
       {required int schoolId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeTeacher(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeTeacher(
       {required int teacherId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateTeacher({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateTeacher({
     required String name,
     required int teacherId,
     required double phoneNumber,
@@ -31,7 +31,7 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
   final ApiService apiService;
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addTeacher(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addTeacher(
           {required Teacher teacher}) =>
       apiService.postMethod<Map<String, dynamic>>(
           '${GeneralConstants.host}api/v1/Teacher',
@@ -42,7 +42,7 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
           });
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getTeachers(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getTeachers(
       {required int schoolId}) {
     return apiService.getMethod(
       '${GeneralConstants.host}api/v1/Teacher/$schoolId',
@@ -50,7 +50,7 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeTeacher(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeTeacher(
       {required int teacherId}) {
     return apiService.deleteMethod(GeneralConstants.host +
         TeacherEndpoints.deleteLink +
@@ -58,7 +58,7 @@ class TeacherRemoteDataSourceImpl implements TeacherRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateTeacher({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateTeacher({
     required String name,
     required int teacherId,
     required double phoneNumber,

@@ -12,7 +12,7 @@ class TeacherFailure extends Failure with _$TeacherFailure {
   const factory TeacherFailure.missingToken() = _MissingToken;
 
   ///
-  const factory TeacherFailure.api(DioError failure) = _Api;
+  const factory TeacherFailure.api(DioException failure) = _Api;
   const factory TeacherFailure.nullParam() = _NullParam;
   const factory TeacherFailure.database(DatabaseError failure) = _Database;
 }

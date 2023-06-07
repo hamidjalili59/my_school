@@ -6,18 +6,18 @@ import 'package:my_school/src/features/score/data/data_sources/remote/score_end_
 import 'package:my_school/src/features/score/domain/models/score_model.dart';
 
 abstract class ScoreRemoteDataSource {
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addScore({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addScore({
     required List<Score> scores,
     required int classId,
   });
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getScores(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getScores(
       {required int studentId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> deleteScore(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> deleteScore(
       {required int gradeId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateScore({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateScore({
     required int scoreId,
     required int classId,
     required String scoreDescription,
@@ -32,7 +32,7 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
   final ApiService apiService;
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addScore({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addScore({
     required List<Score> scores,
     required int classId,
   }) =>
@@ -43,7 +43,7 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
           });
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getScores(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getScores(
       {required int studentId}) {
     return apiService.getMethod(
       GeneralConstants.host + ScoreEndpoints.getLink + studentId.toString(),
@@ -51,7 +51,7 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateScore({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateScore({
     required int scoreId,
     required int classId,
     required String scoreDescription,
@@ -65,7 +65,7 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
       });
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> deleteScore(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> deleteScore(
       {required int gradeId}) {
     return apiService.deleteMethod(
         GeneralConstants.host + ScoreEndpoints.deleteLink + gradeId.toString());

@@ -194,7 +194,11 @@ class HomeCustomAppBar extends StatelessWidget {
                                                                       .name ==
                                                                   'score'
                                                               ? 'نمرات'
-                                                              : 'غیبت‌ها',
+                                                              : buttonsList[index]
+                                                                          .name ==
+                                                                      'teacherHome'
+                                                                  ? 'کلاس‌ها'
+                                                                  : 'غیبت‌ها',
                                       indexType: buttonsList[index],
                                       currentIndexType: currentPageName,
                                       bloc: bloc);

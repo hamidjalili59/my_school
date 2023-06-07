@@ -6,13 +6,13 @@ import 'package:my_school/src/features/mediator_tc/data/data_sources/remote/medi
 import 'package:my_school/src/features/mediator_tc/domain/models/mediator.dart';
 
 abstract class MediatorRemoteDataSource {
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addMediator(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addMediator(
       {required Mediator mediator, required int courseId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getMediators(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getMediators(
       {required int classId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeMediator(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeMediator(
       {required int mediatorId});
 }
 
@@ -23,7 +23,7 @@ class MediatorRemoteDataSourceImpl implements MediatorRemoteDataSource {
   final ApiService apiService;
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addMediator(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addMediator(
           {required Mediator mediator, required int courseId}) =>
       apiService.postMethod<Map<String, dynamic>>(
           '${GeneralConstants.host}api/v1/MediatorTC/',
@@ -34,7 +34,7 @@ class MediatorRemoteDataSourceImpl implements MediatorRemoteDataSource {
           });
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getMediators(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getMediators(
       {required int classId}) {
     return apiService.getMethod(
       '${GeneralConstants.host}api/v1/MediatorTC/$classId',
@@ -42,7 +42,7 @@ class MediatorRemoteDataSourceImpl implements MediatorRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeMediator(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeMediator(
       {required int mediatorId}) {
     return apiService.deleteMethod(GeneralConstants.host +
         MediatorEndpoints.deleteLink +

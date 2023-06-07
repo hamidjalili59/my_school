@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
-import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/score/bloc/score_board/score_board_bloc.dart';
 
-class AddScoreForClassPage extends StatelessWidget {
+class AddScoreForClassPage extends StatefulWidget {
   const AddScoreForClassPage({super.key});
+
+  @override
+  State<AddScoreForClassPage> createState() => _AddScoreForClassPageState();
+}
+
+class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,7 +36,6 @@ class AddScoreForClassPage extends StatelessWidget {
                               headingRowHeight: 70.h,
                               headingTextStyle: TextStyle(
                                   fontSize: 10.r, color: Colors.black),
-                              // dataRowHeight: 50.h,
                               border: TableBorder.all(
                                   color: Colors.black54,
                                   borderRadius: BorderRadius.circular(8.r),
@@ -90,7 +94,8 @@ class AddScoreForClassPage extends StatelessWidget {
                                     SizedBox(
                                       width: 0.35.sw,
                                       child: TextFormField(
-                                        controller: TextEditingController(),
+                                        controller: scoreBoardState
+                                            .scoresNumeric[index],
                                         expands: true,
                                         maxLength: 4,
                                         keyboardType: TextInputType.number,
@@ -140,7 +145,10 @@ class AddScoreForClassPage extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          getIt.get<AppRouter>().pop();
+                          getIt.get<ScoreBoardBloc>().add(
+                              ScoreBoardEvent.acceptScores(
+                                  getIt.get<ScoreBoardBloc>().state.scores));
+                          // getIt.get<AppRouter>().pop();
                         },
                         child: SizedBox(
                           width: 60.w,
@@ -167,7 +175,9 @@ class AddScoreForClassPage extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          // getIt.get<ScoreBoardBloc>().add(ScoreBoardEvent.acceptScores(scores));
+                          getIt
+                              .get<ScoreBoardBloc>()
+                              .add(const ScoreBoardEvent.acceptScores([]));
                         },
                         child: SizedBox(
                           width: 60.w,

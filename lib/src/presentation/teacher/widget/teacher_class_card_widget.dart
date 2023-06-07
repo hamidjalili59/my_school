@@ -21,74 +21,77 @@ class TeacherClassWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     getIt.get<TeacherDetailBloc>().add(const TeacherDetailEvent.getMediators());
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          icon: Icon(
-            Icons.add_circle,
-            color: Colors.white,
-            size: 26.r,
-          ),
-          onPressed: () {
-            NDialog(
-              dialogStyle: DialogStyle(),
-              title: const Text(
-                'اضافه کردن درس و دبیر',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              content: const AddMediatorDialogWidget(),
-              actions: [
-                MaterialButton(
-                    onPressed: () {
-                      getIt.get<AppRouter>().pop();
-                    },
-                    color: GeneralConstants.mainColor,
-                    child: Text(
-                      'لغو',
-                      style: TextStyle(
-                          fontSize: 16.r,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700),
-                    )),
-                BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
-                  bloc: getIt.get<TeacherDetailBloc>(),
-                  builder: (context, teacherState) {
-                    return MaterialButton(
-                      onPressed: teacherState.isLoading
-                          ? () {}
-                          : () {
-                              if (teacherState.isLoading) {
-                                return;
-                              }
-                              getIt.get<TeacherDetailBloc>().add(
-                                    const TeacherDetailEvent.acceptTeacher(),
-                                  );
-                            },
-                      color: GeneralConstants.mainColor,
-                      child: teacherState.isLoading
-                          ? const Center(child: CircularProgressIndicator())
-                          : Text(
-                              'تایید',
-                              style: TextStyle(
-                                  fontSize: 16.r,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                    );
-                  },
-                ),
-              ],
-            ).show(context, dismissable: false);
-          },
-          label: Text(
-            'افزودن‌ درس و دبیر',
-            style: TextStyle(
+      floatingActionButton: GeneralConstants.userType == UserType.admin
+          ? FloatingActionButton.extended(
+              icon: Icon(
+                Icons.add_circle,
                 color: Colors.white,
-                fontSize: 16.r,
-                fontWeight: FontWeight.w700),
-          ),
-          backgroundColor: GeneralConstants.mainColor),
+                size: 26.r,
+              ),
+              onPressed: () {
+                NDialog(
+                  dialogStyle: DialogStyle(),
+                  title: const Text(
+                    'اضافه کردن درس و دبیر',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  content: const AddMediatorDialogWidget(),
+                  actions: [
+                    MaterialButton(
+                        onPressed: () {
+                          getIt.get<AppRouter>().pop();
+                        },
+                        color: GeneralConstants.mainColor,
+                        child: Text(
+                          'لغو',
+                          style: TextStyle(
+                              fontSize: 16.r,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700),
+                        )),
+                    BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
+                      bloc: getIt.get<TeacherDetailBloc>(),
+                      builder: (context, teacherState) {
+                        return MaterialButton(
+                          onPressed: teacherState.isLoading
+                              ? () {}
+                              : () {
+                                  if (teacherState.isLoading) {
+                                    return;
+                                  }
+                                  getIt.get<TeacherDetailBloc>().add(
+                                        const TeacherDetailEvent
+                                            .acceptTeacher(),
+                                      );
+                                },
+                          color: GeneralConstants.mainColor,
+                          child: teacherState.isLoading
+                              ? const Center(child: CircularProgressIndicator())
+                              : Text(
+                                  'تایید',
+                                  style: TextStyle(
+                                      fontSize: 16.r,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                        );
+                      },
+                    ),
+                  ],
+                ).show(context, dismissable: false);
+              },
+              label: Text(
+                'افزودن‌ درس و دبیر',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.r,
+                    fontWeight: FontWeight.w700),
+              ),
+              backgroundColor: GeneralConstants.mainColor)
+          : null,
       body: BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
         bloc: getIt.get<TeacherDetailBloc>(),
         builder: (context, mediatorState) {
@@ -320,9 +323,8 @@ class TeacherClassTileCardWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          GeneralConstants.userType == UserType.parent
-              ? const SizedBox()
-              : Align(
+          GeneralConstants.userType == UserType.admin
+              ? Align(
                   alignment: Alignment.topRight,
                   child: InkWell(
                     onTap: () => FunctionHelper().removeDialog(
@@ -338,7 +340,8 @@ class TeacherClassTileCardWidget extends StatelessWidget {
                       child: Icon(Icons.close, size: 26.r),
                     ),
                   ),
-                ),
+                )
+              : const SizedBox(),
           Flexible(
             flex: 9,
             child: CircleAvatar(

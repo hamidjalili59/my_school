@@ -12,7 +12,7 @@ class StudentFailure extends Failure with _$StudentFailure {
   const factory StudentFailure.missingToken() = _MissingToken;
 
   ///
-  const factory StudentFailure.api(DioError failure) = _Api;
+  const factory StudentFailure.api(DioException failure) = _Api;
   const factory StudentFailure.nullParam() = _NullParam;
   const factory StudentFailure.database(DatabaseError failure) = _Database;
 }

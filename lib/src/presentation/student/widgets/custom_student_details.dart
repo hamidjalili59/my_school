@@ -53,12 +53,14 @@ class _CustomClassDetailButtonWidgetState
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onLongPress: () {
-        _phoneController.text =
-            '0${widget.student.basicInfo!.phoneNumber.toInt().toString()}';
-        _nameController.text = widget.student.basicInfo!.name;
-        _updateStudentDialog(widget.student);
-      },
+      onLongPress: GeneralConstants.userType == UserType.admin
+          ? () {
+              _phoneController.text =
+                  '0${widget.student.basicInfo!.phoneNumber.toInt().toString()}';
+              _nameController.text = widget.student.basicInfo!.name;
+              _updateStudentDialog(widget.student);
+            }
+          : () {},
       onTap: () {
         _studentTileDialogMethod(widget.student);
       },

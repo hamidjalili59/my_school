@@ -6,19 +6,19 @@ import 'package:my_school/src/features/exam/data/data_sources/remote/exam_end_po
 import 'package:my_school/src/features/exam/domain/models/exam_model.dart';
 
 abstract class ExamRemoteDataSource {
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addExam(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addExam(
       {required Exam exam});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getExams(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getExams(
       {required int classId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getSingleExam(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getSingleExam(
       {required int examId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeExam(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeExam(
       {required int examId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateExam({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateExam({
     required int examId,
     required bool isDone,
     required String examDescription,
@@ -32,7 +32,7 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   final ApiService apiService;
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addExam(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addExam(
           {required Exam exam}) =>
       apiService.postMethod<Map<String, dynamic>>(
           GeneralConstants.host + ExamEndpoints.addLink,
@@ -41,7 +41,7 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
           });
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getExams(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getExams(
       {required int classId}) {
     return apiService.getMethod(
       GeneralConstants.host + ExamEndpoints.getLink + classId.toString(),
@@ -49,7 +49,7 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getSingleExam(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getSingleExam(
       {required int examId}) {
     return apiService.getMethod(
       GeneralConstants.host,
@@ -57,7 +57,7 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeExam(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeExam(
       {required int examId}) {
     return apiService.deleteMethod(GeneralConstants.host, body: {
       'exam_id': examId,
@@ -65,7 +65,7 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateExam(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateExam(
           {required int examId,
           required bool isDone,
           required String examDescription}) =>

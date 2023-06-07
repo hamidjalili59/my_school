@@ -12,7 +12,7 @@ class RollcallFailure extends Failure with _$RollcallFailure {
   const factory RollcallFailure.missingToken() = _MissingToken;
 
   ///
-  const factory RollcallFailure.api(DioError failure) = _Api;
+  const factory RollcallFailure.api(DioException failure) = _Api;
   const factory RollcallFailure.nullParam() = _NullParam;
   const factory RollcallFailure.database(DatabaseError failure) = _Database;
 }

@@ -8,19 +8,19 @@ import 'package:my_school/src/features/student/domain/models/student_model/stude
 import 'package:my_school/src/injectable/injectable.dart';
 
 abstract class StudentRemoteDataSource {
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addStudent(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addStudent(
       {required Student student, required String parentName});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getStudents(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getStudents(
       {required int classId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getStudentsParent(
-      {required double phonenumber});
+  Future<Either<DioException, Response<Map<String, dynamic>>>>
+      getStudentsParent({required double phonenumber});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeStudent(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeStudent(
       {required int studentId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateStudent({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateStudent({
     required Student student,
   });
 }
@@ -32,7 +32,7 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   final ApiService apiService;
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addStudent(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addStudent(
           {required Student student, required String parentName}) =>
       apiService.postMethod<Map<String, dynamic>>(
           GeneralConstants.host + StudentEndpoints.addLink,
@@ -45,7 +45,7 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
           });
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getStudents(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getStudents(
       {required int classId}) {
     return apiService.getMethod(
       GeneralConstants.host + StudentEndpoints.getLink + classId.toString(),
@@ -53,7 +53,7 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeStudent(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeStudent(
       {required int studentId}) {
     return apiService.deleteMethod(GeneralConstants.host +
         StudentEndpoints.deleteLink +
@@ -61,7 +61,7 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateStudent({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateStudent({
     required Student student,
   }) =>
       apiService.putMethod<Map<String, dynamic>>(
@@ -75,8 +75,8 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
           });
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getStudentsParent(
-      {required double phonenumber}) {
+  Future<Either<DioException, Response<Map<String, dynamic>>>>
+      getStudentsParent({required double phonenumber}) {
     return apiService.getMethod(
       GeneralConstants.host +
           StudentEndpoints.getParentLink +

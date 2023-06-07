@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
 import 'package:my_school/src/presentation/exam/bloc/exam/exam_bloc.dart';
@@ -40,44 +41,47 @@ class _ExamPageState extends State<ExamPage> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       backgroundColor: GeneralConstants.backgroundColor,
-      // floatingActionButton: Padding(
-      //   padding: EdgeInsets.only(bottom: 16.w, right: 8.w),
-      //   child: Material(
-      //     elevation: 5,
-      //     color: GeneralConstants.mainColor,
-      //     borderRadius: BorderRadius.circular(16.r),
-      //     child: InkWell(
-      //       borderRadius: BorderRadius.circular(16.r),
-      //       splashColor: GeneralConstants.backgroundColor,
-      //       onTap: _addExamDialogMethod,
-      //       child: Container(
-      //         alignment: Alignment.center,
-      //         width: 140.w,
-      //         height: 60,
-      //         decoration: BoxDecoration(
-      //           color: Colors.transparent,
-      //           borderRadius: BorderRadius.circular(16.r),
-      //         ),
-      //         child: Row(
-      //           mainAxisAlignment: MainAxisAlignment.center,
-      //           crossAxisAlignment: CrossAxisAlignment.center,
-      //           children: [
-      //             Icon(Icons.note_add_rounded, color: Colors.white, size: 22.r),
-      //             SizedBox(width: 10.w),
-      //             Text(
-      //               'ثبت امتحان',
-      //               style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 22.r,
-      //                 fontWeight: FontWeight.w900,
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
+      floatingActionButton: GeneralConstants.userType == UserType.teacher
+          ? Padding(
+              padding: EdgeInsets.only(bottom: 16.w, right: 8.w),
+              child: Material(
+                elevation: 5,
+                color: GeneralConstants.mainColor,
+                borderRadius: BorderRadius.circular(16.r),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(16.r),
+                  splashColor: GeneralConstants.backgroundColor,
+                  onTap: _addExamDialogMethod,
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 140.w,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(16.r),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.note_add_rounded,
+                            color: Colors.white, size: 22.r),
+                        SizedBox(width: 10.w),
+                        Text(
+                          'ثبت امتحان',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22.r,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
+          : null,
       body: BlocBuilder<ExamBloc, ExamState>(
         bloc: getIt.get<ExamBloc>(),
         builder: (context, examState) {

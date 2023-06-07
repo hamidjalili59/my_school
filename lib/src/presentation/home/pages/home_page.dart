@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
+import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/classroom/bloc/classroom_bloc.dart';
@@ -12,11 +13,13 @@ import 'package:my_school/src/presentation/course/pages/course_page.dart';
 import 'package:my_school/src/presentation/exam/bloc/exam/exam_bloc.dart';
 import 'package:my_school/src/presentation/home/bloc/home_bloc.dart';
 import 'package:my_school/src/presentation/home/widgets/home_appbar_widget.dart';
+import 'package:my_school/src/presentation/school/bloc/teacher_classroom/teacher_classroom_bloc.dart';
 import 'package:my_school/src/presentation/score/bloc/score/score_bloc.dart';
 import 'package:my_school/src/presentation/score/bloc/score_board/score_board_bloc.dart';
 import 'package:my_school/src/presentation/student/bloc/student/student_bloc.dart';
 import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:my_school/src/presentation/teacher/bloc/teacher_detail/teacher_detail_bloc.dart';
+import 'package:my_school/src/presentation/teacher/pages/teacher_home_page.dart';
 import 'package:my_school/src/presentation/teacher/pages/teacher_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -59,6 +62,9 @@ class HomePage extends StatelessWidget {
             BlocProvider<ScoreBloc>(
               create: (_) => getIt.get<ScoreBloc>(),
             ),
+            BlocProvider<TeacherClassroomBloc>(
+              create: (_) => getIt.get<TeacherClassroomBloc>(),
+            ),
           ],
           child: SizedBox(
             width: 1.sw,
@@ -71,11 +77,15 @@ class HomePage extends StatelessWidget {
                     child: HomeCustomAppBar(
                       bloc: _homeBloc,
                       title: 'مدرسه من',
-                      buttonsList: const [
-                        AppbarPageType.classroom,
-                        AppbarPageType.teacher,
-                        AppbarPageType.course,
-                      ],
+                      buttonsList: GeneralConstants.userType == UserType.teacher
+                          ? const [
+                              AppbarPageType.teacherHome,
+                            ]
+                          : const [
+                              AppbarPageType.classroom,
+                              AppbarPageType.teacher,
+                              AppbarPageType.course,
+                            ],
                     ),
                   ),
                 ),
@@ -86,6 +96,9 @@ class HomePage extends StatelessWidget {
                       builder: (context, state) {
                         return state.maybeWhen(
                           currentPageIndex: (pageState) {
+                            if (pageState == AppbarPageType.teacherHome) {
+                              return const TeacherHomePage();
+                            }
                             if (pageState == AppbarPageType.classroom) {
                               return SizedBox(
                                   child: ClassesPage(appRouter: _appRouter));

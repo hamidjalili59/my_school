@@ -23,15 +23,20 @@ part 'teacher_detail_bloc.freezed.dart';
 class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
   final GetMediatorUseCase _getMediatorUseCase;
   final AddMediatorUseCase _addMediatorUseCase;
+  // final GetTeacherClassroomsUseCase _getTeacherClassroomUseCase;
   final RemoveMediatorUseCase _removeMediatorUseCase;
-  TeacherDetailBloc(this._getMediatorUseCase, this._addMediatorUseCase,
-      this._removeMediatorUseCase)
-      : super(const TeacherDetailState.idle(isLoading: true)) {
+  TeacherDetailBloc(
+    this._getMediatorUseCase,
+    this._addMediatorUseCase,
+    this._removeMediatorUseCase,
+    // this._getTeacherClassroomUseCase,
+  ) : super(const TeacherDetailState.idle(isLoading: true)) {
     on<_SelectCourseItem>(_onSelectCourseItem);
     on<_SelectTeacherItem>(_onSelectTeacherItem);
     on<_AcceptTeacher>(_onAcceptTeacher);
     on<_RemoveMediator>(_onRemoveMediator);
     on<_GetMediators>(_onGetMediators);
+    // on<_GetTeacherClassFromSchool>(_onGetTeacherClassFromSchool);
   }
 
   @override
@@ -160,4 +165,16 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
       getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     }
   }
+
+  // FutureOr<void> _onGetTeacherClassFromSchool(_GetTeacherClassFromSchool event,
+  //     Emitter<TeacherDetailState> emit) async {
+  //   await _getTeacherClassroomUseCase
+  //       .call(
+  //         param: tuple.Tuple2(
+  //           getIt.get<TeacherGetSchools>().schoolId,
+  //           getIt.get<TeacherGetSchools>().teacherId,
+  //         ),
+  //       )
+  //       .then((value) => null);
+  // }
 }

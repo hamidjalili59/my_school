@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 
 abstract class ParentRemoteDataSource {
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getParent(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getParent(
       {required int parentId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateParent({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateParent({
     required int schoolId,
     required int parentId,
     required String name,
@@ -22,7 +22,7 @@ class ParentRemoteDataSourceImpl implements ParentRemoteDataSource {
   final ApiService apiService;
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getParent(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getParent(
       {required int parentId}) {
     return apiService.getMethod(
       GeneralConstants.host,
@@ -30,7 +30,7 @@ class ParentRemoteDataSourceImpl implements ParentRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateParent({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateParent({
     required int schoolId,
     required int parentId,
     required String name,

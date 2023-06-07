@@ -13,9 +13,11 @@ import 'package:my_school/src/config/utils/function_helper.dart';
 import 'package:my_school/src/features/auth/domain/failures/auth_failure.dart';
 import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
+import 'package:my_school/src/features/teacher/domain/models/teacher_get_schools.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/features/auth/domain/use_cases/get_cached_auth_data_use_case.dart';
 import 'package:injectable/injectable.dart';
+import 'package:my_school/src/presentation/school/bloc/school/school_bloc.dart';
 import 'package:ndialog/ndialog.dart';
 
 part 'splash_bloc.freezed.dart';
@@ -173,9 +175,87 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
                     : const SizedBox(),
                 event.token.typeOfUser.contains('teacher')
                     ? InkWell(
-                        onTap: () {
+                        onTap: () async {
+                          appRoute.pop();
                           GeneralConstants.userType = UserType.teacher;
-                          appRoute.replaceNamed('/home_page');
+
+                          if (GeneralConstants.userType == UserType.teacher) {
+                            return await NDialog(
+                              title: Center(
+                                child: Text(
+                                  'انتخاب مدرسه',
+                                  style: Theme.of(getIt
+                                          .get<AppRouter>()
+                                          .navigatorKey
+                                          .currentContext!)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(color: Colors.black),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              content: BlocBuilder<SchoolBloc, SchoolState>(
+                                bloc: getIt.get<SchoolBloc>(),
+                                builder: (context, state) {
+                                  return SizedBox(
+                                    width: 0.7.sw,
+                                    height: 0.3.sh,
+                                    child: state.isLoading
+                                        ? const Center(
+                                            child: CircularProgressIndicator())
+                                        : ListView.builder(
+                                            itemCount: state.data.keys.length,
+                                            itemBuilder: (context, index) =>
+                                                InkWell(
+                                              onTap: () async {
+                                                TeacherGetSchools tempModel =
+                                                    TeacherGetSchools(
+                                                  int.tryParse(state.data.keys
+                                                          .toList()[index]) ??
+                                                      0,
+                                                  state.data.values
+                                                          .toList()[index]
+                                                      ['school_ID'],
+                                                );
+                                                getIt.registerSingleton<
+                                                        TeacherGetSchools>(
+                                                    tempModel);
+                                                appRoute
+                                                    .replaceNamed('/home_page');
+                                              },
+                                              child: Container(
+                                                height: 50.h,
+                                                width: 120.w,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.r),
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .primary,
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  state.data.values
+                                                          .toList()[index]
+                                                      ['school_Name'],
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleLarge!
+                                                      .copyWith(
+                                                          color: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                  );
+                                },
+                              ),
+                            ).show(
+                              appRoute.navigatorKey.currentContext!,
+                              dismissable: false,
+                            );
+                          }
                         },
                         child: Container(
                           width: 0.45.sw,

@@ -13,7 +13,7 @@ class AuthFailure extends Failure with _$AuthFailure {
   const factory AuthFailure.missingToken() = _MissingToken;
 
   ///
-  const factory AuthFailure.api(DioError failure) = _Api;
+  const factory AuthFailure.api(DioException failure) = _Api;
   const factory AuthFailure.nullParam() = _NullParam;
   const factory AuthFailure.database(DatabaseError failure) = _Database;
 }

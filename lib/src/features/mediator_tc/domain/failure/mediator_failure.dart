@@ -12,7 +12,7 @@ class MediatorFailure extends Failure with _$MediatorFailure {
   const factory MediatorFailure.missingToken() = _MissingToken;
 
   ///
-  const factory MediatorFailure.api(DioError failure) = _Api;
+  const factory MediatorFailure.api(DioException failure) = _Api;
   const factory MediatorFailure.nullParam() = _NullParam;
   const factory MediatorFailure.database(DatabaseError failure) = _Database;
 }

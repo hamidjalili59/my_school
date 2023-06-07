@@ -8,18 +8,18 @@ import 'package:dio/dio.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 
 abstract class ClassroomRemoteDataSource {
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addClass(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addClass(
       {required Classroom classroom});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getClasses(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getClasses(
       {required int schoolId});
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getTeacherClasses(
-      {required int schoolId, required int teacherId});
+  Future<Either<DioException, Response<Map<String, dynamic>>>>
+      getTeacherClasses({required int schoolId, required int teacherId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeClass(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeClass(
       {required int classId});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateClass({
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateClass({
     required Classroom classroom,
   });
 }
@@ -31,7 +31,7 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
   final ApiService apiService;
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addClass(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addClass(
           {required Classroom classroom}) =>
       apiService.postMethod<Map<String, dynamic>>(
           '${GeneralConstants.host}api/v1/Classes',
@@ -41,7 +41,7 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
           });
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getClasses(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getClasses(
       {required int schoolId}) {
     return apiService.getMethod(
       '${GeneralConstants.host}api/v1/Classes/$schoolId',
@@ -49,15 +49,15 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getTeacherClasses(
-      {required int schoolId, required int teacherId}) {
+  Future<Either<DioException, Response<Map<String, dynamic>>>>
+      getTeacherClasses({required int schoolId, required int teacherId}) {
     return apiService.getMethod(
       '${GeneralConstants.host}${ClassroomEndpoints.getTeacherClassLink}$schoolId?teacherId=$teacherId',
     );
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> removeClass(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> removeClass(
       {required int classId}) {
     return apiService.deleteMethod(GeneralConstants.host +
         ClassroomEndpoints.deleteLink +
@@ -65,7 +65,7 @@ class ClassroomRemoteDataSourceImpl implements ClassroomRemoteDataSource {
   }
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> updateClass(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateClass(
           {required Classroom classroom}) =>
       apiService.putMethod<Map<String, dynamic>>(
           GeneralConstants.host +

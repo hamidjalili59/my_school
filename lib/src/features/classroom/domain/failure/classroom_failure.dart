@@ -12,7 +12,7 @@ class ClassroomFailure extends Failure with _$ClassroomFailure {
   const factory ClassroomFailure.missingToken() = _MissingToken;
 
   ///
-  const factory ClassroomFailure.api(DioError failure) = _Api;
+  const factory ClassroomFailure.api(DioException failure) = _Api;
   const factory ClassroomFailure.nullParam() = _NullParam;
   const factory ClassroomFailure.database(DatabaseError failure) = _Database;
 }

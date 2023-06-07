@@ -18,7 +18,7 @@ dependencies:
   database_service:
     git:
       url: https://github.com/hamidjalili59/database_service.git
-  dio: ^5.1.0
+  dio: ^5.2.0
   dropdown_search: ^5.0.3
   flutter:
     sdk: flutter

@@ -12,7 +12,7 @@ class ScoreFailure extends Failure with _$ScoreFailure {
   const factory ScoreFailure.missingToken() = _MissingToken;
 
   ///
-  const factory ScoreFailure.api(DioError failure) = _Api;
+  const factory ScoreFailure.api(DioException failure) = _Api;
   const factory ScoreFailure.nullParam() = _NullParam;
   const factory ScoreFailure.database(DatabaseError failure) = _Database;
 }

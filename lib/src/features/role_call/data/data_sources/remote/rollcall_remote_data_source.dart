@@ -6,10 +6,10 @@ import 'package:my_school/src/features/role_call/data/data_sources/remote/rollca
 import 'package:my_school/src/features/role_call/domain/models/rollcall_model.dart';
 
 abstract class RollcallRemoteDataSource {
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addRollcall(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addRollcall(
       {required List<Rollcall> rollcall});
 
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getRollcalls(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getRollcalls(
       {required int studentId});
 }
 
@@ -20,7 +20,7 @@ class RollcallRemoteDataSourceImpl implements RollcallRemoteDataSource {
   final ApiService apiService;
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> addRollcall(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> addRollcall(
           {required List<Rollcall> rollcall}) =>
       apiService.postMethod<Map<String, dynamic>>(
           GeneralConstants.host + RollcallEndpoints.addLink,
@@ -29,7 +29,7 @@ class RollcallRemoteDataSourceImpl implements RollcallRemoteDataSource {
           });
 
   @override
-  Future<Either<DioError, Response<Map<String, dynamic>>>> getRollcalls(
+  Future<Either<DioException, Response<Map<String, dynamic>>>> getRollcalls(
       {required int studentId}) {
     return apiService.getMethod(
       GeneralConstants.host + RollcallEndpoints.getLink + studentId.toString(),

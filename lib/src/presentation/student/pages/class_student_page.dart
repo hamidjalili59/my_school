@@ -3,18 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/config/utils/function_helper.dart';
 import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_school/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
-import 'package:my_school/src/features/core/models/basic_info_model.dart';
-import 'package:my_school/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_school/src/injectable/injectable.dart';
-import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
 import 'package:my_school/src/presentation/student/bloc/student/student_bloc.dart';
+import 'package:my_school/src/presentation/student/widgets/add_student_dialog_widget.dart';
 import 'package:my_school/src/presentation/student/widgets/custom_student_details.dart';
 import 'package:ndialog/ndialog.dart';
 
@@ -63,87 +60,22 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: GeneralConstants.backgroundColor,
       floatingActionButton: GeneralConstants.userType == UserType.admin
-          ? Padding(
-              padding: EdgeInsets.only(bottom: 16.w, right: 8.w),
-              child: SizedBox(
-                width: 0.5.sw,
-                // child: Row(
-                // children: [
-                // Flexible(
-                //   flex: 2,
-                child: Material(
-                  elevation: 5,
-                  color: GeneralConstants.mainColor,
-                  borderRadius: BorderRadius.circular(16.r),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(16.r),
-                    splashColor: GeneralConstants.backgroundColor,
-                    onTap: _addStudentDialog,
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 60.w,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(16.r),
-                      ),
-                      child: Icon(
-                        Icons.add_rounded,
-                        color: Colors.white,
-                        size: 26.r,
-                      ),
-                    ),
-                  ),
-                ),
-                // ),
-                // SizedBox(width: 5.w),
-                // Flexible(
-                //   flex: 5,
-                //   child: Material(
-                //     elevation: 5,
-                //     color: GeneralConstants.mainColor,
-                //     borderRadius: BorderRadius.circular(16.r),
-                //     child: InkWell(
-                //       borderRadius: BorderRadius.circular(16.r),
-                //       splashColor: GeneralConstants.backgroundColor,
-                //       onTap: _enterScoreDialogMethod,
-                //       child: Container(
-                //         alignment: Alignment.center,
-                //         width: 140.w,
-                //         height: 60,
-                //         decoration: BoxDecoration(
-                //           color: Colors.transparent,
-                //           borderRadius: BorderRadius.circular(16.r),
-                //         ),
-                //         child: Row(
-                //           mainAxisAlignment: MainAxisAlignment.center,
-                //           crossAxisAlignment: CrossAxisAlignment.center,
-                //           children: [
-                //             const Icon(Icons.menu_book_rounded,
-                //                 color: Colors.white),
-                //             SizedBox(width: 10.w),
-                //             Text(
-                //               'ثبت نمره',
-                //               style: TextStyle(
-                //                 color: Colors.white,
-                //                 fontSize: 16.r,
-                //                 fontWeight: FontWeight.w900,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // ],
-                // ),
-              ),
+          ? FloatingActionButton.extended(
+              onPressed: _addStudentDialog,
+              label: SizedBox(
+                  width: 0.3.sw, child: Icon(Icons.add_rounded, size: 28.sp)),
             )
-          : null,
+          : GeneralConstants.userType == UserType.teacher
+              ? FloatingActionButton.extended(
+                  onPressed: _studentGridBookDialog,
+                  label: SizedBox(
+                      width: 0.3.sw,
+                      child: Icon(Icons.add_rounded, size: 28.sp)),
+                )
+              : const SizedBox(),
       body: BlocBuilder<StudentBloc, StudentState>(
         bloc: getIt.get<StudentBloc>(),
         builder: (context, studentState) {
@@ -179,9 +111,8 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                           icon: Icons.person,
                           student: studentState.students[index],
                         ),
-                        GeneralConstants.userType == UserType.parent
-                            ? const SizedBox()
-                            : Align(
+                        GeneralConstants.userType == UserType.admin
+                            ? Align(
                                 alignment: Alignment.topRight,
                                 child: InkWell(
                                   onTap: () => FunctionHelper().removeDialog(
@@ -198,7 +129,8 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                     child: Icon(Icons.close, size: 26.r),
                                   ),
                                 ),
-                              ),
+                              )
+                            : const SizedBox(),
                       ],
                     ),
                   );
@@ -516,165 +448,67 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
   void _addStudentDialog() {
     final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
     NDialog(
-      content: SizedBox(
-        width: 0.75.sw,
-        height: 0.68.sh,
-        child: FormBuilder(
-          key: formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  width: 0.45.sw,
-                  height: 0.6.sw,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black38,
-                        blurRadius: 3,
-                        spreadRadius: 1,
-                        offset: Offset(1, 3),
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(34.0.r),
-                    child: Icon(Icons.person_rounded,
-                        size: 46.r, color: Colors.black87),
-                  ),
-                ),
-                CustomTextField(
-                  haveIcon: true,
-                  sIcon: Icons.person_rounded,
-                  name: 'student_name',
-                  labelText: 'اسم دانش آموز',
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(
-                        errorText: 'انتخاب اسم برای ساخت دانش آموز اجباری است'),
-                    FormBuilderValidators.maxLength(
-                      30,
-                      errorText:
-                          'لطفا اسمی که انتخاب میکنید کمتر از 30 حرف داشته باشد',
-                    ),
-                    FormBuilderValidators.minLength(
-                      3,
-                      errorText:
-                          'لطفا اسمی که انتخاب میکنید بیشتر از 3 حرف داشته باشد',
-                    ),
-                  ]),
-                  controller: _studentNameController,
-                  initialValue: '',
-                  width: 200.w,
-                  heghit: 65.h,
-                  keyboardType: TextInputType.name,
-                ),
-                SizedBox(height: 5.h),
-                CustomTextField(
-                  haveIcon: true,
-                  sIcon: Icons.family_restroom_rounded,
-                  name: 'parent_name',
-                  labelText: 'اسم والد',
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(
-                        errorText:
-                            'انتخاب اسم والد برای ساخت دانش آموز اجباری است'),
-                    FormBuilderValidators.maxLength(
-                      30,
-                      errorText:
-                          'لطفا اسمی که انتخاب میکنید کمتر از 30 حرف داشته باشد',
-                    ),
-                    FormBuilderValidators.minLength(
-                      3,
-                      errorText:
-                          'لطفا اسمی که انتخاب میکنید بیشتر از 3 حرف داشته باشد',
-                    ),
-                  ]),
-                  controller: _studentParentController,
-                  initialValue: '',
-                  width: 200.w,
-                  heghit: 65.h,
-                  keyboardType: TextInputType.name,
-                ),
-                SizedBox(height: 5.h),
-                CustomTextField(
-                  haveIcon: true,
-                  sIcon: Icons.phone_rounded,
-                  name: 'phone',
-                  labelText: 'شماره تماس',
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(
-                        errorText:
-                            'انتخاب شماره برای ساخت دانش آموز اجباری است'),
-                    FormBuilderValidators.numeric(
-                        errorText: 'شماره تلفن باید عدد باشد'),
-                    FormBuilderValidators.equalLength(11,
-                        errorText:
-                            'شماره تلفن درست نیست ، شماره باید 11 رقم باشد و با صفر شروع شود'),
-                  ]),
-                  controller: _phonenumberController,
-                  initialValue: '',
-                  width: 200.w,
-                  heghit: 65.h,
-                  keyboardType: TextInputType.phone,
-                ),
-                SizedBox(height: 10.h),
-                BlocBuilder<StudentBloc, StudentState>(
-                    bloc: getIt.get<StudentBloc>(),
-                    builder: (context, studentStateBotton) {
-                      return IgnorePointer(
-                        ignoring: studentStateBotton.isLoading,
-                        child: MaterialButton(
-                          onPressed: () {
-                            if (!studentStateBotton.isLoading) {
-                              if (formKey.currentState?.validate() ?? false) {
-                                getIt.get<StudentBloc>().add(
-                                      StudentEvent.addStudent(
-                                        Student(
-                                            basicInfo: BasicInfoModel(
-                                              name: _studentNameController.text,
-                                              phoneNumber: double.tryParse(
-                                                      _phonenumberController
-                                                          .text) ??
-                                                  0,
-                                            ),
-                                            classId:
-                                                getIt.get<Classroom>().classID),
-                                        _studentParentController.text,
-                                      ),
-                                    );
-                                _studentNameController.clear();
-                                _phonenumberController.clear();
-                                _studentParentController.clear();
+      content: AddStudentDialogWidget(
+        formKey: formKey,
+        studentNameController: _studentNameController,
+        studentParentController: _studentParentController,
+        phonenumberController: _phonenumberController,
+      ),
+    ).show(context);
+  }
 
-                                Navigator.pop(getIt
-                                    .get<AppRouter>()
-                                    .navigatorKey
-                                    .currentContext!);
-                              } else {}
-                            }
-                          },
-                          color: GeneralConstants.mainColor,
-                          elevation: 5,
-                          height: 55.h,
-                          minWidth: 0.65.sw,
-                          child: studentStateBotton.isLoading
-                              ? const CircularProgressIndicator()
-                              : Text(
-                                  'ثبت دانش‌آموز',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.r,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                        ),
-                      );
-                    }),
-              ],
+  void _studentGridBookDialog() {
+    // final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
+    NDialog(
+      dialogStyle: DialogStyle(
+          contentPadding: EdgeInsets.zero, backgroundColor: Colors.transparent),
+      content: SizedBox(
+        width: 0.5.sw,
+        height: 0.2.sh,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              flex: 1,
+              child: InkWell(
+                onTap: () {
+                  getIt.get<AppRouter>().pop();
+                  getIt.get<AppRouter>().pushNamed('/class_rollcalls_page');
+                },
+                child: Container(
+                  color: Theme.of(context).colorScheme.secondary.withBlue(130),
+                  alignment: Alignment.center,
+                  child: Text(
+                    'حضورغیاب',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
             ),
-          ),
+            Expanded(
+              flex: 1,
+              child: InkWell(
+                onTap: () {
+                  getIt.get<AppRouter>().pop();
+                  getIt.get<AppRouter>().pushNamed('/add_score_for_class_page');
+                },
+                child: Container(
+                  color: Theme.of(context).colorScheme.secondary,
+                  alignment: Alignment.center,
+                  child: Text(
+                    'ثبت نمرات',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     ).show(context);

@@ -11,4 +11,6 @@ class TeacherDetailEvent with _$TeacherDetailEvent {
       _RemoveMediator;
   const factory TeacherDetailEvent.acceptTeacher() = _AcceptTeacher;
   const factory TeacherDetailEvent.getMediators() = _GetMediators;
+  // const factory TeacherDetailEvent.getTeacherClassFromSchool() =
+  //     _GetTeacherClassFromSchool;
 }

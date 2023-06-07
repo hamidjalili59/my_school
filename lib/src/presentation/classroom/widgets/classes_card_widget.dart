@@ -21,8 +21,10 @@ class ClassesCardWidget extends StatelessWidget {
     Key? key,
     required this.classroom,
     required this.appRouter,
+    this.isTeacher = false,
   }) : super(key: key);
 
+  final bool isTeacher;
   final Classroom classroom;
   final AppRouter appRouter;
 
@@ -31,10 +33,12 @@ class ClassesCardWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 8.0.h),
       child: InkWell(
-        onLongPress: () {
-          _classNameController.text = classroom.className;
-          _updateClassroomDialogMethod(classroom: classroom);
-        },
+        onLongPress: GeneralConstants.userType == UserType.admin
+            ? () {
+                _classNameController.text = classroom.className;
+                _updateClassroomDialogMethod(classroom: classroom);
+              }
+            : () {},
         onTap: () {
           if (getIt.isRegistered<Classroom>()) {
             getIt.unregister<Classroom>();
@@ -114,9 +118,8 @@ class ClassesCardWidget extends StatelessWidget {
                       textDirection: TextDirection.rtl),
                 ),
               ),
-              GeneralConstants.userType == UserType.parent
-                  ? const SizedBox()
-                  : Align(
+              GeneralConstants.userType == UserType.admin
+                  ? Align(
                       alignment: Alignment.bottomLeft,
                       child: InkWell(
                         onTap: () {
@@ -138,7 +141,8 @@ class ClassesCardWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),

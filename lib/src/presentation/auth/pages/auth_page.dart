@@ -8,6 +8,7 @@ import 'package:my_school/src/presentation/auth/bloc/auth_bloc.dart';
 import 'package:my_school/src/presentation/auth/pages/user_authentication_page.dart';
 import 'package:my_school/src/presentation/auth/pages/verify_code_page.dart';
 import 'package:my_school/src/presentation/core/widgets/loading_widget.dart';
+import 'package:my_school/src/presentation/school/bloc/school/school_bloc.dart';
 
 class AuthPage extends StatelessWidget {
   AuthPage({super.key});
@@ -15,8 +16,15 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => bloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SchoolBloc>(
+          create: (_) => getIt.get<SchoolBloc>(),
+        ),
+        BlocProvider<AuthBloc>(
+          create: (_) => bloc,
+        ),
+      ],
       child: SafeArea(
         child: Scaffold(
           body: BlocBuilder<AuthBloc, AuthState>(

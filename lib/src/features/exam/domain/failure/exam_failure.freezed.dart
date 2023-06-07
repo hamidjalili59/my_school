@@ -19,7 +19,7 @@ mixin _$ExamFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() missingToken,
-    required TResult Function(DioError failure) api,
+    required TResult Function(DioException failure) api,
     required TResult Function() nullParam,
     required TResult Function(DatabaseError failure) database,
   }) =>
@@ -27,7 +27,7 @@ mixin _$ExamFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? missingToken,
-    TResult? Function(DioError failure)? api,
+    TResult? Function(DioException failure)? api,
     TResult? Function()? nullParam,
     TResult? Function(DatabaseError failure)? database,
   }) =>
@@ -35,7 +35,7 @@ mixin _$ExamFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? missingToken,
-    TResult Function(DioError failure)? api,
+    TResult Function(DioException failure)? api,
     TResult Function()? nullParam,
     TResult Function(DatabaseError failure)? database,
     required TResult orElse(),
@@ -125,7 +125,7 @@ class _$_MissingToken implements _MissingToken {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() missingToken,
-    required TResult Function(DioError failure) api,
+    required TResult Function(DioException failure) api,
     required TResult Function() nullParam,
     required TResult Function(DatabaseError failure) database,
   }) {
@@ -136,7 +136,7 @@ class _$_MissingToken implements _MissingToken {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? missingToken,
-    TResult? Function(DioError failure)? api,
+    TResult? Function(DioException failure)? api,
     TResult? Function()? nullParam,
     TResult? Function(DatabaseError failure)? database,
   }) {
@@ -147,7 +147,7 @@ class _$_MissingToken implements _MissingToken {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? missingToken,
-    TResult Function(DioError failure)? api,
+    TResult Function(DioException failure)? api,
     TResult Function()? nullParam,
     TResult Function(DatabaseError failure)? database,
     required TResult orElse(),
@@ -205,7 +205,7 @@ abstract class _$$_ApiCopyWith<$Res> {
   factory _$$_ApiCopyWith(_$_Api value, $Res Function(_$_Api) then) =
       __$$_ApiCopyWithImpl<$Res>;
   @useResult
-  $Res call({DioError failure});
+  $Res call({DioException failure});
 }
 
 /// @nodoc
@@ -223,7 +223,7 @@ class __$$_ApiCopyWithImpl<$Res> extends _$ExamFailureCopyWithImpl<$Res, _$_Api>
       null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as DioError,
+              as DioException,
     ));
   }
 }
@@ -234,7 +234,7 @@ class _$_Api implements _Api {
   const _$_Api(this.failure);
 
   @override
-  final DioError failure;
+  final DioException failure;
 
   @override
   String toString() {
@@ -262,7 +262,7 @@ class _$_Api implements _Api {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() missingToken,
-    required TResult Function(DioError failure) api,
+    required TResult Function(DioException failure) api,
     required TResult Function() nullParam,
     required TResult Function(DatabaseError failure) database,
   }) {
@@ -273,7 +273,7 @@ class _$_Api implements _Api {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? missingToken,
-    TResult? Function(DioError failure)? api,
+    TResult? Function(DioException failure)? api,
     TResult? Function()? nullParam,
     TResult? Function(DatabaseError failure)? database,
   }) {
@@ -284,7 +284,7 @@ class _$_Api implements _Api {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? missingToken,
-    TResult Function(DioError failure)? api,
+    TResult Function(DioException failure)? api,
     TResult Function()? nullParam,
     TResult Function(DatabaseError failure)? database,
     required TResult orElse(),
@@ -334,9 +334,9 @@ class _$_Api implements _Api {
 }
 
 abstract class _Api implements ExamFailure {
-  const factory _Api(final DioError failure) = _$_Api;
+  const factory _Api(final DioException failure) = _$_Api;
 
-  DioError get failure;
+  DioException get failure;
   @JsonKey(ignore: true)
   _$$_ApiCopyWith<_$_Api> get copyWith => throw _privateConstructorUsedError;
 }
@@ -380,7 +380,7 @@ class _$_NullParam implements _NullParam {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() missingToken,
-    required TResult Function(DioError failure) api,
+    required TResult Function(DioException failure) api,
     required TResult Function() nullParam,
     required TResult Function(DatabaseError failure) database,
   }) {
@@ -391,7 +391,7 @@ class _$_NullParam implements _NullParam {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? missingToken,
-    TResult? Function(DioError failure)? api,
+    TResult? Function(DioException failure)? api,
     TResult? Function()? nullParam,
     TResult? Function(DatabaseError failure)? database,
   }) {
@@ -402,7 +402,7 @@ class _$_NullParam implements _NullParam {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? missingToken,
-    TResult Function(DioError failure)? api,
+    TResult Function(DioException failure)? api,
     TResult Function()? nullParam,
     TResult Function(DatabaseError failure)? database,
     required TResult orElse(),
@@ -520,7 +520,7 @@ class _$_Database implements _Database {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() missingToken,
-    required TResult Function(DioError failure) api,
+    required TResult Function(DioException failure) api,
     required TResult Function() nullParam,
     required TResult Function(DatabaseError failure) database,
   }) {
@@ -531,7 +531,7 @@ class _$_Database implements _Database {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? missingToken,
-    TResult? Function(DioError failure)? api,
+    TResult? Function(DioException failure)? api,
     TResult? Function()? nullParam,
     TResult? Function(DatabaseError failure)? database,
   }) {
@@ -542,7 +542,7 @@ class _$_Database implements _Database {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? missingToken,
-    TResult Function(DioError failure)? api,
+    TResult Function(DioException failure)? api,
     TResult Function()? nullParam,
     TResult Function(DatabaseError failure)? database,
     required TResult orElse(),

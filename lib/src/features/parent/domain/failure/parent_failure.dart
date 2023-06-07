@@ -12,7 +12,7 @@ class ParentFailure extends Failure with _$ParentFailure {
   const factory ParentFailure.missingToken() = _MissingToken;
 
   ///
-  const factory ParentFailure.api(DioError failure) = _Api;
+  const factory ParentFailure.api(DioException failure) = _Api;
   const factory ParentFailure.nullParam() = _NullParam;
   const factory ParentFailure.database(DatabaseError failure) = _Database;
 }

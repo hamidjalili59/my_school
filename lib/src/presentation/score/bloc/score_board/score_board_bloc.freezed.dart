@@ -18,25 +18,27 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ScoreBoardState {
   bool get isLoading => throw _privateConstructorUsedError;
   List<Score> get scores => throw _privateConstructorUsedError;
+  List<TextEditingController> get scoresNumeric =>
+      throw _privateConstructorUsedError;
   List<Student> get students => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, List<Score> scores, List<Student> students)
+    required TResult Function(bool isLoading, List<Score> scores,
+            List<TextEditingController> scoresNumeric, List<Student> students)
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool isLoading, List<Score> scores, List<Student> students)?
+    TResult? Function(bool isLoading, List<Score> scores,
+            List<TextEditingController> scoresNumeric, List<Student> students)?
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool isLoading, List<Score> scores, List<Student> students)?
+    TResult Function(bool isLoading, List<Score> scores,
+            List<TextEditingController> scoresNumeric, List<Student> students)?
         idle,
     required TResult orElse(),
   }) =>
@@ -69,7 +71,11 @@ abstract class $ScoreBoardStateCopyWith<$Res> {
           ScoreBoardState value, $Res Function(ScoreBoardState) then) =
       _$ScoreBoardStateCopyWithImpl<$Res, ScoreBoardState>;
   @useResult
-  $Res call({bool isLoading, List<Score> scores, List<Student> students});
+  $Res call(
+      {bool isLoading,
+      List<Score> scores,
+      List<TextEditingController> scoresNumeric,
+      List<Student> students});
 }
 
 /// @nodoc
@@ -87,6 +93,7 @@ class _$ScoreBoardStateCopyWithImpl<$Res, $Val extends ScoreBoardState>
   $Res call({
     Object? isLoading = null,
     Object? scores = null,
+    Object? scoresNumeric = null,
     Object? students = null,
   }) {
     return _then(_value.copyWith(
@@ -98,6 +105,10 @@ class _$ScoreBoardStateCopyWithImpl<$Res, $Val extends ScoreBoardState>
           ? _value.scores
           : scores // ignore: cast_nullable_to_non_nullable
               as List<Score>,
+      scoresNumeric: null == scoresNumeric
+          ? _value.scoresNumeric
+          : scoresNumeric // ignore: cast_nullable_to_non_nullable
+              as List<TextEditingController>,
       students: null == students
           ? _value.students
           : students // ignore: cast_nullable_to_non_nullable
@@ -113,7 +124,11 @@ abstract class _$$_IdleCopyWith<$Res>
       __$$_IdleCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, List<Score> scores, List<Student> students});
+  $Res call(
+      {bool isLoading,
+      List<Score> scores,
+      List<TextEditingController> scoresNumeric,
+      List<Student> students});
 }
 
 /// @nodoc
@@ -128,6 +143,7 @@ class __$$_IdleCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? scores = null,
+    Object? scoresNumeric = null,
     Object? students = null,
   }) {
     return _then(_$_Idle(
@@ -139,6 +155,10 @@ class __$$_IdleCopyWithImpl<$Res>
           ? _value._scores
           : scores // ignore: cast_nullable_to_non_nullable
               as List<Score>,
+      scoresNumeric: null == scoresNumeric
+          ? _value._scoresNumeric
+          : scoresNumeric // ignore: cast_nullable_to_non_nullable
+              as List<TextEditingController>,
       students: null == students
           ? _value._students
           : students // ignore: cast_nullable_to_non_nullable
@@ -153,8 +173,10 @@ class _$_Idle implements _Idle {
   const _$_Idle(
       {this.isLoading = false,
       final List<Score> scores = const [],
+      final List<TextEditingController> scoresNumeric = const [],
       final List<Student> students = const []})
       : _scores = scores,
+        _scoresNumeric = scoresNumeric,
         _students = students;
 
   @override
@@ -169,6 +191,15 @@ class _$_Idle implements _Idle {
     return EqualUnmodifiableListView(_scores);
   }
 
+  final List<TextEditingController> _scoresNumeric;
+  @override
+  @JsonKey()
+  List<TextEditingController> get scoresNumeric {
+    if (_scoresNumeric is EqualUnmodifiableListView) return _scoresNumeric;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_scoresNumeric);
+  }
+
   final List<Student> _students;
   @override
   @JsonKey()
@@ -180,7 +211,7 @@ class _$_Idle implements _Idle {
 
   @override
   String toString() {
-    return 'ScoreBoardState.idle(isLoading: $isLoading, scores: $scores, students: $students)';
+    return 'ScoreBoardState.idle(isLoading: $isLoading, scores: $scores, scoresNumeric: $scoresNumeric, students: $students)';
   }
 
   @override
@@ -191,6 +222,8 @@ class _$_Idle implements _Idle {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other._scores, _scores) &&
+            const DeepCollectionEquality()
+                .equals(other._scoresNumeric, _scoresNumeric) &&
             const DeepCollectionEquality().equals(other._students, _students));
   }
 
@@ -199,6 +232,7 @@ class _$_Idle implements _Idle {
       runtimeType,
       isLoading,
       const DeepCollectionEquality().hash(_scores),
+      const DeepCollectionEquality().hash(_scoresNumeric),
       const DeepCollectionEquality().hash(_students));
 
   @JsonKey(ignore: true)
@@ -210,33 +244,33 @@ class _$_Idle implements _Idle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, List<Score> scores, List<Student> students)
+    required TResult Function(bool isLoading, List<Score> scores,
+            List<TextEditingController> scoresNumeric, List<Student> students)
         idle,
   }) {
-    return idle(isLoading, scores, students);
+    return idle(isLoading, scores, scoresNumeric, students);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool isLoading, List<Score> scores, List<Student> students)?
+    TResult? Function(bool isLoading, List<Score> scores,
+            List<TextEditingController> scoresNumeric, List<Student> students)?
         idle,
   }) {
-    return idle?.call(isLoading, scores, students);
+    return idle?.call(isLoading, scores, scoresNumeric, students);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool isLoading, List<Score> scores, List<Student> students)?
+    TResult Function(bool isLoading, List<Score> scores,
+            List<TextEditingController> scoresNumeric, List<Student> students)?
         idle,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle(isLoading, scores, students);
+      return idle(isLoading, scores, scoresNumeric, students);
     }
     return orElse();
   }
@@ -274,12 +308,15 @@ abstract class _Idle implements ScoreBoardState {
   const factory _Idle(
       {final bool isLoading,
       final List<Score> scores,
+      final List<TextEditingController> scoresNumeric,
       final List<Student> students}) = _$_Idle;
 
   @override
   bool get isLoading;
   @override
   List<Score> get scores;
+  @override
+  List<TextEditingController> get scoresNumeric;
   @override
   List<Student> get students;
   @override

@@ -12,7 +12,7 @@ class ExamFailure extends Failure with _$ExamFailure {
   const factory ExamFailure.missingToken() = _MissingToken;
 
   ///
-  const factory ExamFailure.api(DioError failure) = _Api;
+  const factory ExamFailure.api(DioException failure) = _Api;
   const factory ExamFailure.nullParam() = _NullParam;
   const factory ExamFailure.database(DatabaseError failure) = _Database;
 }
