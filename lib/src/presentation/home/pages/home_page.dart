@@ -13,6 +13,7 @@ import 'package:my_school/src/presentation/course/pages/course_page.dart';
 import 'package:my_school/src/presentation/exam/bloc/exam/exam_bloc.dart';
 import 'package:my_school/src/presentation/home/bloc/home_bloc.dart';
 import 'package:my_school/src/presentation/home/widgets/home_appbar_widget.dart';
+import 'package:my_school/src/presentation/rollcall/bloc/rollcall_single/rollcall_bloc.dart';
 import 'package:my_school/src/presentation/school/bloc/teacher_classroom/teacher_classroom_bloc.dart';
 import 'package:my_school/src/presentation/score/bloc/score/score_bloc.dart';
 import 'package:my_school/src/presentation/score/bloc/score_board/score_board_bloc.dart';
@@ -55,6 +56,9 @@ class HomePage extends StatelessWidget {
             ),
             BlocProvider<ScoreBoardBloc>(
               create: (_) => getIt.get<ScoreBoardBloc>(),
+            ),
+            BlocProvider<RollcallBloc>(
+              create: (_) => getIt.get<RollcallBloc>(),
             ),
             BlocProvider<ExamBloc>(
               create: (_) => getIt.get<ExamBloc>(),

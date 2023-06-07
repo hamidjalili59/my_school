@@ -6,7 +6,5 @@ class ScoreBoardEvent with _$ScoreBoardEvent {
   const factory ScoreBoardEvent.putScores(
     List<Score> scores,
   ) = _PutScores;
-  const factory ScoreBoardEvent.acceptScores(
-    List<Score> scores,
-  ) = _AcceptScores;
+  const factory ScoreBoardEvent.acceptScores() = _AcceptScores;
 }

@@ -14,7 +14,7 @@ part 'score_state.dart';
 part 'score_event.dart';
 part 'score_bloc.freezed.dart';
 
-@lazySingleton
+@injectable
 class ScoreBloc extends Bloc<ScoreEvent, ScoreState> {
   final GetScoreUseCase _getScoreUseCase;
   final RemoveScoreUseCase _removeScoreUseCase;

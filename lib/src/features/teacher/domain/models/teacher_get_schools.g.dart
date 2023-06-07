@@ -19,17 +19,20 @@ class TeacherGetSchoolsAdapter extends TypeAdapter<TeacherGetSchools> {
     return TeacherGetSchools(
       fields[0] as int,
       fields[1] as int,
+      fields[2] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, TeacherGetSchools obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.teacherId)
       ..writeByte(1)
-      ..write(obj.schoolId);
+      ..write(obj.schoolId)
+      ..writeByte(2)
+      ..write(obj.schoolName);
   }
 
   @override
@@ -51,10 +54,12 @@ TeacherGetSchools _$TeacherGetSchoolsFromJson(Map<String, dynamic> json) =>
     TeacherGetSchools(
       json['teacherId'] as int,
       json['schoolId'] as int,
+      json['schoolName'] as String,
     );
 
 Map<String, dynamic> _$TeacherGetSchoolsToJson(TeacherGetSchools instance) =>
     <String, dynamic>{
       'teacherId': instance.teacherId,
       'schoolId': instance.schoolId,
+      'schoolName': instance.schoolName,
     };

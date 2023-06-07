@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -38,9 +40,7 @@ class ScoreRemoteDataSourceImpl implements ScoreRemoteDataSource {
   }) =>
       apiService.postMethod<Map<String, dynamic>>(
           GeneralConstants.host + ScoreEndpoints.addLink,
-          body: {
-            'scores': scores,
-          });
+          body: jsonEncode(scores));
 
   @override
   Future<Either<DioException, Response<Map<String, dynamic>>>> getScores(

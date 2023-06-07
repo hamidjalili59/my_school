@@ -40,6 +40,14 @@ class ClassesCardWidget extends StatelessWidget {
               }
             : () {},
         onTap: () {
+          // if(GeneralConstants.userType == UserType.teacher){
+          // if (getIt.isRegistered<Classroom>()) {
+          //   getIt.unregister<Classroom>();
+          //   getIt.registerSingleton<Classroom>(classroom);
+          // } else {
+          //   getIt.registerSingleton<Classroom>(classroom);
+          // }
+          // }
           if (getIt.isRegistered<Classroom>()) {
             getIt.unregister<Classroom>();
             getIt.registerSingleton<Classroom>(classroom);

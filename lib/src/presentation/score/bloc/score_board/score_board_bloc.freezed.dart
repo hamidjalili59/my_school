@@ -21,24 +21,37 @@ mixin _$ScoreBoardState {
   List<TextEditingController> get scoresNumeric =>
       throw _privateConstructorUsedError;
   List<Student> get students => throw _privateConstructorUsedError;
+  List<Teacher> get teachers => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading, List<Score> scores,
-            List<TextEditingController> scoresNumeric, List<Student> students)
+    required TResult Function(
+            bool isLoading,
+            List<Score> scores,
+            List<TextEditingController> scoresNumeric,
+            List<Student> students,
+            List<Teacher> teachers)
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, List<Score> scores,
-            List<TextEditingController> scoresNumeric, List<Student> students)?
+    TResult? Function(
+            bool isLoading,
+            List<Score> scores,
+            List<TextEditingController> scoresNumeric,
+            List<Student> students,
+            List<Teacher> teachers)?
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, List<Score> scores,
-            List<TextEditingController> scoresNumeric, List<Student> students)?
+    TResult Function(
+            bool isLoading,
+            List<Score> scores,
+            List<TextEditingController> scoresNumeric,
+            List<Student> students,
+            List<Teacher> teachers)?
         idle,
     required TResult orElse(),
   }) =>
@@ -75,7 +88,8 @@ abstract class $ScoreBoardStateCopyWith<$Res> {
       {bool isLoading,
       List<Score> scores,
       List<TextEditingController> scoresNumeric,
-      List<Student> students});
+      List<Student> students,
+      List<Teacher> teachers});
 }
 
 /// @nodoc
@@ -95,6 +109,7 @@ class _$ScoreBoardStateCopyWithImpl<$Res, $Val extends ScoreBoardState>
     Object? scores = null,
     Object? scoresNumeric = null,
     Object? students = null,
+    Object? teachers = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -113,6 +128,10 @@ class _$ScoreBoardStateCopyWithImpl<$Res, $Val extends ScoreBoardState>
           ? _value.students
           : students // ignore: cast_nullable_to_non_nullable
               as List<Student>,
+      teachers: null == teachers
+          ? _value.teachers
+          : teachers // ignore: cast_nullable_to_non_nullable
+              as List<Teacher>,
     ) as $Val);
   }
 }
@@ -128,7 +147,8 @@ abstract class _$$_IdleCopyWith<$Res>
       {bool isLoading,
       List<Score> scores,
       List<TextEditingController> scoresNumeric,
-      List<Student> students});
+      List<Student> students,
+      List<Teacher> teachers});
 }
 
 /// @nodoc
@@ -145,6 +165,7 @@ class __$$_IdleCopyWithImpl<$Res>
     Object? scores = null,
     Object? scoresNumeric = null,
     Object? students = null,
+    Object? teachers = null,
   }) {
     return _then(_$_Idle(
       isLoading: null == isLoading
@@ -163,6 +184,10 @@ class __$$_IdleCopyWithImpl<$Res>
           ? _value._students
           : students // ignore: cast_nullable_to_non_nullable
               as List<Student>,
+      teachers: null == teachers
+          ? _value._teachers
+          : teachers // ignore: cast_nullable_to_non_nullable
+              as List<Teacher>,
     ));
   }
 }
@@ -174,10 +199,12 @@ class _$_Idle implements _Idle {
       {this.isLoading = false,
       final List<Score> scores = const [],
       final List<TextEditingController> scoresNumeric = const [],
-      final List<Student> students = const []})
+      final List<Student> students = const [],
+      final List<Teacher> teachers = const []})
       : _scores = scores,
         _scoresNumeric = scoresNumeric,
-        _students = students;
+        _students = students,
+        _teachers = teachers;
 
   @override
   @JsonKey()
@@ -209,9 +236,18 @@ class _$_Idle implements _Idle {
     return EqualUnmodifiableListView(_students);
   }
 
+  final List<Teacher> _teachers;
+  @override
+  @JsonKey()
+  List<Teacher> get teachers {
+    if (_teachers is EqualUnmodifiableListView) return _teachers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_teachers);
+  }
+
   @override
   String toString() {
-    return 'ScoreBoardState.idle(isLoading: $isLoading, scores: $scores, scoresNumeric: $scoresNumeric, students: $students)';
+    return 'ScoreBoardState.idle(isLoading: $isLoading, scores: $scores, scoresNumeric: $scoresNumeric, students: $students, teachers: $teachers)';
   }
 
   @override
@@ -224,7 +260,8 @@ class _$_Idle implements _Idle {
             const DeepCollectionEquality().equals(other._scores, _scores) &&
             const DeepCollectionEquality()
                 .equals(other._scoresNumeric, _scoresNumeric) &&
-            const DeepCollectionEquality().equals(other._students, _students));
+            const DeepCollectionEquality().equals(other._students, _students) &&
+            const DeepCollectionEquality().equals(other._teachers, _teachers));
   }
 
   @override
@@ -233,7 +270,8 @@ class _$_Idle implements _Idle {
       isLoading,
       const DeepCollectionEquality().hash(_scores),
       const DeepCollectionEquality().hash(_scoresNumeric),
-      const DeepCollectionEquality().hash(_students));
+      const DeepCollectionEquality().hash(_students),
+      const DeepCollectionEquality().hash(_teachers));
 
   @JsonKey(ignore: true)
   @override
@@ -244,33 +282,45 @@ class _$_Idle implements _Idle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading, List<Score> scores,
-            List<TextEditingController> scoresNumeric, List<Student> students)
+    required TResult Function(
+            bool isLoading,
+            List<Score> scores,
+            List<TextEditingController> scoresNumeric,
+            List<Student> students,
+            List<Teacher> teachers)
         idle,
   }) {
-    return idle(isLoading, scores, scoresNumeric, students);
+    return idle(isLoading, scores, scoresNumeric, students, teachers);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, List<Score> scores,
-            List<TextEditingController> scoresNumeric, List<Student> students)?
+    TResult? Function(
+            bool isLoading,
+            List<Score> scores,
+            List<TextEditingController> scoresNumeric,
+            List<Student> students,
+            List<Teacher> teachers)?
         idle,
   }) {
-    return idle?.call(isLoading, scores, scoresNumeric, students);
+    return idle?.call(isLoading, scores, scoresNumeric, students, teachers);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, List<Score> scores,
-            List<TextEditingController> scoresNumeric, List<Student> students)?
+    TResult Function(
+            bool isLoading,
+            List<Score> scores,
+            List<TextEditingController> scoresNumeric,
+            List<Student> students,
+            List<Teacher> teachers)?
         idle,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle(isLoading, scores, scoresNumeric, students);
+      return idle(isLoading, scores, scoresNumeric, students, teachers);
     }
     return orElse();
   }
@@ -309,7 +359,8 @@ abstract class _Idle implements ScoreBoardState {
       {final bool isLoading,
       final List<Score> scores,
       final List<TextEditingController> scoresNumeric,
-      final List<Student> students}) = _$_Idle;
+      final List<Student> students,
+      final List<Teacher> teachers}) = _$_Idle;
 
   @override
   bool get isLoading;
@@ -319,6 +370,8 @@ abstract class _Idle implements ScoreBoardState {
   List<TextEditingController> get scoresNumeric;
   @override
   List<Student> get students;
+  @override
+  List<Teacher> get teachers;
   @override
   @JsonKey(ignore: true)
   _$$_IdleCopyWith<_$_Idle> get copyWith => throw _privateConstructorUsedError;
@@ -330,21 +383,21 @@ mixin _$ScoreBoardEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getStudents,
     required TResult Function(List<Score> scores) putScores,
-    required TResult Function(List<Score> scores) acceptScores,
+    required TResult Function() acceptScores,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStudents,
     TResult? Function(List<Score> scores)? putScores,
-    TResult? Function(List<Score> scores)? acceptScores,
+    TResult? Function()? acceptScores,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStudents,
     TResult Function(List<Score> scores)? putScores,
-    TResult Function(List<Score> scores)? acceptScores,
+    TResult Function()? acceptScores,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -430,7 +483,7 @@ class _$_GetStudents implements _GetStudents {
   TResult when<TResult extends Object?>({
     required TResult Function() getStudents,
     required TResult Function(List<Score> scores) putScores,
-    required TResult Function(List<Score> scores) acceptScores,
+    required TResult Function() acceptScores,
   }) {
     return getStudents();
   }
@@ -440,7 +493,7 @@ class _$_GetStudents implements _GetStudents {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStudents,
     TResult? Function(List<Score> scores)? putScores,
-    TResult? Function(List<Score> scores)? acceptScores,
+    TResult? Function()? acceptScores,
   }) {
     return getStudents?.call();
   }
@@ -450,7 +503,7 @@ class _$_GetStudents implements _GetStudents {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStudents,
     TResult Function(List<Score> scores)? putScores,
-    TResult Function(List<Score> scores)? acceptScores,
+    TResult Function()? acceptScores,
     required TResult orElse(),
   }) {
     if (getStudents != null) {
@@ -570,7 +623,7 @@ class _$_PutScores implements _PutScores {
   TResult when<TResult extends Object?>({
     required TResult Function() getStudents,
     required TResult Function(List<Score> scores) putScores,
-    required TResult Function(List<Score> scores) acceptScores,
+    required TResult Function() acceptScores,
   }) {
     return putScores(scores);
   }
@@ -580,7 +633,7 @@ class _$_PutScores implements _PutScores {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStudents,
     TResult? Function(List<Score> scores)? putScores,
-    TResult? Function(List<Score> scores)? acceptScores,
+    TResult? Function()? acceptScores,
   }) {
     return putScores?.call(scores);
   }
@@ -590,7 +643,7 @@ class _$_PutScores implements _PutScores {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStudents,
     TResult Function(List<Score> scores)? putScores,
-    TResult Function(List<Score> scores)? acceptScores,
+    TResult Function()? acceptScores,
     required TResult orElse(),
   }) {
     if (putScores != null) {
@@ -648,8 +701,6 @@ abstract class _$$_AcceptScoresCopyWith<$Res> {
   factory _$$_AcceptScoresCopyWith(
           _$_AcceptScores value, $Res Function(_$_AcceptScores) then) =
       __$$_AcceptScoresCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<Score> scores});
 }
 
 /// @nodoc
@@ -659,65 +710,35 @@ class __$$_AcceptScoresCopyWithImpl<$Res>
   __$$_AcceptScoresCopyWithImpl(
       _$_AcceptScores _value, $Res Function(_$_AcceptScores) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? scores = null,
-  }) {
-    return _then(_$_AcceptScores(
-      null == scores
-          ? _value._scores
-          : scores // ignore: cast_nullable_to_non_nullable
-              as List<Score>,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_AcceptScores implements _AcceptScores {
-  const _$_AcceptScores(final List<Score> scores) : _scores = scores;
-
-  final List<Score> _scores;
-  @override
-  List<Score> get scores {
-    if (_scores is EqualUnmodifiableListView) return _scores;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_scores);
-  }
+  const _$_AcceptScores();
 
   @override
   String toString() {
-    return 'ScoreBoardEvent.acceptScores(scores: $scores)';
+    return 'ScoreBoardEvent.acceptScores()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AcceptScores &&
-            const DeepCollectionEquality().equals(other._scores, _scores));
+        (other.runtimeType == runtimeType && other is _$_AcceptScores);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_scores));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_AcceptScoresCopyWith<_$_AcceptScores> get copyWith =>
-      __$$_AcceptScoresCopyWithImpl<_$_AcceptScores>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getStudents,
     required TResult Function(List<Score> scores) putScores,
-    required TResult Function(List<Score> scores) acceptScores,
+    required TResult Function() acceptScores,
   }) {
-    return acceptScores(scores);
+    return acceptScores();
   }
 
   @override
@@ -725,9 +746,9 @@ class _$_AcceptScores implements _AcceptScores {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStudents,
     TResult? Function(List<Score> scores)? putScores,
-    TResult? Function(List<Score> scores)? acceptScores,
+    TResult? Function()? acceptScores,
   }) {
-    return acceptScores?.call(scores);
+    return acceptScores?.call();
   }
 
   @override
@@ -735,11 +756,11 @@ class _$_AcceptScores implements _AcceptScores {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStudents,
     TResult Function(List<Score> scores)? putScores,
-    TResult Function(List<Score> scores)? acceptScores,
+    TResult Function()? acceptScores,
     required TResult orElse(),
   }) {
     if (acceptScores != null) {
-      return acceptScores(scores);
+      return acceptScores();
     }
     return orElse();
   }
@@ -780,10 +801,5 @@ class _$_AcceptScores implements _AcceptScores {
 }
 
 abstract class _AcceptScores implements ScoreBoardEvent {
-  const factory _AcceptScores(final List<Score> scores) = _$_AcceptScores;
-
-  List<Score> get scores;
-  @JsonKey(ignore: true)
-  _$$_AcceptScoresCopyWith<_$_AcceptScores> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _AcceptScores() = _$_AcceptScores;
 }
