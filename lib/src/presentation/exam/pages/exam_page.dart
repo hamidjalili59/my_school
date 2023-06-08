@@ -7,10 +7,14 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/features/auth/domain/models/auth_types.dart';
+import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
+import 'package:my_school/src/features/exam/domain/models/exam_model.dart';
+import 'package:my_school/src/features/teacher/domain/models/teacher_get_schools.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/core/widgets/custom_textfield_widget.dart';
 import 'package:my_school/src/presentation/exam/bloc/exam/exam_bloc.dart';
 import 'package:my_school/src/presentation/exam/widget/custom_card_exam_widget.dart';
+import 'package:my_school/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:ndialog/ndialog.dart';
 
 class ExamPage extends StatefulWidget {
@@ -157,10 +161,9 @@ class _ExamPageState extends State<ExamPage> {
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(12.r),
                 bottomRight: Radius.circular(12.r))),
-        // width: 0.15.sw,
         height: 50.h,
         child: Text(
-          'افزودن دبیر',
+          'افزودن امتحان',
           style: TextStyle(
               color: Colors.white, fontSize: 16.r, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
@@ -182,7 +185,7 @@ class _ExamPageState extends State<ExamPage> {
                 SizedBox(height: 10.h),
                 CustomTextField(
                   name: 'exam_description',
-                  labelText: 'توضیح امتحان',
+                  labelText: 'توضیحات امتحان',
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(
                         errorText: 'انتخاب توضیح برای ساخت امتحان اجباری است'),
@@ -204,22 +207,46 @@ class _ExamPageState extends State<ExamPage> {
                   keyboardType: TextInputType.text,
                 ),
                 SizedBox(height: 15.h),
-                Container(
-                  decoration: BoxDecoration(
-                    color: GeneralConstants.mainColor,
-                    borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                  ),
-                  width: 0.45.sw,
-                  height: 40.h,
-                  alignment: Alignment.center,
-                  child: Text(
-                    'تایید',
-                    style: TextStyle(
-                      fontSize: 16.r,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
+                InkWell(
+                  onTap: () {
+                    if (getIt.get<ExamBloc>().state.isLoading) {
+                      return;
+                    }
+                    Exam tempExam = Exam(
+                      classId: getIt.get<Classroom>().classID,
+                      examDescription: _controllerExamDescription.text,
+                      teacherId: getIt.get<TeacherGetSchools>().teacherId,
+                      teacherName: getIt
+                          .get<TeacherBloc>()
+                          .state
+                          .teachers
+                          .firstWhere(
+                            (element) =>
+                                element.teacherId ==
+                                getIt.get<TeacherGetSchools>().teacherId,
+                          )
+                          .basicInfo!
+                          .name,
+                    );
+                    getIt.get<ExamBloc>().add(ExamEvent.acceptExams(tempExam));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: GeneralConstants.mainColor,
+                      borderRadius: BorderRadius.all(Radius.circular(8.r)),
                     ),
-                    textAlign: TextAlign.center,
+                    width: 0.45.sw,
+                    height: 40.h,
+                    alignment: Alignment.center,
+                    child: Text(
+                      'تایید',
+                      style: TextStyle(
+                        fontSize: 16.r,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 SizedBox(height: 10.h),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -35,10 +37,9 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   Future<Either<DioException, Response<Map<String, dynamic>>>> addExam(
           {required Exam exam}) =>
       apiService.postMethod<Map<String, dynamic>>(
-          GeneralConstants.host + ExamEndpoints.addLink,
-          body: {
-            'exam': exam,
-          });
+        GeneralConstants.host + ExamEndpoints.addLink,
+        body: jsonEncode(exam),
+      );
 
   @override
   Future<Either<DioException, Response<Map<String, dynamic>>>> getExams(
