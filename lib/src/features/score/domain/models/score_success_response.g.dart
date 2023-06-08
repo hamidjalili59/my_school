@@ -17,7 +17,7 @@ class ScoreSuccessResponseAdapter extends TypeAdapter<ScoreSuccessResponse> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ScoreSuccessResponse(
-      score: fields[0] as Score,
+      score: (fields[0] as List).cast<Score>(),
     );
   }
 
@@ -47,11 +47,13 @@ class ScoreSuccessResponseAdapter extends TypeAdapter<ScoreSuccessResponse> {
 ScoreSuccessResponse _$ScoreSuccessResponseFromJson(
         Map<String, dynamic> json) =>
     ScoreSuccessResponse(
-      score: Score.fromJson(json['Grade'] as Map<String, dynamic>),
+      score: (json['Grades'] as List<dynamic>)
+          .map((e) => Score.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$ScoreSuccessResponseToJson(
         ScoreSuccessResponse instance) =>
     <String, dynamic>{
-      'Grade': instance.score,
+      'Grades': instance.score,
     };

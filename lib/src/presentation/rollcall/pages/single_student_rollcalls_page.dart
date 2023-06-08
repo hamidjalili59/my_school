@@ -7,7 +7,7 @@ import 'package:my_school/src/config/constants/general_constants.dart';
 import 'package:my_school/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_school/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_school/src/injectable/injectable.dart';
-import 'package:my_school/src/presentation/rollcall/bloc/rollcall_bloc.dart';
+import 'package:my_school/src/presentation/rollcall/bloc/rollcall_single/rollcall_bloc.dart';
 import 'package:persian_datetimepickers/persian_datetimepickers.dart';
 
 class SingleStudentRollcallsPage extends StatefulWidget {

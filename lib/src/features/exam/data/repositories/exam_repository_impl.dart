@@ -16,17 +16,21 @@ class ExamRepositoryImpl extends ExamRepository {
   ExamRepositoryImpl(this._remoteDS, this._localDS);
 
   @override
-  Future<Either<ExamFailure, void>> addExam({required Exam exam}) {
+  Future<Either<ExamFailure, ExamSuccessResponse>> addExam(
+      {required Exam exam}) {
     return _remoteDS.addExam(exam: exam).then(
           (value) => value.fold(
-            (l) => left<ExamFailure, void>(ExamFailure.api(l)),
+            (l) => left<ExamFailure, ExamSuccessResponse>(ExamFailure.api(l)),
             (r) async {
               try {
-                return right<ExamFailure, void>(
-                  null,
+                final addExamFromServer = ExamSuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<ExamFailure, ExamSuccessResponse>(
+                  addExamFromServer,
                 );
               } catch (e) {
-                return left<ExamFailure, ExamGetResponse>(
+                return left<ExamFailure, ExamSuccessResponse>(
                     const ExamFailure.nullParam());
               }
             },

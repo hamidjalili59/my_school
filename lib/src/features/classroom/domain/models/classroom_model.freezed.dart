@@ -30,6 +30,9 @@ mixin _$Classroom {
   @HiveField(2, defaultValue: 'مدرسه من')
   @JsonKey(name: 'class_Name')
   String get className => throw _privateConstructorUsedError;
+  @HiveField(3, defaultValue: '')
+  @JsonKey(name: 'course_Name')
+  String get courseName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +54,10 @@ abstract class $ClassroomCopyWith<$Res> {
           int schoolId,
       @HiveField(2, defaultValue: 'مدرسه من')
       @JsonKey(name: 'class_Name')
-          String className});
+          String className,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'course_Name')
+          String courseName});
 }
 
 /// @nodoc
@@ -70,6 +76,7 @@ class _$ClassroomCopyWithImpl<$Res, $Val extends Classroom>
     Object? classID = null,
     Object? schoolId = null,
     Object? className = null,
+    Object? courseName = null,
   }) {
     return _then(_value.copyWith(
       classID: null == classID
@@ -83,6 +90,10 @@ class _$ClassroomCopyWithImpl<$Res, $Val extends Classroom>
       className: null == className
           ? _value.className
           : className // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseName: null == courseName
+          ? _value.courseName
+          : courseName // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -104,7 +115,10 @@ abstract class _$$_ClassroomCopyWith<$Res> implements $ClassroomCopyWith<$Res> {
           int schoolId,
       @HiveField(2, defaultValue: 'مدرسه من')
       @JsonKey(name: 'class_Name')
-          String className});
+          String className,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'course_Name')
+          String courseName});
 }
 
 /// @nodoc
@@ -121,6 +135,7 @@ class __$$_ClassroomCopyWithImpl<$Res>
     Object? classID = null,
     Object? schoolId = null,
     Object? className = null,
+    Object? courseName = null,
   }) {
     return _then(_$_Classroom(
       classID: null == classID
@@ -134,6 +149,10 @@ class __$$_ClassroomCopyWithImpl<$Res>
       className: null == className
           ? _value.className
           : className // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseName: null == courseName
+          ? _value.courseName
+          : courseName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -152,7 +171,10 @@ class _$_Classroom implements _Classroom {
           this.schoolId = 0,
       @HiveField(2, defaultValue: 'مدرسه من')
       @JsonKey(name: 'class_Name')
-          this.className = 'مدرسه من'});
+          this.className = 'مدرسه من',
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'course_Name')
+          this.courseName = ''});
 
   factory _$_Classroom.fromJson(Map<String, dynamic> json) =>
       _$$_ClassroomFromJson(json);
@@ -172,10 +194,14 @@ class _$_Classroom implements _Classroom {
   @HiveField(2, defaultValue: 'مدرسه من')
   @JsonKey(name: 'class_Name')
   final String className;
+  @override
+  @HiveField(3, defaultValue: '')
+  @JsonKey(name: 'course_Name')
+  final String courseName;
 
   @override
   String toString() {
-    return 'Classroom(classID: $classID, schoolId: $schoolId, className: $className)';
+    return 'Classroom(classID: $classID, schoolId: $schoolId, className: $className, courseName: $courseName)';
   }
 
   @override
@@ -187,12 +213,15 @@ class _$_Classroom implements _Classroom {
             (identical(other.schoolId, schoolId) ||
                 other.schoolId == schoolId) &&
             (identical(other.className, className) ||
-                other.className == className));
+                other.className == className) &&
+            (identical(other.courseName, courseName) ||
+                other.courseName == courseName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, classID, schoolId, className);
+  int get hashCode =>
+      Object.hash(runtimeType, classID, schoolId, className, courseName);
 
   @JsonKey(ignore: true)
   @override
@@ -218,7 +247,10 @@ abstract class _Classroom implements Classroom {
           final int schoolId,
       @HiveField(2, defaultValue: 'مدرسه من')
       @JsonKey(name: 'class_Name')
-          final String className}) = _$_Classroom;
+          final String className,
+      @HiveField(3, defaultValue: '')
+      @JsonKey(name: 'course_Name')
+          final String courseName}) = _$_Classroom;
 
   factory _Classroom.fromJson(Map<String, dynamic> json) =
       _$_Classroom.fromJson;
@@ -235,6 +267,10 @@ abstract class _Classroom implements Classroom {
   @HiveField(2, defaultValue: 'مدرسه من')
   @JsonKey(name: 'class_Name')
   String get className;
+  @override
+  @HiveField(3, defaultValue: '')
+  @JsonKey(name: 'course_Name')
+  String get courseName;
   @override
   @JsonKey(ignore: true)
   _$$_ClassroomCopyWith<_$_Classroom> get copyWith =>

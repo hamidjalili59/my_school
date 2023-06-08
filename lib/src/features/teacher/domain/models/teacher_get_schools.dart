@@ -11,8 +11,10 @@ class TeacherGetSchools {
   final int teacherId;
   @HiveField(1)
   final int schoolId;
+  @HiveField(2)
+  final String schoolName;
 
-  TeacherGetSchools(this.teacherId, this.schoolId);
+  TeacherGetSchools(this.teacherId, this.schoolId, this.schoolName);
 
   factory TeacherGetSchools.fromJson(Map<String, dynamic> json) =>
       _$TeacherGetSchoolsFromJson(json);

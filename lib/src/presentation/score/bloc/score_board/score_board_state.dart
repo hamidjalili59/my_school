@@ -7,5 +7,6 @@ class ScoreBoardState with _$ScoreBoardState {
     @Default([]) List<Score> scores,
     @Default([]) List<TextEditingController> scoresNumeric,
     @Default([]) List<Student> students,
+    @Default([]) List<Teacher> teachers,
   }) = _Idle;
 }

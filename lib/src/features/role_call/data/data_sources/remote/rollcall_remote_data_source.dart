@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:api_service/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -23,10 +25,9 @@ class RollcallRemoteDataSourceImpl implements RollcallRemoteDataSource {
   Future<Either<DioException, Response<Map<String, dynamic>>>> addRollcall(
           {required List<Rollcall> rollcall}) =>
       apiService.postMethod<Map<String, dynamic>>(
-          GeneralConstants.host + RollcallEndpoints.addLink,
-          body: {
-            'rollcall': rollcall,
-          });
+        GeneralConstants.host + RollcallEndpoints.addLink,
+        body: jsonEncode(rollcall),
+      );
 
   @override
   Future<Either<DioException, Response<Map<String, dynamic>>>> getRollcalls(

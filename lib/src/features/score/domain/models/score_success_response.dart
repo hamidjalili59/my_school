@@ -8,8 +8,8 @@ part 'score_success_response.g.dart';
 @JsonSerializable()
 class ScoreSuccessResponse {
   @HiveField(0)
-  @JsonKey(name: 'Grade')
-  final Score score;
+  @JsonKey(name: 'Grades')
+  final List<Score> score;
 
   ScoreSuccessResponse({required this.score});
 

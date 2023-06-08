@@ -216,6 +216,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
                                                   state.data.values
                                                           .toList()[index]
                                                       ['school_ID'],
+                                                  state.data.values
+                                                          .toList()[index]
+                                                      ['school_Name'],
                                                 );
                                                 getIt.registerSingleton<
                                                         TeacherGetSchools>(

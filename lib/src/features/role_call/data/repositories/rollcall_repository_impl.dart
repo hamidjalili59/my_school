@@ -24,6 +24,14 @@ class RollcallRepositoryImpl extends RollcallRepository {
                 RollcallFailure.api(l)),
             (r) async {
               try {
+                if (BaseResponse.fromJson(r.data ?? {})
+                        .payload['RollCalls']
+                        .toString() ==
+                    '[null]') {
+                  return right<RollcallFailure, RollcallSuccessResponse>(
+                    RollcallSuccessResponse(rollcall: []),
+                  );
+                }
                 final rollcallAddSuccessResponse =
                     RollcallSuccessResponse.fromJson(
                   BaseResponse.fromJson(r.data ?? {}).payload,

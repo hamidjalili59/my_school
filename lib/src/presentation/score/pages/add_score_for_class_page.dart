@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_school/src/config/constants/png_assets.dart';
+import 'package:my_school/src/config/routes/router.dart';
 import 'package:my_school/src/injectable/injectable.dart';
 import 'package:my_school/src/presentation/score/bloc/score_board/score_board_bloc.dart';
 
@@ -13,6 +14,7 @@ class AddScoreForClassPage extends StatefulWidget {
 }
 
 class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
+  final ScoreBoardBloc bloc = getIt.get<ScoreBoardBloc>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,8 +31,13 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: BlocBuilder<ScoreBoardBloc, ScoreBoardState>(
-                        bloc: getIt.get<ScoreBoardBloc>(),
+                        bloc: bloc,
                         builder: (context, scoreBoardState) {
+                          if (scoreBoardState.isLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
                           return SingleChildScrollView(
                             child: DataTable(
                               headingRowHeight: 70.h,
@@ -145,10 +152,7 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
                     children: [
                       InkWell(
                         onTap: () {
-                          getIt.get<ScoreBoardBloc>().add(
-                              ScoreBoardEvent.acceptScores(
-                                  getIt.get<ScoreBoardBloc>().state.scores));
-                          // getIt.get<AppRouter>().pop();
+                          getIt.get<AppRouter>().pop();
                         },
                         child: SizedBox(
                           width: 60.w,
@@ -163,7 +167,6 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.w),
                         child: Text(
-                          // 'جمعه 20/9/1401 ساعت 9:28\nمدرسه شهید نظری',
                           'ثبت نمرات',
                           style: TextStyle(
                               fontSize: 22.r,
@@ -175,9 +178,10 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
                       ),
                       InkWell(
                         onTap: () {
-                          getIt
-                              .get<ScoreBoardBloc>()
-                              .add(const ScoreBoardEvent.acceptScores([]));
+                          if (bloc.state.isLoading) {
+                            return;
+                          }
+                          bloc.add(const ScoreBoardEvent.acceptScores());
                         },
                         child: SizedBox(
                           width: 60.w,
